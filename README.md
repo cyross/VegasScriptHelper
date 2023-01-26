@@ -1,0 +1,2 @@
+# VegasScriptHelper
+VEGASのスクリプトを実装するために便利なクラスライブラリ
