@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VegasScriptHelper.Properties" GeneratedClassName="Vegas">
+  <Profiles />
+  <Settings>
+    <Setting Name="audioInsertInterval" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="openDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="isRecursive" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="startFrom" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="assignEventMargin" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="targetAssignTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Subtitles</Value>
+    </Setting>
+    <Setting Name="jimakuOutlineWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="expandVideoEventMargin" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

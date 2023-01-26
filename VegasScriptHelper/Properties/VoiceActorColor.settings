@@ -1,0 +1,261 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VegasScriptHelper.Properties" GeneratedClassName="VoiceActorColor">
+  <Profiles />
+  <Settings>
+    <Setting Name="ずんだもん" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="波音リツ" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">IndianRed</Value>
+    </Setting>
+    <Setting Name="琴葉_茜" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 192, 192</Value>
+    </Setting>
+    <Setting Name="四国めたん" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="四国めたん_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="四国めたん_あまあま_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="四国めたん_ツンツン_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="四国めたん_セクシー_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="四国めたん_ささやき_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="四国めたん_ヒソヒソ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="ずんだもん_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="ずんだもん_あまあま_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="ずんだもん_ツンツン_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="ずんだもん_セクシー_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="ずんだもん_ささやき_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="ずんだもん_ヒソヒソ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="春日部つむぎ" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGoldenrod</Value>
+    </Setting>
+    <Setting Name="雨晴はう" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Aqua</Value>
+    </Setting>
+    <Setting Name="玄野武宏" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Snow</Value>
+    </Setting>
+    <Setting Name="玄野武宏_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Snow</Value>
+    </Setting>
+    <Setting Name="玄野武宏_喜び_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Snow</Value>
+    </Setting>
+    <Setting Name="玄野武宏_ツンギレ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Snow</Value>
+    </Setting>
+    <Setting Name="玄野武宏_悲しみ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Snow</Value>
+    </Setting>
+    <Setting Name="白上虎太郎" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGreen</Value>
+    </Setting>
+    <Setting Name="白上虎太郎_ふつう_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGreen</Value>
+    </Setting>
+    <Setting Name="白上虎太郎_わーい_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGreen</Value>
+    </Setting>
+    <Setting Name="白上虎太郎_びくびく_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGreen</Value>
+    </Setting>
+    <Setting Name="白上虎太郎_おこ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGreen</Value>
+    </Setting>
+    <Setting Name="白上虎太郎_ぴえーん_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGreen</Value>
+    </Setting>
+    <Setting Name="青山龍星" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">SteelBlue</Value>
+    </Setting>
+    <Setting Name="冥鳴ひまり" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">BlueViolet</Value>
+    </Setting>
+    <Setting Name="九州そら" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumOrchid</Value>
+    </Setting>
+    <Setting Name="九州そら_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumOrchid</Value>
+    </Setting>
+    <Setting Name="九州そら_あまあま_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumOrchid</Value>
+    </Setting>
+    <Setting Name="九州そら_ツンツン_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumOrchid</Value>
+    </Setting>
+    <Setting Name="九州そら_セクシー_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumOrchid</Value>
+    </Setting>
+    <Setting Name="九州そら_ささやき_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumOrchid</Value>
+    </Setting>
+    <Setting Name="九州そら_ヒソヒソ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumOrchid</Value>
+    </Setting>
+    <Setting Name="もち子さん" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="剣崎雌雄" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="WhiteCUL" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightSkyBlue</Value>
+    </Setting>
+    <Setting Name="WhiteCUL_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightSkyBlue</Value>
+    </Setting>
+    <Setting Name="WhiteCUL_たのしい_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightSkyBlue</Value>
+    </Setting>
+    <Setting Name="WhiteCUL_かなしい_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightSkyBlue</Value>
+    </Setting>
+    <Setting Name="WhiteCUL_ぴえーん_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightSkyBlue</Value>
+    </Setting>
+    <Setting Name="後鬼" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">RoyalBlue</Value>
+    </Setting>
+    <Setting Name="後鬼_人間ver__" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">RoyalBlue</Value>
+    </Setting>
+    <Setting Name="後鬼_ぬいぐるみver__" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">RoyalBlue</Value>
+    </Setting>
+    <Setting Name="No_7" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkBlue</Value>
+    </Setting>
+    <Setting Name="No_7_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkBlue</Value>
+    </Setting>
+    <Setting Name="No_7_アナウンス_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkBlue</Value>
+    </Setting>
+    <Setting Name="No_7_読み聞かせ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkBlue</Value>
+    </Setting>
+    <Setting Name="ちび式じい" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightCyan</Value>
+    </Setting>
+    <Setting Name="櫻歌ミコ" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightPink</Value>
+    </Setting>
+    <Setting Name="櫻歌ミコ_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightPink</Value>
+    </Setting>
+    <Setting Name="櫻歌ミコ_第二形態_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightPink</Value>
+    </Setting>
+    <Setting Name="櫻歌ミコ_ロリ_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightPink</Value>
+    </Setting>
+    <Setting Name="小夜_SAYO" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DimGray</Value>
+    </Setting>
+    <Setting Name="ナースロボ＿タイプＴ" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LemonChiffon</Value>
+    </Setting>
+    <Setting Name="ナースロボ＿タイプＴ_ノーマル_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LemonChiffon</Value>
+    </Setting>
+    <Setting Name="ナースロボ＿タイプＴ_楽々_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LemonChiffon</Value>
+    </Setting>
+    <Setting Name="ナースロボ＿タイプＴ_恐怖_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LemonChiffon</Value>
+    </Setting>
+    <Setting Name="ナースロボ＿タイプＴ_内緒話_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LemonChiffon</Value>
+    </Setting>
+    <Setting Name="琴葉_葵" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightBlue</Value>
+    </Setting>
+    <Setting Name="結月ゆかり" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Orchid</Value>
+    </Setting>
+    <Setting Name="紲星あかり" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gainsboro</Value>
+    </Setting>
+    <Setting Name="桜乃そら" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gold</Value>
+    </Setting>
+    <Setting Name="京町セイカ_v1_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">SpringGreen</Value>
+    </Setting>
+    <Setting Name="フリモメン" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Turquoise</Value>
+    </Setting>
+    <Setting Name="東北ずん子" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="女性1" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 192, 192</Value>
+    </Setting>
+    <Setting Name="女性2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 192, 192</Value>
+    </Setting>
+    <Setting Name="女性3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 192, 192</Value>
+    </Setting>
+    <Setting Name="女の子" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 128, 128</Value>
+    </Setting>
+    <Setting Name="男性1" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">RoyalBlue</Value>
+    </Setting>
+    <Setting Name="男性2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">RoyalBlue</Value>
+    </Setting>
+    <Setting Name="男性3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">RoyalBlue</Value>
+    </Setting>
+    <Setting Name="さとうささら" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Coral</Value>
+    </Setting>
+    <Setting Name="小春六花" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Silver</Value>
+    </Setting>
+    <Setting Name="ロサ_ROSA_" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 224, 192</Value>
+    </Setting>
+    <Setting Name="男性4" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">RoyalBlue</Value>
+    </Setting>
+    <Setting Name="女声4" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 192, 192</Value>
+    </Setting>
+    <Setting Name="男の子" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">CornflowerBlue</Value>
+    </Setting>
+    <Setting Name="彩澄しゅお" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">HotPink</Value>
+    </Setting>
+    <Setting Name="彩澄りりせ" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DodgerBlue</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
