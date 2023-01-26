@@ -88,7 +88,7 @@ namespace VegasScriptHelper
             AssignAudioTrackDurationToVideoTrack(videoTrack, audioTrack, margin, adjustTakes, group);
         }
 
-        internal void DeleteJimakuPrefix()
+        public void DeleteJimakuPrefix()
         {
             VideoTrack track = SelectedVideoTrack();
             DeleteJimakuPrefix(track);
