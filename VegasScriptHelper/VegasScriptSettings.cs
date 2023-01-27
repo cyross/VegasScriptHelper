@@ -74,7 +74,7 @@ namespace VegasScriptHelper
 
         public static string FormatKey(string org_key)
         {
-            return Regex.Replace(org_key, @"[\s()\.\/]", "_");
+            return Regex.Replace(org_key, @"[\s()\.\/:\.\[\]\\\/]+", "_");
         }
     }
 }
