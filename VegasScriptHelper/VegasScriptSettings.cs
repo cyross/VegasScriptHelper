@@ -19,12 +19,14 @@ namespace VegasScriptHelper
         public static string TargetAssignTrackName;
         public static double JimakuOutlineWidth;
         public static double ExpandVideoEventMargin;
+        public readonly static Dictionary<string, string> DefaultBinName = new Dictionary<string, string>();
 
         public static void Load()
         {
             Properties.Vegas.Default.Upgrade();
             Properties.SupportedAudioFileSettings.Default.Upgrade();
             Properties.VoiceActorColor.Default.Upgrade();
+            Properties.DefaultBinName.Default.Upgrade();
 
             AudioInsertInterval = Properties.Vegas.Default.audioInsertInterval;
             OpenDirectory = Properties.Vegas.Default.openDirectory;
@@ -56,11 +58,20 @@ namespace VegasScriptHelper
                 PropertyInfo pinfo = typeof(Properties.VoiceActorOutlineColor).GetProperty(property.Name);
                 OutlineColorByActor[property.Name] = (Color)pinfo.GetValue(Properties.VoiceActorOutlineColor.Default);
             }
+
+            DefaultBinName.Clear();
+            foreach(SettingsProperty property in Properties.DefaultBinName.Default.Properties)
+            {
+                PropertyInfo pinfo = typeof(Properties.DefaultBinName).GetProperty(property.Name);
+                DefaultBinName[property.Name] = (string)pinfo.GetValue(Properties.DefaultBinName.Default);
+            }
         }
 
         public static void Save()
         {
-            // VoiceActorColor, SupportedAudioFileSettingはマスタ情報なので保存不要
+            // VoiceActorColorはマスタ情報なので保存不要
+            // SupportedAudioFileSettingはマスタ情報なので保存不要
+            // DefaultBinNameはマスタ情報なので保存不要
             Properties.Vegas.Default.expandVideoEventMargin = ExpandVideoEventMargin;
             Properties.Vegas.Default.jimakuOutlineWidth = JimakuOutlineWidth;
             Properties.Vegas.Default.targetAssignTrackName = TargetAssignTrackName;

@@ -8,141 +8,113 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VegasScriptHelper.Properties
-{
-
-
+namespace VegasScriptHelper.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
-    public sealed partial class Vegas : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    public sealed partial class Vegas : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Vegas defaultInstance = ((Vegas)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Vegas())));
-
-        public static Vegas Default
-        {
-            get
-            {
+        
+        public static Vegas Default {
+            get {
                 return defaultInstance;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public float audioInsertInterval
-        {
-            get
-            {
+        public float audioInsertInterval {
+            get {
                 return ((float)(this["audioInsertInterval"]));
             }
-            set
-            {
+            set {
                 this["audioInsertInterval"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string openDirectory
-        {
-            get
-            {
+        public string openDirectory {
+            get {
                 return ((string)(this["openDirectory"]));
             }
-            set
-            {
+            set {
                 this["openDirectory"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool isRecursive
-        {
-            get
-            {
+        public bool isRecursive {
+            get {
                 return ((bool)(this["isRecursive"]));
             }
-            set
-            {
+            set {
                 this["isRecursive"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool startFrom
-        {
-            get
-            {
+        public bool startFrom {
+            get {
                 return ((bool)(this["startFrom"]));
             }
-            set
-            {
+            set {
                 this["startFrom"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public double assignEventMargin
-        {
-            get
-            {
+        public double assignEventMargin {
+            get {
                 return ((double)(this["assignEventMargin"]));
             }
-            set
-            {
+            set {
                 this["assignEventMargin"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Subtitles")]
-        public string targetAssignTrackName
-        {
-            get
-            {
+        public string targetAssignTrackName {
+            get {
                 return ((string)(this["targetAssignTrackName"]));
             }
-            set
-            {
+            set {
                 this["targetAssignTrackName"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double jimakuOutlineWidth
-        {
-            get
-            {
+        public double jimakuOutlineWidth {
+            get {
                 return ((double)(this["jimakuOutlineWidth"]));
             }
-            set
-            {
+            set {
                 this["jimakuOutlineWidth"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double expandVideoEventMargin
-        {
-            get
-            {
+        public double expandVideoEventMargin {
+            get {
                 return ((double)(this["expandVideoEventMargin"]));
             }
-            set
-            {
+            set {
                 this["expandVideoEventMargin"] = value;
             }
         }

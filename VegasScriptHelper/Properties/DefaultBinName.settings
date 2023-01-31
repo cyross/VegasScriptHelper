@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VegasScriptHelper.Properties" GeneratedClassName="DefaultBinName">
+  <Profiles />
+  <Settings>
+    <Setting Name="voiroVoice" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ボイロ音声</Value>
+    </Setting>
+    <Setting Name="voiroJimaku" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ボイロ字幕</Value>
+    </Setting>
+    <Setting Name="jimakuBackground" Type="System.String" Scope="User">
+      <Value Profile="(Default)">字幕背景</Value>
+    </Setting>
+    <Setting Name="tachie" Type="System.String" Scope="User">
+      <Value Profile="(Default)">立ち絵</Value>
+    </Setting>
+    <Setting Name="dlAudio" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DL音声</Value>
+    </Setting>
+    <Setting Name="createdAudio" Type="System.String" Scope="User">
+      <Value Profile="(Default)">作成音声</Value>
+    </Setting>
+    <Setting Name="dlMovie" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DL動画</Value>
+    </Setting>
+    <Setting Name="createdMovie" Type="System.String" Scope="User">
+      <Value Profile="(Default)">作成動画</Value>
+    </Setting>
+    <Setting Name="dlImage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DL画像</Value>
+    </Setting>
+    <Setting Name="createdImage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">作成画像</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
