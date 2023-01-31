@@ -9,7 +9,6 @@ namespace VegasScriptDebug
     {
         public void FromVegas(Vegas vegas)
         {
-            VegasScriptSettings.Load();
             VegasHelper helper = VegasHelper.Instance(vegas);
 
             //InsertWaveFileInNewAudioTrack(helper);
@@ -19,7 +18,8 @@ namespace VegasScriptDebug
             //DeleteJimakuPrefix(helper);
             //ShowTrackLength(helper);
             //ExpandFirstVideoEvent(helper);
-            DebugMediaBin(helper);
+            //DebugMediaBin(helper);
+            DebugCreateMediaBin(helper);
         }
     }
 }

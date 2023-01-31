@@ -48,9 +48,8 @@ namespace VegasScriptHelper
 
         public void DeleteJimakuPrefixFromRtf(int pos)
         {
-            box.Select(0, pos + 1);
-            box.Cut();
-            box.Focus();
+            box.Text = box.Text.Substring(pos + 1);
+            box.Update();
         }
 
         public void SetColorIntoAllRtfText(Color textColor)

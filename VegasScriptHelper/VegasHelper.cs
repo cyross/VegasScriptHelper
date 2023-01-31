@@ -22,6 +22,7 @@ namespace VegasScriptHelper
 
         public static VegasHelper Instance(Vegas vegas)
         {
+            VegasScriptSettings.Load();
             if (_instance == null)
             {
                 _instance = new VegasHelper(vegas);

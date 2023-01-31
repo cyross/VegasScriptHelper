@@ -7,10 +7,14 @@ namespace VegasScriptHelper
 {
     public partial class VegasHelper
     {
+        public bool IsExistMediaBin(string name)
+        {
+            return SearchMediaBinNodes(name).Any();
+        }
+
         public MediaBin CreateMediaBin(string name)
         {
-            var searchResult = SearchMediaBinNodes(name);
-            if (searchResult.Count() > 0)
+            if (IsExistMediaBin(name))
             {
                 throw new VegasHelperAlreadyExistedMediaBinException();
             }
@@ -22,7 +26,7 @@ namespace VegasScriptHelper
         public MediaBin GetMediaBin(string name)
         {
             var searchResult = SearchMediaBinNodes(name);
-            if(searchResult.Count() == 0)
+            if(!searchResult.Any())
             {
                 throw new VegasHelperNotFoundMediaBinException();
             }
@@ -32,7 +36,7 @@ namespace VegasScriptHelper
         public void DeleteMediaBin(string name)
         {
             var searchResult = SearchMediaBinNodes(name);
-            if(searchResult.Count() == 0)
+            if (!searchResult.Any())
             {
                 throw new VegasHelperNotFoundMediaBinException();
             }
@@ -40,10 +44,36 @@ namespace VegasScriptHelper
             Vegas.Project.MediaPool.RootMediaBin.Remove(target);
         }
 
+        private IEnumerable<MediaBin> GetMediaBinEnuerable()
+        {
+            return Vegas.Project.MediaPool.RootMediaBin.
+                Where(node => node.NodeType == MediaBinNodeType.Bin).
+                Cast<MediaBin>().ToList();
+        }
+
+        public List<MediaBin> GetMediaBinList()
+        {
+            return GetMediaBinEnuerable().ToList();
+        }
+
+        public List<string> GetMediaBinNameList()
+        {
+            return GetMediaBinEnuerable().
+                Select(bin => bin.Name).
+                ToList();
+        }
+
         private IEnumerable<MediaBin> SearchMediaBinNodes(string name)
         {
             return Vegas.Project.MediaPool.RootMediaBin.Where(
                 bin => bin.NodeType == MediaBinNodeType.Bin && ((MediaBin)bin).Name == name
+                ).Cast<MediaBin>();
+        }
+
+        private IEnumerable<MediaBin> SearchMediaBinNodes(uint id)
+        {
+            return Vegas.Project.MediaPool.RootMediaBin.Where(
+                bin => bin.NodeType == MediaBinNodeType.Bin && ((MediaBin)bin).NodeID == id
                 ).Cast<MediaBin>();
         }
     }

@@ -1,4 +1,6 @@
 ﻿using ScriptPortal.Vegas;
+using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using VegasScriptHelper;
 
@@ -6,6 +8,17 @@ namespace VegasScriptDebug
 {
     public partial class EntryPoint
     {
+        private void DebugCreateMediaBin(VegasHelper helper)
+        {
+            Debug.WriteLine("メディアビンを作成します。");
+            MediaBin mediaBin = helper.CreateMediaBin("ほげ");
+            Debug.WriteLine("メディアビンにメディアを挿入します。");
+            System.Reflection.Assembly executionAsm = System.Reflection.Assembly.GetExecutingAssembly();
+            string executingPath = System.IO.Path.GetDirectoryName(new Uri(executionAsm.CodeBase).LocalPath);
+            mediaBin.Add(helper.CreateMedia(executingPath + "\\..\\..\\for_debug-0.wav"));
+            Debug.WriteLine("完了しました。");
+        }
+
         private void DebugMediaBin(VegasHelper helper)
         {
             string binName = "テスト用";

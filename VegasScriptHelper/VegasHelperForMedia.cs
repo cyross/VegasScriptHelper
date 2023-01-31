@@ -6,6 +6,11 @@ namespace VegasScriptHelper
 {
     public partial class VegasHelper
     {
+        public Media CreateMedia(string path)
+        {
+            return new Media(path);
+        }
+
         public Media[] GetMediaList(VideoTrack track)
         {
             return GetMediaList(track.Events);

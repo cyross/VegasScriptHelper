@@ -16,25 +16,31 @@ namespace VegasScriptHelper
         /// <param name="interval">挿入するイベント間の間隔　単位はミリ秒　標準は0.0</param>
         /// <param name="fromStart">トラックの最初から挿入するかどうかを示すフラグ　trueのときは最初から、falseのときは現在のカーソル位置から</param>
         /// <param name="recursive">子ディレクトリのを再帰的にトラックの最初から挿入するかどうかを示すフラグ　trueのときは最初から、falseのときは現在のカーソル位置から</param>
-        public void InseretAudioInTrack(string fileDir, float interval = 0.0f, bool fromStart = false, bool recursive = true)
+        public void InseretAudioInTrack(string fileDir, float interval = 0.0f, bool fromStart = false, bool recursive = true, bool useMediaBin = true, string mediaBinName = null)
         {
             AudioTrack audioTrack = AddAudioTrack();
             SetTrackTitle(audioTrack, "Subtitles");
             audioTrack.Selected = true;
 
+            MediaBin mediaBin = null;
+            if(useMediaBin && mediaBinName != null)
+            {
+                mediaBin = IsExistMediaBin(mediaBinName) ? GetMediaBin(mediaBinName) : CreateMediaBin(mediaBinName);
+            }
+
             Timecode currentPosition = fromStart ? new Timecode() : Vegas.Cursor;
             Timecode intervalTimecode = new Timecode(interval);
 
-            _InsertAudio(currentPosition, intervalTimecode, fileDir, audioTrack, recursive);
+            _InsertAudio(currentPosition, intervalTimecode, fileDir, audioTrack, recursive, mediaBin);
         }
 
-        public Timecode _InsertAudio(Timecode current, Timecode interval, string fileDir, AudioTrack audioTrack, bool recursive)
+        public Timecode _InsertAudio(Timecode current, Timecode interval, string fileDir, AudioTrack audioTrack, bool recursive, MediaBin mediaBin = null)
         {
             if (recursive)
             {
                 foreach (string childDir in Directory.GetDirectories(fileDir))
                 {
-                    current = _InsertAudio(current, interval, childDir, audioTrack, recursive);
+                    current = _InsertAudio(current, interval, childDir, audioTrack, recursive, mediaBin);
                 }
             }
             foreach (string filePath in Directory.GetFiles(fileDir))
@@ -42,6 +48,12 @@ namespace VegasScriptHelper
                 if (VegasScriptSettings.SupportedAudioFile.Contains(Path.GetExtension(filePath)))
                 {
                     Media audioMedia = new Media(filePath);
+
+                    if(mediaBin != null)
+                    {
+                        mediaBin.Add(audioMedia);
+                    }
+
                     AudioStream audioStream = audioMedia.GetAudioStreamByIndex(0);
 
                     AudioEvent audioEvent = audioTrack.AddAudioEvent(current, audioStream.Length);

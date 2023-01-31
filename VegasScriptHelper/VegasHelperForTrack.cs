@@ -1,9 +1,24 @@
 ﻿using ScriptPortal.Vegas;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace VegasScriptHelper
 {
     public partial class VegasHelper
     {
+        public IEnumerable<Track> SelectedTracks {
+            get { return Vegas.Project.Tracks.Where(track => track.Selected); }
+        }
+
+        public IEnumerable<VideoTrack> AllVideoTracks
+        {
+            get { return Vegas.Project.Tracks.Where(track => track.IsVideo()).Cast<VideoTrack>(); }
+        }
+
+        public IEnumerable<AudioTrack> AllAudioTracks
+        {
+            get { return Vegas.Project.Tracks.Where(track => track.IsAudio()).Cast<AudioTrack>(); }
+        }
 
         /// <summary>
         /// プロジェクト内で選択しているトラックがあれば、そのトラックのオブジェクトを返す。
@@ -167,6 +182,11 @@ namespace VegasScriptHelper
         public bool IsAudioTrack(Track track)
         {
             return track.IsAudio();
+        }
+
+        public string GetTrackKey(Track track)
+        {
+            return string.Format("[{0}]{1}", (track.Index + 1).ToString(), track.Name ?? "");
         }
     }
 }

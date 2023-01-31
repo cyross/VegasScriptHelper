@@ -1,7 +1,14 @@
 # VegasScriptHelper
 
+## 概要
+
 VEGASのスクリプトを実装するために便利なクラスライブラリと
-デバッグ用スクリプトとのセット
+デバッグ用スクリプトとのセット。
+
+## VegasScriptDebugについて
+
+VisualStudioでデバッグするためのコードですので、
+他の環境で使用したときの動作保証はできません。
 
 ## VegasScriptHelperのインストールに関して
 

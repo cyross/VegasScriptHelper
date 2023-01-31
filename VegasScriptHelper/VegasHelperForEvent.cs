@@ -13,15 +13,25 @@ namespace VegasScriptHelper
         public TrackEvents GetVideoEvents(bool throwError = true)
         {
             VideoTrack selected = SelectedVideoTrack();
-            if (throwError && selected.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
-            return selected.Events;
+            return GetVideoEvents(selected, throwError);
+        }
+
+        public TrackEvents GetVideoEvents(VideoTrack track, bool throwError = true)
+        {
+            if (throwError && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            return track.Events;
         }
 
         public TrackEvents GetAudioEvents(bool throwError = true)
         {
             AudioTrack selected = SelectedAudioTrack();
-            if (throwError && selected.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
-            return selected.Events;
+            return GetAudioEvents(selected, throwError);
+        }
+
+        public TrackEvents GetAudioEvents(AudioTrack track, bool throwError = true)
+        {
+            if (throwError && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            return track.Events;
         }
 
         public TrackEvent GetSelectedEvent(Track track, bool throwError = true)
