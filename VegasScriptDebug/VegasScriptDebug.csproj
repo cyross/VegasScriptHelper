@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="CustomModule.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="EntryPointMediaBin.cs" />
+    <Compile Include="EntryPointMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

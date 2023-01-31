@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using ScriptPortal.Vegas;
 using VegasScriptHelper;
 
-namespace VegasScriptPrescribedPattern
+namespace VegasScriptDebug
 {
     public class CustomModule : ICustomCommandModule
     {

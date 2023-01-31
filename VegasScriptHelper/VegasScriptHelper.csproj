@@ -79,6 +79,7 @@
     <Compile Include="VegasHelperException.cs" />
     <Compile Include="VegasHelperForApplication.cs" />
     <Compile Include="VegasHelperForMedia.cs" />
+    <Compile Include="VegasHelperForMediaBin.cs" />
     <Compile Include="VegasHelperForOFXParameter.cs" />
     <Compile Include="VegasHelperForTake.cs" />
     <Compile Include="VegasHelperUtility.cs" />
