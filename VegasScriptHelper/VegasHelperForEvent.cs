@@ -66,24 +66,24 @@ namespace VegasScriptHelper
             return GetSelectedEvent(track, throwError);
         }
 
-        public long GetEventStartTime(TrackEvent trackEvent)
+        public Timecode GetEventStartTime(TrackEvent trackEvent)
         {
-            return trackEvent.Start.Nanos;
+            return trackEvent.Start;
         }
 
-        public void SetEventStartTime(TrackEvent trackEvent, long nanos)
+        public void SetEventStartTime(TrackEvent trackEvent, Timecode start)
         {
-            trackEvent.Start = new Timecode(nanos);
+            trackEvent.Start = start;
         }
 
-        public long GetEventLength(TrackEvent trackEvent)
+        public Timecode GetEventLength(TrackEvent trackEvent)
         {
-            return trackEvent.Length.Nanos;
+            return trackEvent.Length;
         }
 
-        public void SetEventLength(TrackEvent trackEvent, long nanos)
+        public void SetEventLength(TrackEvent trackEvent, Timecode length)
         {
-            trackEvent.Length = new Timecode(nanos);
+            trackEvent.Length = length;
         }
 
         public VegasDuration GetEventTime(TrackEvent trackEvent)
