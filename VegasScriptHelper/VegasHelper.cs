@@ -1,5 +1,4 @@
 ﻿using ScriptPortal.Vegas;
-using System.Collections.Generic;
 
 namespace VegasScriptHelper
 {
