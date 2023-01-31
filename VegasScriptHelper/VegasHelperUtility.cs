@@ -14,7 +14,7 @@ namespace VegasScriptHelper
 
         public static long RoundNanos(long nanos)
         {
-            return nanos + 500000 / 1000000 * 1000000;
+            return (nanos + 5000) / 10000;
         }
 
         public static List<TrackEvent> RefillTrackEvents(TrackEvents trackEvents)
