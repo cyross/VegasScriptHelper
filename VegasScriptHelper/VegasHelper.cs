@@ -34,6 +34,15 @@ namespace VegasScriptHelper
             Hour = nanos / 60;
         }
 
+        public VegasTime(long hour, long minute, long second, long millisecond)
+        {
+            Hour = hour;
+            Minute = minute;
+            Second = second;
+            MilliSecond = millisecond;
+            OrgNanos = 0;
+        }
+
         public override string ToString()
         {
             return string.Format(
