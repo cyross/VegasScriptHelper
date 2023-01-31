@@ -6,17 +6,6 @@ namespace VegasScriptHelper
 {
     public class VegasHelperUtility
     {
-        public static string NanoToTimestamp(long nanos)
-        {
-            TimeSpan span = new TimeSpan(nanos);
-            return span.ToString("g");
-        }
-
-        public static long RoundNanos(long nanos)
-        {
-            return (nanos + 5000) / 10000;
-        }
-
         public static List<TrackEvent> RefillTrackEvents(TrackEvents trackEvents)
         {
             List<TrackEvent> events = new List<TrackEvent>();

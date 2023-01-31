@@ -33,9 +33,8 @@ namespace VegasScriptDebug
             {
                 try
                 {
-                    long nanos = helper.GetLengthFromAllEventsInTrack() + 500000 / 1000000 * 1000000;
-                    TimeSpan span = new TimeSpan(nanos);
-                    string result = string.Format("長さ: {0}", span.ToString("g"));
+                    Timecode time = helper.GetLengthFromAllEventsInTrack();
+                    string result = string.Format("長さ: {0}", time.ToString(RulerFormat.Time));
 
                     DockableControl dock = new DockableControl(DockName);
                     Label label1 = new Label

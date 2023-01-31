@@ -1,5 +1,6 @@
 ﻿using ScriptPortal.Vegas;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -151,24 +152,26 @@ namespace VegasScriptHelper
             Timecode singleMaraginTimecode = new Timecode(margin);
             Timecode doubleMaraginTimecode = new Timecode(margin * 2);
 
-            VegasDuration duration = new VegasDuration();
-            duration.StartTime = firstEvent.Start - singleMaraginTimecode;
-            duration.Length = lastEvent.Start + lastEvent.Length - firstEvent.Start + doubleMaraginTimecode;
+            VegasDuration duration = new VegasDuration()
+            {
+                StartTime = firstEvent.Start - singleMaraginTimecode,
+                Length = lastEvent.Start + lastEvent.Length - firstEvent.Start + doubleMaraginTimecode
+            };
             return duration;
         }
 
-        public long GetLengthFromAllEventsInTrack()
+        public Timecode GetLengthFromAllEventsInTrack()
         {
             Track selected = SelectedTrack();
 
             return GetLengthFromAllEventsInTrack(selected);
         }
 
-        public long GetLengthFromAllEventsInTrack(Track track)
+        public Timecode GetLengthFromAllEventsInTrack(Track track)
         {
             VegasDuration duration = GetDuretionFromAllEventsInTrack(track);
 
-            return duration.Length.Nanos;
+            return duration.Length;
         }
 
         public void ExpandFirstVideoEvent(double margin = 0.0)
