@@ -17,11 +17,24 @@ namespace VegasScriptHelper
         /// <param name="interval">挿入するイベント間の間隔　単位はミリ秒　標準は0.0</param>
         /// <param name="fromStart">トラックの最初から挿入するかどうかを示すフラグ　trueのときは最初から、falseのときは現在のカーソル位置から</param>
         /// <param name="recursive">子ディレクトリのを再帰的にトラックの最初から挿入するかどうかを示すフラグ　trueのときは最初から、falseのときは現在のカーソル位置から</param>
-        public void InseretAudioInTrack(string fileDir, float interval = 0.0f, bool fromStart = false, bool recursive = true, bool useMediaBin = true, string mediaBinName = null)
+        public void InseretAudioInTrack(
+            string fileDir,
+            float interval = 0.0f,
+            bool fromStart = false,
+            bool recursive = true,
+            bool useMediaBin = true,
+            string mediaBinName = null,
+            AudioTrack targetTrack = null,
+            string targetTrackName = "Subtitles")
         {
-            AudioTrack audioTrack = AddAudioTrack();
-            SetTrackTitle(audioTrack, "Subtitles");
-            audioTrack.Selected = true;
+            AudioTrack audioTrack = targetTrack;
+
+            if (audioTrack == null)
+            {
+                audioTrack = AddAudioTrack();
+                SetTrackTitle(audioTrack, targetTrackName);
+                audioTrack.Selected = true;
+            }
 
             MediaBin mediaBin = null;
             if(useMediaBin && mediaBinName != null)
