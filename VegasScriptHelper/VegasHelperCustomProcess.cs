@@ -191,6 +191,15 @@ namespace VegasScriptHelper
         {
             TrackEvents videoEvents = GetVideoEvents();
             TrackEvents audioEvents = GetAudioEvents();
+            ExpandFirstVideoEvent(videoEvents, audioEvents, margin);
+        }
+        public void ExpandFirstVideoEvent(VideoTrack videoTrack, AudioTrack audioTrack, double margin = 0.0)
+        {
+            ExpandFirstVideoEvent(GetVideoEvents(videoTrack), GetAudioEvents(audioTrack), margin);
+        }
+
+        public void ExpandFirstVideoEvent(TrackEvents videoEvents, TrackEvents audioEvents, double margin = 0.0)
+        {
             VegasDuration duration = GetDuretionFromAllEventsInTrack(audioEvents, margin);
             SetEventTime(GetFirstEvent(videoEvents), duration);
         }
