@@ -118,5 +118,29 @@ namespace VegasScriptHelper.Properties {
                 this["expandVideoEventMargin"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color jimakuColor {
+            get {
+                return ((global::System.Drawing.Color)(this["jimakuColor"]));
+            }
+            set {
+                this["jimakuColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color outlineColor {
+            get {
+                return ((global::System.Drawing.Color)(this["outlineColor"]));
+            }
+            set {
+                this["outlineColor"] = value;
+            }
+        }
     }
 }

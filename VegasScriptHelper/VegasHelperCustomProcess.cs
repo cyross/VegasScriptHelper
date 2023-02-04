@@ -1,6 +1,6 @@
 ﻿using ScriptPortal.Vegas;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -202,6 +202,37 @@ namespace VegasScriptHelper
         {
             VegasDuration duration = GetDuretionFromAllEventsInTrack(audioEvents, margin);
             SetEventTime(GetFirstEvent(videoEvents), duration);
+        }
+
+        public void SetTextParameterInTrack(VideoTrack track, Color textColor, Color outlineColor, double outlineWidth)
+        {
+            TrackEvents events = GetEvents(track);
+
+            foreach (TrackEvent e in events)
+            {
+                foreach (Take take in GetTakes(e))
+                {
+                    Media media = take.Media;
+
+                    if(media == null) { continue; }
+
+                    OFXStringParameter ofxStringParam = GetOFXStringParameter(media);
+                    if (ofxStringParam is null) { continue; }
+
+                    OFXRGBAParameter ofxTextRGBAParam = GetTextRGBAParameter(media);
+                    if (ofxTextRGBAParam is null) { continue; }
+
+                    OFXDoubleParameter ofxOutlineWidthParam = GetOutlineWidthParameter(media);
+                    if (ofxOutlineWidthParam is null) { continue; }
+
+                    OFXRGBAParameter ofxOutlineRGBAParam = GetOutlineRGBAParameter(media);
+                    if (ofxOutlineRGBAParam is null) { continue; }
+
+                    SetRGBAParameter(ofxTextRGBAParam, textColor);
+                    SetRGBAParameter(ofxOutlineRGBAParam, outlineColor);
+                    SetDoubleParameter(ofxOutlineWidthParam, outlineWidth);
+                }
+            }
         }
     }
 }

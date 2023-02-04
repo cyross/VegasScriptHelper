@@ -5,7 +5,7 @@ using VegasScriptHelper;
 
 namespace VegasScriptDebug
 {
-    public partial class EntryPoint
+    public partial class EntryPoint: IEntryPoint
     {
         public void FromVegas(Vegas vegas)
         {

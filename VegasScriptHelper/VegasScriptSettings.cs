@@ -20,6 +20,8 @@ namespace VegasScriptHelper
         public static double JimakuOutlineWidth;
         public static double ExpandVideoEventMargin;
         public readonly static Dictionary<string, string> DefaultBinName = new Dictionary<string, string>();
+        public static Color JimakuColor;
+        public static Color OutlineColor;
 
         public static void Load()
         {
@@ -36,6 +38,8 @@ namespace VegasScriptHelper
             TargetAssignTrackName = Properties.Vegas.Default.targetAssignTrackName;
             JimakuOutlineWidth = Properties.Vegas.Default.jimakuOutlineWidth;
             ExpandVideoEventMargin = Properties.Vegas.Default.expandVideoEventMargin;
+            JimakuColor = Properties.Vegas.Default.jimakuColor;
+            OutlineColor = Properties.Vegas.Default.outlineColor;
 
             List<string> audioFileExts = new List<string>();
             foreach (SettingsProperty property in Properties.SupportedAudioFileSettings.Default.Properties)
@@ -80,6 +84,8 @@ namespace VegasScriptHelper
             Properties.Vegas.Default.isRecursive = IsRecursive;
             Properties.Vegas.Default.audioInsertInterval = AudioInsertInterval;
             Properties.Vegas.Default.openDirectory = OpenDirectory;
+            Properties.Vegas.Default.jimakuColor = JimakuColor;
+            Properties.Vegas.Default.outlineColor = OutlineColor;
             Properties.Vegas.Default.Save();
         }
 

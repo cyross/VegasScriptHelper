@@ -103,7 +103,10 @@ namespace VegasScriptHelper
             foreach (TrackEvent e in events)
             {
                 Take firstTake = GetFirstTake(e);
+
                 Media media = firstTake.Media;
+
+                if(media == null) { continue; }
 
                 OFXStringParameter ofxStringParam = GetOFXStringParameter(media);
                 if (ofxStringParam is null) { continue; }
@@ -140,6 +143,8 @@ namespace VegasScriptHelper
         {
             Take firstTake = GetFirstTake(trackEvent);
             Media media = firstTake.Media;
+
+            if (media == null) { return; }
 
             OFXStringParameter ofxStringParam = GetOFXStringParameter(media);
             if (ofxStringParam == null) { return; }

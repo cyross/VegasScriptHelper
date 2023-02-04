@@ -2,6 +2,11 @@
 
 namespace VegasScriptHelper
 {
+    public interface IEntryPoint
+    {
+        void FromVegas(Vegas vegas);
+    }
+
     public struct VegasDuration
     {
         public Timecode StartTime;
