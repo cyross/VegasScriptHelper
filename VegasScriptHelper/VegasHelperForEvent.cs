@@ -104,12 +104,14 @@ namespace VegasScriptHelper
         public TrackEvent GetFirstEvent(TrackEvents events, bool throwException = true)
         {
             if (throwException && events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            else if(events.Count == 0) { return null; }
             return events[0];
         }
 
         public TrackEvent GetLastEvent(TrackEvents events, bool throwException = true)
         {
             if (throwException && events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            else if (events.Count == 0) { return null; }
             return events[events.Count - 1];
         }
     }
