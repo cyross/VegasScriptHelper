@@ -4,39 +4,39 @@ namespace VegasScriptHelper
 {
     public partial class VegasHelper
     {
-        public TrackEvents GetEvents(Track track, bool throwError = true)
+        public TrackEvents GetEvents(Track track, bool throwException = true)
         {
-            if (throwError && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
             return track.Events;
         }
 
-        public TrackEvents GetVideoEvents(bool throwError = true)
+        public TrackEvents GetVideoEvents(bool throwException = true)
         {
             VideoTrack selected = SelectedVideoTrack();
-            return GetVideoEvents(selected, throwError);
+            return GetVideoEvents(selected, throwException);
         }
 
-        public TrackEvents GetVideoEvents(VideoTrack track, bool throwError = true)
+        public TrackEvents GetVideoEvents(VideoTrack track, bool throwException = true)
         {
-            if (throwError && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
             return track.Events;
         }
 
-        public TrackEvents GetAudioEvents(bool throwError = true)
+        public TrackEvents GetAudioEvents(bool throwException = true)
         {
             AudioTrack selected = SelectedAudioTrack();
-            return GetAudioEvents(selected, throwError);
+            return GetAudioEvents(selected, throwException);
         }
 
-        public TrackEvents GetAudioEvents(AudioTrack track, bool throwError = true)
+        public TrackEvents GetAudioEvents(AudioTrack track, bool throwException = true)
         {
-            if (throwError && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
             return track.Events;
         }
 
-        public TrackEvent GetSelectedEvent(Track track, bool throwError = true)
+        public TrackEvent GetSelectedEvent(Track track, bool throwException = true)
         {
-            if (throwError && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+            if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
             foreach (TrackEvent e in track.Events)
             {
                 if (e.Selected)
@@ -44,26 +44,26 @@ namespace VegasScriptHelper
                     return e;
                 }
             }
-            if (throwError) { throw new VegasHelperNoneSelectedEventException(); }
+            if (throwException) { throw new VegasHelperNoneSelectedEventException(); }
             return null;
         }
 
-        public TrackEvent GetSelectedEvent(bool throwError = true)
+        public TrackEvent GetSelectedEvent(bool throwException = true)
         {
             Track track = SelectedTrack();
-            return GetSelectedEvent(track, throwError);
+            return GetSelectedEvent(track, throwException);
         }
 
-        public TrackEvent GetSelectedVideoEvent(bool throwError = true)
+        public TrackEvent GetSelectedVideoEvent(bool throwException = true)
         {
             Track track = SelectedVideoTrack();
-            return GetSelectedEvent(track, throwError);
+            return GetSelectedEvent(track, throwException);
         }
 
-        public TrackEvent GetSelectedAudioEvent(bool throwError = true)
+        public TrackEvent GetSelectedAudioEvent(bool throwException = true)
         {
             Track track = SelectedAudioTrack();
-            return GetSelectedEvent(track, throwError);
+            return GetSelectedEvent(track, throwException);
         }
 
         public Timecode GetEventStartTime(TrackEvent trackEvent)
@@ -101,13 +101,15 @@ namespace VegasScriptHelper
             trackEvent.AdjustStartLength(start, length, adjustTakes);
         }
 
-        public TrackEvent GetFirstEvent(TrackEvents events)
+        public TrackEvent GetFirstEvent(TrackEvents events, bool throwException = true)
         {
+            if (throwException && events.Count == 0) { throw new VegasHelperNoneEventsException(); }
             return events[0];
         }
 
-        public TrackEvent GetLastEvent(TrackEvents events)
+        public TrackEvent GetLastEvent(TrackEvents events, bool throwException = true)
         {
+            if (throwException && events.Count == 0) { throw new VegasHelperNoneEventsException(); }
             return events[events.Count - 1];
         }
     }

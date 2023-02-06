@@ -146,22 +146,22 @@ namespace VegasScriptHelper
         /// </summary>
         /// <param name="margin">設定するマージン。初期値は0.0</param>
         /// <returns></returns>
-        public VegasDuration GetDuretionFromAllEventsInTrack(double margin = 0.0f)
+        public VegasDuration GetDuretionFromAllEventsInTrack(double margin = 0.0f, bool throwException = true)
         {
-            Track selected = SelectedTrack();
-            return GetDuretionFromAllEventsInTrack(selected, margin);
+            Track selected = SelectedTrack(throwException);
+            return GetDuretionFromAllEventsInTrack(selected, margin, throwException);
         }
 
-        public VegasDuration GetDuretionFromAllEventsInTrack(Track track, double margin = 0.0f)
+        public VegasDuration GetDuretionFromAllEventsInTrack(Track track, double margin = 0.0f, bool throwException = true)
         {
-            TrackEvents events = GetEvents(track);
-            return GetDuretionFromAllEventsInTrack(events);
+            TrackEvents events = GetEvents(track, throwException);
+            return GetDuretionFromAllEventsInTrack(events, margin, throwException);
         }
 
-        public VegasDuration GetDuretionFromAllEventsInTrack(TrackEvents events, double margin = 0.0f)
+        public VegasDuration GetDuretionFromAllEventsInTrack(TrackEvents events, double margin = 0.0f, bool throwException = true)
         {
-            TrackEvent firstEvent = GetFirstEvent(events);
-            TrackEvent lastEvent = GetLastEvent(events);
+            TrackEvent firstEvent = GetFirstEvent(events, throwException);
+            TrackEvent lastEvent = GetLastEvent(events, throwException);
 
             Timecode singleMaraginTimecode = new Timecode(margin);
             Timecode doubleMaraginTimecode = new Timecode(margin * 2);
@@ -174,14 +174,14 @@ namespace VegasScriptHelper
             return duration;
         }
 
-        public Timecode GetLengthFromAllEventsInTrack()
+        public Timecode GetLengthFromAllEventsInTrack(bool throwException = true)
         {
             Track selected = SelectedTrack();
 
-            return GetLengthFromAllEventsInTrack(selected);
+            return GetLengthFromAllEventsInTrack(selected, throwException);
         }
 
-        public Timecode GetLengthFromAllEventsInTrack(Track track)
+        public Timecode GetLengthFromAllEventsInTrack(Track track, bool throwException = true)
         {
             VegasDuration duration = GetDuretionFromAllEventsInTrack(track);
 
