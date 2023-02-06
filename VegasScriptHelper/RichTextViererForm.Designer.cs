@@ -1,6 +1,6 @@
 ﻿namespace VegasScriptHelper
 {
-    partial class RitchTextViewForm
+    partial class RichTextViewForm
     {
         /// <summary>
         /// Required designer variable.

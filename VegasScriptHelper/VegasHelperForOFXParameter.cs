@@ -1,4 +1,5 @@
 ﻿using ScriptPortal.Vegas;
+using System.Diagnostics;
 using System.Linq;
 
 namespace VegasScriptHelper
@@ -42,7 +43,7 @@ namespace VegasScriptHelper
 
         public string GetOFXParameterString(OFXStringParameter param)
         {
-            return param.GetValueAtTime(BaseTimecode);
+            return param.GetValueAtTime(new Timecode(0));
         }
 
         public string GetOFXParameterString(Media media)
@@ -65,7 +66,7 @@ namespace VegasScriptHelper
 
         public void SetStringIntoOFXParameter(OFXStringParameter param, string value)
         {
-            param.SetValueAtTime(BaseTimecode, value);
+            param.SetValueAtTime(new Timecode(0), value);
         }
 
         /// <summary>
@@ -144,12 +145,12 @@ namespace VegasScriptHelper
 
         public void SetRGBAParameter(OFXRGBAParameter param, OFXColor color)
         {
-            param.SetValueAtTime(BaseTimecode, color);
+            param.SetValueAtTime(new Timecode(0), color);
         }
 
         public void SetDoubleParameter(OFXDoubleParameter param, double value)
         {
-            param.SetValueAtTime(BaseTimecode, value);
+            param.SetValueAtTime(new Timecode(0), value);
         }
     }
 }

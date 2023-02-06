@@ -79,8 +79,6 @@ namespace VegasScriptHelper
 
         internal Vegas Vegas { get; set; }
 
-        internal readonly Timecode BaseTimecode = new Timecode();
-
         public static VegasHelper Instance(Vegas vegas)
         {
             VegasScriptSettings.Load();

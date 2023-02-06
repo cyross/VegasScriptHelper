@@ -1,6 +1,5 @@
 ﻿using ScriptPortal.Vegas;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace VegasScriptHelper
 {
@@ -9,17 +8,11 @@ namespace VegasScriptHelper
     /// </summary>
     public partial class VegasHelper
     {
-        private readonly RichTextBox box = new RichTextBox();
-
-        public string Rtf
-        {
-            get { return box.Rtf; }
-            set { box.Rtf = value; }
-        }
+        private static readonly RichTextViewForm rtfBox = new RichTextViewForm();
 
         public int GetJimakuPrefixSeparatorPositionFromRtf()
         {
-            int pos = box.Find(":");
+            int pos = rtfBox.RtfBox.Find(":");
             if (pos == -1) { throw new VegasHelperNotFoundJimakuPrefixException(); }
             return pos;
         }
@@ -32,7 +25,7 @@ namespace VegasScriptHelper
 
         public string GetJimakuPrefixFromRtf(int pos)
         {
-            return box.Text.Substring(0, pos);
+            return rtfBox.RtfText.Substring(0, pos);
         }
 
         public string GetJimakuPrefixFromRtf(bool withCut = true)
@@ -48,14 +41,14 @@ namespace VegasScriptHelper
 
         public void DeleteJimakuPrefixFromRtf(int pos)
         {
-            box.Text = box.Text.Substring(pos + 1);
-            box.Update();
+            rtfBox.RtfText = rtfBox.RtfText.Substring(pos + 1);
+            rtfBox.Update();
         }
 
         public void SetColorIntoAllRtfText(Color textColor)
         {
-            box.SelectAll();
-            box.SelectionColor = textColor;
+            rtfBox.RtfBox.SelectAll();
+            rtfBox.RtfBox.SelectionColor = textColor;
         }
 
         public void SetTextColorByActor(string actor_name)
@@ -95,7 +88,7 @@ namespace VegasScriptHelper
                 (double)color.B / 255.0,
                 (double)color.A / 255.0
             );
-            param.SetValueAtTime(BaseTimecode, ofxColor);
+            param.SetValueAtTime(new Timecode(0), ofxColor);
         }
 
         public void ApplyTextColorByActor(TrackEvents events, double outlineWidth, bool withCut = true)
@@ -120,7 +113,7 @@ namespace VegasScriptHelper
                 OFXRGBAParameter ofxOutlineRGBAParam = GetOutlineRGBAParameter(media);
                 if (ofxOutlineRGBAParam is null) { continue; }
 
-                Rtf = GetOFXParameterString(ofxStringParam);
+                rtfBox.Rtf = GetOFXParameterString(ofxStringParam);
 
                 string actor_string = GetJimakuPrefixFromRtf(withCut);
                 Color textColor = GetTextColorByActor(actor_string);
@@ -129,7 +122,7 @@ namespace VegasScriptHelper
                 SetRGBAParameter(ofxTextRGBAParam, textColor);
                 SetDoubleParameter(ofxOutlineWidthParam, outlineWidth);
                 SetRGBAParameter(ofxOutlineRGBAParam, outlineColor);
-                SetStringIntoOFXParameter(ofxStringParam, Rtf);
+                SetStringIntoOFXParameter(ofxStringParam, rtfBox.Rtf);
             }
         }
 
@@ -149,11 +142,11 @@ namespace VegasScriptHelper
             OFXStringParameter ofxStringParam = GetOFXStringParameter(media);
             if (ofxStringParam == null) { return; }
 
-            Rtf = GetOFXParameterString(ofxStringParam);
+            rtfBox.Rtf = GetOFXParameterString(ofxStringParam);
 
             int pos = GetJimakuPrefixSeparatorPositionFromRtf();
             DeleteJimakuPrefixFromRtf(pos);
-            SetStringIntoOFXParameter(ofxStringParam, Rtf);
+            SetStringIntoOFXParameter(ofxStringParam, rtfBox.Rtf);
         }
     }
 }

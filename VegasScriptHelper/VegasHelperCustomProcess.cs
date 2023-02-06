@@ -37,7 +37,8 @@ namespace VegasScriptHelper
             }
 
             MediaBin mediaBin = null;
-            if(useMediaBin && mediaBinName != null)
+
+            if (useMediaBin && mediaBinName != null)
             {
                 mediaBin = IsExistMediaBin(mediaBinName) ? GetMediaBin(mediaBinName) : CreateMediaBin(mediaBinName);
             }

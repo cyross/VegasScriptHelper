@@ -10,24 +10,29 @@ using System.Windows.Forms;
 
 namespace VegasScriptHelper
 {
-    public partial class RitchTextViewForm : Form
+    public partial class RichTextViewForm : Form
     {
-        public RitchTextViewForm()
+        public RichTextViewForm()
         {
             InitializeComponent();
         }
 
-        public string RitchText
+        public string Rtf
         {
-            get
-            {
-                return richTextBox.Rtf;
-            }
+            get{ return richTextBox.Rtf; }
+            set{ richTextBox.Rtf = value; }
+        }
 
-            set
-            {
-                richTextBox.Rtf = value;
-            }
+        public string RtfText
+        {
+            get { return richTextBox.Text; }
+            set { richTextBox.Text = value; }
+        }
+
+        public RichTextBox RtfBox
+        {
+            get { return richTextBox; }
+            set { richTextBox = value; }
         }
     }
 }
