@@ -29,10 +29,12 @@ namespace VegasScriptHelper
         {
             AudioTrack audioTrack = targetTrack;
 
-            if (audioTrack == null)
+            if (audioTrack is null)
             {
                 audioTrack = AddAudioTrack();
+
                 SetTrackTitle(audioTrack, targetTrackName);
+
                 audioTrack.Selected = true;
             }
 
@@ -46,16 +48,16 @@ namespace VegasScriptHelper
             Timecode currentPosition = fromStart ? new Timecode() : Vegas.Cursor;
             Timecode intervalTimecode = new Timecode(interval);
 
-            _InsertAudio(currentPosition, intervalTimecode, fileDir, audioTrack, recursive, mediaBin);
+            InsertAudio(currentPosition, intervalTimecode, fileDir, audioTrack, recursive, mediaBin);
         }
 
-        public Timecode _InsertAudio(Timecode current, Timecode interval, string fileDir, AudioTrack audioTrack, bool recursive, MediaBin mediaBin = null)
+        private Timecode InsertAudio(Timecode current, Timecode interval, string fileDir, AudioTrack audioTrack, bool recursive, MediaBin mediaBin = null)
         {
             if (recursive)
             {
                 foreach (string childDir in Directory.GetDirectories(fileDir))
                 {
-                    current = _InsertAudio(current, interval, childDir, audioTrack, recursive, mediaBin);
+                    current = InsertAudio(current, interval, childDir, audioTrack, recursive, mediaBin);
                 }
             }
             foreach (string filePath in Directory.GetFiles(fileDir))
@@ -64,14 +66,11 @@ namespace VegasScriptHelper
                 {
                     Media audioMedia = new Media(filePath);
 
-                    if(mediaBin != null)
-                    {
-                        mediaBin.Add(audioMedia);
-                    }
+                    mediaBin?.Add(audioMedia);
 
                     AudioStream audioStream = audioMedia.GetAudioStreamByIndex(0);
-
                     AudioEvent audioEvent = audioTrack.AddAudioEvent(current, audioStream.Length);
+
                     audioEvent.AddTake(audioStream);
 
                     current += audioStream.Length + interval;
@@ -95,6 +94,7 @@ namespace VegasScriptHelper
             for (int i = 0; i < videoEvents.Count; i++)
             {
                 VegasDuration duration = GetEventTime(audioEvents[i]);
+
                 SetEventTime(tmpVideoEvents[i], duration, margin, adjustTakes);
 
                 if (group) { AddTrackEventGroup(tmpAudioEvents[i], tmpVideoEvents[i]); }
@@ -104,25 +104,43 @@ namespace VegasScriptHelper
         public void AssignAudioTrackDurationToVideoTrack(string trackName, double margin = 0, bool adjustTakes = true, bool group = true)
         {
             VideoTrack videoTrack = SearchVideoTrackByName(trackName);
+
+            if (videoTrack is null) { return; }
+
             AudioTrack audioTrack = SearchAudioTrackByName(trackName);
+
+            if (audioTrack is null) { return; }
+
             AssignAudioTrackDurationToVideoTrack(videoTrack, audioTrack, margin, adjustTakes, group);
         }
 
         public void AssignAudioTrackDurationToVideoTrack(double margin = 0, bool adjustTakes = true, bool group = true)
         {
             VideoTrack videoTrack = SelectedVideoTrack();
+
+            if (videoTrack is null) { return; }
+
             AudioTrack audioTrack = SelectedAudioTrack();
+
+            if (audioTrack is null) { return; }
+
             AssignAudioTrackDurationToVideoTrack(videoTrack, audioTrack, margin, adjustTakes, group);
         }
 
         public void DeleteJimakuPrefix()
         {
             VideoTrack track = SelectedVideoTrack();
+
+            if (track is null) { return; }
+
             DeleteJimakuPrefix(track);
         }
         public void DeleteJimakuPrefix(string title)
         {
             VideoTrack track = SearchVideoTrackByName(title);
+
+            if (track is null) { return; }
+
             DeleteJimakuPrefix(track);
         }
 
@@ -149,12 +167,18 @@ namespace VegasScriptHelper
         public VegasDuration GetDuretionFromAllEventsInTrack(double margin = 0.0f, bool throwException = true)
         {
             Track selected = SelectedTrack(throwException);
+
+            if (selected is null) { return new VegasDuration(new Timecode(0), new Timecode(0)); }
+
             return GetDuretionFromAllEventsInTrack(selected, margin, throwException);
         }
 
         public VegasDuration GetDuretionFromAllEventsInTrack(Track track, double margin = 0.0f, bool throwException = true)
         {
             TrackEvents events = GetEvents(track, throwException);
+
+            if (events is null) { return new VegasDuration(new Timecode(0), new Timecode(0)); }
+
             return GetDuretionFromAllEventsInTrack(events, margin, throwException);
         }
 
@@ -163,7 +187,7 @@ namespace VegasScriptHelper
             TrackEvent firstEvent = GetFirstEvent(events, throwException);
             TrackEvent lastEvent = GetLastEvent(events, throwException);
 
-            if(firstEvent == null || lastEvent == null)
+            if(firstEvent is null || lastEvent is null)
             {
                 return new VegasDuration(new Timecode(0), new Timecode(0));
             }
@@ -182,14 +206,16 @@ namespace VegasScriptHelper
 
         public Timecode GetLengthFromAllEventsInTrack(bool throwException = true)
         {
-            Track selected = SelectedTrack();
+            Track selected = SelectedTrack(throwException);
+
+            if (selected is null) { return null; }
 
             return GetLengthFromAllEventsInTrack(selected, throwException);
         }
 
         public Timecode GetLengthFromAllEventsInTrack(Track track, bool throwException = true)
         {
-            VegasDuration duration = GetDuretionFromAllEventsInTrack(track);
+            VegasDuration duration = GetDuretionFromAllEventsInTrack(track, throwException: throwException);
 
             return duration.Length;
         }
@@ -198,8 +224,10 @@ namespace VegasScriptHelper
         {
             TrackEvents videoEvents = GetVideoEvents();
             TrackEvents audioEvents = GetAudioEvents();
+
             ExpandFirstVideoEvent(videoEvents, audioEvents, margin);
         }
+
         public void ExpandFirstVideoEvent(VideoTrack videoTrack, AudioTrack audioTrack, double margin = 0.0)
         {
             ExpandFirstVideoEvent(GetVideoEvents(videoTrack), GetAudioEvents(audioTrack), margin);
@@ -208,6 +236,7 @@ namespace VegasScriptHelper
         public void ExpandFirstVideoEvent(TrackEvents videoEvents, TrackEvents audioEvents, double margin = 0.0)
         {
             VegasDuration duration = GetDuretionFromAllEventsInTrack(audioEvents, margin);
+
             SetEventTime(GetFirstEvent(videoEvents), duration);
         }
 
@@ -221,18 +250,22 @@ namespace VegasScriptHelper
                 {
                     Media media = take.Media;
 
-                    if(media == null) { continue; }
+                    if(media is null) { continue; }
 
                     OFXStringParameter ofxStringParam = GetOFXStringParameter(media);
+
                     if (ofxStringParam is null) { continue; }
 
                     OFXRGBAParameter ofxTextRGBAParam = GetTextRGBAParameter(media);
+
                     if (ofxTextRGBAParam is null) { continue; }
 
                     OFXDoubleParameter ofxOutlineWidthParam = GetOutlineWidthParameter(media);
+
                     if (ofxOutlineWidthParam is null) { continue; }
 
                     OFXRGBAParameter ofxOutlineRGBAParam = GetOutlineRGBAParameter(media);
+
                     if (ofxOutlineRGBAParam is null) { continue; }
 
                     SetRGBAParameter(ofxTextRGBAParam, textColor);

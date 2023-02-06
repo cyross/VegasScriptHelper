@@ -6,7 +6,7 @@ namespace VegasScriptHelper
 {
     public partial class VegasHelper
     {
-        public OFXStringParameter GetOFXStringParameter(Media media, bool retNull = true)
+        public OFXStringParameter GetOFXStringParameter(Media media, bool throwException = true)
         {
             foreach (OFXParameter param in media.Generator.OFXEffect.Parameters)
             {
@@ -15,19 +15,22 @@ namespace VegasScriptHelper
                     return (OFXStringParameter)param;
                 }
             }
-            if (retNull) { return null; }
-            throw new VegasHelperNotFoundOFXParameterException();
+
+            if (throwException) { throw new VegasHelperNotFoundOFXParameterException(); }
+
+            return null;
         }
 
-        public OFXStringParameter[] GetOFXStringParameters(Media[] mediaList, bool retNull = true)
+        public OFXStringParameter[] GetOFXStringParameters(Media[] mediaList, bool throwException = true)
         {
-            return mediaList.Select(m => GetOFXStringParameter(m, retNull)).ToList().ToArray();
+            return mediaList.Select(m => GetOFXStringParameter(m, throwException)).ToList().ToArray();
         }
 
-        public OFXStringParameter[] GetOFXStringParameters(VideoTrack track, bool retNull = true)
+        public OFXStringParameter[] GetOFXStringParameters(VideoTrack track, bool throwException = true)
         {
             Media[] mediaList = GetMediaList(track.Events);
-            return GetOFXStringParameters(mediaList, retNull);
+
+            return GetOFXStringParameters(mediaList, throwException);
         }
 
         /// <summary>
@@ -35,10 +38,11 @@ namespace VegasScriptHelper
         /// ビデオトラックを選択していなければnullを返す
         /// </summary>
         /// <returns>選択したビデオトラックから得られたメディジェネレータ文字列パラメータの配列、もしくはnull</returns>
-        public OFXStringParameter[] GetOFXStringParameters(bool retNull = true)
+        public OFXStringParameter[] GetOFXStringParameters(bool throwException = true)
         {
             VideoTrack selected = SelectedVideoTrack();
-            return GetOFXStringParameters(selected, retNull);
+
+            return GetOFXStringParameters(selected, throwException);
         }
 
         public string GetOFXParameterString(OFXStringParameter param)
@@ -49,6 +53,7 @@ namespace VegasScriptHelper
         public string GetOFXParameterString(Media media)
         {
             OFXStringParameter param = GetOFXStringParameter(media);
+
             return GetOFXParameterString(param);
         }
 
@@ -61,6 +66,7 @@ namespace VegasScriptHelper
         {
             VideoTrack selected = SelectedVideoTrack();
             OFXStringParameter[] ofxParams = GetOFXStringParameters(selected);
+
             return GetOFXParameterStrings(ofxParams);
         }
 
@@ -78,13 +84,14 @@ namespace VegasScriptHelper
         public void SetStringsIntoOFXParameters(OFXStringParameter[] ofxParams, string[] values)
         {
             if (ofxParams.Length != values.Length) { return; }
+
             for (int i = 0; i < ofxParams.Length; i++)
             {
                 SetStringIntoOFXParameter(ofxParams[i], values[i]);
             }
         }
 
-        public OFXRGBAParameter GetTextRGBAParameter(Media media, bool retNull = true)
+        public OFXRGBAParameter GetTextRGBAParameter(Media media, bool throwException = true)
         {
             foreach (OFXParameter param in media.Generator.OFXEffect.Parameters)
             {
@@ -94,11 +101,13 @@ namespace VegasScriptHelper
                     return (OFXRGBAParameter)param;
                 }
             }
-            if (retNull) { return null; }
-            throw new VegasHelperNotFoundOFXParameterException();
+
+            if (throwException) { throw new VegasHelperNotFoundOFXParameterException(); }
+
+            return null;
         }
 
-        public OFXRGBAParameter GetOutlineRGBAParameter(Media media, bool retNull = true)
+        public OFXRGBAParameter GetOutlineRGBAParameter(Media media, bool throwException = true)
         {
             foreach (OFXParameter param in media.Generator.OFXEffect.Parameters)
             {
@@ -108,11 +117,13 @@ namespace VegasScriptHelper
                     return (OFXRGBAParameter)param;
                 }
             }
-            if (retNull) { return null; }
-            throw new VegasHelperNotFoundOFXParameterException();
+
+            if (throwException) { throw new VegasHelperNotFoundOFXParameterException(); }
+
+            return null;
         }
 
-        public OFXDoubleParameter GetOutlineWidthParameter(Media media, bool retNull = true)
+        public OFXDoubleParameter GetOutlineWidthParameter(Media media, bool throwException = true)
         {
             foreach (OFXParameter param in media.Generator.OFXEffect.Parameters)
             {
@@ -122,25 +133,29 @@ namespace VegasScriptHelper
                     return (OFXDoubleParameter)param;
                 }
             }
-            if (retNull) { return null; }
-            throw new VegasHelperNotFoundOFXParameterException();
+
+            if (throwException) { throw new VegasHelperNotFoundOFXParameterException(); }
+
+            return null;
         }
 
-        public OFXRGBAParameter[] GetTextRGBAParameters(Media[] mediaList, bool retNull = true)
+        public OFXRGBAParameter[] GetTextRGBAParameters(Media[] mediaList, bool throwException = true)
         {
-            return mediaList.Select(m => GetTextRGBAParameter(m, retNull)).ToList().ToArray();
+            return mediaList.Select(m => GetTextRGBAParameter(m, throwException)).ToList().ToArray();
         }
 
-        public OFXRGBAParameter[] GetTextRGBAParameters(VideoTrack track, bool retNull = true)
+        public OFXRGBAParameter[] GetTextRGBAParameters(VideoTrack track, bool throwException = true)
         {
             Media[] mediaList = GetMediaList(track.Events);
-            return GetTextRGBAParameters(mediaList, retNull);
+
+            return GetTextRGBAParameters(mediaList, throwException);
         }
 
-        public OFXRGBAParameter[] GetTextRGBAParameters(bool retNull = true)
+        public OFXRGBAParameter[] GetTextRGBAParameters(bool throwException = true)
         {
             VideoTrack selected = SelectedVideoTrack();
-            return GetTextRGBAParameters(selected, retNull);
+
+            return GetTextRGBAParameters(selected, throwException);
         }
 
         public void SetRGBAParameter(OFXRGBAParameter param, OFXColor color)

@@ -10,21 +10,26 @@ namespace VegasScriptHelper
     {
         private static readonly RichTextViewForm rtfBox = new RichTextViewForm();
 
-        public int GetJimakuPrefixSeparatorPositionFromRtf()
+        public int GetJimakuPrefixSeparatorPositionFromRtf(bool throwException = true)
         {
             int pos = rtfBox.RtfBox.Find(":");
-            if (pos == -1) { throw new VegasHelperNotFoundJimakuPrefixException(); }
+
+            if (pos == -1 && throwException) { throw new VegasHelperNotFoundJimakuPrefixException(); }
+
             return pos;
         }
 
         public string GetJimakuPrefixFromRtf()
         {
             int pos = GetJimakuPrefixSeparatorPositionFromRtf();
+
             return GetJimakuPrefixFromRtf(pos);
         }
 
         public string GetJimakuPrefixFromRtf(int pos)
         {
+            if(pos == -1) { return ""; }
+
             return rtfBox.RtfText.Substring(0, pos);
         }
 
@@ -32,10 +37,12 @@ namespace VegasScriptHelper
         {
             int pos = GetJimakuPrefixSeparatorPositionFromRtf();
             string actor_name = GetJimakuPrefixFromRtf(pos);
-            if (withCut)
+
+            if (actor_name != "" && withCut)
             {
                 DeleteJimakuPrefixFromRtf(pos);
             }
+
             return actor_name;
         }
 
@@ -55,12 +62,14 @@ namespace VegasScriptHelper
         {
             string actor_name_key = VegasScriptSettings.FormatKey(actor_name);
             Color actor_color = GetTextColorByActor(actor_name_key);
+
             SetColorIntoAllRtfText(actor_color);
         }
 
         public Color GetTextColorByActor(string actor_name)
         {
             string actor_name_key = VegasScriptSettings.FormatKey(actor_name);
+
             if (!VegasScriptSettings.TextColorByActor.ContainsKey(actor_name_key))
             {
                 return Color.White;
@@ -72,6 +81,7 @@ namespace VegasScriptHelper
         public Color GetOutlineColorByActor(string actor_name)
         {
             string actor_name_key = VegasScriptSettings.FormatKey(actor_name);
+
             if (!VegasScriptSettings.OutlineColorByActor.ContainsKey(actor_name_key))
             {
                 return Color.Black;
@@ -88,6 +98,7 @@ namespace VegasScriptHelper
                 (double)color.B / 255.0,
                 (double)color.A / 255.0
             );
+
             param.SetValueAtTime(new Timecode(0), ofxColor);
         }
 
@@ -99,18 +110,22 @@ namespace VegasScriptHelper
 
                 Media media = firstTake.Media;
 
-                if(media == null) { continue; }
+                if(media is null) { continue; }
 
-                OFXStringParameter ofxStringParam = GetOFXStringParameter(media);
+                OFXStringParameter ofxStringParam = GetOFXStringParameter(media, false);
+
                 if (ofxStringParam is null) { continue; }
 
-                OFXRGBAParameter ofxTextRGBAParam = GetTextRGBAParameter(media);
+                OFXRGBAParameter ofxTextRGBAParam = GetTextRGBAParameter(media, false);
+
                 if (ofxTextRGBAParam is null) { continue; }
 
-                OFXDoubleParameter ofxOutlineWidthParam = GetOutlineWidthParameter(media);
+                OFXDoubleParameter ofxOutlineWidthParam = GetOutlineWidthParameter(media, false);
+
                 if (ofxOutlineWidthParam is null) { continue; }
 
-                OFXRGBAParameter ofxOutlineRGBAParam = GetOutlineRGBAParameter(media);
+                OFXRGBAParameter ofxOutlineRGBAParam = GetOutlineRGBAParameter(media, false);
+
                 if (ofxOutlineRGBAParam is null) { continue; }
 
                 rtfBox.Rtf = GetOFXParameterString(ofxStringParam);
@@ -126,9 +141,12 @@ namespace VegasScriptHelper
             }
         }
 
-        public void ApplyTextColorByActor(double outlineWidth, bool withCut = true)
+        public void ApplyTextColorByActor(double outlineWidth, bool withCut = true, bool throwException = true)
         {
-            TrackEvents events = GetVideoEvents();
+            TrackEvents events = GetVideoEvents(throwException);
+
+            if (events is null) { return; }
+
             ApplyTextColorByActor(events, outlineWidth, withCut);
         }
 
@@ -137,14 +155,16 @@ namespace VegasScriptHelper
             Take firstTake = GetFirstTake(trackEvent);
             Media media = firstTake.Media;
 
-            if (media == null) { return; }
+            if (media is null) { return; }
 
-            OFXStringParameter ofxStringParam = GetOFXStringParameter(media);
-            if (ofxStringParam == null) { return; }
+            OFXStringParameter ofxStringParam = GetOFXStringParameter(media, false);
+
+            if (ofxStringParam is null) { return; }
 
             rtfBox.Rtf = GetOFXParameterString(ofxStringParam);
 
             int pos = GetJimakuPrefixSeparatorPositionFromRtf();
+
             DeleteJimakuPrefixFromRtf(pos);
             SetStringIntoOFXParameter(ofxStringParam, rtfBox.Rtf);
         }

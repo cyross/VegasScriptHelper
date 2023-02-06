@@ -14,6 +14,7 @@ namespace VegasScriptHelper
         public Take[] GetFirstTakes(TrackEvents events)
         {
             IEnumerable<Take> takes = events.Select(e => GetFirstTake(e));
+
             return takes.ToArray();
         }
 
@@ -25,6 +26,7 @@ namespace VegasScriptHelper
         public Take[] GetLastTakes(TrackEvents events)
         {
             IEnumerable<Take> takes = events.Select(e => GetLastTake(e));
+
             return takes.ToArray();
         }
 
@@ -43,16 +45,27 @@ namespace VegasScriptHelper
             return trackEvent.Takes[trackEvent.Takes.Count - 1];
         }
 
-        public Take[] GetVideoTakes()
+        public Take[] GetTakes(Track track)
         {
-            VideoTrack selected = SelectedVideoTrack();
-            return GetFirstTakes(selected.Events);
+            return GetFirstTakes(track.Events);
         }
 
-        public Take[] GetAudioTakes()
+        public Take[] GetVideoTakes(bool throwException = true)
         {
-            AudioTrack selected = SelectedAudioTrack();
-            return GetFirstTakes(selected.Events);
+            VideoTrack selected = SelectedVideoTrack(throwException);
+
+            if (selected is null) { return null; }
+
+            return GetFirstTakes(selected);
+        }
+
+        public Take[] GetAudioTakes(bool throwException = true)
+        {
+            AudioTrack selected = SelectedAudioTrack(throwException);
+
+            if (selected is null) { return null; }
+
+            return GetFirstTakes(selected);
         }
 
     }

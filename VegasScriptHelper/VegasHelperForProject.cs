@@ -30,7 +30,9 @@ namespace VegasScriptHelper
             // Vegas.Project.TrackEventGroups.Addメソッドを先に呼ばいないと、
             // group.Addする際に例外が発生する
             TrackEventGroup group = new TrackEventGroup(Vegas.Project);
+
             Vegas.Project.TrackEventGroups.Add(group);
+
             foreach (TrackEvent trackEvent in events)
             {
                 group.Add(trackEvent);

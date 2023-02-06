@@ -9,7 +9,9 @@ namespace VegasScriptHelper
         public static List<TrackEvent> RefillTrackEvents(TrackEvents trackEvents)
         {
             List<TrackEvent> events = new List<TrackEvent>();
+
             foreach (TrackEvent e in trackEvents) { events.Add(e); }
+
             return events;
         }
     }

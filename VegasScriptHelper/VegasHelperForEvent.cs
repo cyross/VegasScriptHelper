@@ -7,62 +7,80 @@ namespace VegasScriptHelper
         public TrackEvents GetEvents(Track track, bool throwException = true)
         {
             if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+
             return track.Events;
         }
 
         public TrackEvents GetVideoEvents(bool throwException = true)
         {
-            VideoTrack selected = SelectedVideoTrack();
+            VideoTrack selected = SelectedVideoTrack(throwException);
+
+            if (selected is null) { return null; }
+
             return GetVideoEvents(selected, throwException);
         }
 
         public TrackEvents GetVideoEvents(VideoTrack track, bool throwException = true)
         {
             if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+
             return track.Events;
         }
 
         public TrackEvents GetAudioEvents(bool throwException = true)
         {
             AudioTrack selected = SelectedAudioTrack();
+
+            if (selected is null) { return null; }
+
             return GetAudioEvents(selected, throwException);
         }
 
         public TrackEvents GetAudioEvents(AudioTrack track, bool throwException = true)
         {
             if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+
             return track.Events;
         }
 
         public TrackEvent GetSelectedEvent(Track track, bool throwException = true)
         {
             if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }
+
             foreach (TrackEvent e in track.Events)
             {
-                if (e.Selected)
-                {
-                    return e;
-                }
+                if (e.Selected) { return e; }
             }
+
             if (throwException) { throw new VegasHelperNoneSelectedEventException(); }
+
             return null;
         }
 
         public TrackEvent GetSelectedEvent(bool throwException = true)
         {
             Track track = SelectedTrack();
+
+            if (track is null) { return null; }
+
             return GetSelectedEvent(track, throwException);
         }
 
         public TrackEvent GetSelectedVideoEvent(bool throwException = true)
         {
             Track track = SelectedVideoTrack();
+
+            if (track is null) { return null; }
+
             return GetSelectedEvent(track, throwException);
         }
 
         public TrackEvent GetSelectedAudioEvent(bool throwException = true)
         {
             Track track = SelectedAudioTrack();
+
+            if (track is null) { return null; }
+
             return GetSelectedEvent(track, throwException);
         }
 
@@ -89,8 +107,10 @@ namespace VegasScriptHelper
         public VegasDuration GetEventTime(TrackEvent trackEvent)
         {
             VegasDuration duration = new VegasDuration();
+
             duration.StartTime = trackEvent.Start;
             duration.Length = trackEvent.Length;
+
             return duration;
         }
 
@@ -98,20 +118,21 @@ namespace VegasScriptHelper
         {
             Timecode start = duration.StartTime - new Timecode(margin);
             Timecode length = duration.Length + new Timecode(margin * 2);
+
             trackEvent.AdjustStartLength(start, length, adjustTakes);
         }
 
         public TrackEvent GetFirstEvent(TrackEvents events, bool throwException = true)
         {
             if (throwException && events.Count == 0) { throw new VegasHelperNoneEventsException(); }
-            else if(events.Count == 0) { return null; }
+
             return events[0];
         }
 
         public TrackEvent GetLastEvent(TrackEvents events, bool throwException = true)
         {
             if (throwException && events.Count == 0) { throw new VegasHelperNoneEventsException(); }
-            else if (events.Count == 0) { return null; }
+
             return events[events.Count - 1];
         }
     }

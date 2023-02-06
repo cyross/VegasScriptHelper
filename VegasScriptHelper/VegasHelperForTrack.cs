@@ -1,7 +1,6 @@
 ﻿using ScriptPortal.Vegas;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace VegasScriptHelper
 {
@@ -41,12 +40,11 @@ namespace VegasScriptHelper
         {
             foreach (Track track in project.Tracks)
             {
-                if (track.Selected)
-                {
-                    return track;
-                }
+                if (track.Selected){ return track; }
             }
+
             if (throwException) { throw new VegasHelperTrackUnselectedException(); }
+
             return null;
         }
 
@@ -70,12 +68,11 @@ namespace VegasScriptHelper
         {
             foreach (Track track in project.Tracks)
             {
-                if (track.Selected && track.IsVideo())
-                {
-                    return (VideoTrack)track;
-                }
+                if (track.Selected && track.IsVideo()){ return (VideoTrack)track; }
             }
+
             if (throwException) { throw new VegasHelperTrackUnselectedException(); }
+
             return null;
         }
 
@@ -99,12 +96,11 @@ namespace VegasScriptHelper
         {
             foreach (Track track in project.Tracks)
             {
-                if (track.Selected && track.IsAudio())
-                {
-                    return (AudioTrack)track;
-                }
+                if (track.Selected && track.IsAudio()){ return (AudioTrack)track; }
             }
+
             if (throwException) { throw new VegasHelperTrackUnselectedException(); }
+
             return null;
         }
 
@@ -113,15 +109,21 @@ namespace VegasScriptHelper
             return track.Name;
         }
 
-        public string GetVideoTrackTitle()
+        public string GetVideoTrackTitle(bool throwException = true)
         {
-            VideoTrack track = SelectedVideoTrack();
+            VideoTrack track = SelectedVideoTrack(throwException);
+
+            if (track is null) { return null; }
+
             return GetTrackTitle(track);
         }
 
-        public string GetAudioTrackTitle()
+        public string GetAudioTrackTitle(bool throwException = true)
         {
-            AudioTrack track = SelectedAudioTrack();
+            AudioTrack track = SelectedAudioTrack(throwException);
+
+            if (track is null) { return null; }
+
             return GetTrackTitle(track);
         }
 
@@ -130,15 +132,21 @@ namespace VegasScriptHelper
             track.Name = title;
         }
 
-        public void SetVideoTrackTitle(string title)
+        public void SetVideoTrackTitle(string title, bool throwException = true)
         {
-            VideoTrack track = SelectedVideoTrack();
+            VideoTrack track = SelectedVideoTrack(throwException);
+
+            if (track is null) { return; }
+
             SetTrackTitle(track, title);
         }
 
-        public void SetAudioTrackTitle(string title)
+        public void SetAudioTrackTitle(string title, bool throwException = true)
         {
-            AudioTrack track = SelectedAudioTrack();
+            AudioTrack track = SelectedAudioTrack(throwException);
+
+            if (track is null) { return; }
+
             SetTrackTitle(track, title);
         }
 
@@ -147,9 +155,11 @@ namespace VegasScriptHelper
             Project project = Vegas.Project;
 
             IEnumerable<VideoTrack> searchResult = project.Tracks.Where(track => track.IsVideo() && track.Name == name).Cast<VideoTrack>();
+
             if (searchResult.Any()) { return searchResult.ToList()[0]; }
 
             if (throwException) { throw new VegasHelperNotFoundTrackException(); }
+
             return null;
         }
 
@@ -158,9 +168,11 @@ namespace VegasScriptHelper
             Project project = Vegas.Project;
 
             IEnumerable<AudioTrack> searchResult = project.Tracks.Where(track => track.IsAudio() && track.Name == name).Cast<AudioTrack>();
+
             if (searchResult.Any()) { return searchResult.ToList()[0]; }
 
             if (throwException) { throw new VegasHelperNotFoundTrackException(); }
+
             return null;
         }
 

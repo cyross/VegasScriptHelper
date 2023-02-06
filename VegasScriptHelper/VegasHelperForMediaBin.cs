@@ -15,6 +15,7 @@ namespace VegasScriptHelper
         public MediaBin CreateMediaBin(string name, bool throwException = true)
         {
             bool isExist = IsExistMediaBin(name);
+
             if (throwException && isExist)
             {
                 throw new VegasHelperAlreadyExistedMediaBinException();
@@ -30,6 +31,7 @@ namespace VegasScriptHelper
         public MediaBin GetMediaBin(string name, bool throwException = true)
         {
             var searchResult = SearchMediaBinNodes(name);
+
             if(throwException && !searchResult.Any())
             {
                 throw new VegasHelperNotFoundMediaBinException();
@@ -45,18 +47,27 @@ namespace VegasScriptHelper
         private MediaBin CreateMediaBinInner(string name)
         {
             MediaBin newBin = new MediaBin(Vegas.Project, name);
+
             Vegas.Project.MediaPool.RootMediaBin.Add(newBin);
+
             return newBin;
         }
 
         public void DeleteMediaBin(string name, bool throwException = true)
         {
             var searchResult = SearchMediaBinNodes(name);
-            if (!searchResult.Any())
+
+            if (throwException && !searchResult.Any())
             {
                 throw new VegasHelperNotFoundMediaBinException();
             }
+            else if(!searchResult.Any())
+            {
+                return;
+            }
+
             MediaBin target = searchResult.First();
+
             Vegas.Project.MediaPool.RootMediaBin.Remove(target);
         }
 
