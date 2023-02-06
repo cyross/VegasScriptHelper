@@ -29,7 +29,7 @@ namespace VegasScriptHelper
 
         public TrackEvents GetAudioEvents(bool throwException = true)
         {
-            AudioTrack selected = SelectedAudioTrack();
+            AudioTrack selected = SelectedAudioTrack(throwException);
 
             if (selected is null) { return null; }
 
@@ -59,7 +59,7 @@ namespace VegasScriptHelper
 
         public TrackEvent GetSelectedEvent(bool throwException = true)
         {
-            Track track = SelectedTrack();
+            Track track = SelectedTrack(throwException);
 
             if (track is null) { return null; }
 
@@ -68,7 +68,7 @@ namespace VegasScriptHelper
 
         public TrackEvent GetSelectedVideoEvent(bool throwException = true)
         {
-            Track track = SelectedVideoTrack();
+            Track track = SelectedVideoTrack(throwException);
 
             if (track is null) { return null; }
 
@@ -77,7 +77,7 @@ namespace VegasScriptHelper
 
         public TrackEvent GetSelectedAudioEvent(bool throwException = true)
         {
-            Track track = SelectedAudioTrack();
+            Track track = SelectedAudioTrack(throwException);
 
             if (track is null) { return null; }
 
