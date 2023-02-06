@@ -163,6 +163,11 @@ namespace VegasScriptHelper
             TrackEvent firstEvent = GetFirstEvent(events, throwException);
             TrackEvent lastEvent = GetLastEvent(events, throwException);
 
+            if(firstEvent == null || lastEvent == null)
+            {
+                return new VegasDuration(new Timecode(0), new Timecode(0));
+            }
+
             Timecode singleMaraginTimecode = new Timecode(margin);
             Timecode doubleMaraginTimecode = new Timecode(margin * 2);
 
@@ -171,6 +176,7 @@ namespace VegasScriptHelper
                 StartTime = firstEvent.Start - singleMaraginTimecode,
                 Length = lastEvent.Start + lastEvent.Length - firstEvent.Start + doubleMaraginTimecode
             };
+
             return duration;
         }
 
