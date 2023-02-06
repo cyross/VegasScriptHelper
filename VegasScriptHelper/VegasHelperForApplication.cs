@@ -29,5 +29,10 @@ namespace VegasScriptHelper
         {
             Vegas.TrackEventStateChanged += handler;
         }
+
+        public void AddTrackStateChangedEventHandler(EventHandler handler)
+        {
+            Vegas.TrackStateChanged += handler;
+        }
     }
 }
