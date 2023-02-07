@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
 
-namespace VegasScriptShowEventLength
+namespace VegasScriptShowTrackLength
 {
     public class MyDockableControl : DockableControl
     {
