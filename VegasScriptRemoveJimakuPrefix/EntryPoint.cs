@@ -10,7 +10,7 @@ namespace VegasScriptRemoveJimakuPrefix
 {
     public class EntryPoint: IEntryPoint
     {
-        private SettingForm settingForm = null;
+        private SettingDialog settingDialog = null;
 
         public void FromVegas(Vegas vegas)
         {
@@ -31,16 +31,16 @@ namespace VegasScriptRemoveJimakuPrefix
 
                 string initialKey = selected != null ? helper.GetTrackKey(selected) : videoTrackKeys[0];
 
-                if (settingForm == null) { settingForm = new SettingForm(); }
+                if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
-                settingForm.RemoveJimakuDataSource = videoTrackKeys;
-                settingForm.RemoveJimakuTrackName = initialKey;
+                settingDialog.RemoveJimakuDataSource = videoTrackKeys;
+                settingDialog.RemoveJimakuTrackName = initialKey;
 
-                if (settingForm.ShowDialog() == DialogResult.Cancel) { return; }
+                if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                 using (new UndoBlock("字幕の接頭辞を削除"))
                 {
-                    helper.DeleteJimakuPrefix(keyValuePairs[settingForm.RemoveJimakuTrackName]);
+                    helper.DeleteJimakuPrefix(keyValuePairs[settingDialog.RemoveJimakuTrackName]);
                 }
             }
             catch (VegasHelperTrackUnselectedException)

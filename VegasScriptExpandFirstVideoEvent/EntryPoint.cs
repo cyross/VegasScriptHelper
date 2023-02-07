@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using VegasScriptHelper;
 
-namespace ExpandFirstVideoEvent
+namespace VegasScriptExpandFirstVideoEvent
 {
     public class EntryPoint: IEntryPoint
     {

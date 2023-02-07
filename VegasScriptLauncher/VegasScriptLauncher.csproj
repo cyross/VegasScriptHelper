@@ -31,9 +31,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AddMediaBinInSelectedTrack">
+      <HintPath>..\VegasScriptAddMediaBinInSelectedTrack\bin\Debug\AddMediaBinInSelectedTrack.dll</HintPath>
+    </Reference>
+    <Reference Include="ApplySerifuColor">
+      <HintPath>..\VegasScriptApplySerifuColor\bin\Debug\ApplySerifuColor.dll</HintPath>
+    </Reference>
+    <Reference Include="AssignVideoEventFromAudioEvent">
+      <HintPath>..\VegasScriptAssignVideoEventFromAudioEvent\bin\Debug\AssignVideoEventFromAudioEvent.dll</HintPath>
+    </Reference>
+    <Reference Include="CreateInitialBin">
+      <HintPath>..\VegasScriptCreateInitialBin\bin\Debug\CreateInitialBin.dll</HintPath>
+    </Reference>
+    <Reference Include="EditEventTime">
+      <HintPath>..\VegasScriptEditEventTime\bin\Debug\EditEventTime.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpandFirstVideoEvent">
+      <HintPath>..\VegasScriptExpandFirstVideoEvent\bin\Debug\ExpandFirstVideoEvent.dll</HintPath>
+    </Reference>
+    <Reference Include="InsertAudioFileFromDirectory">
+      <HintPath>..\VegasScriptInsertAudioFileFromDirectory\bin\Debug\InsertAudioFileFromDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="RemoveJimakuPrefix">
+      <HintPath>..\VegasScriptRemoveJimakuPrefix\bin\Debug\RemoveJimakuPrefix.dll</HintPath>
+    </Reference>
     <Reference Include="ScriptPortal.Vegas, Version=20.0.0.326, Culture=neutral, PublicKeyToken=3cda94b1926e6fbc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\VEGAS\VEGAS Pro 20.0\ScriptPortal.Vegas.dll</HintPath>
+    </Reference>
+    <Reference Include="SetJimakuColor">
+      <HintPath>..\VegasScriptSetJimakuColor\bin\Debug\SetJimakuColor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,39 +74,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="VegasScriptHelper">
       <HintPath>..\..\VegasScriptHelper\VegasScriptHelper\bin\Debug\VegasScriptHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="イベントの開始時間と長さを編集">
-      <HintPath>..\..\VegasScriptEditEventTime\VegasScriptEditEventTime\bin\Debug\イベントの開始時間と長さを編集.dll</HintPath>
-    </Reference>
-    <Reference Include="セリフに色・アウトラインを設定">
-      <HintPath>..\..\VegasScriptApplySerifuColor\VegasScriptApplySerifuColor\bin\Debug\セリフに色・アウトラインを設定.dll</HintPath>
-    </Reference>
-    <Reference Include="ボイロ用初期メディアビン作成">
-      <HintPath>..\..\VegasScriptCreateInitialBin\VegasScriptCreateInitialBin\bin\Debug\ボイロ用初期メディアビン作成.dll</HintPath>
-    </Reference>
-    <Reference Include="字幕の接頭辞を削除">
-      <HintPath>..\..\VegasScriptRemoveJimakuPrefix\VegasScriptRemoveJimakuPrefix\bin\Debug\字幕の接頭辞を削除.dll</HintPath>
-    </Reference>
-    <Reference Include="字幕の長さを音声ファイルに合わせる">
-      <HintPath>..\..\VegasScriptAssignVideoEventFromAudioEvent\VegasScriptAssignVideoEventFromAudioEvent\bin\Debug\字幕の長さを音声ファイルに合わせる.dll</HintPath>
-    </Reference>
-    <Reference Include="字幕色を指定色で統一">
-      <HintPath>..\..\VegasScriptSetJimakuColor\VegasScriptSetJimakuColor\bin\Debug\字幕色を指定色で統一.dll</HintPath>
-    </Reference>
-    <Reference Include="指定ディレクトリの音声ファイルをオーディオトラックに挿入">
-      <HintPath>..\..\VegasInsertAudioFileFromDirectory\VegasInsertAudioFileFromDirectory\bin\Debug\指定ディレクトリの音声ファイルをオーディオトラックに挿入.dll</HintPath>
-    </Reference>
-    <Reference Include="最初のビデオイベントの長さをオーディオトラックの長さに広げる">
-      <HintPath>..\..\VegasScriptExpandFirstVideoEvent\ExpandFirstVideoEvent\bin\Debug\最初のビデオイベントの長さをオーディオトラックの長さに広げる.dll</HintPath>
-    </Reference>
-    <Reference Include="選択したイベントの開始時間と長さを表示">
-      <HintPath>..\..\VegasScriptShowSelectedEventTime\VegasScriptShowSelectedEventTime\bin\Debug\選択したイベントの開始時間と長さを表示.dll</HintPath>
-    </Reference>
-    <Reference Include="選択したトラックのメディアをメディアビンに追加">
-      <HintPath>..\..\VegasScriptAddMediaBinInSelectedTrack\VegasScriptAddMediaBinInSelectedTrack\bin\Debug\選択したトラックのメディアをメディアビンに追加.dll</HintPath>
-    </Reference>
-    <Reference Include="選択したトラック上の全イベントの長さを表示">
-      <HintPath>..\..\VegasScriptShowEventLength\VegasScriptShowEventLength\bin\Debug\選択したトラック上の全イベントの長さを表示.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using ScriptPortal.Vegas;
-using VegasScriptDebug;
 using VegasScriptHelper;
 
 namespace VegasScriptPrescribedPattern

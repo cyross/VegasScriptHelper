@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{57ECDD3E-FD8D-4902-9BAF-2D1761D62007}</ProjectGuid>
+    <ProjectGuid>{84026AB5-48B0-4061-9D4C-2F61F2E0C7F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VegasInsertAudioFileFromDirectory</RootNamespace>
-    <AssemblyName>指定ディレクトリの音声ファイルをオーディオトラックに挿入</AssemblyName>
+    <RootNamespace>VegasScriptInsertAudioFileFromDirectory</RootNamespace>
+    <AssemblyName>InsertAudioFileFromDirectory</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
-    <Compile Include="Setting.cs">
+    <Compile Include="SettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Setting.Designer.cs">
-      <DependentUpon>Setting.cs</DependentUpon>
+    <Compile Include="SettingDialog.Designer.cs">
+      <DependentUpon>SettingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,8 +62,8 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Setting.resx">
-      <DependentUpon>Setting.cs</DependentUpon>
+    <EmbeddedResource Include="SettingDialog.resx">
+      <DependentUpon>SettingDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

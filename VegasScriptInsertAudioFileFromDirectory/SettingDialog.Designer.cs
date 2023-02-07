@@ -1,6 +1,6 @@
-﻿namespace VegasInsertAudioFileFromDirectory
+﻿namespace VegasScriptInsertAudioFileFromDirectory
 {
-    partial class Setting
+    partial class SettingDialog
     {
         /// <summary>
         /// Required designer variable.

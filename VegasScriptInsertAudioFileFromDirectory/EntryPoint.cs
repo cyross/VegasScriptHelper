@@ -6,11 +6,11 @@ using System.Linq;
 using System.Windows.Forms;
 using VegasScriptHelper;
 
-namespace VegasInsertAudioFileFromDirectory
+namespace VegasScriptInsertAudioFileFromDirectory
 {
     public class EntryPoint: IEntryPoint
     {
-        private Setting settingDialog = null;
+        private SettingDialog settingDialog = null;
 
         public void FromVegas(Vegas vegas)
         {
@@ -38,7 +38,7 @@ namespace VegasInsertAudioFileFromDirectory
 
             if(settingDialog == null)
             {
-                settingDialog = new Setting();
+                settingDialog = new SettingDialog();
             }
 
             settingDialog.AudioFileFolder = VegasScriptSettings.OpenDirectory;

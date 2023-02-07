@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VegasScriptCreateInitialBin</RootNamespace>
-    <AssemblyName>ボイロ用初期メディアビン作成</AssemblyName>
+    <AssemblyName>CreateInitialBin</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

@@ -1,4 +1,4 @@
-﻿namespace VegasScriptDebug
+﻿namespace VegasScriptPrescribedPattern
 {
     partial class SettingDialog
     {

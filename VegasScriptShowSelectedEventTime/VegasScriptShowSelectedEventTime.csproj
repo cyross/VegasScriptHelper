@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VegasScriptShowSelectedEventTime</RootNamespace>
-    <AssemblyName>選択したイベントの開始時間と長さを表示</AssemblyName>
+    <AssemblyName>ShowSelectedEventTime</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

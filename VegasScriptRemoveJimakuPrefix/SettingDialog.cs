@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VegasScriptRemoveJimakuPrefix
 {
-    public partial class SettingForm : Form
+    public partial class SettingDialog : Form
     {
-        public SettingForm()
+        public SettingDialog()
         {
             InitializeComponent();
         }

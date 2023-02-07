@@ -1,4 +1,4 @@
-﻿namespace ExpandFirstVideoEvent
+﻿namespace VegasScriptExpandFirstVideoEvent
 {
     partial class SettingDialog
     {

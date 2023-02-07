@@ -10,12 +10,12 @@ namespace VegasScriptLauncher
     {
         private readonly Vegas Vegas = null;
         private readonly static VegasScriptCreateInitialBin.EntryPoint vscib = new VegasScriptCreateInitialBin.EntryPoint();
-        private readonly static VegasInsertAudioFileFromDirectory.EntryPoint viaffd = new VegasInsertAudioFileFromDirectory.EntryPoint();
+        private readonly static VegasScriptInsertAudioFileFromDirectory.EntryPoint viaffd = new VegasScriptInsertAudioFileFromDirectory.EntryPoint();
         private readonly static VegasScriptApplySerifuColor.EntryPoint vsassc = new VegasScriptApplySerifuColor.EntryPoint();
         private readonly static VegasScriptSetJimakuColor.EntryPoint vssjc = new VegasScriptSetJimakuColor.EntryPoint();
         private readonly static VegasScriptRemoveJimakuPrefix.EntryPoint vsrjp = new VegasScriptRemoveJimakuPrefix.EntryPoint();
         private readonly static VegasScriptAssignVideoEventFromAudioEvent.EntryPoint vsavefae = new VegasScriptAssignVideoEventFromAudioEvent.EntryPoint();
-        private readonly static ExpandFirstVideoEvent.EntryPoint efve = new ExpandFirstVideoEvent.EntryPoint();
+        private readonly static VegasScriptExpandFirstVideoEvent.EntryPoint efve = new VegasScriptExpandFirstVideoEvent.EntryPoint();
         private readonly static VegasScriptEditEventTime.EntryPoint vseet = new VegasScriptEditEventTime.EntryPoint();
         private readonly static VegasScriptAddMediaBinInSelectedTrack.EntryPoint vsambist = new VegasScriptAddMediaBinInSelectedTrack.EntryPoint();
 

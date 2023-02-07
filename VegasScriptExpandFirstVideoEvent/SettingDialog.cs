@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Collections.Generic;
 
-namespace ExpandFirstVideoEvent
+namespace VegasScriptExpandFirstVideoEvent
 {
     public partial class SettingDialog : Form
     {

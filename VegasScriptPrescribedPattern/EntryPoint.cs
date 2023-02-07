@@ -2,7 +2,6 @@
 using ScriptPortal.Vegas;
 using System.Windows.Forms;
 using VegasScriptHelper;
-using VegasScriptDebug;
 using System.Diagnostics;
 
 namespace VegasScriptPrescribedPattern

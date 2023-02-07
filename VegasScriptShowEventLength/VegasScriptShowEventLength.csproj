@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VegasScriptShowEventLength</RootNamespace>
-    <AssemblyName>選択したトラック上の全イベントの長さを表示</AssemblyName>
+    <AssemblyName>ShowEventLength</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

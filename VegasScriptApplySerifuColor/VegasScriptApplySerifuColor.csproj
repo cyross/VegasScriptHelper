@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VegasScriptApplySerifuColor</RootNamespace>
-    <AssemblyName>セリフに色・アウトラインを設定</AssemblyName>
+    <AssemblyName>ApplySerifuColor</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

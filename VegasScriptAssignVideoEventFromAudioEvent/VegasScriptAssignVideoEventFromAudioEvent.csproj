@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VegasScriptAssignVideoEventFromAudioEvent</RootNamespace>
-    <AssemblyName>字幕の長さを音声ファイルに合わせる</AssemblyName>
+    <AssemblyName>AssignVideoEventFromAudioEvent</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

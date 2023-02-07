@@ -11,7 +11,7 @@ namespace VegasScriptSetJimakuColor
 {
     public class EntryPoint: IEntryPoint
     {
-        private SettingForm settingForm = null;
+        private SettingDialog settingDialog = null;
 
         public void FromVegas(Vegas vegas)
         {
@@ -30,29 +30,29 @@ namespace VegasScriptSetJimakuColor
 
                 VideoTrack selected = helper.SelectedVideoTrack(false);
 
-                if (settingForm == null) { settingForm = new SettingForm(); }
+                if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
-                settingForm.TargetVideoTrackDataSource = trackNames;
-                settingForm.TargetVideoTrack = selected != null ? helper.GetTrackKey(selected) : trackNames[0];
-                settingForm.JimakuColor = VegasScriptSettings.JimakuColor;
-                settingForm.OutlineColor = VegasScriptSettings.OutlineColor;
-                settingForm.OutlineWidth = VegasScriptSettings.JimakuOutlineWidth;
+                settingDialog.TargetVideoTrackDataSource = trackNames;
+                settingDialog.TargetVideoTrack = selected != null ? helper.GetTrackKey(selected) : trackNames[0];
+                settingDialog.JimakuColor = VegasScriptSettings.JimakuColor;
+                settingDialog.OutlineColor = VegasScriptSettings.OutlineColor;
+                settingDialog.OutlineWidth = VegasScriptSettings.JimakuOutlineWidth;
 
-                if (settingForm.ShowDialog() == DialogResult.Cancel) { return; }
+                if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                 using (new UndoBlock("字幕の色とアウトラインを指定の色に統一"))
                 {
                     helper.SetTextParameterInTrack(
-                        trackDict[settingForm.TargetVideoTrack],
-                        settingForm.JimakuColor,
-                        settingForm.OutlineColor,
-                        settingForm.OutlineWidth
+                        trackDict[settingDialog.TargetVideoTrack],
+                        settingDialog.JimakuColor,
+                        settingDialog.OutlineColor,
+                        settingDialog.OutlineWidth
                         );
                 }
 
-                VegasScriptSettings.JimakuColor = settingForm.JimakuColor;
-                VegasScriptSettings.OutlineColor = settingForm.OutlineColor;
-                VegasScriptSettings.JimakuOutlineWidth = settingForm.OutlineWidth;
+                VegasScriptSettings.JimakuColor = settingDialog.JimakuColor;
+                VegasScriptSettings.OutlineColor = settingDialog.OutlineColor;
+                VegasScriptSettings.JimakuOutlineWidth = settingDialog.OutlineWidth;
                 VegasScriptSettings.Save();
             }
             catch (VegasHelperNoneEventsException)

@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace VegasScriptSetJimakuColor
 {
-    public partial class SettingForm : Form
+    public partial class SettingDialog : Form
     {
-        public SettingForm()
+        public SettingDialog()
         {
             InitializeComponent();
         }

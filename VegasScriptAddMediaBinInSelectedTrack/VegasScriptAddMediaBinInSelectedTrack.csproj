@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VegasScriptAddMediaBinInSelectedTrack</RootNamespace>
-    <AssemblyName>選択したトラックのメディアをメディアビンに追加</AssemblyName>
+    <AssemblyName>AddMediaBinInSelectedTrack</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

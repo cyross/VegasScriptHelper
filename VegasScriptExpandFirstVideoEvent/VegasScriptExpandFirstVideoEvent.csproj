@@ -7,8 +7,8 @@
     <ProjectGuid>{3F995E50-19B4-49A9-A4E9-3F63B888ABC9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExpandFirstVideoEvent</RootNamespace>
-    <AssemblyName>最初のビデオイベントの長さをオーディオトラックの長さに広げる</AssemblyName>
+    <RootNamespace>VegasScriptExpandFirstVideoEvent</RootNamespace>
+    <AssemblyName>ExpandFirstVideoEvent</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

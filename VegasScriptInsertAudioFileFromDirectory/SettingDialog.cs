@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace VegasInsertAudioFileFromDirectory
+namespace VegasScriptInsertAudioFileFromDirectory
 {
-    public partial class Setting : Form
+    public partial class SettingDialog : Form
     {
-        public Setting()
+        public SettingDialog()
         {
             InitializeComponent();
         }

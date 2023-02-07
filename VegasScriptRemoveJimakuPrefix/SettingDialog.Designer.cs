@@ -1,6 +1,6 @@
 ﻿namespace VegasScriptRemoveJimakuPrefix
 {
-    partial class SettingForm
+    partial class SettingDialog
     {
         /// <summary>
         /// Required designer variable.

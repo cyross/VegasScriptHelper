@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VegasScriptDebug
+namespace VegasScriptPrescribedPattern
 {
     public partial class SettingDialog : Form
     {

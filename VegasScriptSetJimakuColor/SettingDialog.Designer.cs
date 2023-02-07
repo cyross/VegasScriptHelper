@@ -1,6 +1,6 @@
 ﻿namespace VegasScriptSetJimakuColor
 {
-    partial class SettingForm
+    partial class SettingDialog
     {
         /// <summary>
         /// Required designer variable.
