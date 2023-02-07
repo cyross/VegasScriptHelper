@@ -1,6 +1,6 @@
 ﻿namespace VegasScriptAddMediaBinInSelectedTrack
 {
-    partial class BinSettingForm
+    partial class SettingDialog
     {
         /// <summary>
         /// Required designer variable.

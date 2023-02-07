@@ -2,9 +2,9 @@
 
 namespace VegasScriptAddMediaBinInSelectedTrack
 {
-    public partial class BinSettingForm : Form
+    public partial class SettingDialog : Form
     {
-        public BinSettingForm()
+        public SettingDialog()
         {
             InitializeComponent();
         }

@@ -10,7 +10,7 @@ namespace VegasScriptApplySerifuColor
 {
     public class EntryPoint: IEntryPoint
     {
-        private SettingForm settingForm = null;
+        private SettingDialog settingDialog = null;
 
         public void FromVegas(Vegas vegas)
         {
@@ -31,19 +31,19 @@ namespace VegasScriptApplySerifuColor
 
             try
             {
-                if(settingForm == null){ settingForm = new SettingForm(); }
+                if(settingDialog == null){ settingDialog = new SettingDialog(); }
 
-                settingForm.JimakuTrackDataSource = keyList;
-                settingForm.JimakuTrackName = selectedVideoTrack != null ? helper.GetTrackKey(selectedVideoTrack) : keyList.First();
-                settingForm.OutlineWidth = VegasScriptSettings.JimakuOutlineWidth;
+                settingDialog.JimakuTrackDataSource = keyList;
+                settingDialog.JimakuTrackName = selectedVideoTrack != null ? helper.GetTrackKey(selectedVideoTrack) : keyList.First();
+                settingDialog.OutlineWidth = VegasScriptSettings.JimakuOutlineWidth;
 
-                if (settingForm.ShowDialog() == DialogResult.Cancel) { return; }
+                if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
-                TrackEvents events = helper.GetVideoEvents(keyValuePairs[settingForm.JimakuTrackName]);
+                TrackEvents events = helper.GetVideoEvents(keyValuePairs[settingDialog.JimakuTrackName]);
 
                 using (new UndoBlock("字幕に色を適応"))
                 {
-                    helper.ApplyTextColorByActor(events, settingForm.OutlineWidth, settingForm.RemovePrefix);
+                    helper.ApplyTextColorByActor(events, settingDialog.OutlineWidth, settingDialog.RemovePrefix);
                 }
             }
             catch (VegasHelperNoneEventsException)

@@ -9,7 +9,7 @@ namespace VegasScriptAddMediaBinInSelectedTrack
 {
     public class EntryPoint: IEntryPoint
     {
-        private static BinSettingForm binSettingForm = null;
+        private static SettingDialog settingDialog = null;
 
         public void FromVegas(Vegas vegas)
         {
@@ -37,14 +37,14 @@ namespace VegasScriptAddMediaBinInSelectedTrack
             string binName = VegasScriptSettings.DefaultBinName["voiroJimaku"];
             List<string> binNameList = helper.GetMediaBinNameList();
 
-            if(binSettingForm == null) { binSettingForm = new BinSettingForm(); }
+            if(settingDialog == null) { settingDialog = new SettingDialog(); }
 
-            binSettingForm.BinName = binName;
-            binSettingForm.ExistBinNames = binNameList;
+            settingDialog.BinName = binName;
+            settingDialog.ExistBinNames = binNameList;
 
-            if(binSettingForm.ShowDialog() == DialogResult.Cancel ){ return; }
+            if(settingDialog.ShowDialog() == DialogResult.Cancel ){ return; }
 
-            binName = binSettingForm.BinName;
+            binName = settingDialog.BinName;
 
             try
             {

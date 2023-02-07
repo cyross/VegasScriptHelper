@@ -51,17 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
-    <Compile Include="BinSettingForm.cs">
+    <Compile Include="SettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BinSettingForm.Designer.cs">
-      <DependentUpon>BinSettingForm.cs</DependentUpon>
+    <Compile Include="SettingDialog.Designer.cs">
+      <DependentUpon>SettingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BinSettingForm.resx">
-      <DependentUpon>BinSettingForm.cs</DependentUpon>
+    <EmbeddedResource Include="SettingDialog.resx">
+      <DependentUpon>SettingDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
