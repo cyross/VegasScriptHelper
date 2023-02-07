@@ -23,7 +23,6 @@ def copy_file_to_folder(dll_filename, dll_file_dir, folders, doc_path):
 
 def copy_file(src_path, dst_path):
     print(f'copy {src_path}\n  -> {dst_path}')
-    return
     try:
         shutil.copyfile(src_path, dst_path)
     except FileNotFoundError:
