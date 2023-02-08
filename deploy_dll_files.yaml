@@ -38,8 +38,8 @@ vegas_extension_files:
     dir: ".\\VegasScriptRemoveJimakuPrefix\\bin\\Release"
   - file: "SetJimakuColor.dll"
     dir: ".\\VegasScriptSetJimakuColor\\bin\\Release"
-  - file: "ShowEventLength.dll"
-    dir: ".\\VegasScriptShowEventLength\\bin\\Release"
+  - file: "ShowTrackLength.dll"
+    dir: ".\\VegasScriptShowTrackLength\\bin\\Release"
   - file: "ShowSelectedEventTime.dll"
     dir: ".\\VegasScriptShowSelectedEventTime\\bin\\Release"
   - file: "VegasScriptLauncher.dll"
@@ -50,3 +50,9 @@ dst_vegas_script_folder:
 dst_vegas_extension_folder:
   - "{0}\\Vegas Application Extensions"
   - "..\\CyrossVegasScripts\\Vegas Application Extensions"
+vegas_yaml_files:
+  - "SupportedAudioFileSettings.yaml"
+  - "VoiceActorColors.yaml"
+  - "VoiceActorOutlineColors.yaml"
+  - "DefaultBinNames.yaml"
+vegas_yaml_file_dir: ".\\VegasScriptHelper"

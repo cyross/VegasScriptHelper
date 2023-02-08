@@ -70,7 +70,7 @@ namespace VegasScriptHelper
         {
             string actor_name_key = VegasScriptSettings.FormatKey(actor_name);
 
-            if (!VegasScriptSettings.TextColorByActor.ContainsKey(actor_name_key))
+            if (!VegasScriptSettings.TextColorByActor.Contains(actor_name_key))
             {
                 return Color.White;
             }
@@ -82,7 +82,7 @@ namespace VegasScriptHelper
         {
             string actor_name_key = VegasScriptSettings.FormatKey(actor_name);
 
-            if (!VegasScriptSettings.OutlineColorByActor.ContainsKey(actor_name_key))
+            if (!VegasScriptSettings.OutlineColorByActor.Contains(actor_name_key))
             {
                 return Color.Black;
             }

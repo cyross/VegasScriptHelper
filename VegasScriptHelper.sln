@@ -10,6 +10,89 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptDebug", "VegasSc
 		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptAddMediaBinInSelectedTrack", "VegasScriptAddMediaBinInSelectedTrack\VegasScriptAddMediaBinInSelectedTrack.csproj", "{145E709B-094E-4D7B-9CCE-C5EE1E7B082F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptApplySerifuColor", "VegasScriptApplySerifuColor\VegasScriptApplySerifuColor.csproj", "{E787963F-6AC7-42E8-9B15-32048EBDB169}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptAssignVideoEventFromAudioEvent", "VegasScriptAssignVideoEventFromAudioEvent\VegasScriptAssignVideoEventFromAudioEvent.csproj", "{890E0306-A5A6-475E-ABF8-CDCDAC3C9159}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptCreateInitialBin", "VegasScriptCreateInitialBin\VegasScriptCreateInitialBin.csproj", "{4ECC8F3C-CD00-45FB-9A89-68BF3E36710E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptEditEventTime", "VegasScriptEditEventTime\VegasScriptEditEventTime.csproj", "{D79F3EFE-BD89-4F9F-97EE-E9F3D971EA2E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptExpandFirstVideoEvent", "VegasScriptExpandFirstVideoEvent\VegasScriptExpandFirstVideoEvent.csproj", "{3F995E50-19B4-49A9-A4E9-3F63B888ABC9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptInsertAudioFileFromDirectory", "VegasScriptInsertAudioFileFromDirectory\VegasScriptInsertAudioFileFromDirectory.csproj", "{84026AB5-48B0-4061-9D4C-2F61F2E0C7F2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptLauncher", "VegasScriptLauncher\VegasScriptLauncher.csproj", "{0E030CAA-160B-4F93-8619-2C5ED4A5F346}"
+	ProjectSection(ProjectDependencies) = postProject
+		{145E709B-094E-4D7B-9CCE-C5EE1E7B082F} = {145E709B-094E-4D7B-9CCE-C5EE1E7B082F}
+		{3F995E50-19B4-49A9-A4E9-3F63B888ABC9} = {3F995E50-19B4-49A9-A4E9-3F63B888ABC9}
+		{477956B7-23EE-4647-AEF5-F5717B53913E} = {477956B7-23EE-4647-AEF5-F5717B53913E}
+		{4ECC8F3C-CD00-45FB-9A89-68BF3E36710E} = {4ECC8F3C-CD00-45FB-9A89-68BF3E36710E}
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+		{84026AB5-48B0-4061-9D4C-2F61F2E0C7F2} = {84026AB5-48B0-4061-9D4C-2F61F2E0C7F2}
+		{890E0306-A5A6-475E-ABF8-CDCDAC3C9159} = {890E0306-A5A6-475E-ABF8-CDCDAC3C9159}
+		{8DDE9E5B-324D-472A-B4F0-29EA2CBC3362} = {8DDE9E5B-324D-472A-B4F0-29EA2CBC3362}
+		{A5E012A8-6DE3-417C-90D7-FD7552DCE63C} = {A5E012A8-6DE3-417C-90D7-FD7552DCE63C}
+		{D79F3EFE-BD89-4F9F-97EE-E9F3D971EA2E} = {D79F3EFE-BD89-4F9F-97EE-E9F3D971EA2E}
+		{E0B7FA92-FE03-4B6F-970E-4DF25B1479EF} = {E0B7FA92-FE03-4B6F-970E-4DF25B1479EF}
+		{E787963F-6AC7-42E8-9B15-32048EBDB169} = {E787963F-6AC7-42E8-9B15-32048EBDB169}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptPrescribedPattern", "VegasScriptPrescribedPattern\VegasScriptPrescribedPattern.csproj", "{AD5AE1E0-4C79-4992-9E87-2CD8948A91D9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptRemoveJimakuPrefix", "VegasScriptRemoveJimakuPrefix\VegasScriptRemoveJimakuPrefix.csproj", "{477956B7-23EE-4647-AEF5-F5717B53913E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptSetJimakuColor", "VegasScriptSetJimakuColor\VegasScriptSetJimakuColor.csproj", "{8DDE9E5B-324D-472A-B4F0-29EA2CBC3362}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptShowTrackLength", "VegasScriptShowTrackLength\VegasScriptShowTrackLength.csproj", "{A5E012A8-6DE3-417C-90D7-FD7552DCE63C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptShowSelectedEventTime", "VegasScriptShowSelectedEventTime\VegasScriptShowSelectedEventTime.csproj", "{E0B7FA92-FE03-4B6F-970E-4DF25B1479EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{BD4E5DE1-E07E-4840-89F9-4296D34818B7}"
+	ProjectSection(SolutionItems) = preProject
+		deploy_dll_files.py = deploy_dll_files.py
+		deploy_dll_files.yaml = deploy_dll_files.yaml
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +107,58 @@ Global
 		{57ECDD3E-FD8D-4902-9BAF-2D1761D62007}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57ECDD3E-FD8D-4902-9BAF-2D1761D62007}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57ECDD3E-FD8D-4902-9BAF-2D1761D62007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{145E709B-094E-4D7B-9CCE-C5EE1E7B082F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{145E709B-094E-4D7B-9CCE-C5EE1E7B082F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{145E709B-094E-4D7B-9CCE-C5EE1E7B082F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{145E709B-094E-4D7B-9CCE-C5EE1E7B082F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E787963F-6AC7-42E8-9B15-32048EBDB169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E787963F-6AC7-42E8-9B15-32048EBDB169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E787963F-6AC7-42E8-9B15-32048EBDB169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E787963F-6AC7-42E8-9B15-32048EBDB169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{890E0306-A5A6-475E-ABF8-CDCDAC3C9159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{890E0306-A5A6-475E-ABF8-CDCDAC3C9159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{890E0306-A5A6-475E-ABF8-CDCDAC3C9159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{890E0306-A5A6-475E-ABF8-CDCDAC3C9159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECC8F3C-CD00-45FB-9A89-68BF3E36710E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECC8F3C-CD00-45FB-9A89-68BF3E36710E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECC8F3C-CD00-45FB-9A89-68BF3E36710E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECC8F3C-CD00-45FB-9A89-68BF3E36710E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D79F3EFE-BD89-4F9F-97EE-E9F3D971EA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D79F3EFE-BD89-4F9F-97EE-E9F3D971EA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D79F3EFE-BD89-4F9F-97EE-E9F3D971EA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D79F3EFE-BD89-4F9F-97EE-E9F3D971EA2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F995E50-19B4-49A9-A4E9-3F63B888ABC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F995E50-19B4-49A9-A4E9-3F63B888ABC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F995E50-19B4-49A9-A4E9-3F63B888ABC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F995E50-19B4-49A9-A4E9-3F63B888ABC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84026AB5-48B0-4061-9D4C-2F61F2E0C7F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84026AB5-48B0-4061-9D4C-2F61F2E0C7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84026AB5-48B0-4061-9D4C-2F61F2E0C7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84026AB5-48B0-4061-9D4C-2F61F2E0C7F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E030CAA-160B-4F93-8619-2C5ED4A5F346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E030CAA-160B-4F93-8619-2C5ED4A5F346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E030CAA-160B-4F93-8619-2C5ED4A5F346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E030CAA-160B-4F93-8619-2C5ED4A5F346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5AE1E0-4C79-4992-9E87-2CD8948A91D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5AE1E0-4C79-4992-9E87-2CD8948A91D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5AE1E0-4C79-4992-9E87-2CD8948A91D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5AE1E0-4C79-4992-9E87-2CD8948A91D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{477956B7-23EE-4647-AEF5-F5717B53913E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{477956B7-23EE-4647-AEF5-F5717B53913E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{477956B7-23EE-4647-AEF5-F5717B53913E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{477956B7-23EE-4647-AEF5-F5717B53913E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DDE9E5B-324D-472A-B4F0-29EA2CBC3362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDE9E5B-324D-472A-B4F0-29EA2CBC3362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDE9E5B-324D-472A-B4F0-29EA2CBC3362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDE9E5B-324D-472A-B4F0-29EA2CBC3362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5E012A8-6DE3-417C-90D7-FD7552DCE63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5E012A8-6DE3-417C-90D7-FD7552DCE63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5E012A8-6DE3-417C-90D7-FD7552DCE63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5E012A8-6DE3-417C-90D7-FD7552DCE63C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0B7FA92-FE03-4B6F-970E-4DF25B1479EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0B7FA92-FE03-4B6F-970E-4DF25B1479EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0B7FA92-FE03-4B6F-970E-4DF25B1479EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0B7FA92-FE03-4B6F-970E-4DF25B1479EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

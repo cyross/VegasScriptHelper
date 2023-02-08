@@ -133,5 +133,10 @@ namespace VegasScriptDebug
                 MessageBox.Show("選択したビデオトラック中にイベントが存在していません。");
             }
         }
+
+        private void DebugYAMLAccess(VegasHelper helper)
+        {
+            VegasScriptSettings.LoadYamlFile();
+        }
     }
 }
