@@ -19,6 +19,8 @@ vegas_script_files:
     dir: ".\\VegasScriptRemoveJimakuPrefix\\bin\\Release"
   - file: "SetJimakuColor.dll"
     dir: ".\\VegasScriptSetJimakuColor\\bin\\Release"
+  - file: "YamlDotNet.dll"
+    dir: ".\\VegasScriptHelper\\bin\\Release"
 vegas_extension_files:
   - file: "InsertAudioFileFromDirectory.dll"
     dir: ".\\VegasScriptInsertAudioFileFromDirectory\\bin\\Release"
@@ -44,6 +46,8 @@ vegas_extension_files:
     dir: ".\\VegasScriptShowSelectedEventTime\\bin\\Release"
   - file: "VegasScriptLauncher.dll"
     dir: ".\\VegasScriptLauncher\\bin\\Release"
+  - file: "YamlDotNet.dll"
+    dir: ".\\VegasScriptHelper\\bin\\Release"
 dst_vegas_script_folder:
   - "{0}\\Vegas Script Menu"
   - "..\\CyrossVegasScripts\\Vegas Script Menu"
