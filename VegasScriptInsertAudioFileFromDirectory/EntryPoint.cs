@@ -47,7 +47,7 @@ namespace VegasScriptInsertAudioFileFromDirectory
             settingDialog.StartFrom = VegasScriptSettings.StartFrom;
             settingDialog.MediaBinName = VegasScriptSettings.DefaultBinName["voiroVoice"];
             settingDialog.TrackNameDataSource = keyList;
-            settingDialog.TrackName = selectedAudioTrack != null ? helper.GetTrackKey(selectedAudioTrack) : keyList.First();
+            settingDialog.TrackName = selectedAudioTrack != null ? helper.GetTrackKey(selectedAudioTrack) : keyList.Count == 0 ? "" : keyList.First();
 
             if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
