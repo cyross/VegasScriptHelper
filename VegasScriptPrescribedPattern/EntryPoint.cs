@@ -23,6 +23,7 @@ namespace VegasScriptPrescribedPattern
 
                     // 設定ダイアログが不要なときは削除
                     if (settingDialog == null) { settingDialog = new SettingDialog(); }
+                    if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                     // スクリプト本体を実装
                 }
