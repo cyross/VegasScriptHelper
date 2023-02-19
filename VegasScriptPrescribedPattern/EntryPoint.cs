@@ -13,6 +13,30 @@ namespace VegasScriptPrescribedPattern
 
         public void FromVegas(Vegas vegas)
         {
+#if true // for update script
+            using (var block = new UndoBlock("UpdateSpaces"))
+            {
+                try
+                {
+                    // ヘルパクラスのオブジェクト生成は必須
+                    VegasHelper helper = VegasHelper.Instance(vegas);
+
+                    // 設定ダイアログが不要なときは削除
+                    if (settingDialog == null) { settingDialog = new SettingDialog(); }
+
+                    // スクリプト本体を実装
+                }
+                catch (Exception ex)
+                {
+                    string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
+                    Debug.WriteLine("---[Exception In Helper]---");
+                    Debug.WriteLine(errMessage);
+                    Debug.WriteLine("---------------------------");
+                    MessageBox.Show(errMessage);
+                    throw ex;
+                }
+            }
+#else // not update script
             try
             {
                 // ヘルパクラスのオブジェクト生成は必須
@@ -29,13 +53,10 @@ namespace VegasScriptPrescribedPattern
                 Debug.WriteLine("---[Exception In Helper]---");
                 Debug.WriteLine(errMessage);
                 Debug.WriteLine("---------------------------");
-                MessageBox.Show(
-                    errMessage,
-                    "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show(errMessage);
                 throw ex;
             }
+#endif
         }
     }
 }

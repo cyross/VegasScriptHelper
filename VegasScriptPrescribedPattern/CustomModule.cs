@@ -30,23 +30,38 @@ namespace VegasScriptPrescribedPattern
 
         protected override void OnLoad(EventArgs args)
         {
-            try
+#if true // for update script
+            using (new UndoBlock("UpdateSpaces"))
             {
-                // ここに本体を実装
+                try
+                {
+                    // ここに本体を実装
+                }
+                catch (Exception ex)
+                {
+                    string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
+                    Debug.WriteLine("---[Exception In Helper]---");
+                    Debug.WriteLine(errMessage);
+                    Debug.WriteLine("---------------------------");
+                    MessageBox.Show(errMessage);
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
-                Debug.WriteLine("---[Exception In Helper]---");
-                Debug.WriteLine(errMessage);
-                Debug.WriteLine("---------------------------");
-                MessageBox.Show(
-                    errMessage,
-                    "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                throw ex;
-            }
+#else
+                try
+                {
+                    // ここに本体を実装
+                }
+                catch (Exception ex)
+                {
+                    string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
+                    Debug.WriteLine("---[Exception In Helper]---");
+                    Debug.WriteLine(errMessage);
+                    Debug.WriteLine("---------------------------");
+                    MessageBox.Show(errMessage);
+                    throw ex;
+                }
+#endif
         }
 
         protected override void OnClosed(EventArgs args)
