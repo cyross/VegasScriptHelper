@@ -19,6 +19,8 @@ vegas_script_files:
     dir: ".\\VegasScriptRemoveJimakuPrefix\\bin\\Release"
   - file: "SetJimakuColor.dll"
     dir: ".\\VegasScriptSetJimakuColor\\bin\\Release"
+  - file: "UpdateSpaces.dll"
+    dir: ".\\VegasScriptUpdateSpaces\\bin\\Release"
   - file: "YamlDotNet.dll"
     dir: ".\\VegasScriptHelper\\bin\\Release"
 vegas_extension_files:
@@ -40,6 +42,8 @@ vegas_extension_files:
     dir: ".\\VegasScriptRemoveJimakuPrefix\\bin\\Release"
   - file: "SetJimakuColor.dll"
     dir: ".\\VegasScriptSetJimakuColor\\bin\\Release"
+  - file: "UpdateSpaces.dll"
+    dir: ".\\VegasScriptUpdateSpaces\\bin\\Release"
   - file: "ShowTrackLength.dll"
     dir: ".\\VegasScriptShowTrackLength\\bin\\Release"
   - file: "ShowSelectedEventTime.dll"

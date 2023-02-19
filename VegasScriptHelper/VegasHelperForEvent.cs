@@ -1,4 +1,6 @@
-﻿using ScriptPortal.Vegas;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ScriptPortal.Vegas;
 
 namespace VegasScriptHelper
 {
@@ -134,6 +136,16 @@ namespace VegasScriptHelper
             if (throwException && events.Count == 0) { throw new VegasHelperNoneEventsException(); }
 
             return events[events.Count - 1];
+        }
+
+        public List<TrackEvent> GetEventsFromSelected(TrackEvents events, TrackEvent first, TrackEvent last)
+        {
+            return events.Where(e => e.Start >= first.Start && e.Start <= last.Start).ToList();
+        }
+
+        public List<TrackEvent> GetRemainEvents(TrackEvents events, TrackEvent last)
+        {
+            return events.Where(e => e.Start > last.Start).ToList();
         }
     }
 }
