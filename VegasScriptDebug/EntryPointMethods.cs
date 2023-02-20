@@ -1,6 +1,8 @@
 ﻿using ScriptPortal.Vegas;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Diagnostics;
 using VegasScriptHelper;
 
 namespace VegasScriptDebug
@@ -137,6 +139,30 @@ namespace VegasScriptDebug
         private void DebugYAMLAccess(VegasHelper helper)
         {
             VegasScriptSettings.LoadYamlFile();
+        }
+
+        private void DebugGenerateMedia(VegasHelper helper)
+        {
+            // テキスト生成プラグインを取得
+            PlugInNode node = helper.GetTitlePluginNode();
+            Debug.WriteLine("[PRESET]");
+            List<string> presetNames = helper.GetPluginPresetNames(node);
+            foreach (string presetName in presetNames)
+            {
+                Debug.WriteLine(string.Format("NAME={0}", presetName));
+            }
+            Debug.WriteLine("[VIDEO MEDIA]");
+            Dictionary<string, Media> videoMediaDict = helper.GetProjectVideoMediaDict();
+            foreach (string mediaKey in videoMediaDict.Keys)
+            {
+                Debug.WriteLine(string.Format("NAME={0}", mediaKey));
+            }
+            Debug.WriteLine("[AUDIO MEDIA]");
+            Dictionary<string, Media> audioMediaDict = helper.GetProjectAudioMediaDict();
+            foreach (string mediaKey in audioMediaDict.Keys)
+            {
+                Debug.WriteLine(string.Format("NAME={0}", mediaKey));
+            }
         }
     }
 }

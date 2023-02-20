@@ -14,6 +14,7 @@ namespace VegasScriptDebug
             try
             {
                 VegasHelper helper = VegasHelper.Instance(vegas);
+                DebugGenerateMedia(helper);
             }
             catch (FileNotFoundException ex)
             {
