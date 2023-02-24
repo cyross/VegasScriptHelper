@@ -14,7 +14,7 @@ namespace VegasScriptPrescribedPattern
         public void FromVegas(Vegas vegas)
         {
 #if true // for update script
-            using (var block = new UndoBlock("UpdateSpaces"))
+            using (var block = new UndoBlock("$projectname"))
             {
                 try
                 {

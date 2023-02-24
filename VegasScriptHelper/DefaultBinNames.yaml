@@ -1,6 +1,8 @@
 ﻿voiroVoice: "ボイロ音声"
 voiroJimaku: "ボイロ字幕"
+voiroActor: "ボイロ声優名"
 jimakuBackground: "字幕背景"
+actorBackground: "声優名背景"
 tachie: "立ち絵"
 dlAudio: "DL音声"
 createdAudio: "作成音声"

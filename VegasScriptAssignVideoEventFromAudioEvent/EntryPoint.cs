@@ -41,7 +41,7 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
             VideoTrack targetVideoTrack = helper.SelectedVideoTrack(false);
 
             if(targetVideoTrack == null) {
-                targetVideoTrack = helper.SearchVideoTrackByName(VegasScriptSettings.TargetAssignTrackName);
+                targetVideoTrack = helper.SearchVideoTrackByName(helper.Settings["JimakuTrackName"]);
             }
 
             string videoTrackKey = targetVideoTrack != null ? helper.GetTrackKey(targetVideoTrack) : videoKeyList[0];
@@ -50,7 +50,7 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
 
             if (targetAudioTrack == null)
             {
-                targetAudioTrack = helper.SearchAudioTrackByName(VegasScriptSettings.TargetAssignTrackName);
+                targetAudioTrack = helper.SearchAudioTrackByName(helper.Settings["AudioTrackName"]);
             }
 
             string audioTrackKey = targetAudioTrack != null ? helper.GetTrackKey(targetAudioTrack) : audioKeyList[0];
@@ -63,7 +63,7 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
                 settingDialog.VoiceTrackName = audioTrackKey;
                 settingDialog.JimakuTrackNameDataSource = videoKeyList;
                 settingDialog.JimakuTrackName = videoTrackKey;
-                settingDialog.JimakuMargin = VegasScriptSettings.AssignEventMargin;
+                settingDialog.JimakuMargin = helper.Settings["JimakuMargin"];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -76,8 +76,10 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
                     helper.AssignAudioTrackDurationToVideoTrack(videoTrack, audioTrack, margin);
                 }
 
-                VegasScriptSettings.AssignEventMargin = margin;
-                VegasScriptSettings.Save();
+                helper.Settings["AudioTrackName"] = audioTrack.Name;
+                helper.Settings["JimakuTrackName"] = videoTrack.Name;
+                helper.Settings["JimakuMargin"] = margin;
+                helper.Settings.Save();
             }
             catch (VegasHelperTrackUnselectedException)
             {

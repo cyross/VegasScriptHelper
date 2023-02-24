@@ -26,120 +26,504 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public float audioInsertInterval {
+        public float AudioInsertInterval {
             get {
-                return ((float)(this["audioInsertInterval"]));
+                return ((float)(this["AudioInsertInterval"]));
             }
             set {
-                this["audioInsertInterval"] = value;
+                this["AudioInsertInterval"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string openDirectory {
+        public string AudioFileFolder {
             get {
-                return ((string)(this["openDirectory"]));
+                return ((string)(this["AudioFileFolder"]));
             }
             set {
-                this["openDirectory"] = value;
+                this["AudioFileFolder"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool isRecursive {
+        public bool IsAudioFolderRecursive {
             get {
-                return ((bool)(this["isRecursive"]));
+                return ((bool)(this["IsAudioFolderRecursive"]));
             }
             set {
-                this["isRecursive"] = value;
+                this["IsAudioFolderRecursive"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool startFrom {
+        public bool IsInsertFromStartPosition {
             get {
-                return ((bool)(this["startFrom"]));
+                return ((bool)(this["IsInsertFromStartPosition"]));
             }
             set {
-                this["startFrom"] = value;
+                this["IsInsertFromStartPosition"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public double assignEventMargin {
+        [global::System.Configuration.DefaultSettingValueAttribute("セリフ")]
+        public string AudioTrackName {
             get {
-                return ((double)(this["assignEventMargin"]));
+                return ((string)(this["AudioTrackName"]));
             }
             set {
-                this["assignEventMargin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Subtitles")]
-        public string targetAssignTrackName {
-            get {
-                return ((string)(this["targetAssignTrackName"]));
-            }
-            set {
-                this["targetAssignTrackName"] = value;
+                this["AudioTrackName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double jimakuOutlineWidth {
+        public double JimakuOutlineWidth {
             get {
-                return ((double)(this["jimakuOutlineWidth"]));
+                return ((double)(this["JimakuOutlineWidth"]));
             }
             set {
-                this["jimakuOutlineWidth"] = value;
+                this["JimakuOutlineWidth"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double expandVideoEventMargin {
+        public double ExpandVideoEventMargin {
             get {
-                return ((double)(this["expandVideoEventMargin"]));
+                return ((double)(this["ExpandVideoEventMargin"]));
             }
             set {
-                this["expandVideoEventMargin"] = value;
+                this["ExpandVideoEventMargin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("White")]
-        public global::System.Drawing.Color jimakuColor {
+        public global::System.Drawing.Color JimakuColor {
             get {
-                return ((global::System.Drawing.Color)(this["jimakuColor"]));
+                return ((global::System.Drawing.Color)(this["JimakuColor"]));
             }
             set {
-                this["jimakuColor"] = value;
+                this["JimakuColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Black")]
-        public global::System.Drawing.Color outlineColor {
+        public global::System.Drawing.Color JimakuOutlineColor {
             get {
-                return ((global::System.Drawing.Color)(this["outlineColor"]));
+                return ((global::System.Drawing.Color)(this["JimakuOutlineColor"]));
             }
             set {
-                this["outlineColor"] = value;
+                this["JimakuOutlineColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string JimakuFilePath {
+            get {
+                return ((string)(this["JimakuFilePath"]));
+            }
+            set {
+                this["JimakuFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color ActorColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ActorColor"]));
+            }
+            set {
+                this["ActorColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color ActorOutlineColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ActorOutlineColor"]));
+            }
+            set {
+                this["ActorOutlineColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double ActorOutlineWidth {
+            get {
+                return ((double)(this["ActorOutlineWidth"]));
+            }
+            set {
+                this["ActorOutlineWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int PrefixBehavior {
+            get {
+                return ((int)(this["PrefixBehavior"]));
+            }
+            set {
+                this["PrefixBehavior"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseJimakuColorSetting {
+            get {
+                return ((bool)(this["UseJimakuColorSetting"]));
+            }
+            set {
+                this["UseJimakuColorSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseActorColorSetting {
+            get {
+                return ((bool)(this["UseActorColorSetting"]));
+            }
+            set {
+                this["UseActorColorSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseAudioMediaBin {
+            get {
+                return ((bool)(this["UseAudioMediaBin"]));
+            }
+            set {
+                this["UseAudioMediaBin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseJimakuMediaBin {
+            get {
+                return ((bool)(this["UseJimakuMediaBin"]));
+            }
+            set {
+                this["UseJimakuMediaBin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseActorMediaBin {
+            get {
+                return ((bool)(this["UseActorMediaBin"]));
+            }
+            set {
+                this["UseActorMediaBin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseJimakuBackgroundMediaBin {
+            get {
+                return ((bool)(this["UseJimakuBackgroundMediaBin"]));
+            }
+            set {
+                this["UseJimakuBackgroundMediaBin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseActorBackgroundMediaBin {
+            get {
+                return ((bool)(this["UseActorBackgroundMediaBin"]));
+            }
+            set {
+                this["UseActorBackgroundMediaBin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ボイロ音声")]
+        public string AudioMediaBinName {
+            get {
+                return ((string)(this["AudioMediaBinName"]));
+            }
+            set {
+                this["AudioMediaBinName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ボイロ字幕")]
+        public string JimakuMediaBinName {
+            get {
+                return ((string)(this["JimakuMediaBinName"]));
+            }
+            set {
+                this["JimakuMediaBinName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ボイロ声優名")]
+        public string ActorMediaBinName {
+            get {
+                return ((string)(this["ActorMediaBinName"]));
+            }
+            set {
+                this["ActorMediaBinName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("字幕背景")]
+        public string JimakuBackgroundMediaBinName {
+            get {
+                return ((string)(this["JimakuBackgroundMediaBinName"]));
+            }
+            set {
+                this["JimakuBackgroundMediaBinName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("声優名背景")]
+        public string ActorBackgroundMediaBinName {
+            get {
+                return ((string)(this["ActorBackgroundMediaBinName"]));
+            }
+            set {
+                this["ActorBackgroundMediaBinName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CreateOneEventCheck {
+            get {
+                return ((bool)(this["CreateOneEventCheck"]));
+            }
+            set {
+                this["CreateOneEventCheck"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CreateJimakuBackground {
+            get {
+                return ((bool)(this["CreateJimakuBackground"]));
+            }
+            set {
+                this["CreateJimakuBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CreateActorBackground {
+            get {
+                return ((bool)(this["CreateActorBackground"]));
+            }
+            set {
+                this["CreateActorBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("字幕")]
+        public string JimakuTrackName {
+            get {
+                return ((string)(this["JimakuTrackName"]));
+            }
+            set {
+                this["JimakuTrackName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string JimakuPresetName {
+            get {
+                return ((string)(this["JimakuPresetName"]));
+            }
+            set {
+                this["JimakuPresetName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ActorPresetName {
+            get {
+                return ((string)(this["ActorPresetName"]));
+            }
+            set {
+                this["ActorPresetName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string JimakuBackgroundMediaName {
+            get {
+                return ((string)(this["JimakuBackgroundMediaName"]));
+            }
+            set {
+                this["JimakuBackgroundMediaName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ActorBackgrondMediaName {
+            get {
+                return ((string)(this["ActorBackgrondMediaName"]));
+            }
+            set {
+                this["ActorBackgrondMediaName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double JimakuBackgroundMargin {
+            get {
+                return ((double)(this["JimakuBackgroundMargin"]));
+            }
+            set {
+                this["JimakuBackgroundMargin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double ActorBackgroundMargin {
+            get {
+                return ((double)(this["ActorBackgroundMargin"]));
+            }
+            set {
+                this["ActorBackgroundMargin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsGroupSerifuJimakuEvent {
+            get {
+                return ((bool)(this["IsGroupSerifuJimakuEvent"]));
+            }
+            set {
+                this["IsGroupSerifuJimakuEvent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double jimakuMargin {
+            get {
+                return ((double)(this["jimakuMargin"]));
+            }
+            set {
+                this["jimakuMargin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double actorMargin {
+            get {
+                return ((double)(this["actorMargin"]));
+            }
+            set {
+                this["actorMargin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("声優名")]
+        public string ActorTrackName {
+            get {
+                return ((string)(this["ActorTrackName"]));
+            }
+            set {
+                this["ActorTrackName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("字幕背景")]
+        public string JimakuBackgroundTrackName {
+            get {
+                return ((string)(this["JimakuBackgroundTrackName"]));
+            }
+            set {
+                this["JimakuBackgroundTrackName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("声優名背景")]
+        public string ActorBackgroundTrackName {
+            get {
+                return ((string)(this["ActorBackgroundTrackName"]));
+            }
+            set {
+                this["ActorBackgroundTrackName"] = value;
             }
         }
     }

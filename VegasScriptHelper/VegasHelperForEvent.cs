@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ScriptPortal.Vegas;
 
@@ -6,6 +7,56 @@ namespace VegasScriptHelper
 {
     public partial class VegasHelper
     {
+        public AudioEvent CreateAudioEvent(AudioTrack track, Media media, Timecode start, double margin = 0.0f)
+        {
+            AudioStream stream = media.GetAudioStreamByIndex(0);
+
+            return CreateAudioEvent(track, stream, start, stream.Length, margin);
+        }
+
+        public AudioEvent CreateAudioEvent(AudioTrack track, Media media, Timecode start, Timecode length, double margin = 0.0f)
+        {
+            AudioStream stream = media.GetAudioStreamByIndex(0);
+
+            return CreateAudioEvent(track, stream, start, length, margin);
+        }
+
+        public AudioEvent CreateAudioEvent(AudioTrack track, AudioStream stream, Timecode start, Timecode length, double margin = 0.0f)
+        {
+            AudioEvent audioEvent = track.AddAudioEvent(
+                start - new Timecode(margin),
+                length + new Timecode(margin * 2)
+                );
+
+            audioEvent.AddTake(stream);
+
+            return audioEvent;
+        }
+
+        public VideoEvent CreateVideoEvent(VideoTrack track, Media media, Timecode start, double margin = 0.0f)
+        {
+            VideoStream stream = media.GetVideoStreamByIndex(0);
+            return CreateVideoEvent(track, stream, start, stream.Length, margin);
+        }
+
+        public VideoEvent CreateVideoEvent(VideoTrack track, Media media, Timecode start, Timecode length, double margin = 0.0f)
+        {
+            VideoStream stream = media.GetVideoStreamByIndex(0);
+            return CreateVideoEvent(track, stream, start, length, margin);
+        }
+
+        public VideoEvent CreateVideoEvent(VideoTrack track, VideoStream stream, Timecode start, Timecode length, double margin = 0.0f)
+        {
+            VideoEvent videoEvent = track.AddVideoEvent(
+                start - new Timecode(margin),
+                length + new Timecode(margin * 2)
+                );
+
+            videoEvent.AddTake(stream);
+
+            return videoEvent;
+        }
+
         public TrackEvents GetEvents(Track track, bool throwException = true)
         {
             if (throwException && track.Events.Count == 0) { throw new VegasHelperNoneEventsException(); }

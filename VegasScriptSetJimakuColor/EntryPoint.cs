@@ -34,15 +34,15 @@ namespace VegasScriptSetJimakuColor
 
                 settingDialog.TargetVideoTrackDataSource = trackNames;
                 settingDialog.TargetVideoTrack = selected != null ? helper.GetTrackKey(selected) : trackNames[0];
-                settingDialog.JimakuColor = VegasScriptSettings.JimakuColor;
-                settingDialog.OutlineColor = VegasScriptSettings.OutlineColor;
-                settingDialog.OutlineWidth = VegasScriptSettings.JimakuOutlineWidth;
+                settingDialog.JimakuColor = helper.Settings["JimakuColor"];
+                settingDialog.OutlineColor = helper.Settings["JimakuOutlineColor"];
+                settingDialog.OutlineWidth = helper.Settings["JimakuOutlineWidth"];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                 using (new UndoBlock("字幕の色とアウトラインを指定の色に統一"))
                 {
-                    helper.SetTextParameterInTrack(
+                    helper.SetTextColor(
                         trackDict[settingDialog.TargetVideoTrack],
                         settingDialog.JimakuColor,
                         settingDialog.OutlineColor,
@@ -50,10 +50,10 @@ namespace VegasScriptSetJimakuColor
                         );
                 }
 
-                VegasScriptSettings.JimakuColor = settingDialog.JimakuColor;
-                VegasScriptSettings.OutlineColor = settingDialog.OutlineColor;
-                VegasScriptSettings.JimakuOutlineWidth = settingDialog.OutlineWidth;
-                VegasScriptSettings.Save();
+                helper.Settings["JimakuColor"] = settingDialog.JimakuColor;
+                helper.Settings["JimakuOutlineColor"] = settingDialog.OutlineColor;
+                helper.Settings["JimakuOutlineWidth"] = settingDialog.OutlineWidth;
+                helper.Settings.Save();
             }
             catch (VegasHelperNoneEventsException)
             {

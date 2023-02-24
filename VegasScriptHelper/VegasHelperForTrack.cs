@@ -20,6 +20,20 @@ namespace VegasScriptHelper
             get { return Vegas.Project.Tracks.Where(track => track.IsAudio()).Cast<AudioTrack>(); }
         }
 
+        public AudioTrack CreateAudioTrack(string trackName)
+        {
+            AudioTrack track = Vegas.Project.AddAudioTrack();
+            track.Name = trackName;
+            return track;
+        }
+
+        public VideoTrack CreateVideoTrack(string trackName)
+        {
+            VideoTrack track = Vegas.Project.AddVideoTrack();
+            track.Name = trackName;
+            return track;
+        }
+
         /// <summary>
         /// プロジェクト内で選択しているトラックがあれば、そのトラックのオブジェクトを返す。
         /// なければnullを返す

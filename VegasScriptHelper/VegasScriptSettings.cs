@@ -5,27 +5,79 @@ using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
 using VegasScriptHelper.VegasHelperYamlSpecs;
 using System.Diagnostics;
+using System.Dynamic;
+using System.Configuration;
+using System.Collections.Generic;
 
 namespace VegasScriptHelper
 {
     public class VegasScriptSettings
     {
-        public static float AudioInsertInterval;
-        public static string OpenDirectory;
-        public static bool IsRecursive;
-        public static bool StartFrom;
-        public static double AssignEventMargin;
-        public static string TargetAssignTrackName;
-        public static double JimakuOutlineWidth;
-        public static double ExpandVideoEventMargin;
-        public static Color JimakuColor;
-        public static Color OutlineColor;
-        public static SupportedAudioFileSettings SupportedAudioFile;
-        public static VoiceActorColors TextColorByActor;
-        public static VoiceActorOutlineColors OutlineColorByActor;
-        public static DefaultBinNameSetting DefaultBinName;
+        private readonly static VegasScriptSettings _Instance = new VegasScriptSettings();
 
-        private static T LoadYamlFile<T>(string filename) where T: class, IYamlSpec, new()
+        private Dictionary<string, dynamic> settingProperties = new Dictionary<string, dynamic>();
+
+        public SupportedAudioFileSettings SupportedAudioFile;
+        public VoiceActorColors TextColorByActor;
+        public VoiceActorOutlineColors OutlineColorByActor;
+        public DefaultBinNameSetting DefaultBinName;
+        public DefaultTrackNameSetting DefaultTrackName;
+
+        public static VegasScriptSettings Instance
+        {
+            get { return _Instance; }
+        }
+
+        public void LoadYamlFile()
+        {
+            SupportedAudioFile = LoadYamlFile<SupportedAudioFileSettings>("SupportedAudioFileSettings.yaml");
+            TextColorByActor = LoadYamlFile<VoiceActorColors>("VoiceActorColors.yaml");
+            TextColorByActor.DefaultColor = this["JimakuColor"];
+            OutlineColorByActor = LoadYamlFile<VoiceActorOutlineColors>("VoiceActorOutlineColors.yaml");
+            OutlineColorByActor.DefaultColor = this["JimakuOutlineColor"];
+            DefaultBinName = LoadYamlFile<DefaultBinNameSetting>("DefaultBinNames.yaml");
+            DefaultTrackName = LoadYamlFile<DefaultTrackNameSetting>("DefaultTrackNames.yaml");
+        }
+
+        public void Load()
+        {
+            Properties.Vegas.Default.Upgrade();
+
+            foreach (SettingsProperty property in Properties.Vegas.Default.Properties)
+            {
+                string propertyName = property.Name;
+                PropertyInfo pinfo = typeof(Properties.Vegas).GetProperty(propertyName);
+                this[propertyName] = pinfo.GetValue(Properties.Vegas.Default);
+            }
+
+            LoadYamlFile();
+
+            SetInitialBinName("AudioMediaBinName", "voiroVoice");
+            SetInitialBinName("JimakuMediaBinName", "voiroJimaku");
+            SetInitialBinName("ActorMediaBinName", "voiroActor");
+            SetInitialBinName("JimakuBackgroundMediaBinName", "jimakuBackground");
+            SetInitialBinName("ActorBackgroundMediaBinName", "actorBackground");
+        }
+
+        public void Save()
+        {
+            foreach (SettingsProperty property in Properties.Vegas.Default.Properties)
+            {
+                string propertyName = property.Name;
+                PropertyInfo pinfo = typeof(Properties.Vegas).GetProperty(propertyName);
+                pinfo.SetValue(Properties.Vegas.Default, this[propertyName]);
+            }
+
+            Properties.Vegas.Default.Save();
+        }
+
+        public dynamic this[string name]
+        {
+            get => settingProperties[name];
+            set => settingProperties[name] = value;
+        }
+
+        private static T LoadYamlFile<T>(string filename) where T : class, IYamlSpec, new()
         {
             string execDir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
 
@@ -51,50 +103,12 @@ namespace VegasScriptHelper
             }
         }
 
-        public static void LoadYamlFile()
+        private void SetInitialBinName(string settinNameKey, string yamlKey)
         {
-            SupportedAudioFile = LoadYamlFile<SupportedAudioFileSettings>("SupportedAudioFileSettings.yaml");
-            TextColorByActor = LoadYamlFile<VoiceActorColors>("VoiceActorColors.yaml");
-            OutlineColorByActor = LoadYamlFile<VoiceActorOutlineColors>("VoiceActorOutlineColors.yaml");
-            DefaultBinName = LoadYamlFile<DefaultBinNameSetting>("DefaultBinNames.yaml");
-        }
-
-        public static void Load()
-        {
-            Properties.Vegas.Default.Upgrade();
-
-            AudioInsertInterval = Properties.Vegas.Default.audioInsertInterval;
-            OpenDirectory = Properties.Vegas.Default.openDirectory;
-            IsRecursive = Properties.Vegas.Default.isRecursive;
-            StartFrom = Properties.Vegas.Default.startFrom;
-            AssignEventMargin = Properties.Vegas.Default.assignEventMargin;
-            TargetAssignTrackName = Properties.Vegas.Default.targetAssignTrackName;
-            JimakuOutlineWidth = Properties.Vegas.Default.jimakuOutlineWidth;
-            ExpandVideoEventMargin = Properties.Vegas.Default.expandVideoEventMargin;
-            JimakuColor = Properties.Vegas.Default.jimakuColor;
-            OutlineColor = Properties.Vegas.Default.outlineColor;
-
-            LoadYamlFile();
-        }
-
-        public static void Save()
-        {
-            Properties.Vegas.Default.expandVideoEventMargin = ExpandVideoEventMargin;
-            Properties.Vegas.Default.jimakuOutlineWidth = JimakuOutlineWidth;
-            Properties.Vegas.Default.targetAssignTrackName = TargetAssignTrackName;
-            Properties.Vegas.Default.assignEventMargin = AssignEventMargin;
-            Properties.Vegas.Default.startFrom = StartFrom;
-            Properties.Vegas.Default.isRecursive = IsRecursive;
-            Properties.Vegas.Default.audioInsertInterval = AudioInsertInterval;
-            Properties.Vegas.Default.openDirectory = OpenDirectory;
-            Properties.Vegas.Default.jimakuColor = JimakuColor;
-            Properties.Vegas.Default.outlineColor = OutlineColor;
-            Properties.Vegas.Default.Save();
-        }
-
-        public static string FormatKey(string org_key)
-        {
-            return Regex.Replace(org_key, @"[\s()\.\/:\.\[\]\\\/]+", "_");
+            if (settingProperties[settinNameKey].Length > 0)
+            {
+                settingProperties[settinNameKey] = DefaultBinName[yamlKey];
+            }
         }
     }
 }

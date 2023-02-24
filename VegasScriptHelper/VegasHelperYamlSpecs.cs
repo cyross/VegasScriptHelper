@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -14,7 +15,7 @@ namespace VegasScriptHelper
             bool Contains(string name);
         }
 
-        public class SupportedAudioFileSettings: IYamlSpec
+        public class DefaultListSetting: IYamlSpec
         {
             public List<string> AudioFiles = new List<string>();
 
@@ -43,9 +44,10 @@ namespace VegasScriptHelper
             }
         }
 
-        public class VoiceActorSetting : IYamlSpec
+        public class DefaultColorSetting : IYamlSpec
         {
             public Dictionary<string, Color> NameToColor = new Dictionary<string, Color>();
+            public Color DefaultColor;
 
             public static string SanitizeKey(string org_key)
             {
@@ -88,48 +90,68 @@ namespace VegasScriptHelper
                 }
             }
 
-            public Color this[string actor_name]
+            public Color this[string name]
             {
-                get { return NameToColor[SanitizeKey(actor_name)]; }
+                get {
+                    if (!Contains(name)) { return DefaultColor; }
+
+                    return NameToColor[SanitizeKey(name)];
+                }
             }
 
             public bool Contains(string name)
             {
-                return NameToColor.ContainsKey(name);
+                return NameToColor.ContainsKey(SanitizeKey(name));
+            }
+
+            public List<string> Keys()
+            {
+                return NameToColor.Keys.ToList();
             }
         }
 
-        public class VoiceActorColors: VoiceActorSetting {}
-
-        public class VoiceActorOutlineColors: VoiceActorSetting {}
-
-        public class DefaultBinNameSetting : IYamlSpec
+        public class DefaultValueSetting : IYamlSpec
         {
-            public Dictionary<string, string> NameToBin = new Dictionary<string, string>();
+            private Dictionary<string, string> KeyValue = new Dictionary<string, string>();
 
             public void Deserialize(YamlStream stream)
             {
-                NameToBin = new Dictionary<string, string>();
+                KeyValue = new Dictionary<string, string>();
 
                 foreach (var document in stream.Documents)
                 {
                     YamlMappingNode root = (YamlMappingNode)(document.RootNode);
                     foreach (var node in root.Children)
                     {
-                        NameToBin[node.Key.ToString()] = node.Value.ToString();
+                        KeyValue[node.Key.ToString()] = node.Value.ToString();
                     }
                 }
             }
 
             public string this[string bin_type]
             {
-                get { return NameToBin[bin_type]; }
+                get { return KeyValue[bin_type]; }
             }
 
             public bool Contains(string name)
             {
-                return NameToBin.ContainsKey(name);
+                return KeyValue.ContainsKey(name);
+            }
+
+            public List<string> Keys()
+            {
+                return KeyValue.Keys.ToList();
             }
         }
+
+        public class SupportedAudioFileSettings : DefaultListSetting { }
+
+        public class VoiceActorColors : DefaultColorSetting { }
+
+        public class VoiceActorOutlineColors : DefaultColorSetting { }
+
+        public class DefaultBinNameSetting : DefaultValueSetting {}
+
+        public class DefaultTrackNameSetting : DefaultValueSetting {}
     }
 }

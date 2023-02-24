@@ -19,6 +19,7 @@ namespace VegasScriptLauncher
         private readonly static VegasScriptEditEventTime.EntryPoint vseet = new VegasScriptEditEventTime.EntryPoint();
         private readonly static VegasScriptAddMediaBinInSelectedTrack.EntryPoint vsambist = new VegasScriptAddMediaBinInSelectedTrack.EntryPoint();
         private readonly static VegasScriptUpdateSpaces.EntryPoint vsus = new VegasScriptUpdateSpaces.EntryPoint();
+        private readonly static VegasScriptCreateJimaku.EntryPoint vscj = new VegasScriptCreateJimaku.EntryPoint();
 
         public LauncherForm(Vegas vegas)
         {
@@ -96,6 +97,11 @@ namespace VegasScriptLauncher
         private void button10_Click(object sender, EventArgs e)
         {
             ClickEvent(vsus);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            ClickEvent(vscj);
         }
     }
 }

@@ -69,6 +69,7 @@
 copy $(ProjectDir)..\VegasScriptHelper\VoiceActorColors.yaml $(TargetDir)
 copy $(ProjectDir)..\VegasScriptHelper\VoiceActorOutlineColors.yaml $(TargetDir)
 copy $(ProjectDir)..\VegasScriptHelper\DefaultBinNames.yaml $(TargetDir)
+copy $(ProjectDir)..\VegasScriptHelper\DefaultTrackNames.yaml $(TargetDir)
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

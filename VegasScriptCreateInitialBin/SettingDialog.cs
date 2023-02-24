@@ -29,10 +29,22 @@ namespace VegasScriptCreateInitialBin
             set { voiroJimakuBox.Text = value; }
         }
 
+        public string VoiroActorBinName
+        {
+            get { return voiroActorBox.Text; }
+            set { voiroActorBox.Text = value; }
+        }
+
         public string JimakuBackgroundBinName
         {
             get { return jimakuBackgroundBox.Text; }
             set { jimakuBackgroundBox.Text = value; }
+        }
+
+        public string ActorBackgroundBinName
+        {
+            get { return actorBackgroundBox.Text; }
+            set { actorBackgroundBox.Text = value; }
         }
 
         public string TachieBinName

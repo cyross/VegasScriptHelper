@@ -49,6 +49,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomScript\CreateVideoEventWithAudioTrack.cs" />
+    <Compile Include="CustomScript\AssignAudioTrackDurationToVideoTrack.cs" />
+    <Compile Include="CustomScript\DeleteJimakuPrefix.cs" />
+    <Compile Include="CustomScript\ExpandFirstVideoEvent.cs" />
+    <Compile Include="CustomScript\GetDuretionFromAllEventsInTrack.cs" />
+    <Compile Include="CustomScript\GetLengthFromAllEventsInTrack.cs" />
+    <Compile Include="CustomScript\InsertAudioInTrack.cs" />
+    <Compile Include="CustomScript\InsertBackground.cs" />
+    <Compile Include="CustomScript\InsertJimaku.cs" />
+    <Compile Include="CustomScript\TextParameter.cs" />
+    <Compile Include="CustomScript\GetJimakuPrefix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Vegas.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -62,7 +73,6 @@
       <DependentUpon>RichTextViererForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VegasHelper.cs" />
-    <Compile Include="VegasHelperCustomProcess.cs" />
     <Compile Include="VegasHelperForEvent.cs" />
     <Compile Include="VegasHelperException.cs" />
     <Compile Include="VegasHelperForApplication.cs" />
@@ -71,14 +81,15 @@
     <Compile Include="VegasHelperForOFXParameter.cs" />
     <Compile Include="VegasHelperForTake.cs" />
     <Compile Include="VegasHelperUtility.cs" />
-    <Compile Include="VegasHelperWithForm.cs" />
     <Compile Include="VegasHelperForProject.cs" />
     <Compile Include="VegasHelperForTrack.cs" />
     <Compile Include="VegasHelperYamlSpecs.cs" />
     <Compile Include="VegasScriptSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="DefaultBinNames.yaml" />
+    <None Include="DefaultTrackNames.yaml" />
     <None Include="packages.config" />
     <None Include="Properties\Vegas.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
@@ -99,6 +110,7 @@
       <DependentUpon>RichTextViererForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -2,35 +2,131 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VegasScriptHelper.Properties" GeneratedClassName="Vegas">
   <Profiles />
   <Settings>
-    <Setting Name="audioInsertInterval" Type="System.Single" Scope="User">
+    <Setting Name="AudioInsertInterval" Type="System.Single" Scope="User">
       <Value Profile="(Default)">500</Value>
     </Setting>
-    <Setting Name="openDirectory" Type="System.String" Scope="User">
+    <Setting Name="AudioFileFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="isRecursive" Type="System.Boolean" Scope="User">
+    <Setting Name="IsAudioFolderRecursive" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="startFrom" Type="System.Boolean" Scope="User">
+    <Setting Name="IsInsertFromStartPosition" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="assignEventMargin" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">100</Value>
+    <Setting Name="AudioTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">セリフ</Value>
     </Setting>
-    <Setting Name="targetAssignTrackName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Subtitles</Value>
-    </Setting>
-    <Setting Name="jimakuOutlineWidth" Type="System.Double" Scope="User">
+    <Setting Name="JimakuOutlineWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="expandVideoEventMargin" Type="System.Double" Scope="User">
+    <Setting Name="ExpandVideoEventMargin" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="jimakuColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="JimakuColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
     </Setting>
-    <Setting Name="outlineColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="JimakuOutlineColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="JimakuFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ActorColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="ActorOutlineColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="ActorOutlineWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="PrefixBehavior" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="UseJimakuColorSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UseActorColorSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UseAudioMediaBin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UseJimakuMediaBin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UseActorMediaBin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UseJimakuBackgroundMediaBin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UseActorBackgroundMediaBin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AudioMediaBinName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ボイロ音声</Value>
+    </Setting>
+    <Setting Name="JimakuMediaBinName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ボイロ字幕</Value>
+    </Setting>
+    <Setting Name="ActorMediaBinName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ボイロ声優名</Value>
+    </Setting>
+    <Setting Name="JimakuBackgroundMediaBinName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">字幕背景</Value>
+    </Setting>
+    <Setting Name="ActorBackgroundMediaBinName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">声優名背景</Value>
+    </Setting>
+    <Setting Name="CreateOneEventCheck" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CreateJimakuBackground" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CreateActorBackground" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="JimakuTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">字幕</Value>
+    </Setting>
+    <Setting Name="JimakuPresetName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ActorPresetName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="JimakuBackgroundMediaName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ActorBackgrondMediaName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="JimakuBackgroundMargin" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ActorBackgroundMargin" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="IsGroupSerifuJimakuEvent" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="jimakuMargin" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="actorMargin" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ActorTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">声優名</Value>
+    </Setting>
+    <Setting Name="JimakuBackgroundTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">字幕背景</Value>
+    </Setting>
+    <Setting Name="ActorBackgroundTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">声優名背景</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -29,6 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.binNameLabel = new System.Windows.Forms.Label();
+            this.createdImageBox = new System.Windows.Forms.TextBox();
+            this.dlImageBox = new System.Windows.Forms.TextBox();
+            this.createdMovieBox = new System.Windows.Forms.TextBox();
+            this.dlMovieBox = new System.Windows.Forms.TextBox();
+            this.createdAudioBox = new System.Windows.Forms.TextBox();
+            this.dlAudioBox = new System.Windows.Forms.TextBox();
+            this.tachieBox = new System.Windows.Forms.TextBox();
+            this.jimakuBackgroundBox = new System.Windows.Forms.TextBox();
+            this.voiroJimakuBox = new System.Windows.Forms.TextBox();
+            this.voiroVoiceBox = new System.Windows.Forms.TextBox();
             this.createdImageLabel = new System.Windows.Forms.Label();
             this.dlImageLabel = new System.Windows.Forms.Label();
             this.createdMovieLabel = new System.Windows.Forms.Label();
@@ -41,22 +52,17 @@
             this.voiroVoiceLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.canselButton = new System.Windows.Forms.Button();
-            this.voiroVoiceBox = new System.Windows.Forms.TextBox();
-            this.voiroJimakuBox = new System.Windows.Forms.TextBox();
-            this.jimakuBackgroundBox = new System.Windows.Forms.TextBox();
-            this.tachieBox = new System.Windows.Forms.TextBox();
-            this.dlAudioBox = new System.Windows.Forms.TextBox();
-            this.createdAudioBox = new System.Windows.Forms.TextBox();
-            this.dlMovieBox = new System.Windows.Forms.TextBox();
-            this.createdMovieBox = new System.Windows.Forms.TextBox();
-            this.dlImageBox = new System.Windows.Forms.TextBox();
-            this.createdImageBox = new System.Windows.Forms.TextBox();
-            this.binNameLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.voiroActorBox = new System.Windows.Forms.TextBox();
+            this.actorBackgroundBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.actorBackgroundBox);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.binNameLabel);
             this.panel1.Controls.Add(this.createdImageBox);
             this.panel1.Controls.Add(this.dlImageBox);
@@ -66,6 +72,7 @@
             this.panel1.Controls.Add(this.dlAudioBox);
             this.panel1.Controls.Add(this.tachieBox);
             this.panel1.Controls.Add(this.jimakuBackgroundBox);
+            this.panel1.Controls.Add(this.voiroActorBox);
             this.panel1.Controls.Add(this.voiroJimakuBox);
             this.panel1.Controls.Add(this.voiroVoiceBox);
             this.panel1.Controls.Add(this.createdImageLabel);
@@ -76,17 +83,98 @@
             this.panel1.Controls.Add(this.dlAudioLabel);
             this.panel1.Controls.Add(this.tachieLabel);
             this.panel1.Controls.Add(this.jimakuBackgroundLabel);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.voiroJimakuLabel);
             this.panel1.Controls.Add(this.voiroVoiceLabel);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(516, 289);
+            this.panel1.Size = new System.Drawing.Size(516, 340);
             this.panel1.TabIndex = 0;
+            // 
+            // binNameLabel
+            // 
+            this.binNameLabel.AutoSize = true;
+            this.binNameLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.binNameLabel.Location = new System.Drawing.Point(264, 14);
+            this.binNameLabel.Name = "binNameLabel";
+            this.binNameLabel.Size = new System.Drawing.Size(49, 16);
+            this.binNameLabel.TabIndex = 20;
+            this.binNameLabel.Text = "ビン名";
+            // 
+            // createdImageBox
+            // 
+            this.createdImageBox.Location = new System.Drawing.Point(76, 310);
+            this.createdImageBox.Name = "createdImageBox";
+            this.createdImageBox.Size = new System.Drawing.Size(425, 19);
+            this.createdImageBox.TabIndex = 19;
+            // 
+            // dlImageBox
+            // 
+            this.dlImageBox.Location = new System.Drawing.Point(76, 285);
+            this.dlImageBox.Name = "dlImageBox";
+            this.dlImageBox.Size = new System.Drawing.Size(425, 19);
+            this.dlImageBox.TabIndex = 18;
+            // 
+            // createdMovieBox
+            // 
+            this.createdMovieBox.Location = new System.Drawing.Point(76, 260);
+            this.createdMovieBox.Name = "createdMovieBox";
+            this.createdMovieBox.Size = new System.Drawing.Size(425, 19);
+            this.createdMovieBox.TabIndex = 17;
+            // 
+            // dlMovieBox
+            // 
+            this.dlMovieBox.Location = new System.Drawing.Point(76, 235);
+            this.dlMovieBox.Name = "dlMovieBox";
+            this.dlMovieBox.Size = new System.Drawing.Size(425, 19);
+            this.dlMovieBox.TabIndex = 16;
+            // 
+            // createdAudioBox
+            // 
+            this.createdAudioBox.Location = new System.Drawing.Point(76, 210);
+            this.createdAudioBox.Name = "createdAudioBox";
+            this.createdAudioBox.Size = new System.Drawing.Size(425, 19);
+            this.createdAudioBox.TabIndex = 15;
+            // 
+            // dlAudioBox
+            // 
+            this.dlAudioBox.Location = new System.Drawing.Point(76, 185);
+            this.dlAudioBox.Name = "dlAudioBox";
+            this.dlAudioBox.Size = new System.Drawing.Size(425, 19);
+            this.dlAudioBox.TabIndex = 14;
+            // 
+            // tachieBox
+            // 
+            this.tachieBox.Location = new System.Drawing.Point(76, 160);
+            this.tachieBox.Name = "tachieBox";
+            this.tachieBox.Size = new System.Drawing.Size(425, 19);
+            this.tachieBox.TabIndex = 13;
+            // 
+            // jimakuBackgroundBox
+            // 
+            this.jimakuBackgroundBox.Location = new System.Drawing.Point(76, 108);
+            this.jimakuBackgroundBox.Name = "jimakuBackgroundBox";
+            this.jimakuBackgroundBox.Size = new System.Drawing.Size(425, 19);
+            this.jimakuBackgroundBox.TabIndex = 12;
+            // 
+            // voiroJimakuBox
+            // 
+            this.voiroJimakuBox.Location = new System.Drawing.Point(76, 58);
+            this.voiroJimakuBox.Name = "voiroJimakuBox";
+            this.voiroJimakuBox.Size = new System.Drawing.Size(425, 19);
+            this.voiroJimakuBox.TabIndex = 11;
+            // 
+            // voiroVoiceBox
+            // 
+            this.voiroVoiceBox.Location = new System.Drawing.Point(76, 33);
+            this.voiroVoiceBox.Name = "voiroVoiceBox";
+            this.voiroVoiceBox.Size = new System.Drawing.Size(425, 19);
+            this.voiroVoiceBox.TabIndex = 10;
             // 
             // createdImageLabel
             // 
             this.createdImageLabel.AutoSize = true;
-            this.createdImageLabel.Location = new System.Drawing.Point(13, 261);
+            this.createdImageLabel.Location = new System.Drawing.Point(13, 313);
             this.createdImageLabel.Name = "createdImageLabel";
             this.createdImageLabel.Size = new System.Drawing.Size(53, 12);
             this.createdImageLabel.TabIndex = 9;
@@ -95,7 +183,7 @@
             // dlImageLabel
             // 
             this.dlImageLabel.AutoSize = true;
-            this.dlImageLabel.Location = new System.Drawing.Point(13, 236);
+            this.dlImageLabel.Location = new System.Drawing.Point(13, 288);
             this.dlImageLabel.Name = "dlImageLabel";
             this.dlImageLabel.Size = new System.Drawing.Size(43, 12);
             this.dlImageLabel.TabIndex = 8;
@@ -104,7 +192,7 @@
             // createdMovieLabel
             // 
             this.createdMovieLabel.AutoSize = true;
-            this.createdMovieLabel.Location = new System.Drawing.Point(13, 211);
+            this.createdMovieLabel.Location = new System.Drawing.Point(13, 263);
             this.createdMovieLabel.Name = "createdMovieLabel";
             this.createdMovieLabel.Size = new System.Drawing.Size(53, 12);
             this.createdMovieLabel.TabIndex = 7;
@@ -113,7 +201,7 @@
             // dlMovieLabel
             // 
             this.dlMovieLabel.AutoSize = true;
-            this.dlMovieLabel.Location = new System.Drawing.Point(13, 186);
+            this.dlMovieLabel.Location = new System.Drawing.Point(13, 238);
             this.dlMovieLabel.Name = "dlMovieLabel";
             this.dlMovieLabel.Size = new System.Drawing.Size(43, 12);
             this.dlMovieLabel.TabIndex = 6;
@@ -122,7 +210,7 @@
             // createdAudio
             // 
             this.createdAudio.AutoSize = true;
-            this.createdAudio.Location = new System.Drawing.Point(13, 161);
+            this.createdAudio.Location = new System.Drawing.Point(13, 213);
             this.createdAudio.Name = "createdAudio";
             this.createdAudio.Size = new System.Drawing.Size(53, 12);
             this.createdAudio.TabIndex = 5;
@@ -131,7 +219,7 @@
             // dlAudioLabel
             // 
             this.dlAudioLabel.AutoSize = true;
-            this.dlAudioLabel.Location = new System.Drawing.Point(13, 136);
+            this.dlAudioLabel.Location = new System.Drawing.Point(13, 188);
             this.dlAudioLabel.Name = "dlAudioLabel";
             this.dlAudioLabel.Size = new System.Drawing.Size(43, 12);
             this.dlAudioLabel.TabIndex = 4;
@@ -140,7 +228,7 @@
             // tachieLabel
             // 
             this.tachieLabel.AutoSize = true;
-            this.tachieLabel.Location = new System.Drawing.Point(13, 111);
+            this.tachieLabel.Location = new System.Drawing.Point(13, 163);
             this.tachieLabel.Name = "tachieLabel";
             this.tachieLabel.Size = new System.Drawing.Size(38, 12);
             this.tachieLabel.TabIndex = 3;
@@ -149,7 +237,7 @@
             // jimakuBackgroundLabel
             // 
             this.jimakuBackgroundLabel.AutoSize = true;
-            this.jimakuBackgroundLabel.Location = new System.Drawing.Point(13, 86);
+            this.jimakuBackgroundLabel.Location = new System.Drawing.Point(13, 111);
             this.jimakuBackgroundLabel.Name = "jimakuBackgroundLabel";
             this.jimakuBackgroundLabel.Size = new System.Drawing.Size(53, 12);
             this.jimakuBackgroundLabel.TabIndex = 2;
@@ -176,7 +264,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(372, 307);
+            this.okButton.Location = new System.Drawing.Point(372, 358);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 1;
@@ -186,102 +274,54 @@
             // canselButton
             // 
             this.canselButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.canselButton.Location = new System.Drawing.Point(453, 307);
+            this.canselButton.Location = new System.Drawing.Point(453, 358);
             this.canselButton.Name = "canselButton";
             this.canselButton.Size = new System.Drawing.Size(75, 23);
             this.canselButton.TabIndex = 2;
             this.canselButton.Text = "CANSEL";
             this.canselButton.UseVisualStyleBackColor = true;
             // 
-            // voiroVoiceBox
+            // label1
             // 
-            this.voiroVoiceBox.Location = new System.Drawing.Point(76, 33);
-            this.voiroVoiceBox.Name = "voiroVoiceBox";
-            this.voiroVoiceBox.Size = new System.Drawing.Size(425, 19);
-            this.voiroVoiceBox.TabIndex = 10;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "声優名";
             // 
-            // voiroJimakuBox
+            // voiroActorBox
             // 
-            this.voiroJimakuBox.Location = new System.Drawing.Point(76, 58);
-            this.voiroJimakuBox.Name = "voiroJimakuBox";
-            this.voiroJimakuBox.Size = new System.Drawing.Size(425, 19);
-            this.voiroJimakuBox.TabIndex = 11;
+            this.voiroActorBox.Location = new System.Drawing.Point(76, 83);
+            this.voiroActorBox.Name = "voiroActorBox";
+            this.voiroActorBox.Size = new System.Drawing.Size(425, 19);
+            this.voiroActorBox.TabIndex = 11;
             // 
-            // jimakuBackgroundBox
+            // actorBackgroundBox
             // 
-            this.jimakuBackgroundBox.Location = new System.Drawing.Point(76, 83);
-            this.jimakuBackgroundBox.Name = "jimakuBackgroundBox";
-            this.jimakuBackgroundBox.Size = new System.Drawing.Size(425, 19);
-            this.jimakuBackgroundBox.TabIndex = 12;
+            this.actorBackgroundBox.Location = new System.Drawing.Point(76, 135);
+            this.actorBackgroundBox.Name = "actorBackgroundBox";
+            this.actorBackgroundBox.Size = new System.Drawing.Size(425, 19);
+            this.actorBackgroundBox.TabIndex = 22;
             // 
-            // tachieBox
+            // label2
             // 
-            this.tachieBox.Location = new System.Drawing.Point(76, 108);
-            this.tachieBox.Name = "tachieBox";
-            this.tachieBox.Size = new System.Drawing.Size(425, 19);
-            this.tachieBox.TabIndex = 13;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 138);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "声優背景";
             // 
-            // dlAudioBox
-            // 
-            this.dlAudioBox.Location = new System.Drawing.Point(76, 133);
-            this.dlAudioBox.Name = "dlAudioBox";
-            this.dlAudioBox.Size = new System.Drawing.Size(425, 19);
-            this.dlAudioBox.TabIndex = 14;
-            // 
-            // createdAudioBox
-            // 
-            this.createdAudioBox.Location = new System.Drawing.Point(76, 158);
-            this.createdAudioBox.Name = "createdAudioBox";
-            this.createdAudioBox.Size = new System.Drawing.Size(425, 19);
-            this.createdAudioBox.TabIndex = 15;
-            // 
-            // dlMovieBox
-            // 
-            this.dlMovieBox.Location = new System.Drawing.Point(76, 183);
-            this.dlMovieBox.Name = "dlMovieBox";
-            this.dlMovieBox.Size = new System.Drawing.Size(425, 19);
-            this.dlMovieBox.TabIndex = 16;
-            // 
-            // createdMovieBox
-            // 
-            this.createdMovieBox.Location = new System.Drawing.Point(76, 208);
-            this.createdMovieBox.Name = "createdMovieBox";
-            this.createdMovieBox.Size = new System.Drawing.Size(425, 19);
-            this.createdMovieBox.TabIndex = 17;
-            // 
-            // dlImageBox
-            // 
-            this.dlImageBox.Location = new System.Drawing.Point(76, 233);
-            this.dlImageBox.Name = "dlImageBox";
-            this.dlImageBox.Size = new System.Drawing.Size(425, 19);
-            this.dlImageBox.TabIndex = 18;
-            // 
-            // createdImageBox
-            // 
-            this.createdImageBox.Location = new System.Drawing.Point(76, 258);
-            this.createdImageBox.Name = "createdImageBox";
-            this.createdImageBox.Size = new System.Drawing.Size(425, 19);
-            this.createdImageBox.TabIndex = 19;
-            // 
-            // binNameLabel
-            // 
-            this.binNameLabel.AutoSize = true;
-            this.binNameLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.binNameLabel.Location = new System.Drawing.Point(264, 14);
-            this.binNameLabel.Name = "binNameLabel";
-            this.binNameLabel.Size = new System.Drawing.Size(49, 16);
-            this.binNameLabel.TabIndex = 20;
-            this.binNameLabel.Text = "ビン名";
-            // 
-            // BinSetting
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 339);
+            this.ClientSize = new System.Drawing.Size(536, 390);
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.panel1);
-            this.Name = "BinSetting";
+            this.Name = "SettingDialog";
             this.Text = "BinSetting";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -315,5 +355,9 @@
         private System.Windows.Forms.TextBox voiroVoiceBox;
         private System.Windows.Forms.Label createdAudio;
         private System.Windows.Forms.Label binNameLabel;
+        private System.Windows.Forms.TextBox voiroActorBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox actorBackgroundBox;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -41,11 +41,12 @@ namespace VegasScriptInsertAudioFileFromDirectory
                 settingDialog = new SettingDialog();
             }
 
-            settingDialog.AudioFileFolder = VegasScriptSettings.OpenDirectory;
-            settingDialog.AudioInterval = VegasScriptSettings.AudioInsertInterval;
-            settingDialog.IsRecursive = VegasScriptSettings.IsRecursive;
-            settingDialog.StartFrom = VegasScriptSettings.StartFrom;
-            settingDialog.MediaBinName = VegasScriptSettings.DefaultBinName["voiroVoice"];
+            settingDialog.AudioFileFolder = helper.Settings["AudioFileFolder"];
+            settingDialog.AudioInterval = helper.Settings["AudioInsertInterval"];
+            settingDialog.IsRecursive = helper.Settings["IsAudioFolderRecursive"];
+            settingDialog.StartFrom = helper.Settings["IsInsertStartPosition"];
+            settingDialog.UseMediaBin = helper.Settings["UseAudioMediaBin"];
+            settingDialog.MediaBinName = helper.Settings["AudioMediaBinName"];
             settingDialog.TrackNameDataSource = keyList;
             settingDialog.TrackName = selectedAudioTrack != null ? helper.GetTrackKey(selectedAudioTrack) : keyList.Count == 0 ? "" : keyList.First();
 
@@ -53,8 +54,9 @@ namespace VegasScriptInsertAudioFileFromDirectory
 
             string selectedPath = settingDialog.AudioFileFolder;
             float interval = settingDialog.AudioInterval;
-            bool isRecursive = settingDialog.IsRecursive;
-            bool startFrom = settingDialog.StartFrom;
+            bool isAudioFolderRecursive = settingDialog.IsRecursive;
+            bool isInsertStartPosition = settingDialog.StartFrom;
+            bool useMediaBin = settingDialog.UseMediaBin;
 
             AudioTrack targetAudioTrack = null;
             if(keyValuePairs.ContainsKey(settingDialog.TrackName))
@@ -69,9 +71,9 @@ namespace VegasScriptInsertAudioFileFromDirectory
                     helper.InseretAudioInTrack(
                         selectedPath,
                         interval,
-                        startFrom,
-                        isRecursive,
-                        settingDialog.UseMediaBin,
+                        isInsertStartPosition,
+                        isAudioFolderRecursive,
+                        useMediaBin,
                         settingDialog.MediaBinName,
                         targetAudioTrack,
                         settingDialog.TrackName
@@ -92,11 +94,13 @@ namespace VegasScriptInsertAudioFileFromDirectory
                 throw ex;
             }
 
-            VegasScriptSettings.OpenDirectory = selectedPath;
-            VegasScriptSettings.AudioInsertInterval = interval;
-            VegasScriptSettings.IsRecursive = isRecursive;
-            VegasScriptSettings.StartFrom = startFrom;
-            VegasScriptSettings.Save();
+            helper.Settings["AudioFileFolder"] = selectedPath;
+            helper.Settings["AudioInsertInterval"] = interval;
+            helper.Settings["IsAudioFolderRecursive"] = isAudioFolderRecursive;
+            helper.Settings["IsInsertStartPosition"] = isInsertStartPosition;
+            helper.Settings["UseAudioMediaBin"] = useMediaBin;
+            if (useMediaBin) { helper.Settings["AudioMediaBinName"] = settingDialog.MediaBinName; }
+            helper.Settings.Save();
         }
     }
 }

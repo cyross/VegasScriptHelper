@@ -34,7 +34,7 @@ namespace VegasScriptAddMediaBinInSelectedTrack
                 return;
             }
 
-            string binName = VegasScriptSettings.DefaultBinName["voiroJimaku"];
+            string binName = helper.Settings.DefaultBinName["voiroJimaku"];
             List<string> binNameList = helper.GetMediaBinNameList();
 
             if(settingDialog == null) { settingDialog = new SettingDialog(); }

@@ -9,9 +9,24 @@ namespace VegasScriptHelper
 {
     public partial class VegasHelper
     {
-        public Media CreateMedia(string path)
+        public Media CreateMedia(string path, MediaBin mediaBin = null)
         {
-            return new Media(path);
+            Media media = new Media(path);
+
+            mediaBin?.Add(media);
+
+            return media;
+        }
+
+        public Media CreateMedia(PlugInNode node, string preset = null, MediaBin mediaBin = null)
+        {
+            Media media = new Media(node);
+
+            if (preset != null) { media.Generator.Preset = preset; }
+
+            mediaBin?.Add(media);
+
+            return media;
         }
 
         public Media[] GetMediaList(Track track)
@@ -79,9 +94,9 @@ namespace VegasScriptHelper
             return GetProjectMediaList(m => m.HasVideo());
         }
 
-        public Dictionary<string, Media> GetProjectVideoMediaDict()
+        public Dictionary<string, Media> GetProjectVideoMediaKeyValuePairs()
         {
-            return GetProjectMediaDict(GetProjectVideoMediaList());
+            return GetProjectMediaKeyValuePairs(GetProjectVideoMediaList());
         }
 
         public List<Media> GetProjectAudioMediaList()
@@ -89,9 +104,9 @@ namespace VegasScriptHelper
             return GetProjectMediaList(m => m.HasAudio());
         }
 
-        public Dictionary<string, Media> GetProjectAudioMediaDict()
+        public Dictionary<string, Media> GetProjectAudioMediaKeyValuePairs()
         {
-            return GetProjectMediaDict(GetProjectAudioMediaList());
+            return GetProjectMediaKeyValuePairs(GetProjectAudioMediaList());
         }
 
         public List<Media> GetProjectMediaList(Func<Media, bool> func)
@@ -111,10 +126,14 @@ namespace VegasScriptHelper
             return mediaList;
         }
 
-
-        public Dictionary<string, Media> GetProjectMediaDict(List<Media> mediaList)
+        public Dictionary<string, Media> GetProjectMediaKeyValuePairs(List<Media> mediaList)
         {
-            return mediaList.ToDictionary(m => string.Format("[{0}]{1}", m.MediaID, Path.GetFileName(m.FilePath)), m => m);
+            return mediaList.ToDictionary(m => GetProjectMediaKey(m), m => m);
+        }
+
+        public string GetProjectMediaKey(Media media)
+        {
+            return media.KeyString;
         }
     }
 }

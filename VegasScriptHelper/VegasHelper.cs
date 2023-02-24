@@ -76,12 +76,17 @@ namespace VegasScriptHelper
     public partial class VegasHelper
     {
         private static VegasHelper _instance = null;
+        private static VegasScriptSettings _settings = null;
+        private static readonly RichTextViewForm rtfBox = new RichTextViewForm();
 
         internal Vegas Vegas { get; set; }
 
+        public VegasScriptSettings Settings { get { return _settings; } }
+
         public static VegasHelper Instance(Vegas vegas)
         {
-            VegasScriptSettings.Load();
+            _settings = VegasScriptSettings.Instance;
+            _settings.Load();
             if (_instance == null)
             {
                 _instance = new VegasHelper(vegas);

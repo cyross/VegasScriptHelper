@@ -1,5 +1,6 @@
 ﻿using ScriptPortal.Vegas;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 
 namespace VegasScriptHelper
@@ -166,6 +167,18 @@ namespace VegasScriptHelper
         public void SetDoubleParameter(OFXDoubleParameter param, double value)
         {
             param.SetValueAtTime(new Timecode(0), value);
+        }
+
+        public void SetRGBAParameter(OFXRGBAParameter param, Color color)
+        {
+            OFXColor ofxColor = new OFXColor(
+                (double)color.R / 255.0,
+                (double)color.G / 255.0,
+                (double)color.B / 255.0,
+                (double)color.A / 255.0
+            );
+
+            param.SetValueAtTime(new Timecode(0), ofxColor);
         }
     }
 }

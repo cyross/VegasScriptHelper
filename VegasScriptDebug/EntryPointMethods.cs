@@ -18,21 +18,21 @@ namespace VegasScriptDebug
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog
             {
-                SelectedPath = VegasScriptSettings.OpenDirectory
+                SelectedPath = helper.Settings["AudioFileFolder"]
             };
-            float interval = VegasScriptSettings.AudioInsertInterval;
-            bool isRecursive = VegasScriptSettings.IsRecursive;
-            bool startFrom = VegasScriptSettings.StartFrom;
+            float interval = helper.Settings["AudioInsertInterval"];
+            bool isRecursive = helper.Settings["IsAudioFolderRecursive"];
+            bool isInsertStartPosition = helper.Settings["IsInsertStartPosition"];
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 string selectedPath = folderBrowser.SelectedPath;
-                helper.InseretAudioInTrack(selectedPath, interval, startFrom, isRecursive);
+                helper.InseretAudioInTrack(selectedPath, interval, isInsertStartPosition, isRecursive);
 
-                VegasScriptSettings.OpenDirectory = selectedPath;
-                VegasScriptSettings.AudioInsertInterval = interval;
-                VegasScriptSettings.IsRecursive = isRecursive;
-                VegasScriptSettings.StartFrom = startFrom;
-                VegasScriptSettings.Save();
+                helper.Settings["AudioFileFolder"] = selectedPath;
+                helper.Settings["AudioInsertInterval"] = interval;
+                helper.Settings["IsAudioFolderRecursive"] = isRecursive;
+                helper.Settings["IsInsertStartPosition"] = isInsertStartPosition;
+                helper.Settings.Save();
             }
         }
 
@@ -57,7 +57,7 @@ namespace VegasScriptDebug
         {
             try
             {
-                helper.AssignAudioTrackDurationToVideoTrack(VegasScriptSettings.TargetAssignTrackName, VegasScriptSettings.AssignEventMargin);
+                helper.AssignAudioTrackDurationToVideoTrack(helper.Settings["JimakuTrackName"], helper.Settings["JimakuMargin"]);
             }
             catch (VegasHelperNotFoundTrackException)
             {
@@ -73,7 +73,7 @@ namespace VegasScriptDebug
         {
             try
             {
-                helper.AssignAudioTrackDurationToVideoTrack(VegasScriptSettings.AssignEventMargin);
+                helper.AssignAudioTrackDurationToVideoTrack(helper.Settings["JimakuMargin"]);
             }
             catch (VegasHelperNotFoundTrackException)
             {
@@ -121,7 +121,7 @@ namespace VegasScriptDebug
 
         private void ExpandFirstVideoEvent(VegasHelper helper)
         {
-            double margin = VegasScriptSettings.ExpandVideoEventMargin;
+            double margin = helper.Settings["ExpandVideoEventMargin"];
             try
             {
                 helper.ExpandFirstVideoEvent(margin);
@@ -138,7 +138,7 @@ namespace VegasScriptDebug
 
         private void DebugYAMLAccess(VegasHelper helper)
         {
-            VegasScriptSettings.LoadYamlFile();
+            helper.Settings.LoadYamlFile();
         }
 
         private void DebugGenerateMedia(VegasHelper helper)
@@ -152,13 +152,13 @@ namespace VegasScriptDebug
                 Debug.WriteLine(string.Format("NAME={0}", presetName));
             }
             Debug.WriteLine("[VIDEO MEDIA]");
-            Dictionary<string, Media> videoMediaDict = helper.GetProjectVideoMediaDict();
+            Dictionary<string, Media> videoMediaDict = helper.GetProjectVideoMediaKeyValuePairs();
             foreach (string mediaKey in videoMediaDict.Keys)
             {
                 Debug.WriteLine(string.Format("NAME={0}", mediaKey));
             }
             Debug.WriteLine("[AUDIO MEDIA]");
-            Dictionary<string, Media> audioMediaDict = helper.GetProjectAudioMediaDict();
+            Dictionary<string, Media> audioMediaDict = helper.GetProjectAudioMediaKeyValuePairs();
             foreach (string mediaKey in audioMediaDict.Keys)
             {
                 Debug.WriteLine(string.Format("NAME={0}", mediaKey));

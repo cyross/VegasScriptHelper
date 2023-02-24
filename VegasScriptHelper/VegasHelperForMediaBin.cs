@@ -1,5 +1,6 @@
 ﻿using ScriptPortal.Vegas;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using VegasScriptHelper.Properties;
 
@@ -88,6 +89,21 @@ namespace VegasScriptHelper
             return GetMediaBinEnuerable().
                 Select(bin => bin.Name).
                 ToList();
+        }
+
+        public Dictionary<string, MediaBin> GetMediaBinKeyValuePairs()
+        {
+            return GetMediaBinKeyValuePairs(GetMediaBinList());
+        }
+
+        public Dictionary<string, MediaBin> GetMediaBinKeyValuePairs(List<MediaBin> binList)
+        {
+            return binList.ToDictionary(b => GetMediaBinKey(b), b => b);
+        }
+
+        public string GetMediaBinKey(MediaBin bin)
+        {
+            return bin.Name;
         }
 
         private IEnumerable<MediaBin> SearchMediaBinNodes(string name)

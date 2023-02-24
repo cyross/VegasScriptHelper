@@ -57,6 +57,7 @@ namespace VegasScriptInsertAudioFileFromDirectory
         public bool UseMediaBin
         {
             get { return useMediaBin.Checked; }
+            set { useMediaBin.Checked = value; }
         }
 
         public string MediaBinName
