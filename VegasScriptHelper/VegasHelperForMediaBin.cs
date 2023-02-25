@@ -6,6 +6,13 @@ using VegasScriptHelper.Properties;
 
 namespace VegasScriptHelper
 {
+    public struct MediaBinInfo
+    {
+        public bool IsUse;
+        public string Name;
+        public MediaBin Bin;
+    }
+
     public partial class VegasHelper
     {
         public bool IsExistMediaBin(string name)
@@ -110,13 +117,6 @@ namespace VegasScriptHelper
         {
             return Vegas.Project.MediaPool.RootMediaBin.Where(
                 bin => bin.NodeType == MediaBinNodeType.Bin && ((MediaBin)bin).Name == name
-                ).Cast<MediaBin>();
-        }
-
-        private IEnumerable<MediaBin> SearchMediaBinNodes(uint id)
-        {
-            return Vegas.Project.MediaPool.RootMediaBin.Where(
-                bin => bin.NodeType == MediaBinNodeType.Bin && ((MediaBin)bin).NodeID == id
                 ).Cast<MediaBin>();
         }
     }

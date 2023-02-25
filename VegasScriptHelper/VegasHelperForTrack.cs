@@ -4,6 +4,20 @@ using System.Linq;
 
 namespace VegasScriptHelper
 {
+    public struct TrackInfo<T>
+    {
+        public string Name;
+        public T Track;
+    }
+
+    public struct TextTrackInfo
+    {
+        public TrackInfo<VideoTrack> Track;
+        public string PresetName;
+        public double Margin;
+        public MediaBinInfo MediaBin;
+    }
+
     public partial class VegasHelper
     {
         public IEnumerable<Track> SelectedTracks {

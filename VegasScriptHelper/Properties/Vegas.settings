@@ -59,10 +59,10 @@
     <Setting Name="UseActorMediaBin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="UseJimakuBackgroundMediaBin" Type="System.Boolean" Scope="User">
+    <Setting Name="UseJimakuBGMediaBin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="UseActorBackgroundMediaBin" Type="System.Boolean" Scope="User">
+    <Setting Name="UseActorBGMediaBin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AudioMediaBinName" Type="System.String" Scope="User">
@@ -74,19 +74,19 @@
     <Setting Name="ActorMediaBinName" Type="System.String" Scope="User">
       <Value Profile="(Default)">ボイロ声優名</Value>
     </Setting>
-    <Setting Name="JimakuBackgroundMediaBinName" Type="System.String" Scope="User">
+    <Setting Name="JimakuBGMediaBinName" Type="System.String" Scope="User">
       <Value Profile="(Default)">字幕背景</Value>
     </Setting>
-    <Setting Name="ActorBackgroundMediaBinName" Type="System.String" Scope="User">
+    <Setting Name="ActorBGMediaBinName" Type="System.String" Scope="User">
       <Value Profile="(Default)">声優名背景</Value>
     </Setting>
     <Setting Name="CreateOneEventCheck" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="CreateJimakuBackground" Type="System.Boolean" Scope="User">
+    <Setting Name="CreateJimakuBG" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="CreateActorBackground" Type="System.Boolean" Scope="User">
+    <Setting Name="CreateActorBG" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="JimakuTrackName" Type="System.String" Scope="User">
@@ -98,34 +98,34 @@
     <Setting Name="ActorPresetName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="JimakuBackgroundMediaName" Type="System.String" Scope="User">
+    <Setting Name="JimakuBGMediaName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ActorBackgrondMediaName" Type="System.String" Scope="User">
+    <Setting Name="ActorBGMediaName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="JimakuBackgroundMargin" Type="System.Double" Scope="User">
+    <Setting Name="JimakuBGMargin" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="ActorBackgroundMargin" Type="System.Double" Scope="User">
+    <Setting Name="ActorBGMargin" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="IsGroupSerifuJimakuEvent" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="jimakuMargin" Type="System.Double" Scope="User">
+    <Setting Name="JimakuMargin" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="actorMargin" Type="System.Double" Scope="User">
+    <Setting Name="ActorMargin" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ActorTrackName" Type="System.String" Scope="User">
       <Value Profile="(Default)">声優名</Value>
     </Setting>
-    <Setting Name="JimakuBackgroundTrackName" Type="System.String" Scope="User">
+    <Setting Name="JimakuBGTrackName" Type="System.String" Scope="User">
       <Value Profile="(Default)">字幕背景</Value>
     </Setting>
-    <Setting Name="ActorBackgroundTrackName" Type="System.String" Scope="User">
+    <Setting Name="ActorBGTrackName" Type="System.String" Scope="User">
       <Value Profile="(Default)">声優名背景</Value>
     </Setting>
   </Settings>

@@ -10,70 +10,74 @@ using VegasScriptHelper;
 
 namespace VegasScriptCreateJimaku
 {
+    public struct DialogBGInfo
+    {
+        public bool createBG;
+        public string trackName;
+        public string mediaName;
+        public double margin;
+        public bool useMediaBin;
+        public string mediaBinName;
+    }
+
+    public struct DialogTrackInfo
+    {
+        public string trackName;
+        public string presetName;
+        public bool useMediaBin;
+        public string mediaBinName;
+    }
+
+    public class KeyListInfo
+    {
+        private readonly List<string> _Keys;
+        private readonly string _SettingName;
+        private readonly string _FirstKey;
+
+        public List<string> Keys
+        {
+            get { return _Keys; }
+        }
+
+        public string SettingName
+        {
+            get { return _SettingName; }
+        }
+
+        public string FirstKey
+        {
+            get { return _FirstKey; }
+        }
+
+        public KeyListInfo(VegasHelper helper, List<string> keys, string settingName)
+        {
+            _Keys = keys;
+            _SettingName = settingName;
+            _FirstKey = GetFirstKey(_Keys, helper.Settings[_SettingName]);
+        }
+
+        public static KeyListInfo Instance<T>(VegasHelper helper, Dictionary<string, T> dict, string settingName)
+        {
+            return new KeyListInfo(helper, dict.Keys.ToList(), settingName);
+        }
+
+        private static string GetFirstKey(List<string> list, string name)
+        {
+            if (name.Length > 0) { return name; }
+            if (list.Count > 0) { return list.First(); }
+            return "";
+        }
+    }
+
     public class EntryPoint : IEntryPoint
     {
         // 設定ダイアログが不要なときは削除
         private static SettingDialog settingDialog;
 
-        private List<AudioTrack> audioTracks;
-        private List<VideoTrack> videoTracks;
-        private List<Media> mediaList;
-        private List<MediaBin> mediaBinList;
-
-        private Dictionary<string, AudioTrack> audioKeyValuePairs;
-        private List<string> audioKeyList;
-        private string firstAudioTrackKey;
-
-        private Dictionary<string, VideoTrack> videoKeyValuePairs;
-        private List<string> jimakuKeyList;
-        private List<string> actorKeyList;
-        private List<string> jimakuBackgroundKeyList;
-        private List<string> actorBackgroundKeyList;
-        private string firstJimakuTrackKey;
-        private string firstActorTrackKey;
-        private string firstJimakuBackgroundTrackKey;
-        private string firstActorBackgroundTrackKey;
-
-        private List<string> jimakuPluginKeyList;
-        private List<string> actorPluginKeyList;
-        private string firstJimakuPluginKey;
-        private string firstActorPluginKey;
-
-        private Dictionary<string, Media> mediaKeyValuePairs;
-        private List<string> jimakuBackgroundMediaKeyList;
-        private List<string> actorBackgroundMediaKeyList;
-        private string firstJimakuBackgroundMediaKey;
-        private string firstActorBackgroundMediaKey;
-
-        private Dictionary<string, MediaBin> mediaBinKeyValuePairs;
-        private List<string> audioMediaBinKeyList;
-        private List<string> jimakuMediaBinKeyList;
-        private List<string> actorMediaBinKeyList;
-        private List<string> jimakuBackgroundMediaBinKeyList;
-        private List<string> actorBackgroundMediaBinKeyList;
-        private string firstAudioMediaBinKey;
-        private string firstJimakuMediaBinTrackKey;
-        private string firstActorMediaBinKey;
-        private string firstJimakuBackgroundMediaBinKey;
-        private string firstActorBackgroundMediaBinKey;
-
-        private InsertAudioInfo insertAudioInfo;
-
-        private PrefixBehaviorType prefixBehavior;
-
-        private JimakuParams jimakuParams;
-
-        private bool isGroupSerifuJimakuEvent;
-
-        private BackgroundInfo JimakuBackgroundInfo;
-
-        private BackgroundInfo ActorBackgroundInfo;
-
-        private MediaBinInfo jimakuBackgroundMediaBinInfo;
-
-        private MediaBinInfo actorBackgroundMediaBinInfo;
-
-        private bool isCreateOneEventCheck;
+        Dictionary<string, AudioTrack> audioTKV;
+        Dictionary<string, VideoTrack> videoTKV;
+        Dictionary<string, Media> mKV;
+        Dictionary<string, MediaBin> mbKV;
 
         public void FromVegas(Vegas vegas)
         {
@@ -84,10 +88,12 @@ namespace VegasScriptCreateJimaku
                     // ヘルパクラスのオブジェクト生成は必須
                     VegasHelper helper = VegasHelper.Instance(vegas);
 
-                    audioTracks = helper.AllAudioTracks.ToList();
-                    videoTracks = helper.AllVideoTracks.ToList();
-                    mediaList = helper.GetProjectVideoMediaList();
-                    mediaBinList = helper.GetMediaBinList();
+                    JimakuParams jimakuParams = new JimakuParams();
+
+                    List<AudioTrack> audioTracks = helper.AllAudioTracks.ToList();
+                    List<VideoTrack> videoTracks = helper.AllVideoTracks.ToList();
+                    List<Media> mediaList = helper.GetProjectVideoMediaList();
+                    List<MediaBin> mediaBinList = helper.GetMediaBinList();
 
                     if (mediaList.Count == 0)
                     {
@@ -96,70 +102,65 @@ namespace VegasScriptCreateJimaku
                     }
 
                     // ダイアログに必要な情報の前準備(オーディオ)
-                    audioKeyValuePairs = helper.GetAudioKeyValuePairs(audioTracks);
-
-                    audioKeyList = audioKeyValuePairs.Keys.ToList();
-                    firstAudioTrackKey = GetFirstKey(audioKeyList, helper.Settings["AudioTrackName"]);
+                    audioTKV = helper.GetAudioKeyValuePairs(audioTracks);
+                    KeyListInfo klAudio = CreateTrackKL(helper, audioTKV, "Audio");
 
                     // ダイアログに必要な情報の前準備(ビデオ)
-                    videoKeyValuePairs = helper.GetVideoKeyValuePairs(videoTracks);
-
-                    jimakuKeyList = videoKeyValuePairs.Keys.ToList();
-                    firstJimakuTrackKey = GetFirstKey(jimakuKeyList, helper.Settings["JimakuTrackName"]);
-
-                    actorKeyList = videoKeyValuePairs.Keys.ToList();
-                    firstActorTrackKey = GetFirstKey(actorKeyList, helper.Settings["ActorTrackName"]);
-
-                    jimakuBackgroundKeyList = videoKeyValuePairs.Keys.ToList();
-                    firstJimakuBackgroundTrackKey = GetFirstKey(jimakuBackgroundKeyList, helper.Settings["JimakuBackgroundTrackName"]);
-
-                    actorBackgroundKeyList = videoKeyValuePairs.Keys.ToList();
-                    firstActorBackgroundTrackKey = GetFirstKey(actorBackgroundKeyList, helper.Settings["ActorBackgroundTrackName"]);
+                    videoTKV = helper.GetVideoKeyValuePairs(videoTracks);
+                    KeyListInfo klJimaku = CreateTrackKL(helper, videoTKV, "Jimaku");
+                    KeyListInfo klActor = CreateTrackKL(helper, videoTKV, "Actor");
+                    KeyListInfo klJimakuBG = CreateTrackKL(helper, videoTKV, "JimakuBG");
+                    KeyListInfo klActorBG = CreateTrackKL(helper, videoTKV, "ActorBG");
 
                     // ダイアログに必要な情報の前準備(メディアジェネレータ)
-                    jimakuPluginKeyList = helper.GetTitlePluginPresetNames();
-                    firstJimakuPluginKey = GetFirstKey(jimakuPluginKeyList, helper.Settings["JimakuPresetName"]);
-
-                    actorPluginKeyList = helper.GetTitlePluginPresetNames();
-                    firstActorPluginKey = GetFirstKey(actorPluginKeyList, helper.Settings["ActorPresetName"]);
+                    KeyListInfo klJimakuPlugin = CreatePluginKL(helper, "Jimaku");
+                    KeyListInfo klActorPlugin = CreatePluginKL(helper, "Actor");
 
                     // ダイアログに必要な情報の前準備(メディア)
-                    mediaKeyValuePairs = helper.GetProjectMediaKeyValuePairs(mediaList);
-
-                    jimakuBackgroundMediaKeyList = mediaKeyValuePairs.Keys.ToList();
-                    firstJimakuBackgroundMediaKey = GetFirstKey(jimakuBackgroundMediaKeyList, helper.Settings["JimakuBackgroundMediaName"]);
-
-                    actorBackgroundMediaKeyList = mediaKeyValuePairs.Keys.ToList();
-                    firstActorBackgroundMediaKey = GetFirstKey(actorBackgroundMediaKeyList, helper.Settings["ActorBackgrondMediaName"]);
+                    mKV = helper.GetProjectMediaKeyValuePairs(mediaList);
+                    KeyListInfo klJimakuBGMedia = CreateMediaKL(helper, mKV, "JimakuBG");
+                    KeyListInfo klActorBGMedia = CreateMediaKL(helper, mKV, "ActorBG");
 
                     // ダイアログに必要な情報の前準備(メディアビン)
-                    mediaBinKeyValuePairs = helper.GetMediaBinKeyValuePairs(mediaBinList);
+                    mbKV = helper.GetMediaBinKeyValuePairs(mediaBinList);
+                    KeyListInfo klAudioMBin = CreateMediaBinKL(helper, mbKV, "Audio");
+                    KeyListInfo klJimakuMBin = CreateMediaBinKL(helper, mbKV, "Jimaku");
+                    KeyListInfo klActorMBin = CreateMediaBinKL(helper, mbKV, "Actor");
+                    KeyListInfo klJimakuBGMBin = CreateMediaBinKL(helper, mbKV, "JimakuBG");
+                    KeyListInfo klActorBGMBin = CreateMediaBinKL(helper, mbKV, "ActorBG");
 
-                    audioMediaBinKeyList = mediaBinKeyValuePairs.Keys.ToList();
-                    firstAudioMediaBinKey = GetFirstKey(audioMediaBinKeyList, helper.Settings["AudioMediaBinName"]);
-
-                    jimakuMediaBinKeyList = mediaBinKeyValuePairs.Keys.ToList();
-                    firstJimakuMediaBinTrackKey = GetFirstKey(jimakuMediaBinKeyList, helper.Settings["JimakuMediaBinName"]);
-
-                    actorMediaBinKeyList = mediaBinKeyValuePairs.Keys.ToList();
-                    firstActorMediaBinKey = GetFirstKey(actorMediaBinKeyList, helper.Settings["ActorMediaBinName"]);
-
-                    jimakuBackgroundMediaBinKeyList = mediaBinKeyValuePairs.Keys.ToList();
-                    firstJimakuBackgroundMediaBinKey = GetFirstKey(jimakuBackgroundMediaBinKeyList, helper.Settings["JimakuBackgroundMediaBinName"]);
-
-                    actorBackgroundMediaBinKeyList = mediaBinKeyValuePairs.Keys.ToList();
-                    firstActorBackgroundMediaBinKey = GetFirstKey(actorBackgroundMediaBinKeyList, helper.Settings["ActorBackgroundMediaBinName"]);
+                    PrefixBehaviorType prefixBehavior = (PrefixBehaviorType)helper.Settings["PrefixBehavior"];
+                    bool isSetGroupEvent = helper.Settings["IsGroupSerifuJimakuEvent"];
+                    bool isCreateOneEventCheck = helper.Settings["CreateOneEventCheck"];
 
                     if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
-                    SetupSettingDialog(helper);
+                    settingDialog.SetAudioTrack(helper, klAudio, klAudioMBin);
+
+                    settingDialog.JimakuFilePath = helper.Settings["JimakuFilePath"];
+                    settingDialog.PrefixBehavior = prefixBehavior;
+                    settingDialog.IsEventGroupCheck = isSetGroupEvent;
+
+                    settingDialog.SetJimakuTrack(helper, klJimaku, klJimakuPlugin, klJimakuMBin);
+
+                    settingDialog.SetActorTrack(helper, klActor, klActorPlugin, klActorMBin);
+
+                    settingDialog.SetJimakuColorInfo(helper);
+
+                    settingDialog.SetActorColorInfo(helper);
+
+                    settingDialog.SetJimakuBackground(helper, klJimakuBG, klJimakuBGMedia, klJimakuBGMBin);
+
+                    settingDialog.SetActorBackground(helper, klActorBG, klActorBGMedia, klActorMBin);
+
+                    settingDialog.IsCreateOneEventCheck = isCreateOneEventCheck;
 
                     if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                     // 今後の拡張のため、事前に字幕ファイルを読み込んでおく
-                    ReadJimaku();
+                    ReadJimaku(ref jimakuParams, settingDialog);
 
-                    SetAudioInfo();
+                    InsertAudioInfo insertAudioInfo = CreateAudioInfo(settingDialog);
 
                     int audioFileCount = helper.CountAudioFiles(insertAudioInfo);
 
@@ -171,22 +172,44 @@ namespace VegasScriptCreateJimaku
                         return;
                     }
 
-                    // オーディオファイル流し込み
-                    InsertAudioFile(helper);
-
                     prefixBehavior = settingDialog.PrefixBehavior;
-                    isGroupSerifuJimakuEvent = settingDialog.IsEventGroupCheck;
+                    isSetGroupEvent = settingDialog.IsEventGroupCheck;
+                    isCreateOneEventCheck = settingDialog.IsCreateOneEventCheck;
+
+                    // オーディオファイル流し込み
+                    InsertAudioFile(helper, ref insertAudioInfo, settingDialog);
 
                     // 字幕背景挿入処理
                     // こっちを先にしないと字幕が隠れる
-                    InsertBackground(helper);
+                    BackgroundInfo jimakuBGInfo = CreateBackgroundInfo(helper, settingDialog.JimakuBGInfo);
+
+                    BackgroundInfo actorBGInfo = CreateBackgroundInfo(helper, settingDialog.ActorBGInfo);
+
+                    InsertBackground(helper, ref jimakuBGInfo, ref actorBGInfo, ref insertAudioInfo, isCreateOneEventCheck);
 
                     // 字幕挿入処理
-                    InsertJimaku(helper);
+                    SetTextInfo(ref jimakuParams.Jimaku, helper, settingDialog.JimakuTrackInfo);
 
-                    SaveSetting(helper);
+                    jimakuParams.IsCreateActorTrack = (prefixBehavior == PrefixBehaviorType.NewEvent);
+                    jimakuParams.IsDeletePrefix = (prefixBehavior != PrefixBehaviorType.Remain);
 
-                    MessageBox.Show("処理が完了しました");
+                    if (jimakuParams.IsCreateActorTrack)
+                    {
+                        SetTextInfo(ref jimakuParams.Actor, helper, settingDialog.ActorTrackInfo);
+                    }
+
+                    InsertJimaku(ref jimakuParams, helper, settingDialog, ref insertAudioInfo, isSetGroupEvent);
+
+                    // 設定した設定を保存
+                    SaveSetting(
+                        helper,
+                        ref insertAudioInfo,
+                        ref jimakuParams,
+                        ref jimakuBGInfo,
+                        ref actorBGInfo,
+                        prefixBehavior,
+                        isSetGroupEvent,
+                        isCreateOneEventCheck);
                 }
                 catch (Exception ex)
                 {
@@ -198,6 +221,26 @@ namespace VegasScriptCreateJimaku
                     throw ex;
                 }
             }
+        }
+
+        private KeyListInfo CreateTrackKL<T>(VegasHelper helper, Dictionary<string, T> kv, string namePrefix)
+        {
+            return KeyListInfo.Instance(helper, kv, namePrefix + "TrackName");
+        }
+
+        private KeyListInfo CreatePluginKL(VegasHelper helper, string namePrefix)
+        {
+            return new KeyListInfo(helper, helper.GetTitlePluginPresetNames(), namePrefix + "PresetName");
+        }
+
+        private KeyListInfo CreateMediaKL<T>(VegasHelper helper, Dictionary<string, T> kv, string namePrefix)
+        {
+            return KeyListInfo.Instance(helper, kv, namePrefix + "MediaName");
+        }
+
+        private KeyListInfo CreateMediaBinKL<T>(VegasHelper helper, Dictionary<string, T> kv, string namePrefix)
+        {
+            return KeyListInfo.Instance(helper, kv, namePrefix + "MediaBinName");
         }
 
         private VideoTrack GetVideoTrack(VegasHelper helper, string name, Dictionary<string, VideoTrack> kvPairs)
@@ -212,19 +255,12 @@ namespace VegasScriptCreateJimaku
 
         private MediaBin GetMediaBin(VegasHelper helper, string name, Dictionary<string, MediaBin> kvPairs)
         {
-            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.CreateMediaBin(name);
+            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.CreateMediaBin(name, false);
         }
 
-        private string GetFirstKey(List<string> list, string name)
+        private void ReadJimaku(ref JimakuParams jimakuParams, SettingDialog dialog)
         {
-            if (name.Length > 0) { return name; }
-            if (list.Count > 0) { return list.First(); }
-            return "";
-        }
-
-        private void ReadJimaku()
-        {
-            jimakuParams.JimakuFilePath = settingDialog.JimakuFilePath;
+            jimakuParams.JimakuFilePath = dialog.JimakuFilePath;
 
             using (var jimakuFile = new StreamReader(jimakuParams.JimakuFilePath))
             {
@@ -232,163 +268,158 @@ namespace VegasScriptCreateJimaku
             }
         }
 
-        private void SetAudioInfo()
+        private InsertAudioInfo CreateAudioInfo(SettingDialog dialog)
         {
-            insertAudioInfo.Folder = settingDialog.AudioFileFolder;
-            insertAudioInfo.Interval = settingDialog.AudioInterval;
-            insertAudioInfo.IsRecursive = settingDialog.IsRecursive;
-            insertAudioInfo.IsInsertFromStartPosition = settingDialog.IsInsertFromStartPosition;
-        }
-
-        private void InsertAudioFile(VegasHelper helper)
-        {
-            insertAudioInfo.TrackName = settingDialog.AudioTrackName;
-            insertAudioInfo.Track = GetAudioTrack(helper, insertAudioInfo.TrackName, audioKeyValuePairs);
-
-            SetMediaBinInfo(helper, ref insertAudioInfo.MediaBinInfo, settingDialog.UseAudioMediaBin, settingDialog.AudioMediaBinName);
-
-            helper.InseretAudioInTrack(ref insertAudioInfo);
-        }
-
-        private void InsertJimaku(VegasHelper helper)
-        {
-            jimakuParams.JimakuInfo.TrackName = settingDialog.JimakuTrackName;
-            jimakuParams.JimakuInfo.Track = GetVideoTrack(helper, jimakuParams.JimakuInfo.TrackName, videoKeyValuePairs);
-
-            jimakuParams.IsCreateActorTrack = (prefixBehavior == PrefixBehaviorType.NewEvent);
-            jimakuParams.IsDeletePrefix = (prefixBehavior != PrefixBehaviorType.Remain);
-
-            jimakuParams.JimakuInfo.PresetName = settingDialog.JimakuPresetName;
-
-            SetMediaBinInfo(helper, ref jimakuParams.JimakuInfo.MediaBinInfo,
-                settingDialog.UseJimakuMediaBin, settingDialog.JimakuMediaBinName);
-
-            if (jimakuParams.IsCreateActorTrack)
+            return new InsertAudioInfo()
             {
-                jimakuParams.ActorInfo.TrackName = settingDialog.ActorTrackName;
-                jimakuParams.ActorInfo.Track = GetVideoTrack(helper, jimakuParams.ActorInfo.TrackName, videoKeyValuePairs);
-
-                jimakuParams.ActorInfo.PresetName = settingDialog.ActorPresetName;
-
-                SetMediaBinInfo(helper, ref jimakuParams.ActorInfo.MediaBinInfo,
-                    settingDialog.UseActorMediaBin, settingDialog.ActorMediaBinName);
-            }
-
-            SetColorInfo(ref jimakuParams.JimakuColorInfo, settingDialog.UseJimakuDefaultSettings,
-                settingDialog.JimakuColor, settingDialog.JimakuOutlineColor, settingDialog.JimakuOutlineWidth);
-
-            SetColorInfo(ref jimakuParams.ActorColorInfo, settingDialog.UseActorDefaultSettings,
-                settingDialog.ActorColor, settingDialog.ActorOutlineColor, settingDialog.ActorOutlineWidth);
-
-            helper.InsertJimaku(jimakuParams, insertAudioInfo.Track, isGroupSerifuJimakuEvent);
+                Folder = dialog.AudioFileFolder,
+                Interval = dialog.AudioInterval,
+                IsRecursive = dialog.IsRecursive,
+                IsInsertFromStartPosition = dialog.IsInsertFromStartPosition
+            };
         }
 
-        private void InsertBackground(VegasHelper helper)
+        private void InsertAudioFile(
+            VegasHelper helper,
+            ref InsertAudioInfo audioInfo,
+            SettingDialog dialog
+            )
         {
-            SetBackgroundInfo(helper, ref JimakuBackgroundInfo,
-                settingDialog.CreateJimakuBackground,
-                settingDialog.JimakuBackgroundTrackName,
-                settingDialog.JimakuBackgroundMediaName,
-                settingDialog.JimakuBackgroundMargin);
+            audioInfo.Track.Name = dialog.AudioTrackName;
+            audioInfo.Track.Track = GetAudioTrack(helper, audioInfo.Track.Name, audioTKV);
 
-            SetBackgroundInfo(helper, ref ActorBackgroundInfo,
-                settingDialog.CreateActorBackground,
-                settingDialog.ActorBackgroundTrackName,
-                settingDialog.ActorBackgroundMediaName,
-                settingDialog.JimakuBackgroundMargin);
+            audioInfo.MediaBin = CreateMediaBinInfo(helper, dialog.UseAudioMediaBin, dialog.AudioMediaBinName);
 
-            SetMediaBinInfo(helper, ref jimakuBackgroundMediaBinInfo,
-                settingDialog.UseJimakuBackgroundMediaBin, settingDialog.JimakuBackgroundMediaBinName);
-
-            SetMediaBinInfo(helper, ref actorBackgroundMediaBinInfo,
-                settingDialog.UseActorBackgroundMediaBin, settingDialog.ActorBackgroundMediaBinName);
-
-            isCreateOneEventCheck = settingDialog.IsCreateOneEventCheck;
-
-            helper.InsertBackground(JimakuBackgroundInfo, insertAudioInfo.Track, isCreateOneEventCheck);
-
-            helper.InsertBackground(ActorBackgroundInfo, insertAudioInfo.Track, isCreateOneEventCheck);
+            helper.InseretAudioInTrack(ref audioInfo);
         }
 
-        private void SetupSettingDialog(VegasHelper helper)
+        private void InsertJimaku(
+            ref JimakuParams jimaku,
+            VegasHelper helper,
+            SettingDialog dialog,
+            ref InsertAudioInfo audioInfo,
+            bool isGrouping
+            )
         {
-            settingDialog.SetAudioTrack(helper, audioKeyList, firstAudioTrackKey, audioMediaBinKeyList, firstAudioMediaBinKey);
+            jimaku.JimakuColor = CreateColorInfo(dialog.UseJimakuDefaultSettings,
+                dialog.JimakuColor, dialog.JimakuOutlineColor, dialog.JimakuOutlineWidth);
 
-            settingDialog.JimakuFilePath = helper.Settings["JimakuFilePath"];
-            settingDialog.PrefixBehavior = (PrefixBehaviorType)helper.Settings["PrefixBehavior"];
-            settingDialog.IsEventGroupCheck = helper.Settings["IsGroupSerifuJimakuEvent"];
+            jimaku.ActorColor = CreateColorInfo(dialog.UseActorDefaultSettings,
+                dialog.ActorColor, dialog.ActorOutlineColor, dialog.ActorOutlineWidth);
 
-            settingDialog.SetJimakuTrack(helper,
-                jimakuKeyList, firstJimakuTrackKey,
-                jimakuPluginKeyList, firstJimakuPluginKey,
-                jimakuMediaBinKeyList, firstJimakuMediaBinTrackKey);
-
-            settingDialog.SetActorTrack(helper,
-                actorKeyList, firstActorTrackKey,
-                actorPluginKeyList, firstActorPluginKey,
-                actorMediaBinKeyList, firstActorMediaBinKey);
-
-            settingDialog.SetJimakuColor(helper);
-
-            settingDialog.SetActorColor(helper);
-
-            settingDialog.SetJimakuBackground(helper,
-                jimakuBackgroundKeyList, firstJimakuBackgroundTrackKey,
-                jimakuBackgroundMediaKeyList, firstJimakuBackgroundMediaKey,
-                jimakuBackgroundMediaBinKeyList, firstJimakuBackgroundMediaBinKey);
-
-            settingDialog.SetActorBackground(helper,
-                actorBackgroundKeyList, firstActorBackgroundTrackKey,
-                actorBackgroundMediaKeyList, firstActorBackgroundMediaKey,
-                actorBackgroundMediaBinKeyList, firstActorBackgroundMediaBinKey);
-
-            settingDialog.IsCreateOneEventCheck = helper.Settings["CreateOneEventCheck"];
+            helper.InsertJimaku(jimaku, audioInfo.Track.Track, isGrouping);
         }
 
-        private void SaveSetting(VegasHelper helper)
+        private void SetTextInfo(
+            ref TextTrackInfo info,
+            VegasHelper helper,
+            DialogTrackInfo trackInfo)
         {
-            SetAudioSetting(helper, insertAudioInfo);
+            info.Track.Name = trackInfo.trackName;
+            info.Track.Track = GetVideoTrack(helper, info.Track.Name, videoTKV);
+
+            info.PresetName = trackInfo.presetName;
+            info.MediaBin = CreateMediaBinInfo(helper, trackInfo.useMediaBin, trackInfo.mediaBinName);
+        }
+
+        private void InsertBackground(
+            VegasHelper helper,
+            ref BackgroundInfo jimakuBGInfo,
+            ref BackgroundInfo actorBGInfo,
+            ref InsertAudioInfo audioInfo,
+            bool isCreateOne)
+        {
+
+            // 声優名を後ろに描画
+            helper.InsertBackground(actorBGInfo, audioInfo.Track.Track, isCreateOne);
+
+            helper.InsertBackground(jimakuBGInfo, audioInfo.Track.Track, isCreateOne);
+        }
+
+        private ColorInfo CreateColorInfo(bool isUse, Color textColor, Color outlineColor, double outlineWidth)
+        {
+            ColorInfo info = new ColorInfo()
+            {
+                IsUse = isUse,
+                OutlineWidth = outlineWidth
+            };
+
+            if (!info.IsUse) { return info; }
+
+            info.TextColor = textColor;
+            info.OutlineColor = outlineColor;
+
+            return info;
+        }
+
+        private MediaBinInfo CreateMediaBinInfo(VegasHelper helper, bool isUse, string name)
+        {
+            MediaBinInfo info = new MediaBinInfo()
+            {
+                IsUse = isUse
+            };
+
+            if (!info.IsUse) { return info; }
+
+            info.Name = name;
+            info.Bin = GetMediaBin(helper, name, mbKV);
+
+            return info;
+        }
+
+        private BackgroundInfo CreateBackgroundInfo(VegasHelper helper, DialogBGInfo bgInfo)
+        {
+            BackgroundInfo info = new BackgroundInfo()
+            {
+                IsCreate = bgInfo.createBG
+            };
+
+            if (!info.IsCreate) { return info; }
+
+            info.Track.Name = bgInfo.trackName;
+            info.Track.Track = GetVideoTrack(helper, info.Track.Name, videoTKV);
+            info.Media.Name = bgInfo.mediaName;
+            info.Media.Media = mKV[info.Media.Name];
+            info.Margin = bgInfo.margin;
+            info.MediaBin = CreateMediaBinInfo(helper, bgInfo.useMediaBin, bgInfo.mediaBinName);
+
+            return info;
+        }
+
+        private void SaveSetting(
+            VegasHelper helper,
+            ref InsertAudioInfo audioInfo,
+            ref JimakuParams jimakuParams,
+            ref BackgroundInfo jimakuBG,
+            ref BackgroundInfo actorBG,
+            PrefixBehaviorType behavior,
+            bool isGrouping,
+            bool isCreateOne)
+        {
+            SetAudioSetting(helper, audioInfo);
 
             helper.Settings["JimakuFilePath"] = jimakuParams.JimakuFilePath;
 
-            helper.Settings["PrefixBehavior"] = (int)prefixBehavior;
+            helper.Settings["PrefixBehavior"] = (int)behavior;
 
-            helper.Settings["IsGroupSerifuJimakuEvent"] = isGroupSerifuJimakuEvent;
+            helper.Settings["IsGroupSerifuJimakuEvent"] = isGrouping;
 
-            helper.Settings["JimakuTrackName"] = jimakuParams.JimakuInfo.TrackName;
-            helper.Settings["JimakuPresetName"] = jimakuParams.JimakuInfo.PresetName;
-            helper.Settings["JimakuMargin"] = jimakuParams.JimakuInfo.Margin;
-            helper.Settings["ActorTrackName"] = jimakuParams.ActorInfo.TrackName;
-            helper.Settings["ActorPresetName"] = jimakuParams.ActorInfo.PresetName;
-            helper.Settings["ActorMargin"] = jimakuParams.ActorInfo.Margin;
+            SetVideoTrackSetting(helper, "Jimaku", jimakuParams.Jimaku);
+            SetVideoTrackSetting(helper, "Actor", jimakuParams.Actor);
 
-            SetColorSetting(helper, "Jimaku", jimakuParams.JimakuColorInfo);
+            SetColorSetting(helper, "Jimaku", jimakuParams.JimakuColor);
+            SetColorSetting(helper, "Actor", jimakuParams.ActorColor);
 
-            SetColorSetting(helper, "Actor", jimakuParams.ActorColorInfo);
+            SetBackgroundSetting(helper, "Jimaku", jimakuBG);
+            SetBackgroundSetting(helper, "Actor", actorBG);
 
-            SetBackgroundSetting(helper,
-                "CreateJimakuBackground",
-                "JimakuBackgroundMediaName",
-                "JimakuBackgroundMargin",
-                JimakuBackgroundInfo);
+            SetMediaBinSetting(helper, "Audio", audioInfo.MediaBin);
+            SetMediaBinSetting(helper, "Jimaku", jimakuParams.Jimaku.MediaBin);
+            SetMediaBinSetting(helper, "Actor", jimakuParams.Actor.MediaBin);
+            SetMediaBinSetting(helper, "JimakuBG", jimakuBG.MediaBin);
+            SetMediaBinSetting(helper, "ActorBG", actorBG.MediaBin);
 
-            SetBackgroundSetting(helper,
-                "CreateActorBackground",
-                "ActorBackgroundMediaName",
-                "ActorBackgroundMargin",
-                JimakuBackgroundInfo);
-
-            SetMediaBinSetting(helper, "UseAudioMediaBin", "AudioMediaBinName", insertAudioInfo.MediaBinInfo);
-
-            SetMediaBinSetting(helper, "UseJimakuMediaBin", "JimakuMediaBinName", jimakuParams.JimakuInfo.MediaBinInfo);
-
-            SetMediaBinSetting(helper, "UseActorMediaBin", "ActorMediaBinName", jimakuParams.ActorInfo.MediaBinInfo);
-
-            SetMediaBinSetting(helper, "UseJimakuBackgroundMediaBin", "JimakuBackgroundMediaBinName", jimakuBackgroundMediaBinInfo);
-
-            SetMediaBinSetting(helper, "UseActorBackgroundMediaBin", "ActorBackgroundMediaBinName", actorBackgroundMediaBinInfo);
-
-            helper.Settings["CreateOneEventCheck"] = isCreateOneEventCheck;
+            helper.Settings["CreateOneEventCheck"] = isCreateOne;
 
             helper.Settings.Save();
         }
@@ -396,73 +427,46 @@ namespace VegasScriptCreateJimaku
         private void SetAudioSetting(VegasHelper helper, in InsertAudioInfo info)
         {
             helper.Settings["AudioFileFolder"] = info.Folder;
-            helper.Settings["AudioTrackName"] = info.TrackName;
+            helper.Settings["AudioTrackName"] = info.Track.Name;
             helper.Settings["AudioInsertInterval"] = info.Interval;
             helper.Settings["IsAudioFolderRecursive"] = info.IsRecursive;
             helper.Settings["IsInsertFromStartPosition"] = info.IsInsertFromStartPosition;
         }
 
-        private void SetColorInfo(ref ColorInfo info, bool isUse, Color textColor, Color outlineColor, double outlineWidth)
+        private void SetVideoTrackSetting(VegasHelper helper, string target, in TextTrackInfo info)
         {
-            info.IsUse = isUse;
-            info.OutlineWidth = outlineWidth;
-
-            if (!info.IsUse) { return; }
-
-            info.TextColor = textColor;
-            info.OutlineColor = outlineColor;
+            helper.Settings[target + "TrackName"] = info.Track.Name;
+            helper.Settings[target + "PresetName"] = info.PresetName;
+            helper.Settings[target + "Margin"] = info.Margin;
         }
 
         private void SetColorSetting(VegasHelper helper, string target, in ColorInfo info)
         {
             helper.Settings["Use" + target + "ColorSetting"] = info.IsUse;
+            helper.Settings[target + "OutlineWidth"] = info.OutlineWidth;
 
             if (!info.IsUse) { return; }
 
             helper.Settings[target + "Color"] = info.TextColor;
             helper.Settings[target + "OutlineColor"] = info.OutlineColor;
-            helper.Settings[target + "OutlineWidth"] = info.OutlineWidth;
         }
 
-        private void SetMediaBinInfo(VegasHelper helper, ref MediaBinInfo info, bool isUse, string name)
-        {
-            info.IsUse = isUse;
+        private void SetMediaBinSetting(VegasHelper helper, string target, in MediaBinInfo info) {
+            helper.Settings["Use" + target + "MediaBin"] = info.IsUse;
 
             if (!info.IsUse) { return; }
 
-            info.Name = name;
-            info.Bin = GetMediaBin(helper, name, mediaBinKeyValuePairs);
+            helper.Settings[target + "MediaBinName"] = info.Name;
         }
 
-        private void SetMediaBinSetting(VegasHelper helper, string flagName, string settingName, in MediaBinInfo info) {
-            helper.Settings[flagName] = info.IsUse;
-
-            if (!info.IsUse) { return; }
-
-            helper.Settings[settingName] = info.Name;
-        }
-
-        private void SetBackgroundInfo(VegasHelper helper, ref BackgroundInfo info, bool IsCreate, string trackName, string mediaName, double margin)
+        private void SetBackgroundSetting(VegasHelper helper, string target, in BackgroundInfo info)
         {
-            info.IsCreate = IsCreate;
+            helper.Settings["Create" + target + "BG"] = info.IsCreate;
 
             if (!info.IsCreate) { return; }
 
-            info.TrackName = trackName;
-            info.Track = GetVideoTrack(helper, trackName, videoKeyValuePairs);
-            info.MediaName = mediaName;
-            info.Media = mediaKeyValuePairs[mediaName];
-            info.Margin = margin;
-        }
-
-        private void SetBackgroundSetting(VegasHelper helper, string flagName, string mediaName, string marginName, in BackgroundInfo info)
-        {
-            helper.Settings[flagName] = info.IsCreate;
-
-            if (!info.IsCreate) { return; }
-
-            helper.Settings[mediaName] = info.MediaName;
-            helper.Settings[marginName] = info.Margin;
+            helper.Settings[target + "BGMediaName"] = info.Media.Name;
+            helper.Settings[target + "BGMargin"] = info.Margin;
         }
     }
 }

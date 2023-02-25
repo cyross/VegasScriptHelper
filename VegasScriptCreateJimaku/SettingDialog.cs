@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using System.ComponentModel;
 
 namespace VegasScriptCreateJimaku
 {
@@ -37,10 +39,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> AudioTrackBoxDataSource
         {
-            set {
-                audioTrackNameBox.Items.Clear();
-                audioTrackNameBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(audioTrackNameBox, value); }
         }
 
         public string AudioTrackName
@@ -57,8 +56,8 @@ namespace VegasScriptCreateJimaku
 
         public float AudioInterval
         {
-            get { return float.Parse(intervalBox.Text); }
-            set { intervalBox.Text = value.ToString(); }
+            get { return GetBoxValue<float>(intervalBox); }
+            set { SetBoxValue(intervalBox, value); }
         }
 
         public bool IsInsertFromStartPosition
@@ -91,10 +90,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> AudioMediaBinBoxDataSource
         {
-            set {
-                audioMediaBinBox.Items.Clear();
-                audioMediaBinBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(audioMediaBinBox, value); }
         }
 
         public string AudioMediaBinName
@@ -106,8 +102,7 @@ namespace VegasScriptCreateJimaku
         public List<string> JimakuTrackBoxDataSource
         {
             set {
-                jimakuTrackBox.Items.Clear();
-                jimakuTrackBox.Items.AddRange(value.ToArray());
+                SetComboBox(jimakuTrackBox, value);
             }
         }
 
@@ -137,16 +132,13 @@ namespace VegasScriptCreateJimaku
 
         public double JimakuOutlineWidth
         {
-            set { jimakuOutlineWidthBox.Text = value.ToString(); }
-            get { return double.Parse(jimakuOutlineWidthBox.Text); }
+            get { return GetBoxValue<double>(jimakuOutlineWidthBox); }
+            set { SetBoxValue(jimakuOutlineWidthBox, value); }
         }
 
         public List<string> ActorTrackBoxDataSource
         {
-            set {
-                actorTrackBox.Items.Clear();
-                actorTrackBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(actorTrackBox, value); }
         }
 
         public string ActorTrackName
@@ -175,8 +167,8 @@ namespace VegasScriptCreateJimaku
 
         public double ActorOutlineWidth
         {
-            set { actorOutlineWidthBox.Text = value.ToString(); }
-            get { return double.Parse(actorOutlineWidthBox.Text); }
+            get { return GetBoxValue<double>(actorOutlineWidthBox); }
+            set { SetBoxValue(actorOutlineWidthBox, value); }
         }
 
         public bool UseJimakuMediaBin
@@ -187,10 +179,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> JimakuMediaBinBoxDataSource
         {
-            set {
-                jimakuMediaBinBox.Items.Clear();
-                jimakuMediaBinBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(jimakuMediaBinBox, value); }
         }
 
         public string JimakuMediaBinName
@@ -207,10 +196,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> ActorMediaBinBoxDataSource
         {
-            set {
-                actorMediaBinBox.Items.Clear();
-                actorMediaBinBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(actorMediaBinBox, value); }
         }
 
         public string ActorMediaBinName
@@ -227,10 +213,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> JimakuBackgroundTrackBoxDataSource
         {
-            set {
-                jimakuBackgroundTrackBox.Items.Clear();
-                jimakuBackgroundTrackBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(jimakuBackgroundTrackBox, value); }
         }
 
         public string JimakuBackgroundTrackName
@@ -241,10 +224,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> JimakuBackgroundMediaBoxDataSource
         {
-            set {
-                jimakuBackgroundMediaBox.Items.Clear();
-                jimakuBackgroundMediaBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(jimakuBackgroundMediaBox, value); }
         }
 
         public string JimakuBackgroundMediaName
@@ -255,8 +235,8 @@ namespace VegasScriptCreateJimaku
 
         public double JimakuBackgroundMargin
         {
-            set { jimakuBackgroundMarginBox.Text = value.ToString(); }
-            get { return double.Parse(jimakuBackgroundMarginBox.Text); }
+            get { return GetBoxValue<double>(jimakuBackgroundMarginBox); }
+            set { SetBoxValue(jimakuBackgroundMarginBox, value); }
         }
 
         public bool UseJimakuBackgroundMediaBin
@@ -267,10 +247,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> JimakuBackgroundMediaBinBoxDataSource
         {
-            set {
-                jimakuBackgroundMediaBinBox.Items.Clear();
-                jimakuBackgroundMediaBinBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(jimakuBackgroundMediaBinBox, value); }
         }
 
         public string JimakuBackgroundMediaBinName
@@ -287,10 +264,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> ActorBackgroundTrackBoxDataSource
         {
-            set {
-                actorBackgroundTrackBox.Items.Clear();
-                actorBackgroundTrackBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(actorBackgroundTrackBox, value); }
         }
 
         public string ActorBackgroundTrackName
@@ -301,10 +275,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> ActorBackgroundMediaBoxDataSource
         {
-            set {
-                actorBackgroundMediaBox.Items.Clear();
-                actorBackgroundMediaBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(actorBackgroundMediaBox, value); }
         }
 
         public string ActorBackgroundMediaName
@@ -315,8 +286,8 @@ namespace VegasScriptCreateJimaku
 
         public double ActorBackgroundMargin
         {
-            set { actorBackgroundMarginBox.Text = value.ToString(); }
-            get { return double.Parse(actorBackgroundMarginBox.Text); }
+            get { return GetBoxValue<double>(actorBackgroundMarginBox); }
+            set { SetBoxValue(actorBackgroundMarginBox, value); }
         }
 
         public bool UseActorBackgroundMediaBin
@@ -327,10 +298,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> ActorBackgroundMediaBinBoxDataSource
         {
-            set {
-                actorBackgroundMediaBinBox.Items.Clear();
-                actorBackgroundMediaBinBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(actorBackgroundMediaBinBox, value); }
         }
 
         public string ActorBackgroundMediaBinName
@@ -347,10 +315,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> JimakuPresetBoxDataSource
         {
-            set {
-                jimakuPresetBox.Items.Clear();
-                jimakuPresetBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(jimakuPresetBox, value); }
         }
 
         public string JimakuPresetName
@@ -361,10 +326,7 @@ namespace VegasScriptCreateJimaku
 
         public List<string> ActorPresetBoxDataSource
         {
-            set {
-                actorPresetBox.Items.Clear();
-                actorPresetBox.Items.AddRange(value.ToArray());
-            }
+            set { SetComboBox(actorPresetBox, value); }
         }
 
         public string ActorPresetName
@@ -381,177 +343,132 @@ namespace VegasScriptCreateJimaku
 
         public double JimakuMargin
         {
-            set { jimakuMarginBox.Text = value.ToString(); }
-            get { return double.Parse(jimakuMarginBox.Text); }
+            get { return GetBoxValue<double>(jimakuMarginBox); }
+            set { SetBoxValue(jimakuMarginBox, value); }
         }
 
         public double ActorMargin
         {
-            set { actorMarginBox.Text = value.ToString(); }
-            get { return double.Parse(actorMarginBox.Text); }
+            get { return GetBoxValue<double>(actorMarginBox); }
+            set { SetBoxValue(actorMarginBox, value); }
         }
 
-        public void SetAudioTrack(
-            VegasHelper helper,
-            List<string> audioKeyList,
-            string firstAudioKey,
-            List<string> mediaBinKeyList,
-            string firstMediaBinKey)
+        private void SetComboBox(ComboBox combobox, KeyListInfo klStruct)
         {
-            AudioTrackBoxDataSource = audioKeyList;
-            AudioTrackName = firstAudioKey;
+            SetComboBox(combobox, klStruct.Keys, klStruct.FirstKey);
+        }
+
+        private void SetComboBox(ComboBox combobox, List<string> list, string text = null)
+        {
+            combobox.Items.Clear();
+            combobox.Items.AddRange(list.ToArray());
+
+            if(text != null) { combobox.Text = text; }
+        }
+
+        public void SetAudioTrack(VegasHelper helper, KeyListInfo klAudio, KeyListInfo klMediaBin)
+        {
+            SetComboBox(audioTrackNameBox, klAudio);
             AudioFileFolder = helper.Settings["AudioFileFolder"];
             AudioInterval = helper.Settings["AudioInsertInterval"];
             IsRecursive = helper.Settings["IsAudioFolderRecursive"];
             IsInsertFromStartPosition = helper.Settings["IsInsertFromStartPosition"];
 
-            AudioMediaBinBoxDataSource = mediaBinKeyList;
-            AudioMediaBinName = firstMediaBinKey;
+            SetComboBox(audioMediaBinBox, klMediaBin);
             UseAudioMediaBin = helper.Settings["UseAudioMediaBin"];
         }
 
         public void SetJimakuTrack(
             VegasHelper helper,
-            List<string> videoKeyList,
-            string firstVideoKey,
-            List<string> pluginKeyList,
-            string firstPluginKey,
-            List<string> mediaBinKeyList,
-            string firstMediaBinKey)
+            KeyListInfo klJimaku,
+            KeyListInfo klPlugin,
+            KeyListInfo klMediaBin)
         {
-            JimakuTrackBoxDataSource = videoKeyList;
-            JimakuTrackName = firstVideoKey;
-            JimakuPresetBoxDataSource = pluginKeyList;
-            JimakuPresetName = firstPluginKey;
-            JimakuMargin = helper.Settings["jimakuMargin"];
-            JimakuMediaBinBoxDataSource = mediaBinKeyList;
-            JimakuMediaBinName = firstMediaBinKey;
+            SetComboBox(jimakuTrackBox, klJimaku);
+            SetComboBox(jimakuPresetBox, klPlugin);
+            SetComboBox(jimakuMediaBinBox, klMediaBin);
+            JimakuMargin = helper.Settings["JimakuMargin"];
             UseJimakuMediaBin = helper.Settings["UseJimakuMediaBin"];
         }
 
         public void SetActorTrack(
             VegasHelper helper,
-            List<string> videoKeyList,
-            string firstVideoKey,
-            List<string> pluginKeyList,
-            string firstPluginKey,
-            List<string> mediaBinKeyList,
-            string firstMediaBinKeys)
+            KeyListInfo klActor,
+            KeyListInfo klPlugin,
+            KeyListInfo klMediaBin)
         {
-            ActorTrackBoxDataSource = videoKeyList;
-            ActorTrackName = firstVideoKey;
-            ActorPresetBoxDataSource = pluginKeyList;
-            ActorPresetName = firstPluginKey;
-            ActorMargin = helper.Settings["actorMargin"];
-            ActorMediaBinBoxDataSource = mediaBinKeyList;
-            ActorMediaBinName = firstMediaBinKeys;
+            SetComboBox(actorTrackBox, klActor);
+            SetComboBox(actorPresetBox, klPlugin);
+            SetComboBox(actorMediaBinBox, klMediaBin);
+            ActorMargin = helper.Settings["ActorMargin"];
             UseActorMediaBin = helper.Settings["UseActorMediaBin"];
         }
 
-        public void SetJimakuColor(VegasHelper helper)
+        public void SetJimakuColorInfo(VegasHelper helper)
         {
-            JimakuColor = helper.Settings["JimakuColor"];
-            JimakuOutlineColor = helper.Settings["JimakuOutlineColor"];
-            JimakuOutlineWidth = helper.Settings["JimakuOutlineWidth"];
-            UseJimakuDefaultSettings = helper.Settings["UseJimakuColorSetting"];
+            SetColorInfo(helper, "Jimaku",
+                jimakuColorBox, jimakuOutlineColorBox, jimakuOutlineWidthBox, useJimakuDefaultSettings);
         }
-        public void SetActorColor(VegasHelper helper)
+        public void SetActorColorInfo(VegasHelper helper)
         {
-            ActorColor = helper.Settings["ActorColor"];
-            ActorOutlineColor = helper.Settings["ActorOutlineColor"];
-            ActorOutlineWidth = helper.Settings["ActorOutlineWidth"];
-            UseActorDefaultSettings = helper.Settings["UseActorColorSetting"];
+            SetColorInfo(helper, "Actor",
+                actorColorBox, actorOutlineColorBox, actorOutlineWidthBox, useActorDefaultSettings);
+        }
+
+        private void SetColorInfo(
+            VegasHelper helper,
+            string target,
+            PictureBox textColorBox,
+            PictureBox outlineColorBox,
+            TextBox outlineWidthBox,
+            CheckBox useCheck)
+        {
+            textColorBox.BackColor = helper.Settings[target + "Color"];
+            outlineColorBox.BackColor = helper.Settings[target + "OutlineColor"];
+            outlineWidthBox.Text = helper.Settings[target + "OutlineWidth"].ToString();
+            useCheck.Checked = helper.Settings["Use" + target + "ColorSetting"];
         }
 
         public void SetJimakuBackground(
             VegasHelper helper,
-            List<string> videoKeyList,
-            string firstVideoKey,
-            List<string> mediaKeyList,
-            string firstMediaKey,
-            List<string> mediaBinKeyList,
-            string firstMediaBinKey)
+            in KeyListInfo klJimakuBG,
+            in KeyListInfo klMedia,
+            in KeyListInfo klMediaBin)
         {
-            JimakuBackgroundTrackBoxDataSource = videoKeyList;
-            JimakuBackgroundTrackName = firstVideoKey;
-            JimakuBackgroundMediaBoxDataSource = mediaKeyList;
-            JimakuBackgroundMediaName = firstMediaKey;
-            JimakuBackgroundMargin = helper.Settings["JimakuBackgroundMargin"];
-            JimakuBackgroundMediaBinBoxDataSource = mediaBinKeyList;
-            JimakuBackgroundMediaBinName = firstMediaBinKey;
-            CreateJimakuBackground = helper.Settings["CreateJimakuBackground"];
+            SetComboBox(jimakuBackgroundTrackBox, klJimakuBG);
+            SetComboBox(jimakuBackgroundMediaBox, klMedia);
+            SetComboBox(jimakuBackgroundMediaBinBox, klMediaBin);
+            JimakuBackgroundMargin = helper.Settings["JimakuBGMargin"];
+            CreateJimakuBackground = helper.Settings["CreateJimakuBG"];
         }
 
         public void SetActorBackground(
             VegasHelper helper,
-            List<string> videoKeyList,
-            string firstVideoKey,
-            List<string> mediaKeyList,
-            string firstMediaKey,
-            List<string> mediaBinKeyList,
-            string firstMediaBinKey)
+            in KeyListInfo klActorBG,
+            in KeyListInfo klMedia,
+            in KeyListInfo klMediaBin)
         {
-            ActorBackgroundTrackBoxDataSource = videoKeyList;
-            ActorBackgroundTrackName = firstVideoKey;
-            ActorBackgroundMediaBoxDataSource = mediaKeyList;
-            ActorBackgroundMediaName = firstMediaKey;
-            ActorBackgroundMargin = helper.Settings["ActorBackgroundMargin"];
-            ActorBackgroundMediaBinBoxDataSource = mediaBinKeyList;
-            ActorBackgroundMediaBinName = firstMediaBinKey;
-            CreateActorBackground = helper.Settings["CreateActorBackground"];
+            SetComboBox(actorBackgroundTrackBox, klActorBG);
+            SetComboBox(actorBackgroundMediaBox, klMedia);
+            SetComboBox(actorBackgroundMediaBinBox, klMediaBin);
+            ActorBackgroundMargin = helper.Settings["ActorBGMargin"];
+            CreateActorBackground = helper.Settings["CreateActorBG"];
         }
 
-        private void CreateJimakuBackground_CheckedChanged(object sender, EventArgs e)
+        private void SetBoxValue<T>(TextBox box, T value)
         {
-            jimakuBackgroundTrackBox.Enabled = createJimakuBackground.Checked;
-            jimakuBackgroundMediaBox.Enabled = createJimakuBackground.Checked;
-            jimakuBackgroundMarginBox.Enabled = createJimakuBackground.Checked;
-            useJimakuBackgroundMediaBin.Enabled = createJimakuBackground.Checked;
-            jimakuBackgroundMediaBinBox.Enabled = createJimakuBackground.Checked;
+            box.Text = value.ToString();
         }
 
-        private void CreateActorBackground_CheckedChanged(object sender, EventArgs e)
+        private T GetBoxValue<T>(TextBox box)
         {
-            actorBackgroundTrackBox.Enabled = createActorBackground.Checked;
-            actorBackgroundMediaBox.Enabled = createActorBackground.Checked;
-            actorBackgroundMarginBox.Enabled = createActorBackground.Checked;
-            useActorBackgroundMediaBin.Enabled = createActorBackground.Checked;
-            actorBackgroundMediaBinBox.Enabled = createActorBackground.Checked;
-        }
-
-        private void AudioFileFolderButton_Clicked(object sender, EventArgs e)
-        {
-            audioFileFolderBrowser.SelectedPath = audioFileFolderBox.Text;
-            if (audioFileFolderBrowser.ShowDialog() == DialogResult.OK)
-            {
-                audioFileFolderBox.Text = audioFileFolderBrowser.SelectedPath;
-            }
-        }
-
-        private void JimakuFileDialogOpenButton_Clicked(object sender, EventArgs e)
-        {
-            jimakuFileBrowser.FileName = jimakuFilePathBox.Text;
-            if (jimakuFileBrowser.ShowDialog() == DialogResult.OK)
-            {
-                jimakuFilePathBox.Text = jimakuFileBrowser.FileName;
-            }
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            return (T)converter.ConvertFromString(box.Text);
         }
 
         private void SetColorToolTip(Control control)
         {
             colorTooltip.SetToolTip(control, "ボックスをクリックすると色の設定ができます");
-        }
-
-        private void UpdateJimakuColorSettings(bool enabled)
-        {
-            jimakuColorBox.Enabled = enabled;
-            jimakuOutlineColorBox.Enabled = enabled;
-        }
-
-        private void UpdateActorColorSettings(bool enabled)
-        {
-            actorColorBox.Enabled = enabled;
-            actorOutlineColorBox.Enabled = enabled;
         }
 
         private void UpdatePrefixBehavor()
@@ -573,14 +490,158 @@ namespace VegasScriptCreateJimaku
             }
         }
 
-        private void UseAudioMediaBin_Checked(object sender, EventArgs e)
+        private void CreateBGEnabledChange(
+            bool enabled,
+            ComboBox trackBox, ComboBox mediaBox, TextBox marginBox, CheckBox useCheck, ComboBox bgMediaBinBox)
         {
-            audioMediaBinBox.Enabled = useAudioMediaBin.Checked;
+            trackBox.Enabled = enabled;
+            mediaBox.Enabled = enabled;
+            marginBox.Enabled = enabled;
+            useCheck.Enabled = enabled;
+            bgMediaBinBox.Enabled = enabled;
         }
 
-        private void UseVideoMediaBin_Checked(object sender, EventArgs e)
+        private void ColorBoxClicked(PictureBox box, ColorDialog dialog)
         {
-            jimakuMediaBinBox.Enabled = useJimakuMediaBin.Checked;
+            dialog.Color = box.BackColor;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                box.BackColor = dialog.Color;
+            }
+        }
+
+        public DialogBGInfo JimakuBGInfo
+        {
+            get
+            {
+                return CreateBGInfo(
+                    CreateJimakuBackground,
+                    JimakuBackgroundTrackName,
+                    JimakuBackgroundMediaName,
+                    JimakuBackgroundMargin,
+                    UseJimakuBackgroundMediaBin,
+                    JimakuBackgroundMediaBinName
+                    );
+            }
+        }
+
+        public DialogBGInfo ActorBGInfo
+        {
+            get
+            {
+                return CreateBGInfo(
+                    CreateActorBackground,
+                    ActorBackgroundTrackName,
+                    ActorBackgroundMediaName,
+                    ActorBackgroundMargin,
+                    UseActorBackgroundMediaBin,
+                    ActorBackgroundMediaBinName
+                    );
+            }
+        }
+
+        public DialogBGInfo CreateBGInfo(bool createBg, string trackName, string mediaName, double margin, bool useBin, string binName)
+        {
+            DialogBGInfo bgInfo = new DialogBGInfo()
+            {
+                createBG = createBg,
+                trackName = trackName,
+                mediaName = mediaName,
+                margin = margin,
+                useMediaBin = useBin,
+                mediaBinName = binName
+            };
+            return bgInfo;
+        }
+
+        public DialogTrackInfo JimakuTrackInfo
+        {
+            get
+            {
+                return CreateTrackInfo(
+                    JimakuTrackName,
+                    JimakuPresetName,
+                    UseJimakuMediaBin,
+                    JimakuMediaBinName
+                    );
+            }
+        }
+
+        public DialogTrackInfo ActorTrackInfo
+        {
+            get
+            {
+                return CreateTrackInfo(
+                    ActorTrackName,
+                    ActorPresetName,
+                    UseActorMediaBin,
+                    ActorMediaBinName
+                    );
+            }
+        }
+
+        public DialogTrackInfo CreateTrackInfo(string trackName, string presetName, bool useBin, string binName)
+        {
+            DialogTrackInfo info = new DialogTrackInfo()
+            {
+                trackName = trackName,
+                presetName = presetName,
+                useMediaBin = useBin,
+                mediaBinName = binName
+            };
+            return info;
+        }
+
+        private void AudioFileFolderButton_Clicked(object sender, EventArgs e)
+        {
+            audioFileFolderBrowser.SelectedPath = audioFileFolderBox.Text;
+            if (audioFileFolderBrowser.ShowDialog() == DialogResult.OK)
+            {
+                audioFileFolderBox.Text = audioFileFolderBrowser.SelectedPath;
+            }
+        }
+
+        private void JimakuFileDialogOpenButton_Clicked(object sender, EventArgs e)
+        {
+            jimakuFileBrowser.FileName = jimakuFilePathBox.Text;
+            if (jimakuFileBrowser.ShowDialog() == DialogResult.OK)
+            {
+                jimakuFilePathBox.Text = jimakuFileBrowser.FileName;
+            }
+        }
+        private void UseAudioMediaBin_Checked(object sender, EventArgs e)
+        {
+            audioMediaBinPanel.Enabled = useAudioMediaBin.Checked;
+        }
+
+        private void UseJimakuMediaBin_Checked(object sender, EventArgs e)
+        {
+            jimakuMediaBinPanel.Enabled = useJimakuMediaBin.Checked;
+        }
+
+        private void UseActorMediaBin_Checked(object sender, EventArgs e)
+        {
+            actorMediaBinPanel.Enabled = useActorMediaBin.Checked;
+        }
+
+        private void CreateJimakuBG_Checked(object sender, EventArgs e)
+        {
+            jimakuBGPanel.Enabled = createJimakuBackground.Checked;
+        }
+
+        private void CreateActorBG_Checked(object sender, EventArgs e)
+        {
+            actorBGPanel.Enabled = createActorBackground.Checked;
+        }
+
+        private void UseJimakuBGMediaBin_Checked(object sender, EventArgs e)
+        {
+            jimakuBGMediaBinPanel.Enabled = useJimakuMediaBin.Checked;
+        }
+
+        private void UseActorBGMediaBin_Checked(object sender, EventArgs e)
+        {
+            actorBGMediaBinPanel.Enabled = useActorMediaBin.Checked;
         }
 
         private void JimakuColorBox_Clicked(object sender, EventArgs e)
@@ -603,23 +664,14 @@ namespace VegasScriptCreateJimaku
             ColorBoxClicked(actorOutlineColorBox, actorOutlineColorDialog);
         }
 
-        private void ColorBoxClicked(PictureBox box, ColorDialog dialog)
-        {
-            dialog.Color = box.BackColor;
-            if(dialog.ShowDialog() == DialogResult.OK)
-            {
-                box.BackColor = dialog.Color;
-            }
-        }
-
         private void UseJimakuDefaultSettings_Click(object sender, EventArgs e)
         {
-            UpdateJimakuColorSettings(useJimakuDefaultSettings.Checked);
+            jimakuColorPanel.Enabled = useJimakuDefaultSettings.Checked;
         }
 
         private void UseActorDefaultSettings_Click(object sender, EventArgs e)
         {
-            UpdateActorColorSettings(useJimakuDefaultSettings.Checked);
+            actorColorPanel.Enabled = useActorDefaultSettings.Checked;
         }
 
         private void RemainActorName_CheckedChanged(object sender, EventArgs e)

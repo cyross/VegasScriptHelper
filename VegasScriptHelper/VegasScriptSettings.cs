@@ -55,8 +55,8 @@ namespace VegasScriptHelper
             SetInitialBinName("AudioMediaBinName", "voiroVoice");
             SetInitialBinName("JimakuMediaBinName", "voiroJimaku");
             SetInitialBinName("ActorMediaBinName", "voiroActor");
-            SetInitialBinName("JimakuBackgroundMediaBinName", "jimakuBackground");
-            SetInitialBinName("ActorBackgroundMediaBinName", "actorBackground");
+            SetInitialBinName("JimakuBGMediaBinName", "jimakuBG");
+            SetInitialBinName("ActorBGMediaBinName", "actorBG");
         }
 
         public void Save()

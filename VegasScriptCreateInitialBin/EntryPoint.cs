@@ -20,8 +20,8 @@ namespace VegasScriptCreateInitialBin
             settingDialog.VoiroVoiceBinName = helper.Settings.DefaultBinName["voiroVoice"];
             settingDialog.VoiroJimakuBinName = helper.Settings.DefaultBinName["voiroJimaku"];
             settingDialog.VoiroActorBinName = helper.Settings.DefaultBinName["voiroActor"];
-            settingDialog.JimakuBackgroundBinName = helper.Settings.DefaultBinName["jimakuBackground"];
-            settingDialog.ActorBackgroundBinName = helper.Settings.DefaultBinName["actorBackground"];
+            settingDialog.JimakuBackgroundBinName = helper.Settings.DefaultBinName["jimakuBG"];
+            settingDialog.ActorBackgroundBinName = helper.Settings.DefaultBinName["actorBG"];
             settingDialog.TachieBinName = helper.Settings.DefaultBinName["tachie"];
             settingDialog.DLAudioBinName = helper.Settings.DefaultBinName["dlAudio"];
             settingDialog.CreatedAudioBinName = helper.Settings.DefaultBinName["createdAudio"];

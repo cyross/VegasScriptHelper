@@ -7,6 +7,12 @@ using System.Linq;
 
 namespace VegasScriptHelper
 {
+    public struct MediaInfo
+    {
+        public string Name;
+        public Media Media;
+    }
+
     public partial class VegasHelper
     {
         public Media CreateMedia(string path, MediaBin mediaBin = null)

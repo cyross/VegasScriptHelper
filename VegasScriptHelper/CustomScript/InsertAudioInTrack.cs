@@ -10,13 +10,12 @@ namespace VegasScriptHelper
 {
     public struct InsertAudioInfo
     {
-        public string TrackName;
-        public AudioTrack Track;
+        public TrackInfo<AudioTrack> Track;
         public string Folder;
         public float Interval;
         public bool IsRecursive;
         public bool IsInsertFromStartPosition;
-        public MediaBinInfo MediaBinInfo;
+        public MediaBinInfo MediaBin;
     }
 
     public partial class VegasHelper
@@ -91,12 +90,12 @@ namespace VegasScriptHelper
 
         public void InseretAudioInTrack(ref InsertAudioInfo info)
         {
-            info.Track.Selected = true;
+            info.Track.Track.Selected = true;
 
             Timecode currentPosition = info.IsInsertFromStartPosition ? new Timecode() : Vegas.Cursor;
             Timecode intervalTimecode = new Timecode(info.Interval);
 
-            InsertAudio(currentPosition, intervalTimecode, info.Folder, info.Track, info.IsRecursive, info.MediaBinInfo.Bin);
+            InsertAudio(currentPosition, intervalTimecode, info.Folder, info.Track.Track, info.IsRecursive, info.MediaBin.Bin);
         }
 
         public void InseretAudioInTrack(

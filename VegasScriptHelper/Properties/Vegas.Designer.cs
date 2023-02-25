@@ -254,24 +254,24 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UseJimakuBackgroundMediaBin {
+        public bool UseJimakuBGMediaBin {
             get {
-                return ((bool)(this["UseJimakuBackgroundMediaBin"]));
+                return ((bool)(this["UseJimakuBGMediaBin"]));
             }
             set {
-                this["UseJimakuBackgroundMediaBin"] = value;
+                this["UseJimakuBGMediaBin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UseActorBackgroundMediaBin {
+        public bool UseActorBGMediaBin {
             get {
-                return ((bool)(this["UseActorBackgroundMediaBin"]));
+                return ((bool)(this["UseActorBGMediaBin"]));
             }
             set {
-                this["UseActorBackgroundMediaBin"] = value;
+                this["UseActorBGMediaBin"] = value;
             }
         }
         
@@ -314,24 +314,24 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("字幕背景")]
-        public string JimakuBackgroundMediaBinName {
+        public string JimakuBGMediaBinName {
             get {
-                return ((string)(this["JimakuBackgroundMediaBinName"]));
+                return ((string)(this["JimakuBGMediaBinName"]));
             }
             set {
-                this["JimakuBackgroundMediaBinName"] = value;
+                this["JimakuBGMediaBinName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("声優名背景")]
-        public string ActorBackgroundMediaBinName {
+        public string ActorBGMediaBinName {
             get {
-                return ((string)(this["ActorBackgroundMediaBinName"]));
+                return ((string)(this["ActorBGMediaBinName"]));
             }
             set {
-                this["ActorBackgroundMediaBinName"] = value;
+                this["ActorBGMediaBinName"] = value;
             }
         }
         
@@ -350,24 +350,24 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CreateJimakuBackground {
+        public bool CreateJimakuBG {
             get {
-                return ((bool)(this["CreateJimakuBackground"]));
+                return ((bool)(this["CreateJimakuBG"]));
             }
             set {
-                this["CreateJimakuBackground"] = value;
+                this["CreateJimakuBG"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool CreateActorBackground {
+        public bool CreateActorBG {
             get {
-                return ((bool)(this["CreateActorBackground"]));
+                return ((bool)(this["CreateActorBG"]));
             }
             set {
-                this["CreateActorBackground"] = value;
+                this["CreateActorBG"] = value;
             }
         }
         
@@ -410,48 +410,48 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string JimakuBackgroundMediaName {
+        public string JimakuBGMediaName {
             get {
-                return ((string)(this["JimakuBackgroundMediaName"]));
+                return ((string)(this["JimakuBGMediaName"]));
             }
             set {
-                this["JimakuBackgroundMediaName"] = value;
+                this["JimakuBGMediaName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ActorBackgrondMediaName {
+        public string ActorBGMediaName {
             get {
-                return ((string)(this["ActorBackgrondMediaName"]));
+                return ((string)(this["ActorBGMediaName"]));
             }
             set {
-                this["ActorBackgrondMediaName"] = value;
+                this["ActorBGMediaName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double JimakuBackgroundMargin {
+        public double JimakuBGMargin {
             get {
-                return ((double)(this["JimakuBackgroundMargin"]));
+                return ((double)(this["JimakuBGMargin"]));
             }
             set {
-                this["JimakuBackgroundMargin"] = value;
+                this["JimakuBGMargin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double ActorBackgroundMargin {
+        public double ActorBGMargin {
             get {
-                return ((double)(this["ActorBackgroundMargin"]));
+                return ((double)(this["ActorBGMargin"]));
             }
             set {
-                this["ActorBackgroundMargin"] = value;
+                this["ActorBGMargin"] = value;
             }
         }
         
@@ -470,24 +470,24 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double jimakuMargin {
+        public double JimakuMargin {
             get {
-                return ((double)(this["jimakuMargin"]));
+                return ((double)(this["JimakuMargin"]));
             }
             set {
-                this["jimakuMargin"] = value;
+                this["JimakuMargin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double actorMargin {
+        public double ActorMargin {
             get {
-                return ((double)(this["actorMargin"]));
+                return ((double)(this["ActorMargin"]));
             }
             set {
-                this["actorMargin"] = value;
+                this["ActorMargin"] = value;
             }
         }
         
@@ -506,24 +506,24 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("字幕背景")]
-        public string JimakuBackgroundTrackName {
+        public string JimakuBGTrackName {
             get {
-                return ((string)(this["JimakuBackgroundTrackName"]));
+                return ((string)(this["JimakuBGTrackName"]));
             }
             set {
-                this["JimakuBackgroundTrackName"] = value;
+                this["JimakuBGTrackName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("声優名背景")]
-        public string ActorBackgroundTrackName {
+        public string ActorBGTrackName {
             get {
-                return ((string)(this["ActorBackgroundTrackName"]));
+                return ((string)(this["ActorBGTrackName"]));
             }
             set {
-                this["ActorBackgroundTrackName"] = value;
+                this["ActorBGTrackName"] = value;
             }
         }
     }

@@ -1,20 +1,14 @@
 ﻿using ScriptPortal.Vegas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VegasScriptHelper
 {
     public struct BackgroundInfo
     {
+        public TrackInfo<VideoTrack> Track;
         public bool IsCreate;
-        public string TrackName;
-        public VideoTrack Track;
-        public string MediaName;
-        public Media Media;
+        public MediaInfo Media;
         public double Margin;
+        public MediaBinInfo MediaBin;
     }
 
     public partial class VegasHelper
@@ -25,11 +19,11 @@ namespace VegasScriptHelper
 
             if (isCreateOneEventCheck)
             {
-                CreateFullSizeVideoEventWithAudioTrack(info.Track, audioTrack, info.Media, info.Margin);
+                CreateFullSizeVideoEventWithAudioTrack(info.Track.Track, audioTrack, info.Media.Media, info.Margin);
             }
             else
             {
-                CreateVideoEventWithAudioTrack(info.Track, audioTrack, info.Media, info.Margin);
+                CreateVideoEventWithAudioTrack(info.Track.Track, audioTrack, info.Media.Media, info.Margin);
             }
         }
     }

@@ -5,6 +5,14 @@ using System.Linq;
 
 namespace VegasScriptHelper
 {
+    public struct ColorInfo
+    {
+        public bool IsUse;
+        public Color TextColor;
+        public Color OutlineColor;
+        public double OutlineWidth;
+    }
+
     public partial class VegasHelper
     {
         public OFXStringParameter GetOFXStringParameter(Media media, bool throwException = true)

@@ -5,44 +5,19 @@ using System.Linq;
 
 namespace VegasScriptHelper
 {
-    public struct ColorInfo
-    {
-        public bool IsUse;
-        public Color TextColor;
-        public Color OutlineColor;
-        public double OutlineWidth;
-    }
-
-    public struct MediaBinInfo
-    {
-        public bool IsUse;
-        public string Name;
-        public MediaBin Bin;
-    }
-
-    public struct TextTrackInfo
-    {
-        public string TrackName;
-        public VideoTrack Track;
-        public string PresetName;
-        public double Margin;
-        public MediaBinInfo MediaBinInfo;
-    }
-
     public struct JimakuParams
     {
         public string JimakuFilePath;
         public string[] JimakuLines;
 
-        public TextTrackInfo JimakuInfo;
-        public TextTrackInfo ActorInfo;
+        public TextTrackInfo Jimaku;
+        public TextTrackInfo Actor;
 
         public bool IsDeletePrefix;
         public bool IsCreateActorTrack;
 
-        public ColorInfo JimakuColorInfo;
-
-        public ColorInfo ActorColorInfo;
+        public ColorInfo JimakuColor;
+        public ColorInfo ActorColor;
     }
 
     public partial class VegasHelper
@@ -73,19 +48,19 @@ namespace VegasScriptHelper
                     jimakuLine = jimakuLine.Substring(pos + 1);
                 }
 
-                Media jimakuMedia = CreateMedia(node, jimakuParams.JimakuInfo.PresetName, jimakuParams.JimakuInfo.MediaBinInfo.Bin);
-                TrackEvent jimakuEvent = CreateVideoEvent(jimakuParams.JimakuInfo.Track, jimakuMedia, serifuEvent.Start, serifuEvent.Length, jimakuParams.JimakuInfo.Margin);
+                Media jimakuMedia = CreateMedia(node, jimakuParams.Jimaku.PresetName, jimakuParams.Jimaku.MediaBin.Bin);
+                TrackEvent jimakuEvent = CreateVideoEvent(jimakuParams.Jimaku.Track.Track, jimakuMedia, serifuEvent.Start, serifuEvent.Length, jimakuParams.Jimaku.Margin);
                 ColorInfo jimakuColorInfo = new ColorInfo();
 
-                if(IsUseColorSetting(jimakuParams.JimakuColorInfo.IsUse, actorName))
+                if(IsUseColorSetting(jimakuParams.JimakuColor.IsUse, actorName))
                 {
-                    jimakuColorInfo = jimakuParams.JimakuColorInfo;
+                    jimakuColorInfo = jimakuParams.JimakuColor;
                 }
                 else
                 {
                     jimakuColorInfo.TextColor = _settings.TextColorByActor[actorName];
                     jimakuColorInfo.OutlineColor = _settings.OutlineColorByActor[actorName];
-                    jimakuColorInfo.OutlineWidth = jimakuParams.JimakuColorInfo.OutlineWidth;
+                    jimakuColorInfo.OutlineWidth = jimakuParams.JimakuColor.OutlineWidth;
                 }
 
                 SetText(jimakuMedia, jimakuLine, jimakuColorInfo);
@@ -94,19 +69,19 @@ namespace VegasScriptHelper
 
                 if(actorName != "" && jimakuParams.IsCreateActorTrack)
                 {
-                    Media actorMedia = CreateMedia(node, jimakuParams.ActorInfo.PresetName, jimakuParams.ActorInfo.MediaBinInfo.Bin);
-                    TrackEvent actorEvent = CreateVideoEvent(jimakuParams.ActorInfo.Track, actorMedia, serifuEvent.Start, serifuEvent.Length, jimakuParams.ActorInfo.Margin);
+                    Media actorMedia = CreateMedia(node, jimakuParams.Actor.PresetName, jimakuParams.Actor.MediaBin.Bin);
+                    TrackEvent actorEvent = CreateVideoEvent(jimakuParams.Actor.Track.Track, actorMedia, serifuEvent.Start, serifuEvent.Length, jimakuParams.Actor.Margin);
                     ColorInfo actorColorInfo = new ColorInfo();
 
-                    if (IsUseColorSetting(jimakuParams.ActorColorInfo.IsUse, actorName))
+                    if (IsUseColorSetting(jimakuParams.ActorColor.IsUse, actorName))
                     {
-                        actorColorInfo = jimakuParams.ActorColorInfo;
+                        actorColorInfo = jimakuParams.ActorColor;
                     }
                     else
                     {
                         actorColorInfo.TextColor = _settings.TextColorByActor[actorName];
                         actorColorInfo.OutlineColor = _settings.OutlineColorByActor[actorName];
-                        actorColorInfo.OutlineWidth = jimakuParams.ActorColorInfo.OutlineWidth;
+                        actorColorInfo.OutlineWidth = jimakuParams.ActorColor.OutlineWidth;
                     }
 
                     SetText(actorMedia, actorName, actorColorInfo);
