@@ -13,14 +13,14 @@ namespace VegasScriptPrescribedPattern
 
         public void FromVegas(Vegas vegas)
         {
+            // ヘルパクラスのオブジェクト生成は必須
+            VegasHelper helper = VegasHelper.Instance(vegas);
+
 #if true // for update script
             using (var block = new UndoBlock("$projectname"))
             {
                 try
                 {
-                    // ヘルパクラスのオブジェクト生成は必須
-                    VegasHelper helper = VegasHelper.Instance(vegas);
-
                     // 設定ダイアログが不要なときは削除
                     if (settingDialog == null) { settingDialog = new SettingDialog(); }
                     if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
@@ -40,9 +40,6 @@ namespace VegasScriptPrescribedPattern
 #else // not update script
             try
             {
-                // ヘルパクラスのオブジェクト生成は必須
-                VegasHelper helper = VegasHelper.Instance(vegas);
-
                 // 設定ダイアログが不要なときは削除
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
@@ -58,6 +55,7 @@ namespace VegasScriptPrescribedPattern
                 throw ex;
             }
 #endif
+            helper.Settings.Save();
         }
     }
 }
