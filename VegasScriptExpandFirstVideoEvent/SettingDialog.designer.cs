@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.audioTrack = new System.Windows.Forms.ComboBox();
+            this.audioTrackLabel = new System.Windows.Forms.Label();
+            this.videoTrack = new System.Windows.Forms.ComboBox();
+            this.videoTrackLabel = new System.Windows.Forms.Label();
             this.millisecondLabel = new System.Windows.Forms.Label();
             this.marginBox = new System.Windows.Forms.TextBox();
             this.marginLabel = new System.Windows.Forms.Label();
             this.OKButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.videoTrackLabel = new System.Windows.Forms.Label();
-            this.videoTrack = new System.Windows.Forms.ComboBox();
-            this.audioTrackLabel = new System.Windows.Forms.Label();
-            this.audioTrack = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,42 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(485, 96);
             this.panel1.TabIndex = 0;
+            // 
+            // audioTrack
+            // 
+            this.audioTrack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.audioTrack.FormattingEnabled = true;
+            this.audioTrack.Location = new System.Drawing.Point(110, 39);
+            this.audioTrack.Name = "audioTrack";
+            this.audioTrack.Size = new System.Drawing.Size(348, 20);
+            this.audioTrack.TabIndex = 8;
+            // 
+            // audioTrackLabel
+            // 
+            this.audioTrackLabel.AutoSize = true;
+            this.audioTrackLabel.Location = new System.Drawing.Point(10, 42);
+            this.audioTrackLabel.Name = "audioTrackLabel";
+            this.audioTrackLabel.Size = new System.Drawing.Size(81, 12);
+            this.audioTrackLabel.TabIndex = 7;
+            this.audioTrackLabel.Text = "オーディオトラック";
+            // 
+            // videoTrack
+            // 
+            this.videoTrack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.videoTrack.FormattingEnabled = true;
+            this.videoTrack.Location = new System.Drawing.Point(110, 10);
+            this.videoTrack.Name = "videoTrack";
+            this.videoTrack.Size = new System.Drawing.Size(348, 20);
+            this.videoTrack.TabIndex = 6;
+            // 
+            // videoTrackLabel
+            // 
+            this.videoTrackLabel.AutoSize = true;
+            this.videoTrackLabel.Location = new System.Drawing.Point(10, 13);
+            this.videoTrackLabel.Name = "videoTrackLabel";
+            this.videoTrackLabel.Size = new System.Drawing.Size(63, 12);
+            this.videoTrackLabel.TabIndex = 5;
+            this.videoTrackLabel.Text = "ビデオトラック";
             // 
             // millisecondLabel
             // 
@@ -100,43 +137,7 @@
             this.cancelButton.Text = "Cansel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
-            // videoTrackLabel
-            // 
-            this.videoTrackLabel.AutoSize = true;
-            this.videoTrackLabel.Location = new System.Drawing.Point(10, 13);
-            this.videoTrackLabel.Name = "videoTrackLabel";
-            this.videoTrackLabel.Size = new System.Drawing.Size(63, 12);
-            this.videoTrackLabel.TabIndex = 5;
-            this.videoTrackLabel.Text = "ビデオトラック";
-            // 
-            // videoTrack
-            // 
-            this.videoTrack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.videoTrack.FormattingEnabled = true;
-            this.videoTrack.Location = new System.Drawing.Point(110, 10);
-            this.videoTrack.Name = "videoTrack";
-            this.videoTrack.Size = new System.Drawing.Size(348, 20);
-            this.videoTrack.TabIndex = 6;
-            // 
-            // audioTrackLabel
-            // 
-            this.audioTrackLabel.AutoSize = true;
-            this.audioTrackLabel.Location = new System.Drawing.Point(10, 42);
-            this.audioTrackLabel.Name = "audioTrackLabel";
-            this.audioTrackLabel.Size = new System.Drawing.Size(81, 12);
-            this.audioTrackLabel.TabIndex = 7;
-            this.audioTrackLabel.Text = "オーディオトラック";
-            // 
-            // audioTrack
-            // 
-            this.audioTrack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.audioTrack.FormattingEnabled = true;
-            this.audioTrack.Location = new System.Drawing.Point(110, 39);
-            this.audioTrack.Name = "audioTrack";
-            this.audioTrack.Size = new System.Drawing.Size(348, 20);
-            this.audioTrack.TabIndex = 8;
-            // 
-            // VegasScriptSettingDialog
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -144,7 +145,8 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.panel1);
-            this.Name = "VegasScriptSettingDialog";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SettingDialog";
             this.Text = "字幕位置・長さ合わせの設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

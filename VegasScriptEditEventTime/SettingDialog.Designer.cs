@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -274,7 +275,7 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // EventTimeSetting
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -282,7 +283,8 @@
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.panel1);
-            this.Name = "EventTimeSetting";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SettingDialog";
             this.Text = "イベントの長さ・時間設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

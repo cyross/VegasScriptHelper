@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.IsRecursiveCheck = new System.Windows.Forms.CheckBox();
             this.AudioFileFolderLavel = new System.Windows.Forms.Label();
             this.AudioFileFolderText = new System.Windows.Forms.TextBox();
@@ -38,15 +39,15 @@
             this.OKbutton = new System.Windows.Forms.Button();
             this.CANSELbutton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.trackName = new System.Windows.Forms.ComboBox();
+            this.trackNameLabel = new System.Windows.Forms.Label();
             this.mediaBinName = new System.Windows.Forms.TextBox();
             this.mediaBinNameLabel = new System.Windows.Forms.Label();
             this.useMediaBin = new System.Windows.Forms.CheckBox();
             this.StartPoint = new System.Windows.Forms.GroupBox();
             this.fromCurrent = new System.Windows.Forms.RadioButton();
             this.fromStart = new System.Windows.Forms.RadioButton();
-            this.trackNameLabel = new System.Windows.Forms.Label();
-            this.trackName = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.StartPoint.SuspendLayout();
             this.SuspendLayout();
@@ -153,6 +154,33 @@
             this.panel1.Size = new System.Drawing.Size(792, 208);
             this.panel1.TabIndex = 9;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(105, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 12);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "新規追加はトラック名を記入";
+            // 
+            // trackName
+            // 
+            this.trackName.FormattingEnabled = true;
+            this.trackName.Location = new System.Drawing.Point(106, 56);
+            this.trackName.Name = "trackName";
+            this.trackName.Size = new System.Drawing.Size(597, 20);
+            this.trackName.TabIndex = 12;
+            // 
+            // trackNameLabel
+            // 
+            this.trackNameLabel.AutoSize = true;
+            this.trackNameLabel.Location = new System.Drawing.Point(16, 59);
+            this.trackNameLabel.Name = "trackNameLabel";
+            this.trackNameLabel.Size = new System.Drawing.Size(84, 12);
+            this.trackNameLabel.TabIndex = 11;
+            this.trackNameLabel.Text = "挿入対象トラック";
+            // 
             // mediaBinName
             // 
             this.mediaBinName.Location = new System.Drawing.Point(250, 176);
@@ -214,34 +242,7 @@
             this.fromStart.Text = "最初から";
             this.fromStart.UseVisualStyleBackColor = true;
             // 
-            // trackNameLabel
-            // 
-            this.trackNameLabel.AutoSize = true;
-            this.trackNameLabel.Location = new System.Drawing.Point(16, 59);
-            this.trackNameLabel.Name = "trackNameLabel";
-            this.trackNameLabel.Size = new System.Drawing.Size(84, 12);
-            this.trackNameLabel.TabIndex = 11;
-            this.trackNameLabel.Text = "挿入対象トラック";
-            // 
-            // trackName
-            // 
-            this.trackName.FormattingEnabled = true;
-            this.trackName.Location = new System.Drawing.Point(106, 56);
-            this.trackName.Name = "trackName";
-            this.trackName.Size = new System.Drawing.Size(597, 20);
-            this.trackName.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(105, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 12);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "新規追加はトラック名を記入";
-            // 
-            // Setting
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -249,7 +250,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.CANSELbutton);
             this.Controls.Add(this.OKbutton);
-            this.Name = "Setting";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SettingDialog";
             this.Text = "スクリプト設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

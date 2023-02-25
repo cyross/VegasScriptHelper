@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.binName = new System.Windows.Forms.ComboBox();
             this.binNameLabel = new System.Windows.Forms.Label();
             this.OKButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.binName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(376, 34);
             this.panel1.TabIndex = 0;
+            // 
+            // binName
+            // 
+            this.binName.FormattingEnabled = true;
+            this.binName.Location = new System.Drawing.Point(53, 7);
+            this.binName.Name = "binName";
+            this.binName.Size = new System.Drawing.Size(320, 20);
+            this.binName.TabIndex = 3;
             // 
             // binNameLabel
             // 
@@ -74,15 +83,7 @@
             this.cancelButton.Text = "CANSEL";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
-            // binName
-            // 
-            this.binName.FormattingEnabled = true;
-            this.binName.Location = new System.Drawing.Point(53, 7);
-            this.binName.Name = "binName";
-            this.binName.Size = new System.Drawing.Size(320, 20);
-            this.binName.TabIndex = 3;
-            // 
-            // BinSettingForm
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,7 +91,8 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.panel1);
-            this.Name = "BinSettingForm";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SettingDialog";
             this.Text = "設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

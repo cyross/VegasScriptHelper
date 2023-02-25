@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
             this.createJimakuGroup = new System.Windows.Forms.GroupBox();
             this.isGroupEventCheckBox = new System.Windows.Forms.CheckBox();
@@ -158,10 +159,9 @@
             this.panel1.Controls.Add(this.jimakuBackgroundGroup);
             this.panel1.Controls.Add(this.actorBackgroundGroup);
             this.panel1.Controls.Add(this.createOneEventCheck);
-            this.panel1.Location = new System.Drawing.Point(16, 15);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1215, 1263);
+            this.panel1.Size = new System.Drawing.Size(911, 1010);
             this.panel1.TabIndex = 0;
             // 
             // createJimakuGroup
@@ -173,11 +173,9 @@
             this.createJimakuGroup.Controls.Add(this.jimakuFilePathLabel);
             this.createJimakuGroup.Controls.Add(this.jimakuFileDialogOpenButton);
             this.createJimakuGroup.Controls.Add(this.jimakuFilePathBox);
-            this.createJimakuGroup.Location = new System.Drawing.Point(20, 313);
-            this.createJimakuGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.createJimakuGroup.Location = new System.Drawing.Point(15, 250);
             this.createJimakuGroup.Name = "createJimakuGroup";
-            this.createJimakuGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.createJimakuGroup.Size = new System.Drawing.Size(1183, 609);
+            this.createJimakuGroup.Size = new System.Drawing.Size(887, 487);
             this.createJimakuGroup.TabIndex = 28;
             this.createJimakuGroup.TabStop = false;
             this.createJimakuGroup.Text = "字幕流し込み";
@@ -185,9 +183,10 @@
             // isGroupEventCheckBox
             // 
             this.isGroupEventCheckBox.AutoSize = true;
-            this.isGroupEventCheckBox.Location = new System.Drawing.Point(565, 103);
+            this.isGroupEventCheckBox.Location = new System.Drawing.Point(424, 82);
+            this.isGroupEventCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.isGroupEventCheckBox.Name = "isGroupEventCheckBox";
-            this.isGroupEventCheckBox.Size = new System.Drawing.Size(169, 19);
+            this.isGroupEventCheckBox.Size = new System.Drawing.Size(140, 16);
             this.isGroupEventCheckBox.TabIndex = 42;
             this.isGroupEventCheckBox.Text = "字幕と音声のグループ化";
             this.isGroupEventCheckBox.UseVisualStyleBackColor = true;
@@ -206,11 +205,9 @@
             this.actorGroup.Controls.Add(this.actorTrackNoticeLabel);
             this.actorGroup.Controls.Add(this.useActorMediaBin);
             this.actorGroup.Controls.Add(this.actorMediaBinLabel);
-            this.actorGroup.Location = new System.Drawing.Point(599, 149);
-            this.actorGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.actorGroup.Location = new System.Drawing.Point(449, 119);
             this.actorGroup.Name = "actorGroup";
-            this.actorGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.actorGroup.Size = new System.Drawing.Size(551, 439);
+            this.actorGroup.Size = new System.Drawing.Size(413, 351);
             this.actorGroup.TabIndex = 41;
             this.actorGroup.TabStop = false;
             this.actorGroup.Text = "声優名";
@@ -218,10 +215,9 @@
             // actorMarginUnitLabel
             // 
             this.actorMarginUnitLabel.AutoSize = true;
-            this.actorMarginUnitLabel.Location = new System.Drawing.Point(272, 144);
-            this.actorMarginUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorMarginUnitLabel.Location = new System.Drawing.Point(204, 115);
             this.actorMarginUnitLabel.Name = "actorMarginUnitLabel";
-            this.actorMarginUnitLabel.Size = new System.Drawing.Size(40, 15);
+            this.actorMarginUnitLabel.Size = new System.Drawing.Size(31, 12);
             this.actorMarginUnitLabel.TabIndex = 43;
             this.actorMarginUnitLabel.Text = "ミリ秒";
             // 
@@ -229,18 +225,16 @@
             // 
             this.actorPresetBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.actorPresetBox.FormattingEnabled = true;
-            this.actorPresetBox.Location = new System.Drawing.Point(134, 90);
-            this.actorPresetBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorPresetBox.Location = new System.Drawing.Point(100, 72);
             this.actorPresetBox.Name = "actorPresetBox";
-            this.actorPresetBox.Size = new System.Drawing.Size(372, 23);
+            this.actorPresetBox.Size = new System.Drawing.Size(280, 20);
             this.actorPresetBox.TabIndex = 40;
             // 
             // actorMarginBox
             // 
-            this.actorMarginBox.Location = new System.Drawing.Point(131, 140);
-            this.actorMarginBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorMarginBox.Location = new System.Drawing.Point(98, 112);
             this.actorMarginBox.Name = "actorMarginBox";
-            this.actorMarginBox.Size = new System.Drawing.Size(132, 22);
+            this.actorMarginBox.Size = new System.Drawing.Size(100, 19);
             this.actorMarginBox.TabIndex = 42;
             this.actorMarginBox.Text = "0";
             this.actorMarginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -248,49 +242,44 @@
             // actorPresetLabel
             // 
             this.actorPresetLabel.AutoSize = true;
-            this.actorPresetLabel.Location = new System.Drawing.Point(15, 93);
-            this.actorPresetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorPresetLabel.Location = new System.Drawing.Point(11, 74);
             this.actorPresetLabel.Name = "actorPresetLabel";
-            this.actorPresetLabel.Size = new System.Drawing.Size(59, 15);
+            this.actorPresetLabel.Size = new System.Drawing.Size(46, 12);
             this.actorPresetLabel.TabIndex = 40;
             this.actorPresetLabel.Text = "プリセット";
             // 
             // actorMarginLabel
             // 
             this.actorMarginLabel.AutoSize = true;
-            this.actorMarginLabel.Location = new System.Drawing.Point(15, 143);
-            this.actorMarginLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorMarginLabel.Location = new System.Drawing.Point(11, 114);
             this.actorMarginLabel.Name = "actorMarginLabel";
-            this.actorMarginLabel.Size = new System.Drawing.Size(53, 15);
+            this.actorMarginLabel.Size = new System.Drawing.Size(43, 12);
             this.actorMarginLabel.TabIndex = 41;
             this.actorMarginLabel.Text = "マージン";
             // 
             // actorMediaBinBox
             // 
             this.actorMediaBinBox.FormattingEnabled = true;
-            this.actorMediaBinBox.Location = new System.Drawing.Point(113, 401);
-            this.actorMediaBinBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorMediaBinBox.Location = new System.Drawing.Point(85, 321);
             this.actorMediaBinBox.Name = "actorMediaBinBox";
-            this.actorMediaBinBox.Size = new System.Drawing.Size(309, 23);
+            this.actorMediaBinBox.Size = new System.Drawing.Size(233, 20);
             this.actorMediaBinBox.TabIndex = 28;
             // 
             // actorTrackLabel
             // 
             this.actorTrackLabel.AutoSize = true;
-            this.actorTrackLabel.Location = new System.Drawing.Point(15, 31);
-            this.actorTrackLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorTrackLabel.Location = new System.Drawing.Point(11, 25);
             this.actorTrackLabel.Name = "actorTrackLabel";
-            this.actorTrackLabel.Size = new System.Drawing.Size(92, 15);
+            this.actorTrackLabel.Size = new System.Drawing.Size(72, 12);
             this.actorTrackLabel.TabIndex = 27;
             this.actorTrackLabel.Text = "声優名トラック";
             // 
             // actorTrackBox
             // 
             this.actorTrackBox.FormattingEnabled = true;
-            this.actorTrackBox.Location = new System.Drawing.Point(135, 28);
-            this.actorTrackBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorTrackBox.Location = new System.Drawing.Point(101, 22);
             this.actorTrackBox.Name = "actorTrackBox";
-            this.actorTrackBox.Size = new System.Drawing.Size(372, 23);
+            this.actorTrackBox.Size = new System.Drawing.Size(280, 20);
             this.actorTrackBox.TabIndex = 28;
             // 
             // actorColorGroup
@@ -303,11 +292,9 @@
             this.actorColorGroup.Controls.Add(this.actorOutlineColorBox);
             this.actorColorGroup.Controls.Add(this.actorOutlineWidthUnitLabel);
             this.actorColorGroup.Controls.Add(this.actorOutlineWidthBox);
-            this.actorColorGroup.Location = new System.Drawing.Point(15, 185);
-            this.actorColorGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.actorColorGroup.Location = new System.Drawing.Point(11, 148);
             this.actorColorGroup.Name = "actorColorGroup";
-            this.actorColorGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.actorColorGroup.Size = new System.Drawing.Size(280, 182);
+            this.actorColorGroup.Size = new System.Drawing.Size(210, 146);
             this.actorColorGroup.TabIndex = 39;
             this.actorColorGroup.TabStop = false;
             this.actorColorGroup.Text = "声優名の色";
@@ -317,10 +304,9 @@
             this.useActorDefaultSettings.AutoSize = true;
             this.useActorDefaultSettings.Checked = true;
             this.useActorDefaultSettings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useActorDefaultSettings.Location = new System.Drawing.Point(11, 22);
-            this.useActorDefaultSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.useActorDefaultSettings.Location = new System.Drawing.Point(8, 18);
             this.useActorDefaultSettings.Name = "useActorDefaultSettings";
-            this.useActorDefaultSettings.Size = new System.Drawing.Size(227, 19);
+            this.useActorDefaultSettings.Size = new System.Drawing.Size(185, 16);
             this.useActorDefaultSettings.TabIndex = 38;
             this.useActorDefaultSettings.Text = "規定の字幕・アウトライン色を使用";
             this.useActorDefaultSettings.UseVisualStyleBackColor = true;
@@ -329,40 +315,36 @@
             // actorOutlineWidthLabel
             // 
             this.actorOutlineWidthLabel.AutoSize = true;
-            this.actorOutlineWidthLabel.Location = new System.Drawing.Point(8, 141);
-            this.actorOutlineWidthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorOutlineWidthLabel.Location = new System.Drawing.Point(6, 113);
             this.actorOutlineWidthLabel.Name = "actorOutlineWidthLabel";
-            this.actorOutlineWidthLabel.Size = new System.Drawing.Size(87, 15);
+            this.actorOutlineWidthLabel.Size = new System.Drawing.Size(69, 12);
             this.actorOutlineWidthLabel.TabIndex = 31;
             this.actorOutlineWidthLabel.Text = "アウトライン幅";
             // 
             // actorColorLabel
             // 
             this.actorColorLabel.AutoSize = true;
-            this.actorColorLabel.Location = new System.Drawing.Point(8, 60);
-            this.actorColorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorColorLabel.Location = new System.Drawing.Point(6, 48);
             this.actorColorLabel.Name = "actorColorLabel";
-            this.actorColorLabel.Size = new System.Drawing.Size(52, 15);
+            this.actorColorLabel.Size = new System.Drawing.Size(41, 12);
             this.actorColorLabel.TabIndex = 33;
             this.actorColorLabel.Text = "字幕色";
             // 
             // actorOutlineColorLabel
             // 
             this.actorOutlineColorLabel.AutoSize = true;
-            this.actorOutlineColorLabel.Location = new System.Drawing.Point(8, 104);
-            this.actorOutlineColorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorOutlineColorLabel.Location = new System.Drawing.Point(6, 83);
             this.actorOutlineColorLabel.Name = "actorOutlineColorLabel";
-            this.actorOutlineColorLabel.Size = new System.Drawing.Size(87, 15);
+            this.actorOutlineColorLabel.Size = new System.Drawing.Size(69, 12);
             this.actorOutlineColorLabel.TabIndex = 32;
             this.actorOutlineColorLabel.Text = "アウトライン色";
             // 
             // actorColorBox
             // 
             this.actorColorBox.BackColor = System.Drawing.Color.Transparent;
-            this.actorColorBox.Location = new System.Drawing.Point(128, 50);
-            this.actorColorBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorColorBox.Location = new System.Drawing.Point(96, 40);
             this.actorColorBox.Name = "actorColorBox";
-            this.actorColorBox.Size = new System.Drawing.Size(55, 36);
+            this.actorColorBox.Size = new System.Drawing.Size(41, 29);
             this.actorColorBox.TabIndex = 35;
             this.actorColorBox.TabStop = false;
             this.actorColorBox.Click += new System.EventHandler(this.ActorColorBox_Clicked);
@@ -370,10 +352,9 @@
             // actorOutlineColorBox
             // 
             this.actorOutlineColorBox.BackColor = System.Drawing.Color.Transparent;
-            this.actorOutlineColorBox.Location = new System.Drawing.Point(128, 94);
-            this.actorOutlineColorBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorOutlineColorBox.Location = new System.Drawing.Point(96, 75);
             this.actorOutlineColorBox.Name = "actorOutlineColorBox";
-            this.actorOutlineColorBox.Size = new System.Drawing.Size(55, 36);
+            this.actorOutlineColorBox.Size = new System.Drawing.Size(41, 29);
             this.actorOutlineColorBox.TabIndex = 36;
             this.actorOutlineColorBox.TabStop = false;
             this.actorOutlineColorBox.Click += new System.EventHandler(this.ActorOutlineColorBox_Clicked);
@@ -381,19 +362,17 @@
             // actorOutlineWidthUnitLabel
             // 
             this.actorOutlineWidthUnitLabel.AutoSize = true;
-            this.actorOutlineWidthUnitLabel.Location = new System.Drawing.Point(201, 141);
-            this.actorOutlineWidthUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorOutlineWidthUnitLabel.Location = new System.Drawing.Point(151, 113);
             this.actorOutlineWidthUnitLabel.Name = "actorOutlineWidthUnitLabel";
-            this.actorOutlineWidthUnitLabel.Size = new System.Drawing.Size(21, 15);
+            this.actorOutlineWidthUnitLabel.Size = new System.Drawing.Size(17, 12);
             this.actorOutlineWidthUnitLabel.TabIndex = 30;
             this.actorOutlineWidthUnitLabel.Text = "px";
             // 
             // actorOutlineWidthBox
             // 
-            this.actorOutlineWidthBox.Location = new System.Drawing.Point(128, 138);
-            this.actorOutlineWidthBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorOutlineWidthBox.Location = new System.Drawing.Point(96, 110);
             this.actorOutlineWidthBox.Name = "actorOutlineWidthBox";
-            this.actorOutlineWidthBox.Size = new System.Drawing.Size(53, 22);
+            this.actorOutlineWidthBox.Size = new System.Drawing.Size(41, 19);
             this.actorOutlineWidthBox.TabIndex = 34;
             this.actorOutlineWidthBox.Text = "0";
             this.actorOutlineWidthBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -402,8 +381,7 @@
             // 
             this.actorTrackNoticeLabel.AutoSize = true;
             this.actorTrackNoticeLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.actorTrackNoticeLabel.Location = new System.Drawing.Point(132, 56);
-            this.actorTrackNoticeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorTrackNoticeLabel.Location = new System.Drawing.Point(99, 45);
             this.actorTrackNoticeLabel.Name = "actorTrackNoticeLabel";
             this.actorTrackNoticeLabel.Size = new System.Drawing.Size(152, 12);
             this.actorTrackNoticeLabel.TabIndex = 29;
@@ -414,10 +392,9 @@
             this.useActorMediaBin.AutoSize = true;
             this.useActorMediaBin.Checked = true;
             this.useActorMediaBin.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useActorMediaBin.Location = new System.Drawing.Point(17, 375);
-            this.useActorMediaBin.Margin = new System.Windows.Forms.Padding(4);
+            this.useActorMediaBin.Location = new System.Drawing.Point(13, 300);
             this.useActorMediaBin.Name = "useActorMediaBin";
-            this.useActorMediaBin.Size = new System.Drawing.Size(168, 19);
+            this.useActorMediaBin.Size = new System.Drawing.Size(138, 16);
             this.useActorMediaBin.TabIndex = 27;
             this.useActorMediaBin.Text = "メディアビンを作成・使用";
             this.useActorMediaBin.UseVisualStyleBackColor = true;
@@ -426,10 +403,9 @@
             // actorMediaBinLabel
             // 
             this.actorMediaBinLabel.AutoSize = true;
-            this.actorMediaBinLabel.Location = new System.Drawing.Point(15, 407);
-            this.actorMediaBinLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorMediaBinLabel.Location = new System.Drawing.Point(11, 326);
             this.actorMediaBinLabel.Name = "actorMediaBinLabel";
-            this.actorMediaBinLabel.Size = new System.Drawing.Size(85, 15);
+            this.actorMediaBinLabel.Size = new System.Drawing.Size(68, 12);
             this.actorMediaBinLabel.TabIndex = 28;
             this.actorMediaBinLabel.Text = "メディアビン名";
             // 
@@ -447,11 +423,9 @@
             this.jimakuGroup.Controls.Add(this.jimakuColorGroup);
             this.jimakuGroup.Controls.Add(this.useJimakuMediaBin);
             this.jimakuGroup.Controls.Add(this.jimakuMediaBinLabel);
-            this.jimakuGroup.Location = new System.Drawing.Point(16, 149);
-            this.jimakuGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuGroup.Location = new System.Drawing.Point(12, 119);
             this.jimakuGroup.Name = "jimakuGroup";
-            this.jimakuGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.jimakuGroup.Size = new System.Drawing.Size(551, 439);
+            this.jimakuGroup.Size = new System.Drawing.Size(413, 351);
             this.jimakuGroup.TabIndex = 40;
             this.jimakuGroup.TabStop = false;
             this.jimakuGroup.Text = "字幕";
@@ -459,19 +433,17 @@
             // jimakuMarginUnitLabel
             // 
             this.jimakuMarginUnitLabel.AutoSize = true;
-            this.jimakuMarginUnitLabel.Location = new System.Drawing.Point(281, 144);
-            this.jimakuMarginUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuMarginUnitLabel.Location = new System.Drawing.Point(211, 115);
             this.jimakuMarginUnitLabel.Name = "jimakuMarginUnitLabel";
-            this.jimakuMarginUnitLabel.Size = new System.Drawing.Size(40, 15);
+            this.jimakuMarginUnitLabel.Size = new System.Drawing.Size(31, 12);
             this.jimakuMarginUnitLabel.TabIndex = 43;
             this.jimakuMarginUnitLabel.Text = "ミリ秒";
             // 
             // jimakuMarginBox
             // 
-            this.jimakuMarginBox.Location = new System.Drawing.Point(140, 140);
-            this.jimakuMarginBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuMarginBox.Location = new System.Drawing.Point(105, 112);
             this.jimakuMarginBox.Name = "jimakuMarginBox";
-            this.jimakuMarginBox.Size = new System.Drawing.Size(132, 22);
+            this.jimakuMarginBox.Size = new System.Drawing.Size(100, 19);
             this.jimakuMarginBox.TabIndex = 42;
             this.jimakuMarginBox.Text = "0";
             this.jimakuMarginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -479,10 +451,9 @@
             // jimakuMarginLabel
             // 
             this.jimakuMarginLabel.AutoSize = true;
-            this.jimakuMarginLabel.Location = new System.Drawing.Point(24, 143);
-            this.jimakuMarginLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuMarginLabel.Location = new System.Drawing.Point(18, 114);
             this.jimakuMarginLabel.Name = "jimakuMarginLabel";
-            this.jimakuMarginLabel.Size = new System.Drawing.Size(53, 15);
+            this.jimakuMarginLabel.Size = new System.Drawing.Size(43, 12);
             this.jimakuMarginLabel.TabIndex = 41;
             this.jimakuMarginLabel.Text = "マージン";
             // 
@@ -490,56 +461,50 @@
             // 
             this.jimakuPresetBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.jimakuPresetBox.FormattingEnabled = true;
-            this.jimakuPresetBox.Location = new System.Drawing.Point(140, 93);
-            this.jimakuPresetBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuPresetBox.Location = new System.Drawing.Point(105, 74);
             this.jimakuPresetBox.Name = "jimakuPresetBox";
-            this.jimakuPresetBox.Size = new System.Drawing.Size(372, 23);
+            this.jimakuPresetBox.Size = new System.Drawing.Size(280, 20);
             this.jimakuPresetBox.TabIndex = 40;
             // 
             // jimakuPresetLabel
             // 
             this.jimakuPresetLabel.AutoSize = true;
-            this.jimakuPresetLabel.Location = new System.Drawing.Point(20, 93);
-            this.jimakuPresetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuPresetLabel.Location = new System.Drawing.Point(15, 74);
             this.jimakuPresetLabel.Name = "jimakuPresetLabel";
-            this.jimakuPresetLabel.Size = new System.Drawing.Size(59, 15);
+            this.jimakuPresetLabel.Size = new System.Drawing.Size(46, 12);
             this.jimakuPresetLabel.TabIndex = 39;
             this.jimakuPresetLabel.Text = "プリセット";
             // 
             // jimakuMediaBinBox
             // 
             this.jimakuMediaBinBox.FormattingEnabled = true;
-            this.jimakuMediaBinBox.Location = new System.Drawing.Point(119, 401);
-            this.jimakuMediaBinBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuMediaBinBox.Location = new System.Drawing.Point(89, 321);
             this.jimakuMediaBinBox.Name = "jimakuMediaBinBox";
-            this.jimakuMediaBinBox.Size = new System.Drawing.Size(309, 23);
+            this.jimakuMediaBinBox.Size = new System.Drawing.Size(233, 20);
             this.jimakuMediaBinBox.TabIndex = 28;
             // 
             // jimakuTrackLabel
             // 
             this.jimakuTrackLabel.AutoSize = true;
-            this.jimakuTrackLabel.Location = new System.Drawing.Point(20, 31);
-            this.jimakuTrackLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuTrackLabel.Location = new System.Drawing.Point(15, 25);
             this.jimakuTrackLabel.Name = "jimakuTrackLabel";
-            this.jimakuTrackLabel.Size = new System.Drawing.Size(77, 15);
+            this.jimakuTrackLabel.Size = new System.Drawing.Size(60, 12);
             this.jimakuTrackLabel.TabIndex = 27;
             this.jimakuTrackLabel.Text = "字幕トラック";
             // 
             // jimakuTrackBox
             // 
             this.jimakuTrackBox.FormattingEnabled = true;
-            this.jimakuTrackBox.Location = new System.Drawing.Point(140, 28);
-            this.jimakuTrackBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuTrackBox.Location = new System.Drawing.Point(105, 22);
             this.jimakuTrackBox.Name = "jimakuTrackBox";
-            this.jimakuTrackBox.Size = new System.Drawing.Size(372, 23);
+            this.jimakuTrackBox.Size = new System.Drawing.Size(280, 20);
             this.jimakuTrackBox.TabIndex = 28;
             // 
             // jimakuTrackNoticeLabel
             // 
             this.jimakuTrackNoticeLabel.AutoSize = true;
             this.jimakuTrackNoticeLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.jimakuTrackNoticeLabel.Location = new System.Drawing.Point(137, 56);
-            this.jimakuTrackNoticeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuTrackNoticeLabel.Location = new System.Drawing.Point(103, 45);
             this.jimakuTrackNoticeLabel.Name = "jimakuTrackNoticeLabel";
             this.jimakuTrackNoticeLabel.Size = new System.Drawing.Size(152, 12);
             this.jimakuTrackNoticeLabel.TabIndex = 29;
@@ -555,11 +520,9 @@
             this.jimakuColorGroup.Controls.Add(this.jimakuOutlineColorBox);
             this.jimakuColorGroup.Controls.Add(this.jimakuOutlineWidthUnitLabel);
             this.jimakuColorGroup.Controls.Add(this.jimakuOutlineWidthBox);
-            this.jimakuColorGroup.Location = new System.Drawing.Point(23, 187);
-            this.jimakuColorGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuColorGroup.Location = new System.Drawing.Point(17, 150);
             this.jimakuColorGroup.Name = "jimakuColorGroup";
-            this.jimakuColorGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.jimakuColorGroup.Size = new System.Drawing.Size(273, 182);
+            this.jimakuColorGroup.Size = new System.Drawing.Size(205, 146);
             this.jimakuColorGroup.TabIndex = 38;
             this.jimakuColorGroup.TabStop = false;
             this.jimakuColorGroup.Text = "字幕の色";
@@ -569,10 +532,9 @@
             this.useJimakuDefaultSettings.AutoSize = true;
             this.useJimakuDefaultSettings.Checked = true;
             this.useJimakuDefaultSettings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useJimakuDefaultSettings.Location = new System.Drawing.Point(11, 22);
-            this.useJimakuDefaultSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.useJimakuDefaultSettings.Location = new System.Drawing.Point(8, 18);
             this.useJimakuDefaultSettings.Name = "useJimakuDefaultSettings";
-            this.useJimakuDefaultSettings.Size = new System.Drawing.Size(227, 19);
+            this.useJimakuDefaultSettings.Size = new System.Drawing.Size(185, 16);
             this.useJimakuDefaultSettings.TabIndex = 38;
             this.useJimakuDefaultSettings.Text = "規定の字幕・アウトライン色を使用";
             this.useJimakuDefaultSettings.UseVisualStyleBackColor = true;
@@ -581,40 +543,36 @@
             // jimakuOutlineWidthLabel
             // 
             this.jimakuOutlineWidthLabel.AutoSize = true;
-            this.jimakuOutlineWidthLabel.Location = new System.Drawing.Point(8, 141);
-            this.jimakuOutlineWidthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuOutlineWidthLabel.Location = new System.Drawing.Point(6, 113);
             this.jimakuOutlineWidthLabel.Name = "jimakuOutlineWidthLabel";
-            this.jimakuOutlineWidthLabel.Size = new System.Drawing.Size(87, 15);
+            this.jimakuOutlineWidthLabel.Size = new System.Drawing.Size(69, 12);
             this.jimakuOutlineWidthLabel.TabIndex = 31;
             this.jimakuOutlineWidthLabel.Text = "アウトライン幅";
             // 
             // jimakuColorLabel
             // 
             this.jimakuColorLabel.AutoSize = true;
-            this.jimakuColorLabel.Location = new System.Drawing.Point(8, 60);
-            this.jimakuColorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuColorLabel.Location = new System.Drawing.Point(6, 48);
             this.jimakuColorLabel.Name = "jimakuColorLabel";
-            this.jimakuColorLabel.Size = new System.Drawing.Size(52, 15);
+            this.jimakuColorLabel.Size = new System.Drawing.Size(41, 12);
             this.jimakuColorLabel.TabIndex = 33;
             this.jimakuColorLabel.Text = "字幕色";
             // 
             // jimakuOutlineColorLabel
             // 
             this.jimakuOutlineColorLabel.AutoSize = true;
-            this.jimakuOutlineColorLabel.Location = new System.Drawing.Point(8, 104);
-            this.jimakuOutlineColorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuOutlineColorLabel.Location = new System.Drawing.Point(6, 83);
             this.jimakuOutlineColorLabel.Name = "jimakuOutlineColorLabel";
-            this.jimakuOutlineColorLabel.Size = new System.Drawing.Size(87, 15);
+            this.jimakuOutlineColorLabel.Size = new System.Drawing.Size(69, 12);
             this.jimakuOutlineColorLabel.TabIndex = 32;
             this.jimakuOutlineColorLabel.Text = "アウトライン色";
             // 
             // jimakuColorBox
             // 
             this.jimakuColorBox.BackColor = System.Drawing.Color.Transparent;
-            this.jimakuColorBox.Location = new System.Drawing.Point(128, 50);
-            this.jimakuColorBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuColorBox.Location = new System.Drawing.Point(96, 40);
             this.jimakuColorBox.Name = "jimakuColorBox";
-            this.jimakuColorBox.Size = new System.Drawing.Size(55, 36);
+            this.jimakuColorBox.Size = new System.Drawing.Size(41, 29);
             this.jimakuColorBox.TabIndex = 35;
             this.jimakuColorBox.TabStop = false;
             this.jimakuColorBox.Click += new System.EventHandler(this.JimakuColorBox_Clicked);
@@ -622,10 +580,9 @@
             // jimakuOutlineColorBox
             // 
             this.jimakuOutlineColorBox.BackColor = System.Drawing.Color.Transparent;
-            this.jimakuOutlineColorBox.Location = new System.Drawing.Point(128, 94);
-            this.jimakuOutlineColorBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuOutlineColorBox.Location = new System.Drawing.Point(96, 75);
             this.jimakuOutlineColorBox.Name = "jimakuOutlineColorBox";
-            this.jimakuOutlineColorBox.Size = new System.Drawing.Size(55, 36);
+            this.jimakuOutlineColorBox.Size = new System.Drawing.Size(41, 29);
             this.jimakuOutlineColorBox.TabIndex = 36;
             this.jimakuOutlineColorBox.TabStop = false;
             this.jimakuOutlineColorBox.Click += new System.EventHandler(this.JimakuOutlineColorBox_Clicked);
@@ -633,19 +590,17 @@
             // jimakuOutlineWidthUnitLabel
             // 
             this.jimakuOutlineWidthUnitLabel.AutoSize = true;
-            this.jimakuOutlineWidthUnitLabel.Location = new System.Drawing.Point(201, 141);
-            this.jimakuOutlineWidthUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuOutlineWidthUnitLabel.Location = new System.Drawing.Point(151, 113);
             this.jimakuOutlineWidthUnitLabel.Name = "jimakuOutlineWidthUnitLabel";
-            this.jimakuOutlineWidthUnitLabel.Size = new System.Drawing.Size(21, 15);
+            this.jimakuOutlineWidthUnitLabel.Size = new System.Drawing.Size(17, 12);
             this.jimakuOutlineWidthUnitLabel.TabIndex = 30;
             this.jimakuOutlineWidthUnitLabel.Text = "px";
             // 
             // jimakuOutlineWidthBox
             // 
-            this.jimakuOutlineWidthBox.Location = new System.Drawing.Point(128, 138);
-            this.jimakuOutlineWidthBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuOutlineWidthBox.Location = new System.Drawing.Point(96, 110);
             this.jimakuOutlineWidthBox.Name = "jimakuOutlineWidthBox";
-            this.jimakuOutlineWidthBox.Size = new System.Drawing.Size(53, 22);
+            this.jimakuOutlineWidthBox.Size = new System.Drawing.Size(41, 19);
             this.jimakuOutlineWidthBox.TabIndex = 34;
             this.jimakuOutlineWidthBox.Text = "0";
             this.jimakuOutlineWidthBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -655,10 +610,9 @@
             this.useJimakuMediaBin.AutoSize = true;
             this.useJimakuMediaBin.Checked = true;
             this.useJimakuMediaBin.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useJimakuMediaBin.Location = new System.Drawing.Point(23, 377);
-            this.useJimakuMediaBin.Margin = new System.Windows.Forms.Padding(4);
+            this.useJimakuMediaBin.Location = new System.Drawing.Point(17, 302);
             this.useJimakuMediaBin.Name = "useJimakuMediaBin";
-            this.useJimakuMediaBin.Size = new System.Drawing.Size(168, 19);
+            this.useJimakuMediaBin.Size = new System.Drawing.Size(138, 16);
             this.useJimakuMediaBin.TabIndex = 27;
             this.useJimakuMediaBin.Text = "メディアビンを作成・使用";
             this.useJimakuMediaBin.UseVisualStyleBackColor = true;
@@ -667,10 +621,9 @@
             // jimakuMediaBinLabel
             // 
             this.jimakuMediaBinLabel.AutoSize = true;
-            this.jimakuMediaBinLabel.Location = new System.Drawing.Point(20, 407);
-            this.jimakuMediaBinLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuMediaBinLabel.Location = new System.Drawing.Point(15, 326);
             this.jimakuMediaBinLabel.Name = "jimakuMediaBinLabel";
-            this.jimakuMediaBinLabel.Size = new System.Drawing.Size(85, 15);
+            this.jimakuMediaBinLabel.Size = new System.Drawing.Size(68, 12);
             this.jimakuMediaBinLabel.TabIndex = 28;
             this.jimakuMediaBinLabel.Text = "メディアビン名";
             // 
@@ -679,11 +632,9 @@
             this.prefixBehaviorGroup.Controls.Add(this.createNewEvent);
             this.prefixBehaviorGroup.Controls.Add(this.deleteActorName);
             this.prefixBehaviorGroup.Controls.Add(this.remainActorName);
-            this.prefixBehaviorGroup.Location = new System.Drawing.Point(16, 80);
-            this.prefixBehaviorGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.prefixBehaviorGroup.Location = new System.Drawing.Point(12, 64);
             this.prefixBehaviorGroup.Name = "prefixBehaviorGroup";
-            this.prefixBehaviorGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.prefixBehaviorGroup.Size = new System.Drawing.Size(519, 58);
+            this.prefixBehaviorGroup.Size = new System.Drawing.Size(389, 46);
             this.prefixBehaviorGroup.TabIndex = 30;
             this.prefixBehaviorGroup.TabStop = false;
             this.prefixBehaviorGroup.Text = "接頭辞(声優名)の扱い";
@@ -691,10 +642,9 @@
             // createNewEvent
             // 
             this.createNewEvent.AutoSize = true;
-            this.createNewEvent.Location = new System.Drawing.Point(316, 22);
-            this.createNewEvent.Margin = new System.Windows.Forms.Padding(4);
+            this.createNewEvent.Location = new System.Drawing.Point(237, 18);
             this.createNewEvent.Name = "createNewEvent";
-            this.createNewEvent.Size = new System.Drawing.Size(178, 19);
+            this.createNewEvent.Size = new System.Drawing.Size(145, 16);
             this.createNewEvent.TabIndex = 2;
             this.createNewEvent.Text = "接頭辞を別トラックで作成";
             this.createNewEvent.UseVisualStyleBackColor = true;
@@ -704,10 +654,9 @@
             // 
             this.deleteActorName.AutoSize = true;
             this.deleteActorName.Checked = true;
-            this.deleteActorName.Location = new System.Drawing.Point(185, 22);
-            this.deleteActorName.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteActorName.Location = new System.Drawing.Point(139, 18);
             this.deleteActorName.Name = "deleteActorName";
-            this.deleteActorName.Size = new System.Drawing.Size(111, 19);
+            this.deleteActorName.Size = new System.Drawing.Size(92, 16);
             this.deleteActorName.TabIndex = 1;
             this.deleteActorName.TabStop = true;
             this.deleteActorName.Text = "接頭辞を削除";
@@ -717,10 +666,9 @@
             // remainActorName
             // 
             this.remainActorName.AutoSize = true;
-            this.remainActorName.Location = new System.Drawing.Point(8, 22);
-            this.remainActorName.Margin = new System.Windows.Forms.Padding(4);
+            this.remainActorName.Location = new System.Drawing.Point(6, 18);
             this.remainActorName.Name = "remainActorName";
-            this.remainActorName.Size = new System.Drawing.Size(154, 19);
+            this.remainActorName.Size = new System.Drawing.Size(127, 16);
             this.remainActorName.TabIndex = 0;
             this.remainActorName.Text = "接頭辞をそのまま残す";
             this.remainActorName.UseVisualStyleBackColor = true;
@@ -729,19 +677,17 @@
             // jimakuFilePathLabel
             // 
             this.jimakuFilePathLabel.AutoSize = true;
-            this.jimakuFilePathLabel.Location = new System.Drawing.Point(13, 35);
-            this.jimakuFilePathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuFilePathLabel.Location = new System.Drawing.Point(10, 28);
             this.jimakuFilePathLabel.Name = "jimakuFilePathLabel";
-            this.jimakuFilePathLabel.Size = new System.Drawing.Size(102, 15);
+            this.jimakuFilePathLabel.Size = new System.Drawing.Size(82, 12);
             this.jimakuFilePathLabel.TabIndex = 15;
             this.jimakuFilePathLabel.Text = "字幕ファイルパス";
             // 
             // jimakuFileDialogOpenButton
             // 
-            this.jimakuFileDialogOpenButton.Location = new System.Drawing.Point(1067, 29);
-            this.jimakuFileDialogOpenButton.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuFileDialogOpenButton.Location = new System.Drawing.Point(800, 23);
             this.jimakuFileDialogOpenButton.Name = "jimakuFileDialogOpenButton";
-            this.jimakuFileDialogOpenButton.Size = new System.Drawing.Size(100, 29);
+            this.jimakuFileDialogOpenButton.Size = new System.Drawing.Size(75, 23);
             this.jimakuFileDialogOpenButton.TabIndex = 17;
             this.jimakuFileDialogOpenButton.Text = "参照...";
             this.jimakuFileDialogOpenButton.UseVisualStyleBackColor = true;
@@ -749,10 +695,9 @@
             // 
             // jimakuFilePathBox
             // 
-            this.jimakuFilePathBox.Location = new System.Drawing.Point(133, 31);
-            this.jimakuFilePathBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuFilePathBox.Location = new System.Drawing.Point(100, 25);
             this.jimakuFilePathBox.Name = "jimakuFilePathBox";
-            this.jimakuFilePathBox.Size = new System.Drawing.Size(924, 22);
+            this.jimakuFilePathBox.Size = new System.Drawing.Size(694, 19);
             this.jimakuFilePathBox.TabIndex = 16;
             // 
             // audioFolderGroup
@@ -771,11 +716,9 @@
             this.audioFolderGroup.Controls.Add(this.IsRecursiveCheck);
             this.audioFolderGroup.Controls.Add(this.audioFileFolderBox);
             this.audioFolderGroup.Controls.Add(this.audioMediaBinNameLabel);
-            this.audioFolderGroup.Location = new System.Drawing.Point(20, 18);
-            this.audioFolderGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.audioFolderGroup.Location = new System.Drawing.Point(15, 14);
             this.audioFolderGroup.Name = "audioFolderGroup";
-            this.audioFolderGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.audioFolderGroup.Size = new System.Drawing.Size(1183, 287);
+            this.audioFolderGroup.Size = new System.Drawing.Size(887, 230);
             this.audioFolderGroup.TabIndex = 27;
             this.audioFolderGroup.TabStop = false;
             this.audioFolderGroup.Text = "音声流し込み";
@@ -784,9 +727,11 @@
             // 
             this.startPositionGroup.Controls.Add(this.fromCurrentPosition);
             this.startPositionGroup.Controls.Add(this.fromStartPosition);
-            this.startPositionGroup.Location = new System.Drawing.Point(16, 152);
+            this.startPositionGroup.Location = new System.Drawing.Point(12, 122);
+            this.startPositionGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.startPositionGroup.Name = "startPositionGroup";
-            this.startPositionGroup.Size = new System.Drawing.Size(367, 72);
+            this.startPositionGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.startPositionGroup.Size = new System.Drawing.Size(275, 58);
             this.startPositionGroup.TabIndex = 28;
             this.startPositionGroup.TabStop = false;
             this.startPositionGroup.Text = "開始位置";
@@ -794,9 +739,10 @@
             // fromCurrentPosition
             // 
             this.fromCurrentPosition.AutoSize = true;
-            this.fromCurrentPosition.Location = new System.Drawing.Point(196, 32);
+            this.fromCurrentPosition.Location = new System.Drawing.Point(147, 26);
+            this.fromCurrentPosition.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fromCurrentPosition.Name = "fromCurrentPosition";
-            this.fromCurrentPosition.Size = new System.Drawing.Size(149, 19);
+            this.fromCurrentPosition.Size = new System.Drawing.Size(123, 16);
             this.fromCurrentPosition.TabIndex = 1;
             this.fromCurrentPosition.TabStop = true;
             this.fromCurrentPosition.Text = "現在の開始位置から";
@@ -806,9 +752,10 @@
             // 
             this.fromStartPosition.AutoSize = true;
             this.fromStartPosition.Checked = true;
-            this.fromStartPosition.Location = new System.Drawing.Point(23, 32);
+            this.fromStartPosition.Location = new System.Drawing.Point(17, 26);
+            this.fromStartPosition.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fromStartPosition.Name = "fromStartPosition";
-            this.fromStartPosition.Size = new System.Drawing.Size(154, 19);
+            this.fromStartPosition.Size = new System.Drawing.Size(128, 16);
             this.fromStartPosition.TabIndex = 0;
             this.fromStartPosition.TabStop = true;
             this.fromStartPosition.Text = "タイムラインの最初から";
@@ -817,28 +764,25 @@
             // audioMediaBinBox
             // 
             this.audioMediaBinBox.FormattingEnabled = true;
-            this.audioMediaBinBox.Location = new System.Drawing.Point(322, 243);
-            this.audioMediaBinBox.Margin = new System.Windows.Forms.Padding(4);
+            this.audioMediaBinBox.Location = new System.Drawing.Point(242, 194);
             this.audioMediaBinBox.Name = "audioMediaBinBox";
-            this.audioMediaBinBox.Size = new System.Drawing.Size(309, 23);
+            this.audioMediaBinBox.Size = new System.Drawing.Size(233, 20);
             this.audioMediaBinBox.TabIndex = 27;
             // 
             // intervalLavel
             // 
             this.intervalLavel.AutoSize = true;
-            this.intervalLavel.Location = new System.Drawing.Point(596, 98);
-            this.intervalLavel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.intervalLavel.Location = new System.Drawing.Point(447, 78);
             this.intervalLavel.Name = "intervalLavel";
-            this.intervalLavel.Size = new System.Drawing.Size(67, 15);
+            this.intervalLavel.Size = new System.Drawing.Size(53, 12);
             this.intervalLavel.TabIndex = 18;
             this.intervalLavel.Text = "貼付間隔";
             // 
             // audioFileFolderDialogOpenButton
             // 
-            this.audioFileFolderDialogOpenButton.Location = new System.Drawing.Point(1067, 32);
-            this.audioFileFolderDialogOpenButton.Margin = new System.Windows.Forms.Padding(4);
+            this.audioFileFolderDialogOpenButton.Location = new System.Drawing.Point(800, 26);
             this.audioFileFolderDialogOpenButton.Name = "audioFileFolderDialogOpenButton";
-            this.audioFileFolderDialogOpenButton.Size = new System.Drawing.Size(100, 29);
+            this.audioFileFolderDialogOpenButton.Size = new System.Drawing.Size(75, 23);
             this.audioFileFolderDialogOpenButton.TabIndex = 17;
             this.audioFileFolderDialogOpenButton.Text = "参照...";
             this.audioFileFolderDialogOpenButton.UseVisualStyleBackColor = true;
@@ -848,8 +792,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(131, 122);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(98, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 12);
             this.label1.TabIndex = 26;
@@ -857,38 +800,34 @@
             // 
             // intervalBox
             // 
-            this.intervalBox.Location = new System.Drawing.Point(675, 94);
-            this.intervalBox.Margin = new System.Windows.Forms.Padding(4);
+            this.intervalBox.Location = new System.Drawing.Point(506, 75);
             this.intervalBox.Name = "intervalBox";
-            this.intervalBox.Size = new System.Drawing.Size(97, 22);
+            this.intervalBox.Size = new System.Drawing.Size(74, 19);
             this.intervalBox.TabIndex = 19;
             // 
             // audioTrackNameBox
             // 
             this.audioTrackNameBox.FormattingEnabled = true;
-            this.audioTrackNameBox.Location = new System.Drawing.Point(133, 94);
-            this.audioTrackNameBox.Margin = new System.Windows.Forms.Padding(4);
+            this.audioTrackNameBox.Location = new System.Drawing.Point(100, 75);
             this.audioTrackNameBox.Name = "audioTrackNameBox";
-            this.audioTrackNameBox.Size = new System.Drawing.Size(372, 23);
+            this.audioTrackNameBox.Size = new System.Drawing.Size(280, 20);
             this.audioTrackNameBox.TabIndex = 25;
             // 
             // intervalUnitLabel
             // 
             this.intervalUnitLabel.AutoSize = true;
-            this.intervalUnitLabel.Location = new System.Drawing.Point(781, 98);
-            this.intervalUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.intervalUnitLabel.Location = new System.Drawing.Point(586, 78);
             this.intervalUnitLabel.Name = "intervalUnitLabel";
-            this.intervalUnitLabel.Size = new System.Drawing.Size(40, 15);
+            this.intervalUnitLabel.Size = new System.Drawing.Size(31, 12);
             this.intervalUnitLabel.TabIndex = 20;
             this.intervalUnitLabel.Text = "ミリ秒";
             // 
             // audioTrackNameLabel
             // 
             this.audioTrackNameLabel.AutoSize = true;
-            this.audioTrackNameLabel.Location = new System.Drawing.Point(13, 98);
-            this.audioTrackNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.audioTrackNameLabel.Location = new System.Drawing.Point(10, 78);
             this.audioTrackNameLabel.Name = "audioTrackNameLabel";
-            this.audioTrackNameLabel.Size = new System.Drawing.Size(92, 15);
+            this.audioTrackNameLabel.Size = new System.Drawing.Size(72, 12);
             this.audioTrackNameLabel.TabIndex = 24;
             this.audioTrackNameLabel.Text = "音声トラック名";
             // 
@@ -897,10 +836,9 @@
             this.useAudioMediaBin.AutoSize = true;
             this.useAudioMediaBin.Checked = true;
             this.useAudioMediaBin.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useAudioMediaBin.Location = new System.Drawing.Point(16, 245);
-            this.useAudioMediaBin.Margin = new System.Windows.Forms.Padding(4);
+            this.useAudioMediaBin.Location = new System.Drawing.Point(12, 196);
             this.useAudioMediaBin.Name = "useAudioMediaBin";
-            this.useAudioMediaBin.Size = new System.Drawing.Size(168, 19);
+            this.useAudioMediaBin.Size = new System.Drawing.Size(138, 16);
             this.useAudioMediaBin.TabIndex = 21;
             this.useAudioMediaBin.Text = "メディアビンを作成・使用";
             this.useAudioMediaBin.UseVisualStyleBackColor = true;
@@ -909,39 +847,35 @@
             // audioFileFolderLavel
             // 
             this.audioFileFolderLavel.AutoSize = true;
-            this.audioFileFolderLavel.Location = new System.Drawing.Point(13, 39);
-            this.audioFileFolderLavel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.audioFileFolderLavel.Location = new System.Drawing.Point(10, 31);
             this.audioFileFolderLavel.Name = "audioFileFolderLavel";
-            this.audioFileFolderLavel.Size = new System.Drawing.Size(80, 15);
+            this.audioFileFolderLavel.Size = new System.Drawing.Size(64, 12);
             this.audioFileFolderLavel.TabIndex = 15;
             this.audioFileFolderLavel.Text = "取得フォルダ";
             // 
             // IsRecursiveCheck
             // 
             this.IsRecursiveCheck.AutoSize = true;
-            this.IsRecursiveCheck.Location = new System.Drawing.Point(133, 66);
-            this.IsRecursiveCheck.Margin = new System.Windows.Forms.Padding(4);
+            this.IsRecursiveCheck.Location = new System.Drawing.Point(100, 53);
             this.IsRecursiveCheck.Name = "IsRecursiveCheck";
-            this.IsRecursiveCheck.Size = new System.Drawing.Size(113, 19);
+            this.IsRecursiveCheck.Size = new System.Drawing.Size(93, 16);
             this.IsRecursiveCheck.TabIndex = 14;
             this.IsRecursiveCheck.Text = "再帰的に取得";
             this.IsRecursiveCheck.UseVisualStyleBackColor = true;
             // 
             // audioFileFolderBox
             // 
-            this.audioFileFolderBox.Location = new System.Drawing.Point(133, 35);
-            this.audioFileFolderBox.Margin = new System.Windows.Forms.Padding(4);
+            this.audioFileFolderBox.Location = new System.Drawing.Point(100, 28);
             this.audioFileFolderBox.Name = "audioFileFolderBox";
-            this.audioFileFolderBox.Size = new System.Drawing.Size(924, 22);
+            this.audioFileFolderBox.Size = new System.Drawing.Size(694, 19);
             this.audioFileFolderBox.TabIndex = 16;
             // 
             // audioMediaBinNameLabel
             // 
             this.audioMediaBinNameLabel.AutoSize = true;
-            this.audioMediaBinNameLabel.Location = new System.Drawing.Point(229, 246);
-            this.audioMediaBinNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.audioMediaBinNameLabel.Location = new System.Drawing.Point(172, 197);
             this.audioMediaBinNameLabel.Name = "audioMediaBinNameLabel";
-            this.audioMediaBinNameLabel.Size = new System.Drawing.Size(85, 15);
+            this.audioMediaBinNameLabel.Size = new System.Drawing.Size(68, 12);
             this.audioMediaBinNameLabel.TabIndex = 22;
             this.audioMediaBinNameLabel.Text = "メディアビン名";
             // 
@@ -959,11 +893,9 @@
             this.jimakuBackgroundGroup.Controls.Add(this.jimakuBackgroundMediaBox);
             this.jimakuBackgroundGroup.Controls.Add(this.jimakuBackgroundMediaLabel);
             this.jimakuBackgroundGroup.Controls.Add(this.jimakuBackgroundVideoTrackLabel);
-            this.jimakuBackgroundGroup.Location = new System.Drawing.Point(20, 942);
-            this.jimakuBackgroundGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuBackgroundGroup.Location = new System.Drawing.Point(15, 754);
             this.jimakuBackgroundGroup.Name = "jimakuBackgroundGroup";
-            this.jimakuBackgroundGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.jimakuBackgroundGroup.Size = new System.Drawing.Size(581, 266);
+            this.jimakuBackgroundGroup.Size = new System.Drawing.Size(436, 213);
             this.jimakuBackgroundGroup.TabIndex = 12;
             this.jimakuBackgroundGroup.TabStop = false;
             this.jimakuBackgroundGroup.Text = "字幕背景";
@@ -971,19 +903,17 @@
             // jimakuBackgroundMediaBinBox
             // 
             this.jimakuBackgroundMediaBinBox.FormattingEnabled = true;
-            this.jimakuBackgroundMediaBinBox.Location = new System.Drawing.Point(107, 230);
-            this.jimakuBackgroundMediaBinBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuBackgroundMediaBinBox.Location = new System.Drawing.Point(80, 184);
             this.jimakuBackgroundMediaBinBox.Name = "jimakuBackgroundMediaBinBox";
-            this.jimakuBackgroundMediaBinBox.Size = new System.Drawing.Size(309, 23);
+            this.jimakuBackgroundMediaBinBox.Size = new System.Drawing.Size(233, 20);
             this.jimakuBackgroundMediaBinBox.TabIndex = 43;
             // 
             // jimakuBackgroundMarginUnitLabel
             // 
             this.jimakuBackgroundMarginUnitLabel.AutoSize = true;
-            this.jimakuBackgroundMarginUnitLabel.Location = new System.Drawing.Point(297, 159);
-            this.jimakuBackgroundMarginUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuBackgroundMarginUnitLabel.Location = new System.Drawing.Point(223, 127);
             this.jimakuBackgroundMarginUnitLabel.Name = "jimakuBackgroundMarginUnitLabel";
-            this.jimakuBackgroundMarginUnitLabel.Size = new System.Drawing.Size(40, 15);
+            this.jimakuBackgroundMarginUnitLabel.Size = new System.Drawing.Size(31, 12);
             this.jimakuBackgroundMarginUnitLabel.TabIndex = 17;
             this.jimakuBackgroundMarginUnitLabel.Text = "ミリ秒";
             // 
@@ -992,10 +922,9 @@
             this.useJimakuBackgroundMediaBin.AutoSize = true;
             this.useJimakuBackgroundMediaBin.Checked = true;
             this.useJimakuBackgroundMediaBin.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useJimakuBackgroundMediaBin.Location = new System.Drawing.Point(8, 199);
-            this.useJimakuBackgroundMediaBin.Margin = new System.Windows.Forms.Padding(4);
+            this.useJimakuBackgroundMediaBin.Location = new System.Drawing.Point(6, 159);
             this.useJimakuBackgroundMediaBin.Name = "useJimakuBackgroundMediaBin";
-            this.useJimakuBackgroundMediaBin.Size = new System.Drawing.Size(168, 19);
+            this.useJimakuBackgroundMediaBin.Size = new System.Drawing.Size(138, 16);
             this.useJimakuBackgroundMediaBin.TabIndex = 42;
             this.useJimakuBackgroundMediaBin.Text = "メディアビンを作成・使用";
             this.useJimakuBackgroundMediaBin.UseVisualStyleBackColor = true;
@@ -1003,29 +932,26 @@
             // jimakuBackgroundMediaBinLabel
             // 
             this.jimakuBackgroundMediaBinLabel.AutoSize = true;
-            this.jimakuBackgroundMediaBinLabel.Location = new System.Drawing.Point(8, 236);
-            this.jimakuBackgroundMediaBinLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuBackgroundMediaBinLabel.Location = new System.Drawing.Point(6, 189);
             this.jimakuBackgroundMediaBinLabel.Name = "jimakuBackgroundMediaBinLabel";
-            this.jimakuBackgroundMediaBinLabel.Size = new System.Drawing.Size(85, 15);
+            this.jimakuBackgroundMediaBinLabel.Size = new System.Drawing.Size(68, 12);
             this.jimakuBackgroundMediaBinLabel.TabIndex = 44;
             this.jimakuBackgroundMediaBinLabel.Text = "メディアビン名";
             // 
             // jimakuBackgroundNoticeLabel
             // 
             this.jimakuBackgroundNoticeLabel.AutoSize = true;
-            this.jimakuBackgroundNoticeLabel.Location = new System.Drawing.Point(153, 85);
-            this.jimakuBackgroundNoticeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuBackgroundNoticeLabel.Location = new System.Drawing.Point(115, 68);
             this.jimakuBackgroundNoticeLabel.Name = "jimakuBackgroundNoticeLabel";
-            this.jimakuBackgroundNoticeLabel.Size = new System.Drawing.Size(230, 15);
+            this.jimakuBackgroundNoticeLabel.Size = new System.Drawing.Size(183, 12);
             this.jimakuBackgroundNoticeLabel.TabIndex = 15;
             this.jimakuBackgroundNoticeLabel.Text = "(新規作成するときはトラック名を明記)";
             // 
             // jimakuBackgroundMarginBox
             // 
-            this.jimakuBackgroundMarginBox.Location = new System.Drawing.Point(156, 155);
-            this.jimakuBackgroundMarginBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuBackgroundMarginBox.Location = new System.Drawing.Point(117, 124);
             this.jimakuBackgroundMarginBox.Name = "jimakuBackgroundMarginBox";
-            this.jimakuBackgroundMarginBox.Size = new System.Drawing.Size(132, 22);
+            this.jimakuBackgroundMarginBox.Size = new System.Drawing.Size(100, 19);
             this.jimakuBackgroundMarginBox.TabIndex = 16;
             this.jimakuBackgroundMarginBox.Text = "0";
             this.jimakuBackgroundMarginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1035,10 +961,9 @@
             this.createJimakuBackground.AutoSize = true;
             this.createJimakuBackground.Checked = true;
             this.createJimakuBackground.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.createJimakuBackground.Location = new System.Drawing.Point(8, 22);
-            this.createJimakuBackground.Margin = new System.Windows.Forms.Padding(4);
+            this.createJimakuBackground.Location = new System.Drawing.Point(6, 18);
             this.createJimakuBackground.Name = "createJimakuBackground";
-            this.createJimakuBackground.Size = new System.Drawing.Size(80, 19);
+            this.createJimakuBackground.Size = new System.Drawing.Size(67, 16);
             this.createJimakuBackground.TabIndex = 0;
             this.createJimakuBackground.Text = "生成する";
             this.createJimakuBackground.UseVisualStyleBackColor = true;
@@ -1047,49 +972,44 @@
             // jimakuBackgroundMarginLabel
             // 
             this.jimakuBackgroundMarginLabel.AutoSize = true;
-            this.jimakuBackgroundMarginLabel.Location = new System.Drawing.Point(8, 159);
-            this.jimakuBackgroundMarginLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuBackgroundMarginLabel.Location = new System.Drawing.Point(6, 127);
             this.jimakuBackgroundMarginLabel.Name = "jimakuBackgroundMarginLabel";
-            this.jimakuBackgroundMarginLabel.Size = new System.Drawing.Size(53, 15);
+            this.jimakuBackgroundMarginLabel.Size = new System.Drawing.Size(43, 12);
             this.jimakuBackgroundMarginLabel.TabIndex = 15;
             this.jimakuBackgroundMarginLabel.Text = "マージン";
             // 
             // jimakuBackgroundTrackBox
             // 
             this.jimakuBackgroundTrackBox.FormattingEnabled = true;
-            this.jimakuBackgroundTrackBox.Location = new System.Drawing.Point(156, 56);
-            this.jimakuBackgroundTrackBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuBackgroundTrackBox.Location = new System.Drawing.Point(117, 45);
             this.jimakuBackgroundTrackBox.Name = "jimakuBackgroundTrackBox";
-            this.jimakuBackgroundTrackBox.Size = new System.Drawing.Size(397, 23);
+            this.jimakuBackgroundTrackBox.Size = new System.Drawing.Size(299, 20);
             this.jimakuBackgroundTrackBox.TabIndex = 14;
             // 
             // jimakuBackgroundMediaBox
             // 
             this.jimakuBackgroundMediaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.jimakuBackgroundMediaBox.FormattingEnabled = true;
-            this.jimakuBackgroundMediaBox.Location = new System.Drawing.Point(156, 122);
-            this.jimakuBackgroundMediaBox.Margin = new System.Windows.Forms.Padding(4);
+            this.jimakuBackgroundMediaBox.Location = new System.Drawing.Point(117, 98);
             this.jimakuBackgroundMediaBox.Name = "jimakuBackgroundMediaBox";
-            this.jimakuBackgroundMediaBox.Size = new System.Drawing.Size(397, 23);
+            this.jimakuBackgroundMediaBox.Size = new System.Drawing.Size(299, 20);
             this.jimakuBackgroundMediaBox.TabIndex = 14;
             // 
             // jimakuBackgroundMediaLabel
             // 
             this.jimakuBackgroundMediaLabel.AutoSize = true;
-            this.jimakuBackgroundMediaLabel.Location = new System.Drawing.Point(8, 126);
-            this.jimakuBackgroundMediaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuBackgroundMediaLabel.Location = new System.Drawing.Point(6, 101);
             this.jimakuBackgroundMediaLabel.Name = "jimakuBackgroundMediaLabel";
-            this.jimakuBackgroundMediaLabel.Size = new System.Drawing.Size(78, 15);
+            this.jimakuBackgroundMediaLabel.Size = new System.Drawing.Size(63, 12);
             this.jimakuBackgroundMediaLabel.TabIndex = 13;
             this.jimakuBackgroundMediaLabel.Text = "対象メディア";
             // 
             // jimakuBackgroundVideoTrackLabel
             // 
             this.jimakuBackgroundVideoTrackLabel.AutoSize = true;
-            this.jimakuBackgroundVideoTrackLabel.Location = new System.Drawing.Point(8, 60);
-            this.jimakuBackgroundVideoTrackLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.jimakuBackgroundVideoTrackLabel.Location = new System.Drawing.Point(6, 48);
             this.jimakuBackgroundVideoTrackLabel.Name = "jimakuBackgroundVideoTrackLabel";
-            this.jimakuBackgroundVideoTrackLabel.Size = new System.Drawing.Size(111, 15);
+            this.jimakuBackgroundVideoTrackLabel.Size = new System.Drawing.Size(87, 12);
             this.jimakuBackgroundVideoTrackLabel.TabIndex = 13;
             this.jimakuBackgroundVideoTrackLabel.Text = "対象ビデオトラック";
             // 
@@ -1107,11 +1027,9 @@
             this.actorBackgroundGroup.Controls.Add(this.actorBackgroundMarginLabel);
             this.actorBackgroundGroup.Controls.Add(this.actorBackgroundMediaLabel);
             this.actorBackgroundGroup.Controls.Add(this.actorBackgroundMediaBox);
-            this.actorBackgroundGroup.Location = new System.Drawing.Point(624, 942);
-            this.actorBackgroundGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.actorBackgroundGroup.Location = new System.Drawing.Point(468, 754);
             this.actorBackgroundGroup.Name = "actorBackgroundGroup";
-            this.actorBackgroundGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.actorBackgroundGroup.Size = new System.Drawing.Size(579, 266);
+            this.actorBackgroundGroup.Size = new System.Drawing.Size(434, 213);
             this.actorBackgroundGroup.TabIndex = 11;
             this.actorBackgroundGroup.TabStop = false;
             this.actorBackgroundGroup.Text = "声優名背景";
@@ -1119,10 +1037,9 @@
             // actorBackgroundMediaBinBox
             // 
             this.actorBackgroundMediaBinBox.FormattingEnabled = true;
-            this.actorBackgroundMediaBinBox.Location = new System.Drawing.Point(107, 230);
-            this.actorBackgroundMediaBinBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorBackgroundMediaBinBox.Location = new System.Drawing.Point(80, 184);
             this.actorBackgroundMediaBinBox.Name = "actorBackgroundMediaBinBox";
-            this.actorBackgroundMediaBinBox.Size = new System.Drawing.Size(309, 23);
+            this.actorBackgroundMediaBinBox.Size = new System.Drawing.Size(233, 20);
             this.actorBackgroundMediaBinBox.TabIndex = 46;
             // 
             // createActorBackground
@@ -1130,10 +1047,9 @@
             this.createActorBackground.AutoSize = true;
             this.createActorBackground.Checked = true;
             this.createActorBackground.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.createActorBackground.Location = new System.Drawing.Point(8, 22);
-            this.createActorBackground.Margin = new System.Windows.Forms.Padding(4);
+            this.createActorBackground.Location = new System.Drawing.Point(6, 18);
             this.createActorBackground.Name = "createActorBackground";
-            this.createActorBackground.Size = new System.Drawing.Size(80, 19);
+            this.createActorBackground.Size = new System.Drawing.Size(67, 16);
             this.createActorBackground.TabIndex = 1;
             this.createActorBackground.Text = "生成する";
             this.createActorBackground.UseVisualStyleBackColor = true;
@@ -1144,10 +1060,9 @@
             this.useActorBackgroundMediaBin.AutoSize = true;
             this.useActorBackgroundMediaBin.Checked = true;
             this.useActorBackgroundMediaBin.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useActorBackgroundMediaBin.Location = new System.Drawing.Point(8, 199);
-            this.useActorBackgroundMediaBin.Margin = new System.Windows.Forms.Padding(4);
+            this.useActorBackgroundMediaBin.Location = new System.Drawing.Point(6, 159);
             this.useActorBackgroundMediaBin.Name = "useActorBackgroundMediaBin";
-            this.useActorBackgroundMediaBin.Size = new System.Drawing.Size(168, 19);
+            this.useActorBackgroundMediaBin.Size = new System.Drawing.Size(138, 16);
             this.useActorBackgroundMediaBin.TabIndex = 45;
             this.useActorBackgroundMediaBin.Text = "メディアビンを作成・使用";
             this.useActorBackgroundMediaBin.UseVisualStyleBackColor = true;
@@ -1155,48 +1070,43 @@
             // actorBackgroundMediaBinLabel
             // 
             this.actorBackgroundMediaBinLabel.AutoSize = true;
-            this.actorBackgroundMediaBinLabel.Location = new System.Drawing.Point(8, 236);
-            this.actorBackgroundMediaBinLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorBackgroundMediaBinLabel.Location = new System.Drawing.Point(6, 189);
             this.actorBackgroundMediaBinLabel.Name = "actorBackgroundMediaBinLabel";
-            this.actorBackgroundMediaBinLabel.Size = new System.Drawing.Size(85, 15);
+            this.actorBackgroundMediaBinLabel.Size = new System.Drawing.Size(68, 12);
             this.actorBackgroundMediaBinLabel.TabIndex = 47;
             this.actorBackgroundMediaBinLabel.Text = "メディアビン名";
             // 
             // actorBackgroundVideoTrackLabel
             // 
             this.actorBackgroundVideoTrackLabel.AutoSize = true;
-            this.actorBackgroundVideoTrackLabel.Location = new System.Drawing.Point(5, 60);
-            this.actorBackgroundVideoTrackLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorBackgroundVideoTrackLabel.Location = new System.Drawing.Point(4, 48);
             this.actorBackgroundVideoTrackLabel.Name = "actorBackgroundVideoTrackLabel";
-            this.actorBackgroundVideoTrackLabel.Size = new System.Drawing.Size(111, 15);
+            this.actorBackgroundVideoTrackLabel.Size = new System.Drawing.Size(87, 12);
             this.actorBackgroundVideoTrackLabel.TabIndex = 1;
             this.actorBackgroundVideoTrackLabel.Text = "対象ビデオトラック";
             // 
             // actorBackgroundMarginUnitLabel
             // 
             this.actorBackgroundMarginUnitLabel.AutoSize = true;
-            this.actorBackgroundMarginUnitLabel.Location = new System.Drawing.Point(295, 159);
-            this.actorBackgroundMarginUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorBackgroundMarginUnitLabel.Location = new System.Drawing.Point(221, 127);
             this.actorBackgroundMarginUnitLabel.Name = "actorBackgroundMarginUnitLabel";
-            this.actorBackgroundMarginUnitLabel.Size = new System.Drawing.Size(40, 15);
+            this.actorBackgroundMarginUnitLabel.Size = new System.Drawing.Size(31, 12);
             this.actorBackgroundMarginUnitLabel.TabIndex = 10;
             this.actorBackgroundMarginUnitLabel.Text = "ミリ秒";
             // 
             // actorBackgroundTrackBox
             // 
             this.actorBackgroundTrackBox.FormattingEnabled = true;
-            this.actorBackgroundTrackBox.Location = new System.Drawing.Point(153, 56);
-            this.actorBackgroundTrackBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorBackgroundTrackBox.Location = new System.Drawing.Point(115, 45);
             this.actorBackgroundTrackBox.Name = "actorBackgroundTrackBox";
-            this.actorBackgroundTrackBox.Size = new System.Drawing.Size(397, 23);
+            this.actorBackgroundTrackBox.Size = new System.Drawing.Size(299, 20);
             this.actorBackgroundTrackBox.TabIndex = 3;
             // 
             // actorBackgroundMarginBox
             // 
-            this.actorBackgroundMarginBox.Location = new System.Drawing.Point(153, 155);
-            this.actorBackgroundMarginBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorBackgroundMarginBox.Location = new System.Drawing.Point(115, 124);
             this.actorBackgroundMarginBox.Name = "actorBackgroundMarginBox";
-            this.actorBackgroundMarginBox.Size = new System.Drawing.Size(132, 22);
+            this.actorBackgroundMarginBox.Size = new System.Drawing.Size(100, 19);
             this.actorBackgroundMarginBox.TabIndex = 9;
             this.actorBackgroundMarginBox.Text = "0";
             this.actorBackgroundMarginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1204,30 +1114,27 @@
             // actorBackgroundNoticeLabel
             // 
             this.actorBackgroundNoticeLabel.AutoSize = true;
-            this.actorBackgroundNoticeLabel.Location = new System.Drawing.Point(151, 85);
-            this.actorBackgroundNoticeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorBackgroundNoticeLabel.Location = new System.Drawing.Point(113, 68);
             this.actorBackgroundNoticeLabel.Name = "actorBackgroundNoticeLabel";
-            this.actorBackgroundNoticeLabel.Size = new System.Drawing.Size(230, 15);
+            this.actorBackgroundNoticeLabel.Size = new System.Drawing.Size(183, 12);
             this.actorBackgroundNoticeLabel.TabIndex = 4;
             this.actorBackgroundNoticeLabel.Text = "(新規作成するときはトラック名を明記)";
             // 
             // actorBackgroundMarginLabel
             // 
             this.actorBackgroundMarginLabel.AutoSize = true;
-            this.actorBackgroundMarginLabel.Location = new System.Drawing.Point(5, 159);
-            this.actorBackgroundMarginLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorBackgroundMarginLabel.Location = new System.Drawing.Point(4, 127);
             this.actorBackgroundMarginLabel.Name = "actorBackgroundMarginLabel";
-            this.actorBackgroundMarginLabel.Size = new System.Drawing.Size(53, 15);
+            this.actorBackgroundMarginLabel.Size = new System.Drawing.Size(43, 12);
             this.actorBackgroundMarginLabel.TabIndex = 8;
             this.actorBackgroundMarginLabel.Text = "マージン";
             // 
             // actorBackgroundMediaLabel
             // 
             this.actorBackgroundMediaLabel.AutoSize = true;
-            this.actorBackgroundMediaLabel.Location = new System.Drawing.Point(5, 126);
-            this.actorBackgroundMediaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.actorBackgroundMediaLabel.Location = new System.Drawing.Point(4, 101);
             this.actorBackgroundMediaLabel.Name = "actorBackgroundMediaLabel";
-            this.actorBackgroundMediaLabel.Size = new System.Drawing.Size(78, 15);
+            this.actorBackgroundMediaLabel.Size = new System.Drawing.Size(63, 12);
             this.actorBackgroundMediaLabel.TabIndex = 5;
             this.actorBackgroundMediaLabel.Text = "対象メディア";
             // 
@@ -1235,19 +1142,17 @@
             // 
             this.actorBackgroundMediaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.actorBackgroundMediaBox.FormattingEnabled = true;
-            this.actorBackgroundMediaBox.Location = new System.Drawing.Point(153, 122);
-            this.actorBackgroundMediaBox.Margin = new System.Windows.Forms.Padding(4);
+            this.actorBackgroundMediaBox.Location = new System.Drawing.Point(115, 98);
             this.actorBackgroundMediaBox.Name = "actorBackgroundMediaBox";
-            this.actorBackgroundMediaBox.Size = new System.Drawing.Size(397, 23);
+            this.actorBackgroundMediaBox.Size = new System.Drawing.Size(299, 20);
             this.actorBackgroundMediaBox.TabIndex = 6;
             // 
             // createOneEventCheck
             // 
             this.createOneEventCheck.AutoSize = true;
-            this.createOneEventCheck.Location = new System.Drawing.Point(20, 1226);
-            this.createOneEventCheck.Margin = new System.Windows.Forms.Padding(4);
+            this.createOneEventCheck.Location = new System.Drawing.Point(15, 981);
             this.createOneEventCheck.Name = "createOneEventCheck";
-            this.createOneEventCheck.Size = new System.Drawing.Size(290, 19);
+            this.createOneEventCheck.Size = new System.Drawing.Size(236, 16);
             this.createOneEventCheck.TabIndex = 7;
             this.createOneEventCheck.Text = "字幕・声優名の背景は全セリフを跨いで生成";
             this.createOneEventCheck.UseVisualStyleBackColor = true;
@@ -1255,10 +1160,9 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(1023, 1286);
-            this.okButton.Margin = new System.Windows.Forms.Padding(4);
+            this.okButton.Location = new System.Drawing.Point(767, 1029);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(100, 29);
+            this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 1;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -1266,10 +1170,9 @@
             // canselButton
             // 
             this.canselButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.canselButton.Location = new System.Drawing.Point(1131, 1286);
-            this.canselButton.Margin = new System.Windows.Forms.Padding(4);
+            this.canselButton.Location = new System.Drawing.Point(848, 1029);
             this.canselButton.Name = "canselButton";
-            this.canselButton.Size = new System.Drawing.Size(100, 29);
+            this.canselButton.Size = new System.Drawing.Size(75, 23);
             this.canselButton.TabIndex = 2;
             this.canselButton.Text = "CANSEL";
             this.canselButton.UseVisualStyleBackColor = true;
@@ -1285,13 +1188,13 @@
             // 
             // SettingDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 1328);
+            this.ClientSize = new System.Drawing.Size(936, 1062);
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingDialog";
             this.Text = "設定";
             this.panel1.ResumeLayout(false);

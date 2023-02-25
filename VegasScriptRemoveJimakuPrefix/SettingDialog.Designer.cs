@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.removeJimakuBox = new System.Windows.Forms.ComboBox();
+            this.removeJimakuLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.canselButton = new System.Windows.Forms.Button();
-            this.removeJimakuLabel = new System.Windows.Forms.Label();
-            this.removeJimakuBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(518, 40);
             this.panel1.TabIndex = 0;
+            // 
+            // removeJimakuBox
+            // 
+            this.removeJimakuBox.FormattingEnabled = true;
+            this.removeJimakuBox.Location = new System.Drawing.Point(142, 9);
+            this.removeJimakuBox.Name = "removeJimakuBox";
+            this.removeJimakuBox.Size = new System.Drawing.Size(360, 20);
+            this.removeJimakuBox.TabIndex = 1;
+            // 
+            // removeJimakuLabel
+            // 
+            this.removeJimakuLabel.AutoSize = true;
+            this.removeJimakuLabel.Location = new System.Drawing.Point(12, 13);
+            this.removeJimakuLabel.Name = "removeJimakuLabel";
+            this.removeJimakuLabel.Size = new System.Drawing.Size(124, 12);
+            this.removeJimakuLabel.TabIndex = 0;
+            this.removeJimakuLabel.Text = "接頭辞を削除するトラック";
             // 
             // okButton
             // 
@@ -65,24 +83,7 @@
             this.canselButton.Text = "CANSEL";
             this.canselButton.UseVisualStyleBackColor = true;
             // 
-            // removeJimakuLabel
-            // 
-            this.removeJimakuLabel.AutoSize = true;
-            this.removeJimakuLabel.Location = new System.Drawing.Point(12, 13);
-            this.removeJimakuLabel.Name = "removeJimakuLabel";
-            this.removeJimakuLabel.Size = new System.Drawing.Size(124, 12);
-            this.removeJimakuLabel.TabIndex = 0;
-            this.removeJimakuLabel.Text = "接頭辞を削除するトラック";
-            // 
-            // removeJimakuBox
-            // 
-            this.removeJimakuBox.FormattingEnabled = true;
-            this.removeJimakuBox.Location = new System.Drawing.Point(142, 9);
-            this.removeJimakuBox.Name = "removeJimakuBox";
-            this.removeJimakuBox.Size = new System.Drawing.Size(360, 20);
-            this.removeJimakuBox.TabIndex = 1;
-            // 
-            // SettingForm
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,7 +91,8 @@
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.panel1);
-            this.Name = "SettingForm";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SettingDialog";
             this.Text = "設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

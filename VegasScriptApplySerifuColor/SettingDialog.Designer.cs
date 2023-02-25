@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.jimakuTrackNameLabel = new System.Windows.Forms.Label();
+            this.jimakuTrackName = new System.Windows.Forms.ComboBox();
             this.OutlineWidthTextBox = new System.Windows.Forms.TextBox();
             this.RemovePrefixFlag = new System.Windows.Forms.CheckBox();
             this.OutlineWidthLabel = new System.Windows.Forms.Label();
             this.OKButton = new System.Windows.Forms.Button();
             this.canselButton = new System.Windows.Forms.Button();
-            this.jimakuTrackName = new System.Windows.Forms.ComboBox();
-            this.jimakuTrackNameLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(306, 87);
             this.panel1.TabIndex = 0;
+            // 
+            // jimakuTrackNameLabel
+            // 
+            this.jimakuTrackNameLabel.AutoSize = true;
+            this.jimakuTrackNameLabel.Location = new System.Drawing.Point(22, 15);
+            this.jimakuTrackNameLabel.Name = "jimakuTrackNameLabel";
+            this.jimakuTrackNameLabel.Size = new System.Drawing.Size(60, 12);
+            this.jimakuTrackNameLabel.TabIndex = 4;
+            this.jimakuTrackNameLabel.Text = "字幕トラック";
+            // 
+            // jimakuTrackName
+            // 
+            this.jimakuTrackName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.jimakuTrackName.FormattingEnabled = true;
+            this.jimakuTrackName.Location = new System.Drawing.Point(88, 12);
+            this.jimakuTrackName.Name = "jimakuTrackName";
+            this.jimakuTrackName.Size = new System.Drawing.Size(205, 20);
+            this.jimakuTrackName.TabIndex = 3;
             // 
             // OutlineWidthTextBox
             // 
@@ -99,25 +118,7 @@
             this.canselButton.Text = "CANSEL";
             this.canselButton.UseVisualStyleBackColor = true;
             // 
-            // jimakuTrackName
-            // 
-            this.jimakuTrackName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.jimakuTrackName.FormattingEnabled = true;
-            this.jimakuTrackName.Location = new System.Drawing.Point(88, 12);
-            this.jimakuTrackName.Name = "jimakuTrackName";
-            this.jimakuTrackName.Size = new System.Drawing.Size(205, 20);
-            this.jimakuTrackName.TabIndex = 3;
-            // 
-            // jimakuTrackNameLabel
-            // 
-            this.jimakuTrackNameLabel.AutoSize = true;
-            this.jimakuTrackNameLabel.Location = new System.Drawing.Point(22, 15);
-            this.jimakuTrackNameLabel.Name = "jimakuTrackNameLabel";
-            this.jimakuTrackNameLabel.Size = new System.Drawing.Size(60, 12);
-            this.jimakuTrackNameLabel.TabIndex = 4;
-            this.jimakuTrackNameLabel.Text = "字幕トラック";
-            // 
-            // SettingForm
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,7 +126,8 @@
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.panel1);
-            this.Name = "SettingForm";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SettingDialog";
             this.Text = "各種設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

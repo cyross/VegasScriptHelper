@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.actorBackgroundBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.binNameLabel = new System.Windows.Forms.Label();
             this.createdImageBox = new System.Windows.Forms.TextBox();
             this.dlImageBox = new System.Windows.Forms.TextBox();
@@ -38,6 +41,7 @@
             this.dlAudioBox = new System.Windows.Forms.TextBox();
             this.tachieBox = new System.Windows.Forms.TextBox();
             this.jimakuBackgroundBox = new System.Windows.Forms.TextBox();
+            this.voiroActorBox = new System.Windows.Forms.TextBox();
             this.voiroJimakuBox = new System.Windows.Forms.TextBox();
             this.voiroVoiceBox = new System.Windows.Forms.TextBox();
             this.createdImageLabel = new System.Windows.Forms.Label();
@@ -48,14 +52,11 @@
             this.dlAudioLabel = new System.Windows.Forms.Label();
             this.tachieLabel = new System.Windows.Forms.Label();
             this.jimakuBackgroundLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.voiroJimakuLabel = new System.Windows.Forms.Label();
             this.voiroVoiceLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.canselButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.voiroActorBox = new System.Windows.Forms.TextBox();
-            this.actorBackgroundBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +91,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(516, 340);
             this.panel1.TabIndex = 0;
+            // 
+            // actorBackgroundBox
+            // 
+            this.actorBackgroundBox.Location = new System.Drawing.Point(76, 135);
+            this.actorBackgroundBox.Name = "actorBackgroundBox";
+            this.actorBackgroundBox.Size = new System.Drawing.Size(425, 19);
+            this.actorBackgroundBox.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 138);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "声優背景";
             // 
             // binNameLabel
             // 
@@ -156,6 +173,13 @@
             this.jimakuBackgroundBox.Name = "jimakuBackgroundBox";
             this.jimakuBackgroundBox.Size = new System.Drawing.Size(425, 19);
             this.jimakuBackgroundBox.TabIndex = 12;
+            // 
+            // voiroActorBox
+            // 
+            this.voiroActorBox.Location = new System.Drawing.Point(76, 83);
+            this.voiroActorBox.Name = "voiroActorBox";
+            this.voiroActorBox.Size = new System.Drawing.Size(425, 19);
+            this.voiroActorBox.TabIndex = 11;
             // 
             // voiroJimakuBox
             // 
@@ -243,6 +267,15 @@
             this.jimakuBackgroundLabel.TabIndex = 2;
             this.jimakuBackgroundLabel.Text = "字幕背景";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "声優名";
+            // 
             // voiroJimakuLabel
             // 
             this.voiroJimakuLabel.AutoSize = true;
@@ -281,38 +314,6 @@
             this.canselButton.Text = "CANSEL";
             this.canselButton.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "声優名";
-            // 
-            // voiroActorBox
-            // 
-            this.voiroActorBox.Location = new System.Drawing.Point(76, 83);
-            this.voiroActorBox.Name = "voiroActorBox";
-            this.voiroActorBox.Size = new System.Drawing.Size(425, 19);
-            this.voiroActorBox.TabIndex = 11;
-            // 
-            // actorBackgroundBox
-            // 
-            this.actorBackgroundBox.Location = new System.Drawing.Point(76, 135);
-            this.actorBackgroundBox.Name = "actorBackgroundBox";
-            this.actorBackgroundBox.Size = new System.Drawing.Size(425, 19);
-            this.actorBackgroundBox.TabIndex = 22;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 138);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "声優背景";
-            // 
             // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -321,6 +322,7 @@
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingDialog";
             this.Text = "BinSetting";
             this.panel1.ResumeLayout(false);

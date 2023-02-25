@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RichTextViewForm));
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -50,15 +51,16 @@
             this.closeButton.Text = "閉じる";
             this.closeButton.UseVisualStyleBackColor = true;
             // 
-            // RitchTextViewForm
+            // RichTextViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 280);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.richTextBox);
-            this.Name = "RitchTextViewForm";
-            this.Text = "テスト用RTFビューワー";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "RichTextViewForm";
+            this.Text = "テキストエフェクト処理用RTFビューワー";
             this.ResumeLayout(false);
 
         }

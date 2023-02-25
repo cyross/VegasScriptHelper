@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.jimakuColorLabel = new System.Windows.Forms.Label();
-            this.outlineColorLabel = new System.Windows.Forms.Label();
+            this.targetVideoTrackName = new System.Windows.Forms.ComboBox();
+            this.targetVideoTrackLabel = new System.Windows.Forms.Label();
+            this.outlineColorNoteLabel = new System.Windows.Forms.Label();
+            this.jimakuColorNoteLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.outlineWidthBox = new System.Windows.Forms.TextBox();
+            this.outlineColorBox = new System.Windows.Forms.PictureBox();
+            this.jimakuColorBox = new System.Windows.Forms.PictureBox();
             this.outlineWidthLabel = new System.Windows.Forms.Label();
+            this.outlineColorLabel = new System.Windows.Forms.Label();
+            this.jimakuColorLabel = new System.Windows.Forms.Label();
             this.jimakuColorDialog = new System.Windows.Forms.ColorDialog();
             this.outlineColorDialog = new System.Windows.Forms.ColorDialog();
-            this.jimakuColorBox = new System.Windows.Forms.PictureBox();
-            this.outlineColorBox = new System.Windows.Forms.PictureBox();
-            this.outlineWidthBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.jimakuColorNoteLabel = new System.Windows.Forms.Label();
-            this.outlineColorNoteLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.canselButton = new System.Windows.Forms.Button();
-            this.targetVideoTrackLabel = new System.Windows.Forms.Label();
-            this.targetVideoTrackName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.jimakuColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.outlineColorBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jimakuColorBox)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -67,42 +68,58 @@
             this.panel1.Size = new System.Drawing.Size(435, 226);
             this.panel1.TabIndex = 0;
             // 
-            // jimakuColorLabel
+            // targetVideoTrackName
             // 
-            this.jimakuColorLabel.AutoSize = true;
-            this.jimakuColorLabel.Location = new System.Drawing.Point(14, 80);
-            this.jimakuColorLabel.Name = "jimakuColorLabel";
-            this.jimakuColorLabel.Size = new System.Drawing.Size(41, 12);
-            this.jimakuColorLabel.TabIndex = 0;
-            this.jimakuColorLabel.Text = "字幕色";
+            this.targetVideoTrackName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.targetVideoTrackName.FormattingEnabled = true;
+            this.targetVideoTrackName.Location = new System.Drawing.Point(104, 22);
+            this.targetVideoTrackName.Name = "targetVideoTrackName";
+            this.targetVideoTrackName.Size = new System.Drawing.Size(308, 20);
+            this.targetVideoTrackName.TabIndex = 9;
             // 
-            // outlineColorLabel
+            // targetVideoTrackLabel
             // 
-            this.outlineColorLabel.AutoSize = true;
-            this.outlineColorLabel.Location = new System.Drawing.Point(14, 136);
-            this.outlineColorLabel.Name = "outlineColorLabel";
-            this.outlineColorLabel.Size = new System.Drawing.Size(69, 12);
-            this.outlineColorLabel.TabIndex = 0;
-            this.outlineColorLabel.Text = "アウトライン色";
+            this.targetVideoTrackLabel.AutoSize = true;
+            this.targetVideoTrackLabel.Location = new System.Drawing.Point(14, 26);
+            this.targetVideoTrackLabel.Name = "targetVideoTrackLabel";
+            this.targetVideoTrackLabel.Size = new System.Drawing.Size(84, 12);
+            this.targetVideoTrackLabel.TabIndex = 8;
+            this.targetVideoTrackLabel.Text = "対象字幕トラック";
             // 
-            // outlineWidthLabel
+            // outlineColorNoteLabel
             // 
-            this.outlineWidthLabel.AutoSize = true;
-            this.outlineWidthLabel.Location = new System.Drawing.Point(14, 192);
-            this.outlineWidthLabel.Name = "outlineWidthLabel";
-            this.outlineWidthLabel.Size = new System.Drawing.Size(69, 12);
-            this.outlineWidthLabel.TabIndex = 0;
-            this.outlineWidthLabel.Text = "アウトライン幅";
+            this.outlineColorNoteLabel.AutoSize = true;
+            this.outlineColorNoteLabel.Location = new System.Drawing.Point(210, 136);
+            this.outlineColorNoteLabel.Name = "outlineColorNoteLabel";
+            this.outlineColorNoteLabel.Size = new System.Drawing.Size(211, 12);
+            this.outlineColorNoteLabel.TabIndex = 0;
+            this.outlineColorNoteLabel.Text = "←ボックスをクリックすると色の設定ができます";
             // 
-            // jimakuColorBox
+            // jimakuColorNoteLabel
             // 
-            this.jimakuColorBox.BackColor = System.Drawing.Color.Transparent;
-            this.jimakuColorBox.Location = new System.Drawing.Point(104, 72);
-            this.jimakuColorBox.Name = "jimakuColorBox";
-            this.jimakuColorBox.Size = new System.Drawing.Size(100, 29);
-            this.jimakuColorBox.TabIndex = 3;
-            this.jimakuColorBox.TabStop = false;
-            this.jimakuColorBox.Click += new System.EventHandler(this.jimakuColorBox_Click);
+            this.jimakuColorNoteLabel.AutoSize = true;
+            this.jimakuColorNoteLabel.Location = new System.Drawing.Point(210, 80);
+            this.jimakuColorNoteLabel.Name = "jimakuColorNoteLabel";
+            this.jimakuColorNoteLabel.Size = new System.Drawing.Size(211, 12);
+            this.jimakuColorNoteLabel.TabIndex = 7;
+            this.jimakuColorNoteLabel.Text = "←ボックスをクリックすると色の設定ができます";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(210, 192);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "px";
+            // 
+            // outlineWidthBox
+            // 
+            this.outlineWidthBox.Location = new System.Drawing.Point(104, 189);
+            this.outlineWidthBox.Name = "outlineWidthBox";
+            this.outlineWidthBox.Size = new System.Drawing.Size(100, 19);
+            this.outlineWidthBox.TabIndex = 1;
+            this.outlineWidthBox.Text = "0";
             // 
             // outlineColorBox
             // 
@@ -114,40 +131,42 @@
             this.outlineColorBox.TabStop = false;
             this.outlineColorBox.Click += new System.EventHandler(this.outlineColorBox_Click);
             // 
-            // outlineWidthBox
+            // jimakuColorBox
             // 
-            this.outlineWidthBox.Location = new System.Drawing.Point(104, 189);
-            this.outlineWidthBox.Name = "outlineWidthBox";
-            this.outlineWidthBox.Size = new System.Drawing.Size(100, 19);
-            this.outlineWidthBox.TabIndex = 1;
-            this.outlineWidthBox.Text = "0";
+            this.jimakuColorBox.BackColor = System.Drawing.Color.Transparent;
+            this.jimakuColorBox.Location = new System.Drawing.Point(104, 72);
+            this.jimakuColorBox.Name = "jimakuColorBox";
+            this.jimakuColorBox.Size = new System.Drawing.Size(100, 29);
+            this.jimakuColorBox.TabIndex = 3;
+            this.jimakuColorBox.TabStop = false;
+            this.jimakuColorBox.Click += new System.EventHandler(this.jimakuColorBox_Click);
             // 
-            // label1
+            // outlineWidthLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(210, 192);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "px";
+            this.outlineWidthLabel.AutoSize = true;
+            this.outlineWidthLabel.Location = new System.Drawing.Point(14, 192);
+            this.outlineWidthLabel.Name = "outlineWidthLabel";
+            this.outlineWidthLabel.Size = new System.Drawing.Size(69, 12);
+            this.outlineWidthLabel.TabIndex = 0;
+            this.outlineWidthLabel.Text = "アウトライン幅";
             // 
-            // jimakuColorNoteLabel
+            // outlineColorLabel
             // 
-            this.jimakuColorNoteLabel.AutoSize = true;
-            this.jimakuColorNoteLabel.Location = new System.Drawing.Point(210, 80);
-            this.jimakuColorNoteLabel.Name = "jimakuColorNoteLabel";
-            this.jimakuColorNoteLabel.Size = new System.Drawing.Size(211, 12);
-            this.jimakuColorNoteLabel.TabIndex = 7;
-            this.jimakuColorNoteLabel.Text = "←ボックスをクリックすると色の設定ができます";
+            this.outlineColorLabel.AutoSize = true;
+            this.outlineColorLabel.Location = new System.Drawing.Point(14, 136);
+            this.outlineColorLabel.Name = "outlineColorLabel";
+            this.outlineColorLabel.Size = new System.Drawing.Size(69, 12);
+            this.outlineColorLabel.TabIndex = 0;
+            this.outlineColorLabel.Text = "アウトライン色";
             // 
-            // outlineColorNoteLabel
+            // jimakuColorLabel
             // 
-            this.outlineColorNoteLabel.AutoSize = true;
-            this.outlineColorNoteLabel.Location = new System.Drawing.Point(210, 136);
-            this.outlineColorNoteLabel.Name = "outlineColorNoteLabel";
-            this.outlineColorNoteLabel.Size = new System.Drawing.Size(211, 12);
-            this.outlineColorNoteLabel.TabIndex = 0;
-            this.outlineColorNoteLabel.Text = "←ボックスをクリックすると色の設定ができます";
+            this.jimakuColorLabel.AutoSize = true;
+            this.jimakuColorLabel.Location = new System.Drawing.Point(14, 80);
+            this.jimakuColorLabel.Name = "jimakuColorLabel";
+            this.jimakuColorLabel.Size = new System.Drawing.Size(41, 12);
+            this.jimakuColorLabel.TabIndex = 0;
+            this.jimakuColorLabel.Text = "字幕色";
             // 
             // okButton
             // 
@@ -169,25 +188,7 @@
             this.canselButton.Text = "CANSEL";
             this.canselButton.UseVisualStyleBackColor = true;
             // 
-            // targetVideoTrackLabel
-            // 
-            this.targetVideoTrackLabel.AutoSize = true;
-            this.targetVideoTrackLabel.Location = new System.Drawing.Point(14, 26);
-            this.targetVideoTrackLabel.Name = "targetVideoTrackLabel";
-            this.targetVideoTrackLabel.Size = new System.Drawing.Size(84, 12);
-            this.targetVideoTrackLabel.TabIndex = 8;
-            this.targetVideoTrackLabel.Text = "対象字幕トラック";
-            // 
-            // targetVideoTrackName
-            // 
-            this.targetVideoTrackName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.targetVideoTrackName.FormattingEnabled = true;
-            this.targetVideoTrackName.Location = new System.Drawing.Point(104, 22);
-            this.targetVideoTrackName.Name = "targetVideoTrackName";
-            this.targetVideoTrackName.Size = new System.Drawing.Size(308, 20);
-            this.targetVideoTrackName.TabIndex = 9;
-            // 
-            // SettingForm
+            // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -195,13 +196,14 @@
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.panel1);
-            this.Name = "SettingForm";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SettingDialog";
             this.Text = "設定";
             this.Validating += new System.ComponentModel.CancelEventHandler(this.SettingForm_Validating);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.jimakuColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.outlineColorBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jimakuColorBox)).EndInit();
             this.ResumeLayout(false);
 
         }
