@@ -16,12 +16,14 @@ OPTION_DEFAULTS: dict[str, any] = {
     'update_yaml': False,
     'update_markdown': False,
     'varbose': False,
+    'deploy_to_cyross_folder': False,
     'test': 0
 }
 
 OPTION_SWITCHES: dict[str, list[str]] = {
     'update_yaml': ['-Y','--UPDATE_YAML'],
     'update_markdown': ['-M','--UPDATE_MARKDOWN'],
+    'deploy_to_cyross_folder': ['-CY','--DEPLOY_TO_CYROSS_FOLDER'],
     'varbose': ['-V','--varbose'],
     }
 
@@ -199,7 +201,14 @@ if __name__ == '__main__':
         print('[例]C:\\Users\\Hoge\\Documents\\vegas_extension_files -> MY_DOCUMENTS_PATH="C:\\Users\\Hoge\\Documents"')
         quit()
 
-    dst_file_folders: list[list[str]] = [CONFIG['dst_vegas_script_folder'], CONFIG['dst_vegas_extension_folder']]
+    dst_vegas_script_folders = [CONFIG['dst_vegas_script_folder']]
+    dst_vegas_extension_folders = [CONFIG['dst_vegas_script_folder']]
+
+    if OPTIONS['deploy_to_cyross_folder']:
+        dst_vegas_script_folders.append(CONFIG['cyross_vegas_script_folder'])
+        dst_vegas_extension_folders.append(CONFIG['cyross_vegas_extension_folder'])
+
+    dst_file_folders: list[list[str]] = [dst_vegas_script_folders, dst_vegas_extension_folders]
 
     print('copy to vegas script folder...')
     deploy_files(CONFIG['dst_vegas_script_folder'], CONFIG['vegas_script_files'], my_documents_path)
