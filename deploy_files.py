@@ -24,7 +24,7 @@ OPTION_SWITCHES: dict[str, list[str]] = {
     'update_yaml': ['-Y','--UPDATE_YAML'],
     'update_markdown': ['-M','--UPDATE_MARKDOWN'],
     'deploy_to_cyross_folder': ['-CY','--DEPLOY_TO_CYROSS_FOLDER'],
-    'varbose': ['-V','--varbose'],
+    'varbose': ['-V','--VARBOSE'],
     }
 
 OPTION_PARAMETERS: dict[str, dict[str, any]] = {
@@ -40,7 +40,7 @@ def print_varbose(message: str) -> None:
         print(message)
 
 def load_config() -> dict[str, any]:
-    config_filepath: str = './deploy_dll_files.yaml'
+    config_filepath: str = './deploy_files.yaml'
 
     if not os.path.exists(config_filepath):
         print(f'[ERROR]ファイルが見つかりません: {config_filepath}')
