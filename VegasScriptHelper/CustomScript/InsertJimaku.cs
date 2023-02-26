@@ -15,6 +15,7 @@ namespace VegasScriptHelper
 
         public bool IsDeletePrefix;
         public bool IsCreateActorTrack;
+        public bool isRemoveActorAttr;
 
         public ColorInfo JimakuColor;
         public ColorInfo ActorColor;
@@ -39,13 +40,13 @@ namespace VegasScriptHelper
 
                 string jimakuLine = jimakuParams.JimakuLines[i];
 
-                int pos = jimakuLine.IndexOf(":");
+                int prefixSeparatorPos = jimakuLine.IndexOf(":");
 
-                string actorName = (pos == -1) ? "" : jimakuLine.Substring(0, pos);
+                string actorName = (prefixSeparatorPos == -1) ? "" : jimakuLine.Substring(0, prefixSeparatorPos);
 
                 if(jimakuParams.IsDeletePrefix)
                 {
-                    jimakuLine = jimakuLine.Substring(pos + 1);
+                    jimakuLine = jimakuLine.Substring(prefixSeparatorPos + 1);
                 }
 
                 Media jimakuMedia = CreateMedia(node, jimakuParams.Jimaku.PresetName, jimakuParams.Jimaku.MediaBin.Bin);
@@ -84,7 +85,16 @@ namespace VegasScriptHelper
                         actorColorInfo.OutlineWidth = jimakuParams.ActorColor.OutlineWidth;
                     }
 
-                    SetText(actorMedia, actorName, actorColorInfo);
+                    string realActorName = actorName;
+
+                    if (jimakuParams.isRemoveActorAttr)
+                    {
+                        int attrPos = realActorName.IndexOf('(');
+
+                        if(attrPos != -1) { realActorName = realActorName.Substring(0, attrPos); }
+                    }
+
+                    SetText(actorMedia, realActorName, actorColorInfo);
 
                     groupList.Add(actorEvent);
                 }

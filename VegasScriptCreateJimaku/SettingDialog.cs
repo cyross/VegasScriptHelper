@@ -31,6 +31,12 @@ namespace VegasScriptCreateJimaku
             UpdatePrefixBehavor();
         }
 
+        public bool IsRemoveActorAttr
+        {
+            get { return removeActorAttributeCheck.Checked; }
+            set { removeActorAttributeCheck.Checked = value; }
+        }
+
         public PrefixBehaviorType PrefixBehavior
         {
             get { return prefixBehavior; }

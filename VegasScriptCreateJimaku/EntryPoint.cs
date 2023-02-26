@@ -131,6 +131,7 @@ namespace VegasScriptCreateJimaku
 
                     PrefixBehaviorType prefixBehavior = (PrefixBehaviorType)helper.Settings["PrefixBehavior"];
                     bool isSetGroupEvent = helper.Settings["IsGroupSerifuJimakuEvent"];
+                    bool isRemoveActorAttr = helper.Settings["RemoveActorAttribute"];
                     bool isCreateOneEventCheck = helper.Settings["CreateOneEventCheck"];
 
                     if (settingDialog == null) { settingDialog = new SettingDialog(); }
@@ -140,6 +141,7 @@ namespace VegasScriptCreateJimaku
                     settingDialog.JimakuFilePath = helper.Settings["JimakuFilePath"];
                     settingDialog.PrefixBehavior = prefixBehavior;
                     settingDialog.IsEventGroupCheck = isSetGroupEvent;
+                    settingDialog.IsRemoveActorAttr = isRemoveActorAttr;
 
                     settingDialog.SetJimakuTrack(helper, klJimaku, klJimakuPlugin, klJimakuMBin);
 
@@ -174,6 +176,7 @@ namespace VegasScriptCreateJimaku
 
                     prefixBehavior = settingDialog.PrefixBehavior;
                     isSetGroupEvent = settingDialog.IsEventGroupCheck;
+                    isRemoveActorAttr = settingDialog.IsRemoveActorAttr;
                     isCreateOneEventCheck = settingDialog.IsCreateOneEventCheck;
 
                     // オーディオファイル流し込み
@@ -196,6 +199,7 @@ namespace VegasScriptCreateJimaku
                     if (jimakuParams.IsCreateActorTrack)
                     {
                         SetTextInfo(ref jimakuParams.Actor, helper, settingDialog.ActorTrackInfo);
+                        jimakuParams.isRemoveActorAttr = isRemoveActorAttr;
                     }
 
                     InsertJimaku(ref jimakuParams, helper, settingDialog, ref insertAudioInfo, isSetGroupEvent);
@@ -209,7 +213,8 @@ namespace VegasScriptCreateJimaku
                         ref actorBGInfo,
                         prefixBehavior,
                         isSetGroupEvent,
-                        isCreateOneEventCheck);
+                        isCreateOneEventCheck,
+                        isRemoveActorAttr);
                 }
                 catch (Exception ex)
                 {
@@ -394,7 +399,8 @@ namespace VegasScriptCreateJimaku
             ref BackgroundInfo actorBG,
             PrefixBehaviorType behavior,
             bool isGrouping,
-            bool isCreateOne)
+            bool isCreateOne,
+            bool isRemoveActorAttr)
         {
             SetAudioSetting(helper, audioInfo);
 
@@ -403,6 +409,8 @@ namespace VegasScriptCreateJimaku
             helper.Settings["PrefixBehavior"] = (int)behavior;
 
             helper.Settings["IsGroupSerifuJimakuEvent"] = isGrouping;
+
+            helper.Settings["RemoveActorAttribute"] = isRemoveActorAttr;
 
             SetVideoTrackSetting(helper, "Jimaku", jimakuParams.Jimaku);
             SetVideoTrackSetting(helper, "Actor", jimakuParams.Actor);

@@ -144,6 +144,7 @@
             this.jimakuOutlineColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorOutlineColorDialog = new System.Windows.Forms.ColorDialog();
+            this.removeActorAttributeCheck = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.createJimakuGroup.SuspendLayout();
             this.actorGroup.SuspendLayout();
@@ -184,6 +185,7 @@
             // 
             // createJimakuGroup
             // 
+            this.createJimakuGroup.Controls.Add(this.removeActorAttributeCheck);
             this.createJimakuGroup.Controls.Add(this.isGroupEventCheckBox);
             this.createJimakuGroup.Controls.Add(this.actorGroup);
             this.createJimakuGroup.Controls.Add(this.jimakuGroup);
@@ -1287,6 +1289,17 @@
             this.jimakuFileBrowser.FileName = "jimakuFileBrowser";
             this.jimakuFileBrowser.Filter = "テキストファイル|*.txt|すべてのファイル|*.*";
             // 
+            // removeActorAttributeCheck
+            // 
+            this.removeActorAttributeCheck.AutoSize = true;
+            this.removeActorAttributeCheck.Location = new System.Drawing.Point(570, 70);
+            this.removeActorAttributeCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.removeActorAttributeCheck.Name = "removeActorAttributeCheck";
+            this.removeActorAttributeCheck.Size = new System.Drawing.Size(127, 16);
+            this.removeActorAttributeCheck.TabIndex = 43;
+            this.removeActorAttributeCheck.Text = "声優名の属性を削除";
+            this.removeActorAttributeCheck.UseVisualStyleBackColor = true;
+            // 
             // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1462,5 +1475,6 @@
         private System.Windows.Forms.Panel jimakuBGMediaBinPanel;
         private System.Windows.Forms.Panel actorBGPanel;
         private System.Windows.Forms.Panel actorBGMediaBinPanel;
+        private System.Windows.Forms.CheckBox removeActorAttributeCheck;
     }
 }

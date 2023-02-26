@@ -526,5 +526,17 @@ namespace VegasScriptHelper.Properties {
                 this["ActorBGTrackName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RemoveActorAttribute {
+            get {
+                return ((bool)(this["RemoveActorAttribute"]));
+            }
+            set {
+                this["RemoveActorAttribute"] = value;
+            }
+        }
     }
 }
