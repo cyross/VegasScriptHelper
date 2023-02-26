@@ -3,16 +3,17 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using VegasScriptHelper;
 
-namespace VegasScriptLauncher
+namespace VegasScriptShowTips
 {
     public class MyDockableControl : DockableControl
     {
-        public readonly static string DockName = "CyrossVegasScriptLauncher";
-        public readonly static string DockDisplayName = "スクリプトランチャー";
-        private LauncherForm myform = null;
+        public readonly static string DockName = "CyrossVegasScriptShowTips";
+        public readonly static string DockDisplayName = "VEGAS Tipsの表示";
+        private TipsViewForm myform = null;
 
         public MyDockableControl() : base(DockName)
         {
@@ -26,27 +27,24 @@ namespace VegasScriptLauncher
 
         public override Size DefaultFloatingSize
         {
-            get { return new Size(640, 480); }
+            get { return new Size(1063, 830); }
         }
 
         protected override void OnLoad(EventArgs args)
         {
-            myform = new LauncherForm(myVegas){ Dock = DockStyle.Fill };
+            myform = new TipsViewForm() { Dock = DockStyle.Fill };
             try
             {
+                myform.LoadTips();
                 Controls.Add(myform.InnerPanel);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
                 Debug.WriteLine("---[Exception In Helper]---");
                 Debug.WriteLine(errMessage);
                 Debug.WriteLine("---------------------------");
-                MessageBox.Show(
-                    errMessage,
-                    "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show(errMessage);
                 throw ex;
             }
         }
@@ -59,7 +57,7 @@ namespace VegasScriptLauncher
 
     public class CustomModule : ICustomCommandModule
     {
-        public readonly static string CommandName = "VEGASスクリプトランチャー";
+        public readonly static string CommandName = "Tipsの表示";
         private Vegas myVegas;
         private VegasHelper myHelper;
         private readonly CustomCommand myCommand = new CustomCommand(CommandCategory.View, CommandName);

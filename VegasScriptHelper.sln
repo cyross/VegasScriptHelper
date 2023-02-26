@@ -89,9 +89,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{BD4E5DE1-E07E-4840-89F9-4296D34818B7}"
 	ProjectSection(SolutionItems) = preProject
 		build_event_copy_yaml_file.bat = build_event_copy_yaml_file.bat
-		deploy_dll_files.py = deploy_dll_files.py
-		deploy_dll_files.yaml = deploy_dll_files.yaml
 		README.md = README.md
+		deploy_files.yaml = deploy_files.yaml
+		deploy_files.py = deploy_files.py
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptUpdateSpaces", "VegasScriptUpdateSpaces\VegasScriptUpdateSpaces.csproj", "{34FF6DA6-99AA-4BF1-8332-74F653B05C65}"
@@ -105,6 +105,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptCreateJimakuBack
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptCreateJimaku", "VegasScriptCreateJimaku\VegasScriptCreateJimaku.csproj", "{D488BB9B-BAEA-4414-94BE-443771F44A30}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptShowTips", "VegasScriptShowTips\VegasScriptShowTips.csproj", "{7858228C-6914-4286-B7B6-CE3F1D459D0D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
 	EndProjectSection
@@ -187,6 +192,10 @@ Global
 		{D488BB9B-BAEA-4414-94BE-443771F44A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D488BB9B-BAEA-4414-94BE-443771F44A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D488BB9B-BAEA-4414-94BE-443771F44A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7858228C-6914-4286-B7B6-CE3F1D459D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7858228C-6914-4286-B7B6-CE3F1D459D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7858228C-6914-4286-B7B6-CE3F1D459D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7858228C-6914-4286-B7B6-CE3F1D459D0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,6 +11,9 @@ VEGASでの動画作成の補助に役立つ拡張機能集。
   - トラック中の全イベントの長さを出力(余白込み)
 - ShowSelectedEventTime
   - 選択したイベントの開始時間と長さを表示
+- ShowTips
+  - VEGASを使う上でのTipsを表示
+  - TipsはTips.mdを編集することで各自で変更可能
 
 また、ランチャーから起動している各スクリプトは「ツール」のスクリプトからでも実行可能です。
 
@@ -26,6 +29,12 @@ VEGASでの動画作成の補助に役立つ拡張機能集。
 - CreateInitialBin
   - ボイロ動画を作成する際に便利なビンをあらかじめ作成する
   - ビン名は変更可能
+- CreateJimaku
+  - ボイロ動画作成に必要な字幕や音声を一括設置
+  - 声優名の切り分け・声優名表示トラックの作成、背景画像の指定もできる
+- CreateJimakuBackground
+  - 字幕の背景画像を追加
+  - 音声毎にイベントを作るか、音声トラック全体に作るかの選択が可能
 - EditEventTime
   - 選択したイベントの開始時間と長さを時間単位で編集する
 - ExpandFirstVideoEvent
@@ -46,6 +55,8 @@ VegasScriptHelper用に以下のNuGetパッケージを使用しています。
 
 - YamlDotNet
   - マスタデータYAMLファイルのアクセスに必要
+- MarkDig
+  - ShowTipsでのMarkdownファイル処理に使用
 
 ## VegasScriptDebugについて
 
@@ -62,14 +73,29 @@ VisualStudioでデバッグするためのコードですので、
 デプロイ用に `deploy_dll_files.py` をご用意いたしましたので、こちらをご利用ください。
 
 ```bash
-python deploy_dll_files.py
+python deploy_files.py
 ```
 
 もしくは、
 
 ```bash
-python3 deploy_dll_files.py
+python3 deploy_files.py
 ```
+
+でデプロイできます。
+
+使用できるオプションは以下の3種類。
+
+大文字でも小文字でも対応
+
+- -Y(--UPDATE_YAML)
+  - YAMLファイルを強制上書きコピー
+  - デプロイ先に存在していないときは自動的にコピー
+- -M(--UPDATE_MARKDOWN)
+  - Markdownファイルを強制上書きコピー
+  - デプロイ先に存在していないときは自動的にコピー
+- -V(--VARBOSE)
+  - 詳細な内容の出力
 
 ## ライセンス
 
