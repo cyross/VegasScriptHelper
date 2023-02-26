@@ -15,7 +15,7 @@ namespace VegasScriptHelper
     {
         private readonly static VegasScriptSettings _Instance = new VegasScriptSettings();
 
-        private Dictionary<string, dynamic> settingProperties = new Dictionary<string, dynamic>();
+        private readonly Dictionary<string, dynamic> settingProperties = new Dictionary<string, dynamic>();
 
         public SupportedAudioFileSettings SupportedAudioFile;
         public VoiceActorColors TextColorByActor;
@@ -79,11 +79,11 @@ namespace VegasScriptHelper
 
         private static T LoadYamlFile<T>(string filename) where T : class, IYamlSpec, new()
         {
-            string execDir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+            string execFilePath = VegasHelperUtility.GetExecFilepath(filename);
 
             try
             {
-                var yamlStream = new StreamReader(Path.Combine(execDir, filename));
+                var yamlStream = new StreamReader(execFilePath);
 
                 var stream = new YamlStream();
 
@@ -98,7 +98,7 @@ namespace VegasScriptHelper
             catch (FileNotFoundException ex)
             {
                 Debug.WriteLine("[ERROR]FILE NOT FOUND: filepath");
-                Debug.WriteLine("CurrentPath = " + execDir);
+                Debug.WriteLine("CurrentPath = " + execFilePath);
                 throw ex;
             }
         }

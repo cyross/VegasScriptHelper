@@ -1,6 +1,7 @@
 ﻿using ScriptPortal.Vegas;
-using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace VegasScriptHelper
 {
@@ -13,6 +14,16 @@ namespace VegasScriptHelper
             foreach (TrackEvent e in trackEvents) { events.Add(e); }
 
             return events;
+        }
+
+        public static string GetExecDirectory()
+        {
+            return Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+        }
+
+        public static string GetExecFilepath(string fileName)
+        {
+            return Path.Combine(GetExecDirectory(), fileName);
         }
     }
 }
