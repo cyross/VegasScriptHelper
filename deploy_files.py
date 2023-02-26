@@ -146,41 +146,38 @@ def copy_file(src_path: str, dst_path: str):
         print(f'[ERROR]コピー元とコピー先のファイルパスが同じです: {src_path} -> {dst_path}')
         abort_program()
 
-def deploy_files(dst_file_folder: str, vegas_script_files: list[str], my_documents_path: str) -> None:
+def deploy_files(dst_file_folders: list[str], vegas_script_files: list[str], my_documents_path: str) -> None:
     # VEGAS HELPER
-    for dst_file_folder in dst_file_folders:
-        copy_file_to_folder(
-            CONFIG['vegas_helper_file_name'],
-            CONFIG['vegas_helper_file_dir'],
-            dst_file_folder,
-            my_documents_path
-            )
+    copy_file_to_folder(
+        CONFIG['vegas_helper_file_name'],
+        CONFIG['vegas_helper_file_dir'],
+        dst_file_folders,
+        my_documents_path)
 
     # VEGAS SCRIPT
     for file_info in vegas_script_files:
         copy_file_to_folder(
             file_info['file'],
             file_info['dir'],
-            dst_file_folder,
-            my_documents_path
-            )
+            dst_file_folders,
+            my_documents_path)
 
     # YAML FILES
     for file_info in CONFIG['vegas_yaml_files']:
-       copy_file_to_folder(
-           file_info['file'],
-           file_info['dir'],
-           dst_file_folder,
-           my_documents_path,
-           True,
-           OPTIONS['update_yaml'])
+        copy_file_to_folder(
+            file_info['file'],
+            file_info['dir'],
+            dst_file_folders,
+            my_documents_path,
+            True,
+            OPTIONS['update_yaml'])
 
     # MarkDown FILES
     for file_info in CONFIG['vegas_markdown_files']:
         copy_file_to_folder(
             file_info['file'],
             file_info['dir'],
-            dst_file_folder,
+            dst_file_folders,
             my_documents_path,
             True,
             OPTIONS['update_markdown'])
@@ -202,17 +199,15 @@ if __name__ == '__main__':
         quit()
 
     dst_vegas_script_folders = [CONFIG['dst_vegas_script_folder']]
-    dst_vegas_extension_folders = [CONFIG['dst_vegas_script_folder']]
+    dst_vegas_extension_folders = [CONFIG['dst_vegas_extension_folder']]
 
     if OPTIONS['deploy_to_cyross_folder']:
         dst_vegas_script_folders.append(CONFIG['cyross_vegas_script_folder'])
-        dst_vegas_extension_folders.append(CONFIG['cyross_vegas_extension_folder'])
-
-    dst_file_folders: list[list[str]] = [dst_vegas_script_folders, dst_vegas_extension_folders]
+        dst_vegas_extension_folders.append(CONFIG['dst_vegas_extension_folder'])
 
     print('copy to vegas script folder...')
-    deploy_files(CONFIG['dst_vegas_script_folder'], CONFIG['vegas_script_files'], my_documents_path)
+    deploy_files(dst_vegas_script_folders, CONFIG['vegas_script_files'], my_documents_path)
     print('copy to vegas application extension folder...')
-    deploy_files(CONFIG['dst_vegas_extension_folder'], CONFIG['vegas_extension_files'], my_documents_path)
+    deploy_files(dst_vegas_extension_folders, CONFIG['vegas_extension_files'], my_documents_path)
 
     print('complete!')
