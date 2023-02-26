@@ -60,16 +60,23 @@ vegas_extension_files:
     dir: ".\\VegasScriptLauncher\\bin\\Release"
   - file: "YamlDotNet.dll"
     dir: ".\\VegasScriptHelper\\bin\\Release"
+vegas_yaml_files:
+  - file: "SupportedAudioFileSettings.yaml"
+    dir: ".\\VegasScriptHelper"
+  - file: "VoiceActorColors.yaml"
+    dir: ".\\VegasScriptHelper"
+  - file: "VoiceActorOutlineColors.yaml"
+    dir: ".\\VegasScriptHelper"
+  - file: "DefaultBinNames.yaml"
+    dir: ".\\VegasScriptHelper"
+  - file: "DefaultTrackNames.yaml"
+    dir: ".\\VegasScriptHelper"
+vegas_markdown_files:
+  - file: "Tips.md"
+    dir: ".\\VegasScriptShowTips"
 dst_vegas_script_folder:
   - "{0}\\Vegas Script Menu"
   - "..\\CyrossVegasScripts\\Vegas Script Menu"
 dst_vegas_extension_folder:
   - "{0}\\Vegas Application Extensions"
   - "..\\CyrossVegasScripts\\Vegas Application Extensions"
-vegas_yaml_files:
-  - "SupportedAudioFileSettings.yaml"
-  - "VoiceActorColors.yaml"
-  - "VoiceActorOutlineColors.yaml"
-  - "DefaultBinNames.yaml"
-  - "DefaultTrackNames.yaml"
-vegas_yaml_file_dir: ".\\VegasScriptHelper"
