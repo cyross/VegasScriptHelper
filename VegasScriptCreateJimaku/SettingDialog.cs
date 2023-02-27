@@ -177,6 +177,12 @@ namespace VegasScriptCreateJimaku
             set { SetBoxValue(actorOutlineWidthBox, value); }
         }
 
+        public double StandardSilenceTime
+        {
+            get { return GetBoxValue<double>(silenceTimeBox); }
+            set { SetBoxValue(silenceTimeBox, value); }
+        }
+
         public bool UseJimakuMediaBin
         {
             get { return useJimakuMediaBin.Checked; }
@@ -359,6 +365,12 @@ namespace VegasScriptCreateJimaku
             set { SetBoxValue(actorMarginBox, value); }
         }
 
+        public bool SeparateTracks
+        {
+            get { return separateTrackChecBox.Checked; }
+            set { separateTrackChecBox.Checked = value; }
+        }
+
         private void SetComboBox(ComboBox combobox, KeyListInfo klStruct)
         {
             SetComboBox(combobox, klStruct.Keys, klStruct.FirstKey);
@@ -379,6 +391,7 @@ namespace VegasScriptCreateJimaku
             AudioInterval = helper.Settings["AudioInsertInterval"];
             IsRecursive = helper.Settings["IsAudioFolderRecursive"];
             IsInsertFromStartPosition = helper.Settings["IsInsertFromStartPosition"];
+            StandardSilenceTime = helper.Settings["StandardSilenceTime"];
 
             SetComboBox(audioMediaBinBox, klMediaBin);
             UseAudioMediaBin = helper.Settings["UseAudioMediaBin"];
@@ -668,16 +681,6 @@ namespace VegasScriptCreateJimaku
         private void ActorOutlineColorBox_Clicked(object sender, EventArgs e)
         {
             ColorBoxClicked(actorOutlineColorBox, actorOutlineColorDialog);
-        }
-
-        private void UseJimakuDefaultSettings_Click(object sender, EventArgs e)
-        {
-            jimakuColorPanel.Enabled = useJimakuDefaultSettings.Checked;
-        }
-
-        private void UseActorDefaultSettings_Click(object sender, EventArgs e)
-        {
-            actorColorPanel.Enabled = useActorDefaultSettings.Checked;
         }
 
         private void RemainActorName_CheckedChanged(object sender, EventArgs e)

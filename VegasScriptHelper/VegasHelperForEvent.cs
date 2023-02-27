@@ -33,6 +33,17 @@ namespace VegasScriptHelper
             return audioEvent;
         }
 
+        // 音声・声優なしパート用
+        public AudioEvent CreateAudioEvent(AudioTrack track, Timecode start, Timecode length, double margin = 0.0f)
+        {
+            AudioEvent audioEvent = track.AddAudioEvent(
+                start - new Timecode(margin),
+                length + new Timecode(margin * 2)
+                );
+
+            return audioEvent;
+        }
+
         public VideoEvent CreateVideoEvent(VideoTrack track, Media media, Timecode start, double margin = 0.0f)
         {
             VideoStream stream = media.GetVideoStreamByIndex(0);
@@ -53,6 +64,17 @@ namespace VegasScriptHelper
                 );
 
             videoEvent.AddTake(stream);
+
+            return videoEvent;
+        }
+
+        // 音声・声優なしパート用
+        public VideoEvent CreateVideoEvent(VideoTrack track, Timecode start, Timecode length, double margin = 0.0f)
+        {
+            VideoEvent videoEvent = track.AddVideoEvent(
+                start - new Timecode(margin),
+                length + new Timecode(margin * 2)
+                );
 
             return videoEvent;
         }

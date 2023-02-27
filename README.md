@@ -115,3 +115,37 @@ python3 deploy_files.py
 
 また、本拡張機能集を使用したことによるトラブル・問題が発生したとしても、
 当方は全く責任を負いません。
+
+### 各合成音声エンジンのライセンスリンク
+
+#### AquesTalk
+
+<https://www.a-quest.com/products/aquestalk.html>
+
+#### ゆっくり音声（東方Project二次創作ガイドライン)
+
+<https://touhou-project.news/guideline/>
+
+#### A.I.VOICE
+
+<https://aivoice.jp/>
+
+#### VOICEROIDシリーズ
+
+<https://www.ah-soft.com/voiceroid/>
+
+#### VOICEPEAK
+
+<https://www.ah-soft.com/voice/>
+
+#### CeVIO CS
+
+<https://cevio.jp/product/ccs/>
+
+#### CeVIO AI
+
+<https://cevio.jp/products_cevio_ai/>
+
+#### VOICEVOX
+
+<https://voicevox.hiroshiba.jp/>

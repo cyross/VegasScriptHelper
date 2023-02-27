@@ -31,7 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.separateTrackChecBox = new System.Windows.Forms.CheckBox();
             this.createJimakuGroup = new System.Windows.Forms.GroupBox();
+            this.removeActorAttributeCheck = new System.Windows.Forms.CheckBox();
             this.isGroupEventCheckBox = new System.Windows.Forms.CheckBox();
             this.actorGroup = new System.Windows.Forms.GroupBox();
             this.actorMediaBinPanel = new System.Windows.Forms.Panel();
@@ -87,6 +89,7 @@
             this.jimakuFileDialogOpenButton = new System.Windows.Forms.Button();
             this.jimakuFilePathBox = new System.Windows.Forms.TextBox();
             this.audioFolderGroup = new System.Windows.Forms.GroupBox();
+            this.silenceTimeLabel = new System.Windows.Forms.Label();
             this.audioMediaBinPanel = new System.Windows.Forms.Panel();
             this.audioMediaBinNameLabel = new System.Windows.Forms.Label();
             this.audioMediaBinBox = new System.Windows.Forms.ComboBox();
@@ -96,7 +99,9 @@
             this.intervalLavel = new System.Windows.Forms.Label();
             this.audioFileFolderDialogOpenButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.silenceTimeBox = new System.Windows.Forms.TextBox();
             this.intervalBox = new System.Windows.Forms.TextBox();
+            this.silenceTimeUnitLabel = new System.Windows.Forms.Label();
             this.audioTrackNameBox = new System.Windows.Forms.ComboBox();
             this.intervalUnitLabel = new System.Windows.Forms.Label();
             this.audioTrackNameLabel = new System.Windows.Forms.Label();
@@ -144,7 +149,6 @@
             this.jimakuOutlineColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorOutlineColorDialog = new System.Windows.Forms.ColorDialog();
-            this.removeActorAttributeCheck = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.createJimakuGroup.SuspendLayout();
             this.actorGroup.SuspendLayout();
@@ -173,6 +177,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.separateTrackChecBox);
             this.panel1.Controls.Add(this.createJimakuGroup);
             this.panel1.Controls.Add(this.audioFolderGroup);
             this.panel1.Controls.Add(this.jimakuBackgroundGroup);
@@ -182,6 +187,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(911, 928);
             this.panel1.TabIndex = 0;
+            // 
+            // separateTrackChecBox
+            // 
+            this.separateTrackChecBox.AutoSize = true;
+            this.separateTrackChecBox.Enabled = false;
+            this.separateTrackChecBox.Location = new System.Drawing.Point(288, 906);
+            this.separateTrackChecBox.Name = "separateTrackChecBox";
+            this.separateTrackChecBox.Size = new System.Drawing.Size(216, 16);
+            this.separateTrackChecBox.TabIndex = 29;
+            this.separateTrackChecBox.Text = "字幕・声優名のトラックを声優別に分ける";
+            this.separateTrackChecBox.UseVisualStyleBackColor = true;
             // 
             // createJimakuGroup
             // 
@@ -199,6 +215,17 @@
             this.createJimakuGroup.TabIndex = 28;
             this.createJimakuGroup.TabStop = false;
             this.createJimakuGroup.Text = "字幕流し込み";
+            // 
+            // removeActorAttributeCheck
+            // 
+            this.removeActorAttributeCheck.AutoSize = true;
+            this.removeActorAttributeCheck.Location = new System.Drawing.Point(570, 70);
+            this.removeActorAttributeCheck.Margin = new System.Windows.Forms.Padding(2);
+            this.removeActorAttributeCheck.Name = "removeActorAttributeCheck";
+            this.removeActorAttributeCheck.Size = new System.Drawing.Size(127, 16);
+            this.removeActorAttributeCheck.TabIndex = 43;
+            this.removeActorAttributeCheck.Text = "声優名の属性を削除";
+            this.removeActorAttributeCheck.UseVisualStyleBackColor = true;
             // 
             // isGroupEventCheckBox
             // 
@@ -395,7 +422,6 @@
             this.useActorDefaultSettings.TabIndex = 38;
             this.useActorDefaultSettings.Text = "規定の字幕・アウトライン色を使用";
             this.useActorDefaultSettings.UseVisualStyleBackColor = true;
-            this.useActorDefaultSettings.CheckedChanged += new System.EventHandler(this.UseActorDefaultSettings_Click);
             // 
             // actorOutlineWidthLabel
             // 
@@ -641,7 +667,6 @@
             this.useJimakuDefaultSettings.TabIndex = 38;
             this.useJimakuDefaultSettings.Text = "規定の字幕・アウトライン色を使用";
             this.useJimakuDefaultSettings.UseVisualStyleBackColor = true;
-            this.useJimakuDefaultSettings.CheckedChanged += new System.EventHandler(this.UseJimakuDefaultSettings_Click);
             // 
             // jimakuOutlineWidthLabel
             // 
@@ -758,12 +783,15 @@
             // 
             // audioFolderGroup
             // 
+            this.audioFolderGroup.Controls.Add(this.silenceTimeLabel);
             this.audioFolderGroup.Controls.Add(this.audioMediaBinPanel);
             this.audioFolderGroup.Controls.Add(this.startPositionGroup);
             this.audioFolderGroup.Controls.Add(this.intervalLavel);
             this.audioFolderGroup.Controls.Add(this.audioFileFolderDialogOpenButton);
             this.audioFolderGroup.Controls.Add(this.label1);
+            this.audioFolderGroup.Controls.Add(this.silenceTimeBox);
             this.audioFolderGroup.Controls.Add(this.intervalBox);
+            this.audioFolderGroup.Controls.Add(this.silenceTimeUnitLabel);
             this.audioFolderGroup.Controls.Add(this.audioTrackNameBox);
             this.audioFolderGroup.Controls.Add(this.intervalUnitLabel);
             this.audioFolderGroup.Controls.Add(this.audioTrackNameLabel);
@@ -777,6 +805,15 @@
             this.audioFolderGroup.TabIndex = 27;
             this.audioFolderGroup.TabStop = false;
             this.audioFolderGroup.Text = "音声流し込み";
+            // 
+            // silenceTimeLabel
+            // 
+            this.silenceTimeLabel.AutoSize = true;
+            this.silenceTimeLabel.Location = new System.Drawing.Point(594, 71);
+            this.silenceTimeLabel.Name = "silenceTimeLabel";
+            this.silenceTimeLabel.Size = new System.Drawing.Size(154, 12);
+            this.silenceTimeLabel.TabIndex = 30;
+            this.silenceTimeLabel.Text = "声優設定なしの標準空白時間";
             // 
             // audioMediaBinPanel
             // 
@@ -872,12 +909,32 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "新規追加はトラック名を記入";
             // 
+            // silenceTimeBox
+            // 
+            this.silenceTimeBox.Location = new System.Drawing.Point(754, 68);
+            this.silenceTimeBox.Name = "silenceTimeBox";
+            this.silenceTimeBox.Size = new System.Drawing.Size(74, 19);
+            this.silenceTimeBox.TabIndex = 19;
+            this.silenceTimeBox.Text = "0";
+            this.silenceTimeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // intervalBox
             // 
             this.intervalBox.Location = new System.Drawing.Point(459, 68);
             this.intervalBox.Name = "intervalBox";
             this.intervalBox.Size = new System.Drawing.Size(74, 19);
             this.intervalBox.TabIndex = 19;
+            this.intervalBox.Text = "0";
+            this.intervalBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // silenceTimeUnitLabel
+            // 
+            this.silenceTimeUnitLabel.AutoSize = true;
+            this.silenceTimeUnitLabel.Location = new System.Drawing.Point(834, 71);
+            this.silenceTimeUnitLabel.Name = "silenceTimeUnitLabel";
+            this.silenceTimeUnitLabel.Size = new System.Drawing.Size(31, 12);
+            this.silenceTimeUnitLabel.TabIndex = 20;
+            this.silenceTimeUnitLabel.Text = "ミリ秒";
             // 
             // audioTrackNameBox
             // 
@@ -1289,17 +1346,6 @@
             this.jimakuFileBrowser.FileName = "jimakuFileBrowser";
             this.jimakuFileBrowser.Filter = "テキストファイル|*.txt|すべてのファイル|*.*";
             // 
-            // removeActorAttributeCheck
-            // 
-            this.removeActorAttributeCheck.AutoSize = true;
-            this.removeActorAttributeCheck.Location = new System.Drawing.Point(570, 70);
-            this.removeActorAttributeCheck.Margin = new System.Windows.Forms.Padding(2);
-            this.removeActorAttributeCheck.Name = "removeActorAttributeCheck";
-            this.removeActorAttributeCheck.Size = new System.Drawing.Size(127, 16);
-            this.removeActorAttributeCheck.TabIndex = 43;
-            this.removeActorAttributeCheck.Text = "声優名の属性を削除";
-            this.removeActorAttributeCheck.UseVisualStyleBackColor = true;
-            // 
             // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1476,5 +1522,9 @@
         private System.Windows.Forms.Panel actorBGPanel;
         private System.Windows.Forms.Panel actorBGMediaBinPanel;
         private System.Windows.Forms.CheckBox removeActorAttributeCheck;
+        private System.Windows.Forms.Label silenceTimeLabel;
+        private System.Windows.Forms.TextBox silenceTimeBox;
+        private System.Windows.Forms.Label silenceTimeUnitLabel;
+        private System.Windows.Forms.CheckBox separateTrackChecBox;
     }
 }

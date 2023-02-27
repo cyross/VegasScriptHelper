@@ -23,6 +23,11 @@ namespace VegasScriptHelper
 
     public partial class VegasHelper
     {
+        public int CountJimakuLines(string[] jimakuLines)
+        {
+            return jimakuLines.Where(l => l.Trim().Length > 0 && l.IndexOf(":") != -1).Count();
+        }
+
         public void InsertJimaku(in JimakuParams jimakuParams, AudioTrack audioTrack, bool isGroupSerifuJimakuEvent)
         {
             List<TrackEvent> serifuEvents = audioTrack.Events.ToList();
@@ -44,7 +49,7 @@ namespace VegasScriptHelper
 
                 string actorName = (prefixSeparatorPos == -1) ? "" : jimakuLine.Substring(0, prefixSeparatorPos);
 
-                if(jimakuParams.IsDeletePrefix)
+                if(jimakuParams.IsDeletePrefix && actorName != "")
                 {
                     jimakuLine = jimakuLine.Substring(prefixSeparatorPos + 1);
                 }
@@ -53,11 +58,11 @@ namespace VegasScriptHelper
                 TrackEvent jimakuEvent = CreateVideoEvent(jimakuParams.Jimaku.Track.Track, jimakuMedia, serifuEvent.Start, serifuEvent.Length, jimakuParams.Jimaku.Margin);
                 ColorInfo jimakuColorInfo = new ColorInfo();
 
-                if(IsUseColorSetting(jimakuParams.JimakuColor.IsUse, actorName))
+                if(actorName != "" && IsUseColorSetting(jimakuParams.JimakuColor.IsUse, actorName))
                 {
                     jimakuColorInfo = jimakuParams.JimakuColor;
                 }
-                else
+                else // 声優なしの場合もこれ
                 {
                     jimakuColorInfo.TextColor = _settings.TextColorByActor[actorName];
                     jimakuColorInfo.OutlineColor = _settings.OutlineColorByActor[actorName];
@@ -68,7 +73,7 @@ namespace VegasScriptHelper
 
                 groupList.Add(jimakuEvent);
 
-                if(actorName != "" && jimakuParams.IsCreateActorTrack)
+                if(jimakuParams.IsCreateActorTrack && actorName != "")
                 {
                     Media actorMedia = CreateMedia(node, jimakuParams.Actor.PresetName, jimakuParams.Actor.MediaBin.Bin);
                     TrackEvent actorEvent = CreateVideoEvent(jimakuParams.Actor.Track.Track, actorMedia, serifuEvent.Start, serifuEvent.Length, jimakuParams.Actor.Margin);
@@ -78,7 +83,7 @@ namespace VegasScriptHelper
                     {
                         actorColorInfo = jimakuParams.ActorColor;
                     }
-                    else
+                    else // 声優なしの場合もこれ
                     {
                         actorColorInfo.TextColor = _settings.TextColorByActor[actorName];
                         actorColorInfo.OutlineColor = _settings.OutlineColorByActor[actorName];
@@ -95,6 +100,12 @@ namespace VegasScriptHelper
                     }
 
                     SetText(actorMedia, realActorName, actorColorInfo);
+
+                    groupList.Add(actorEvent);
+                }
+                else if(jimakuParams.IsCreateActorTrack) // 声優名なし
+                {
+                    TrackEvent actorEvent = CreateVideoEvent(jimakuParams.Actor.Track.Track, serifuEvent.Start, serifuEvent.Length, jimakuParams.Actor.Margin);
 
                     groupList.Add(actorEvent);
                 }

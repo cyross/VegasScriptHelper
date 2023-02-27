@@ -538,5 +538,17 @@ namespace VegasScriptHelper.Properties {
                 this["RemoveActorAttribute"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public double StandardSilenceTime {
+            get {
+                return ((double)(this["StandardSilenceTime"]));
+            }
+            set {
+                this["StandardSilenceTime"] = value;
+            }
+        }
     }
 }

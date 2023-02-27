@@ -162,13 +162,16 @@ namespace VegasScriptCreateJimaku
                     // 今後の拡張のため、事前に字幕ファイルを読み込んでおく
                     ReadJimaku(ref jimakuParams, settingDialog);
 
+                    int jimakuLinesCount = helper.CountJimakuLines(jimakuParams.JimakuLines);
+
                     InsertAudioInfo insertAudioInfo = CreateAudioInfo(settingDialog);
+                    insertAudioInfo.JimakuLines = jimakuParams.JimakuLines;
 
                     int audioFileCount = helper.CountAudioFiles(insertAudioInfo);
 
-                    Debug.WriteLine(string.Format("[Audio]:{0} [Line]:{1}", audioFileCount, jimakuParams.JimakuLines.Length));
+                    Debug.WriteLine(string.Format("[Audio]:{0} [Line]:{1}", audioFileCount, jimakuLinesCount));
 
-                    if (audioFileCount != jimakuParams.JimakuLines.Length)
+                    if (audioFileCount != jimakuLinesCount)
                     {
                         MessageBox.Show("セリフ音声ファイルの数と字幕の行数が違います");
                         return;
@@ -280,7 +283,8 @@ namespace VegasScriptCreateJimaku
                 Folder = dialog.AudioFileFolder,
                 Interval = dialog.AudioInterval,
                 IsRecursive = dialog.IsRecursive,
-                IsInsertFromStartPosition = dialog.IsInsertFromStartPosition
+                IsInsertFromStartPosition = dialog.IsInsertFromStartPosition,
+                StandardSilenceTime = dialog.StandardSilenceTime
             };
         }
 
@@ -439,6 +443,7 @@ namespace VegasScriptCreateJimaku
             helper.Settings["AudioInsertInterval"] = info.Interval;
             helper.Settings["IsAudioFolderRecursive"] = info.IsRecursive;
             helper.Settings["IsInsertFromStartPosition"] = info.IsInsertFromStartPosition;
+            helper.Settings["StandardSilenceTime"] = info.StandardSilenceTime;
         }
 
         private void SetVideoTrackSetting(VegasHelper helper, string target, in TextTrackInfo info)
