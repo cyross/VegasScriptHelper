@@ -274,6 +274,17 @@ namespace VegasScriptCreateJimaku
             {
                 jimakuParams.JimakuLines = jimakuFile.ReadToEnd().Split(new char[] { '\n' }).Select(s => s.Replace("\r", "")).Where(s => s.Length > 0).ToArray();
             }
+
+            List<string> actorLines = new List<string>();
+            foreach(var line in jimakuParams.JimakuLines)
+            {
+                int prefixSeparatorPos = line.IndexOf(":");
+
+                string actorName = (prefixSeparatorPos == -1) ? "" : line.Substring(0, prefixSeparatorPos);
+
+                actorLines.Add(actorName);
+            }
+            jimakuParams.ActorLines = actorLines.ToArray();
         }
 
         private InsertAudioInfo CreateAudioInfo(SettingDialog dialog)

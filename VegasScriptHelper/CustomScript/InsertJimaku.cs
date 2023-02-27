@@ -9,6 +9,7 @@ namespace VegasScriptHelper
     {
         public string JimakuFilePath;
         public string[] JimakuLines;
+        public string[] ActorLines;
 
         public TextTrackInfo Jimaku;
         public TextTrackInfo Actor;
