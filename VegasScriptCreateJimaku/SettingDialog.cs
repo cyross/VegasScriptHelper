@@ -366,12 +366,6 @@ namespace VegasScriptCreateJimaku
             set { actorPresetBox.Text = value; }
         }
 
-        public bool IsEventGroupCheck
-        {
-            get { return isGroupEventCheckBox.Checked; }
-            set { isGroupEventCheckBox.Checked = value; }
-        }
-
         public double JimakuMargin
         {
             get { return GetBoxValue<double>(jimakuMarginBox); }

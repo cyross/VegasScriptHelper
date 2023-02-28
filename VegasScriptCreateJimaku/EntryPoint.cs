@@ -96,7 +96,7 @@ namespace VegasScriptCreateJimaku
         public VideoTrack ActorBG;
         public Dictionary<string, VideoTrack> Tachie;
 
-        public void CreateAudioTrack(VegasHelper helper, in InsertAudioInfo info)
+        public void CreateAudioTrack(VegasHelper helper, in InsertAudioInfo info, ref List<Track> groupTracks)
         {
             Audio = helper.CreateAudioTrack(GetTrackName(info.Track.Name));
         }
@@ -160,14 +160,19 @@ namespace VegasScriptCreateJimaku
         Dictionary<string, Media> mKV;
         Dictionary<string, MediaBin> mbKV;
 
+        int TrackIndex = 0;
+
         public void FromVegas(Vegas vegas)
         {
+            Dictionary<string, List<Track>> trackGroupingKeyValue = new Dictionary<string, List<Track>>();
+
+            // ヘルパクラスのオブジェクト生成は必須
+            VegasHelper helper = VegasHelper.Instance(vegas);
+
             using (var block = new UndoBlock("CreateJimaku"))
             {
                 try
                 {
-                    // ヘルパクラスのオブジェクト生成は必須
-                    VegasHelper helper = VegasHelper.Instance(vegas);
 
                     JimakuParams jimakuParams = new JimakuParams();
 
@@ -211,7 +216,6 @@ namespace VegasScriptCreateJimaku
                     KeyListInfo klActorBGMBin = CreateMediaBinKL(helper, mbKV, "ActorBG");
 
                     PrefixBehaviorType prefixBehavior = (PrefixBehaviorType)helper.Settings["PrefixBehavior"];
-                    bool isSetGroupEvent = helper.Settings["IsGroupSerifuJimakuEvent"];
                     bool isRemoveActorAttr = helper.Settings["RemoveActorAttribute"];
                     bool isCreateOneEventCheck = helper.Settings["CreateOneEventCheck"];
 
@@ -243,7 +247,6 @@ namespace VegasScriptCreateJimaku
 
                     settingDialog.JimakuFilePath = helper.Settings["JimakuFilePath"];
                     settingDialog.PrefixBehavior = prefixBehavior;
-                    settingDialog.IsEventGroupCheck = isSetGroupEvent;
                     settingDialog.IsRemoveActorAttr = isRemoveActorAttr;
 
                     settingDialog.SetJimakuTrackInfo(helper, klJimaku, klJimakuPlugin, klJimakuMBin);
@@ -285,7 +288,6 @@ namespace VegasScriptCreateJimaku
                     }
 
                     prefixBehavior = settingDialog.PrefixBehavior;
-                    isSetGroupEvent = settingDialog.IsEventGroupCheck;
                     isRemoveActorAttr = settingDialog.IsRemoveActorAttr;
                     isCreateOneEventCheck = settingDialog.IsCreateOneEventCheck;
 
@@ -329,7 +331,7 @@ namespace VegasScriptCreateJimaku
                         SetTextInfo(ref jimakuParams.Actor, helper, settingDialog.ActorTrackInfo, ref groupTracks);
                         jimakuParams.isRemoveActorAttr = isRemoveActorAttr;
                     }
-                    InsertJimaku(ref jimakuParams, helper, settingDialog, ref insertAudioInfo, isSetGroupEvent);
+                    InsertJimaku(ref jimakuParams, helper, settingDialog, ref insertAudioInfo);
 
                     groupTracks.Add(insertAudioInfo.Track.Track);
 
@@ -337,7 +339,8 @@ namespace VegasScriptCreateJimaku
                     CreateTachieTrack(helper, ref tachieTrack, TachieType.Front, ref groupTracks);
 
                     // グループ作成
-                    helper.AddTrackGroup(groupTracks, "メイン");
+
+                    trackGroupingKeyValue["メイン"] = groupTracks;
 
                     // 各種トラックの振り分け
                     if (settingDialog.DivideTracks)
@@ -349,7 +352,8 @@ namespace VegasScriptCreateJimaku
                             ref jimakuBGInfo,
                             ref actorBGInfo,
                             isCreateOneEventCheck,
-                            ref tachieTrack);
+                            ref tachieTrack,
+                            trackGroupingKeyValue);
                     }
 
                     // 設定した設定を保存
@@ -360,7 +364,6 @@ namespace VegasScriptCreateJimaku
                         ref jimakuBGInfo,
                         ref actorBGInfo,
                         prefixBehavior,
-                        isSetGroupEvent,
                         isCreateOneEventCheck,
                         isRemoveActorAttr,
                         ref tachieTrack,
@@ -374,6 +377,14 @@ namespace VegasScriptCreateJimaku
                     Debug.WriteLine("---------------------------");
                     MessageBox.Show(errMessage);
                     throw ex;
+                }
+            }
+
+            using (var block = new UndoBlock("GroupJimakuTracks"))
+            {
+                foreach (string actorName in trackGroupingKeyValue.Keys)
+                {
+                    helper.AddTrackGroup(trackGroupingKeyValue[actorName], actorName != "" ? actorName : "(声優名なし)");
                 }
             }
         }
@@ -465,8 +476,7 @@ namespace VegasScriptCreateJimaku
             ref JimakuParams jimaku,
             VegasHelper helper,
             SettingDialog dialog,
-            ref InsertAudioInfo audioInfo,
-            bool isGrouping
+            ref InsertAudioInfo audioInfo
             )
         {
             jimaku.JimakuColor = CreateColorInfo(dialog.UseJimakuDefaultSettings,
@@ -475,7 +485,7 @@ namespace VegasScriptCreateJimaku
             jimaku.ActorColor = CreateColorInfo(dialog.UseActorDefaultSettings,
                 dialog.ActorColor, dialog.ActorOutlineColor, dialog.ActorOutlineWidth);
 
-            helper.InsertJimaku(jimaku, audioInfo.Track.Track, isGrouping);
+            helper.InsertJimaku(jimaku, audioInfo.Track.Track);
         }
 
         private void SetTextInfo(
@@ -589,7 +599,8 @@ namespace VegasScriptCreateJimaku
             ref BackgroundInfo jimakuBG,
             ref BackgroundInfo actorBG,
             bool isCreateOne,
-            ref BasicTrackStruct tachieTrack)
+            ref BasicTrackStruct tachieTrack,
+            Dictionary<string, List<Track>> trackGroupingKeyValue)
         {
             Dictionary<string, TrackByActorStruct> tracksByActor = new Dictionary<string, TrackByActorStruct>();
 
@@ -605,7 +616,7 @@ namespace VegasScriptCreateJimaku
                     Tachie = new Dictionary<string, VideoTrack>()
                 };
 
-                actorStruct.CreateAudioTrack(helper, audioInfo);
+                actorStruct.CreateAudioTrack(helper, audioInfo, ref groupTracks);
 
                 actorStruct.CreateTachieTrack(helper, TachieType.Back, tachieTrack, ref groupTracks);
 
@@ -625,7 +636,7 @@ namespace VegasScriptCreateJimaku
 
                 tracksByActor[actorName] = actorStruct;
 
-                helper.AddTrackGroup(groupTracks, actorName != "" ? actorName : "(声優名なし)");
+                trackGroupingKeyValue[actorName] = groupTracks;
             }
 
             foreach (string actorName in jimakuParams.ActorLines)
@@ -681,7 +692,6 @@ namespace VegasScriptCreateJimaku
             ref BackgroundInfo jimakuBG,
             ref BackgroundInfo actorBG,
             PrefixBehaviorType behavior,
-            bool isGrouping,
             bool isCreateOne,
             bool isRemoveActorAttr,
             ref BasicTrackStruct tachieTrack,
@@ -692,8 +702,6 @@ namespace VegasScriptCreateJimaku
             helper.Settings["JimakuFilePath"] = jimakuParams.JimakuFilePath;
 
             helper.Settings["PrefixBehavior"] = (int)behavior;
-
-            helper.Settings["IsGroupSerifuJimakuEvent"] = isGrouping;
 
             helper.Settings["RemoveActorAttribute"] = isRemoveActorAttr;
 

@@ -30,7 +30,7 @@ namespace VegasScriptHelper
             return jimakuLines.Where(l => l.Trim().Length > 0 && l.IndexOf(":") != -1).Count();
         }
 
-        public void InsertJimaku(in JimakuParams jimakuParams, AudioTrack audioTrack, bool isGroupSerifuJimakuEvent)
+        public void InsertJimaku(in JimakuParams jimakuParams, AudioTrack audioTrack)
         {
             List<TrackEvent> serifuEvents = audioTrack.Events.ToList();
             int serifuCounts = serifuEvents.Count;
@@ -112,10 +112,7 @@ namespace VegasScriptHelper
                     groupList.Add(actorEvent);
                 }
 
-                if (isGroupSerifuJimakuEvent)
-                {
-                    AddTrackEventGroup(groupList.ToArray());
-                }
+                AddTrackEventGroup(groupList.ToArray());
             }
         }
 

@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bgCheck = new System.Windows.Forms.CheckBox();
+            this.bgPanel = new System.Windows.Forms.Panel();
+            this.bgBox = new System.Windows.Forms.TextBox();
+            this.bgLabel = new System.Windows.Forms.Label();
             this.tachieCheck = new System.Windows.Forms.CheckBox();
             this.tachiePanel = new System.Windows.Forms.Panel();
             this.tachieBox = new System.Windows.Forms.TextBox();
@@ -38,7 +42,6 @@
             this.divideTrackChecBox = new System.Windows.Forms.CheckBox();
             this.createJimakuGroup = new System.Windows.Forms.GroupBox();
             this.removeActorAttributeCheck = new System.Windows.Forms.CheckBox();
-            this.isGroupEventCheckBox = new System.Windows.Forms.CheckBox();
             this.actorGroup = new System.Windows.Forms.GroupBox();
             this.actorMediaBinPanel = new System.Windows.Forms.Panel();
             this.actorMediaBinLabel = new System.Windows.Forms.Label();
@@ -153,11 +156,8 @@
             this.jimakuOutlineColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorOutlineColorDialog = new System.Windows.Forms.ColorDialog();
-            this.bgCheck = new System.Windows.Forms.CheckBox();
-            this.bgPanel = new System.Windows.Forms.Panel();
-            this.bgBox = new System.Windows.Forms.TextBox();
-            this.bgLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.bgPanel.SuspendLayout();
             this.tachiePanel.SuspendLayout();
             this.createJimakuGroup.SuspendLayout();
             this.actorGroup.SuspendLayout();
@@ -182,7 +182,6 @@
             this.actorBackgroundGroup.SuspendLayout();
             this.actorBGPanel.SuspendLayout();
             this.actorBGMediaBinPanel.SuspendLayout();
-            this.bgPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -201,6 +200,44 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(911, 1005);
             this.panel1.TabIndex = 0;
+            // 
+            // bgCheck
+            // 
+            this.bgCheck.AutoSize = true;
+            this.bgCheck.Checked = true;
+            this.bgCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.bgCheck.Location = new System.Drawing.Point(281, 962);
+            this.bgCheck.Name = "bgCheck";
+            this.bgCheck.Size = new System.Drawing.Size(112, 16);
+            this.bgCheck.TabIndex = 46;
+            this.bgCheck.Text = "背景トラックを作成";
+            this.bgCheck.UseVisualStyleBackColor = true;
+            // 
+            // bgPanel
+            // 
+            this.bgPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bgPanel.Controls.Add(this.bgBox);
+            this.bgPanel.Controls.Add(this.bgLabel);
+            this.bgPanel.Location = new System.Drawing.Point(408, 952);
+            this.bgPanel.Name = "bgPanel";
+            this.bgPanel.Size = new System.Drawing.Size(363, 36);
+            this.bgPanel.TabIndex = 47;
+            // 
+            // bgBox
+            // 
+            this.bgBox.Location = new System.Drawing.Point(92, 7);
+            this.bgBox.Name = "bgBox";
+            this.bgBox.Size = new System.Drawing.Size(257, 19);
+            this.bgBox.TabIndex = 29;
+            // 
+            // bgLabel
+            // 
+            this.bgLabel.AutoSize = true;
+            this.bgLabel.Location = new System.Drawing.Point(3, 10);
+            this.bgLabel.Name = "bgLabel";
+            this.bgLabel.Size = new System.Drawing.Size(81, 12);
+            this.bgLabel.TabIndex = 28;
+            this.bgLabel.Text = "立ち絵トラック名";
             // 
             // tachieCheck
             // 
@@ -254,7 +291,6 @@
             // createJimakuGroup
             // 
             this.createJimakuGroup.Controls.Add(this.removeActorAttributeCheck);
-            this.createJimakuGroup.Controls.Add(this.isGroupEventCheckBox);
             this.createJimakuGroup.Controls.Add(this.actorGroup);
             this.createJimakuGroup.Controls.Add(this.jimakuGroup);
             this.createJimakuGroup.Controls.Add(this.prefixBehaviorGroup);
@@ -271,24 +307,13 @@
             // removeActorAttributeCheck
             // 
             this.removeActorAttributeCheck.AutoSize = true;
-            this.removeActorAttributeCheck.Location = new System.Drawing.Point(570, 70);
+            this.removeActorAttributeCheck.Location = new System.Drawing.Point(418, 70);
             this.removeActorAttributeCheck.Margin = new System.Windows.Forms.Padding(2);
             this.removeActorAttributeCheck.Name = "removeActorAttributeCheck";
             this.removeActorAttributeCheck.Size = new System.Drawing.Size(127, 16);
             this.removeActorAttributeCheck.TabIndex = 43;
             this.removeActorAttributeCheck.Text = "声優名の属性を削除";
             this.removeActorAttributeCheck.UseVisualStyleBackColor = true;
-            // 
-            // isGroupEventCheckBox
-            // 
-            this.isGroupEventCheckBox.AutoSize = true;
-            this.isGroupEventCheckBox.Location = new System.Drawing.Point(418, 70);
-            this.isGroupEventCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.isGroupEventCheckBox.Name = "isGroupEventCheckBox";
-            this.isGroupEventCheckBox.Size = new System.Drawing.Size(140, 16);
-            this.isGroupEventCheckBox.TabIndex = 42;
-            this.isGroupEventCheckBox.Text = "字幕と音声のグループ化";
-            this.isGroupEventCheckBox.UseVisualStyleBackColor = true;
             // 
             // actorGroup
             // 
@@ -1395,44 +1420,6 @@
             this.jimakuFileBrowser.FileName = "jimakuFileBrowser";
             this.jimakuFileBrowser.Filter = "テキストファイル|*.txt|すべてのファイル|*.*";
             // 
-            // bgCheck
-            // 
-            this.bgCheck.AutoSize = true;
-            this.bgCheck.Checked = true;
-            this.bgCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.bgCheck.Location = new System.Drawing.Point(281, 962);
-            this.bgCheck.Name = "bgCheck";
-            this.bgCheck.Size = new System.Drawing.Size(112, 16);
-            this.bgCheck.TabIndex = 46;
-            this.bgCheck.Text = "背景トラックを作成";
-            this.bgCheck.UseVisualStyleBackColor = true;
-            // 
-            // bgPanel
-            // 
-            this.bgPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.bgPanel.Controls.Add(this.bgBox);
-            this.bgPanel.Controls.Add(this.bgLabel);
-            this.bgPanel.Location = new System.Drawing.Point(408, 952);
-            this.bgPanel.Name = "bgPanel";
-            this.bgPanel.Size = new System.Drawing.Size(363, 36);
-            this.bgPanel.TabIndex = 47;
-            // 
-            // bgBox
-            // 
-            this.bgBox.Location = new System.Drawing.Point(92, 7);
-            this.bgBox.Name = "bgBox";
-            this.bgBox.Size = new System.Drawing.Size(257, 19);
-            this.bgBox.TabIndex = 29;
-            // 
-            // bgLabel
-            // 
-            this.bgLabel.AutoSize = true;
-            this.bgLabel.Location = new System.Drawing.Point(3, 10);
-            this.bgLabel.Name = "bgLabel";
-            this.bgLabel.Size = new System.Drawing.Size(81, 12);
-            this.bgLabel.TabIndex = 28;
-            this.bgLabel.Text = "立ち絵トラック名";
-            // 
             // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1446,6 +1433,8 @@
             this.Text = "設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.bgPanel.ResumeLayout(false);
+            this.bgPanel.PerformLayout();
             this.tachiePanel.ResumeLayout(false);
             this.tachiePanel.PerformLayout();
             this.createJimakuGroup.ResumeLayout(false);
@@ -1490,8 +1479,6 @@
             this.actorBGPanel.PerformLayout();
             this.actorBGMediaBinPanel.ResumeLayout(false);
             this.actorBGMediaBinPanel.PerformLayout();
-            this.bgPanel.ResumeLayout(false);
-            this.bgPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1596,7 +1583,6 @@
         private System.Windows.Forms.Label actorPresetLabel;
         private System.Windows.Forms.ComboBox jimakuPresetBox;
         private System.Windows.Forms.ComboBox actorPresetBox;
-        private System.Windows.Forms.CheckBox isGroupEventCheckBox;
         private System.Windows.Forms.Label jimakuMarginUnitLabel;
         private System.Windows.Forms.TextBox jimakuMarginBox;
         private System.Windows.Forms.Label jimakuMarginLabel;
