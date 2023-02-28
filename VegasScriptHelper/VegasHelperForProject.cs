@@ -1,4 +1,5 @@
 ﻿using ScriptPortal.Vegas;
+using System.Collections.Generic;
 
 namespace VegasScriptHelper
 {
@@ -37,6 +38,33 @@ namespace VegasScriptHelper
             {
                 group.Add(trackEvent);
 
+            }
+        }
+
+        public void AddTrackGroup(List<Track> tracks, string name = null)
+        {
+            // トラックグループを作るには、まずトラックを選択する必要がある。
+            UnselectAllTrack();
+
+            foreach(var track in tracks)
+            {
+                track.Selected = true;
+            }
+
+            TrackGroup group = Vegas.Project.GroupSelectedTracks();
+
+            if (name != null){ group.Name = name; }
+
+            group.CollapseTrackGroup();
+
+            UnselectAllTrack();
+        }
+
+        public void UnselectAllTrack()
+        {
+            foreach (var track in Vegas.Project.Tracks)
+            {
+                track.Selected = false;
             }
         }
     }

@@ -18,8 +18,6 @@ namespace VegasScriptCreateJimaku
 
     public partial class SettingDialog : Form
     {
-        private PrefixBehaviorType prefixBehavior;
-
         public SettingDialog()
         {
             InitializeComponent();
@@ -28,8 +26,6 @@ namespace VegasScriptCreateJimaku
             SetColorToolTip(jimakuOutlineColorBox);
             SetColorToolTip(actorColorBox);
             SetColorToolTip(actorOutlineColorBox);
-
-            UpdatePrefixBehavor();
         }
 
         public bool IsRemoveActorAttr
@@ -40,8 +36,30 @@ namespace VegasScriptCreateJimaku
 
         public PrefixBehaviorType PrefixBehavior
         {
-            get { return prefixBehavior; }
-            set { prefixBehavior = value; }
+            get {
+                if (remainActorName.Checked)
+                {
+                    return PrefixBehaviorType.Remain;
+                }
+                if (deleteActorName.Checked)
+                {
+                    return PrefixBehaviorType.Delete;
+                }
+                return PrefixBehaviorType.NewEvent;
+            }
+            set {
+                UpdatePrefixBehavor(
+                    value == PrefixBehaviorType.Remain,
+                    value == PrefixBehaviorType.Delete,
+                    value == PrefixBehaviorType.NewEvent);
+            }
+        }
+
+        private void UpdatePrefixBehavor(bool remain, bool delete, bool newEvent)
+        {
+            remainActorName.Checked = remain;
+            deleteActorName.Checked = delete;
+            createNewEvent.Checked = newEvent;
         }
 
         public List<string> AudioTrackBoxDataSource
@@ -366,10 +384,10 @@ namespace VegasScriptCreateJimaku
             set { SetBoxValue(actorMarginBox, value); }
         }
 
-        public bool SeparateTracks
+        public bool DivideTracks
         {
-            get { return separateTrackChecBox.Checked; }
-            set { separateTrackChecBox.Checked = value; }
+            get { return divideTrackChecBox.Checked; }
+            set { divideTrackChecBox.Checked = value; }
         }
 
         public bool IsTachieCheck
@@ -537,25 +555,6 @@ namespace VegasScriptCreateJimaku
         private void SetColorToolTip(Control control)
         {
             colorTooltip.SetToolTip(control, "ボックスをクリックすると色の設定ができます");
-        }
-
-        private void UpdatePrefixBehavor()
-        {
-            if (remainActorName.Checked)
-            {
-                prefixBehavior = PrefixBehaviorType.Remain;
-                actorGroup.Enabled = false;
-            }
-            if (deleteActorName.Checked)
-            {
-                prefixBehavior = PrefixBehaviorType.Delete;
-                actorGroup.Enabled = false;
-            }
-            if (createNewEvent.Checked)
-            {
-                prefixBehavior = PrefixBehaviorType.NewEvent;
-                actorGroup.Enabled = true;
-            }
         }
 
         private void CreateBGEnabledChange(
@@ -738,21 +737,6 @@ namespace VegasScriptCreateJimaku
         private void ActorOutlineColorBox_Clicked(object sender, EventArgs e)
         {
             ColorBoxClicked(actorOutlineColorBox, actorOutlineColorDialog);
-        }
-
-        private void RemainActorName_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdatePrefixBehavor();
-        }
-
-        private void DeleteActorName_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdatePrefixBehavor();
-        }
-
-        private void CreateNewEvent_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdatePrefixBehavor();
         }
 
         private void Tachie_CheckedChanged(object sender, EventArgs e)

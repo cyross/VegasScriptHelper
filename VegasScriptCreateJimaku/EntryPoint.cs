@@ -7,9 +7,18 @@ using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using static VegasScriptCreateJimaku.EntryPoint;
+using System.Xml.Linq;
 
 namespace VegasScriptCreateJimaku
 {
+    public enum TachieType
+    {
+        Front = 0,
+        JimakuBack = 1,
+        Back = 2
+    }
+
     public struct DialogBGInfo
     {
         public bool createBG;
@@ -75,9 +84,75 @@ namespace VegasScriptCreateJimaku
         public TrackInfo<VideoTrack> Info;
     }
 
+    public struct TrackByActorStruct
+    {
+        public static readonly string[] TachieTypePostfixs = new string[] { "前", "字幕後ろ", "後ろ" };
+
+        public string Name;
+        public AudioTrack Audio;
+        public VideoTrack Jimaku;
+        public VideoTrack Actor;
+        public VideoTrack JimakuBG;
+        public VideoTrack ActorBG;
+        public Dictionary<string, VideoTrack> Tachie;
+
+        public void CreateAudioTrack(VegasHelper helper, in InsertAudioInfo info)
+        {
+            Audio = helper.CreateAudioTrack(GetTrackName(info.Track.Name));
+        }
+
+        public void CreateJimakuTrack(VegasHelper helper, in JimakuParams info, ref List<Track> groupTracks)
+        {
+            Jimaku = helper.CreateVideoTrack(GetTrackName(info.Jimaku.Track.Name));
+            groupTracks.Add(Jimaku);
+        }
+
+        public void CreateActorTrack(VegasHelper helper, in JimakuParams info, ref List<Track> groupTracks)
+        {
+            if (!info.IsCreateActorTrack) { return; }
+
+            Actor = helper.CreateVideoTrack(GetTrackName(info.Actor.Track.Name));
+            groupTracks.Add(Actor);
+        }
+
+        public void CreateTachieTrack(VegasHelper helper, TachieType type, in BasicTrackStruct track, ref List<Track> groupTracks)
+        {
+            if (!track.IsCreate) { return; }
+
+            string tachieType = TachieTypePostfixs[(int)type];
+            Tachie[tachieType] = helper.CreateVideoTrack(GetTrackName(track.Info.Name));
+            groupTracks.Add(Tachie[tachieType]);
+        }
+
+        public void CreateJimakuBGTrack(VegasHelper helper, in BackgroundInfo info, ref List<Track> groupTracks)
+        {
+            if (!info.IsCreate) { return; }
+
+            JimakuBG = helper.CreateVideoTrack(GetTrackName(info.Track.Name));
+            groupTracks.Add(JimakuBG);
+        }
+
+        public void CreateActorBGTrack(VegasHelper helper, in BackgroundInfo info, ref List<Track> groupTracks)
+        {
+            if (!info.IsCreate) { return; }
+
+            ActorBG = helper.CreateVideoTrack(GetTrackName(info.Track.Name));
+            groupTracks.Add(ActorBG);
+        }
+
+        public string GetTrackName(string orgTrackName)
+        {
+            return Name == "" ?  orgTrackName : string.Format("{0}_{1}", orgTrackName, Name);
+        }
+
+        public string GetTrackName(string orgTrackName, TachieType type)
+        {
+            return Name == "" ? orgTrackName : string.Format("{0}_{1}_{2}", orgTrackName, TachieTypePostfixs[(int)type], Name);
+        }
+    }
+
     public class EntryPoint : IEntryPoint
     {
-        // 設定ダイアログが不要なときは削除
         private static SettingDialog settingDialog;
 
         Dictionary<string, AudioTrack> audioTKV;
@@ -217,22 +292,23 @@ namespace VegasScriptCreateJimaku
                     settingDialog.GetTachieInfo(ref tachieTrack);
                     settingDialog.GetBGInfo(ref bgTrack);
 
+                    jimakuParams.IsCreateActorTrack = (prefixBehavior == PrefixBehaviorType.NewEvent);
+                    jimakuParams.IsDeletePrefix = (prefixBehavior != PrefixBehaviorType.Remain);
+
+                    List<Track> groupTracks = new List<Track>();
+
                     // 背景トラック作成
                     if (bgTrack.IsCreate)
                     {
                         bgTrack.Info.Track = helper.CreateVideoTrack(bgTrack.Info.Name);
+                        groupTracks.Add(bgTrack.Info.Track);
                     }
 
                     // オーディオファイル流し込み
                     InsertAudioFile(helper, ref insertAudioInfo, settingDialog);
 
-                    // 立ち絵トラック作成(字幕背景の後ろ)
-                    if(tachieTrack.IsCreate)
-                    {
-                        string name = tachieTrack.Info.Name + "_後ろ";
-                        tachieTrack.Info.Names.Add(name);
-                        tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
-                    }
+                    // 立ち絵トラック作成(後ろ)
+                    CreateTachieTrack(helper, ref tachieTrack, TachieType.Back, ref groupTracks);
 
                     // 字幕背景挿入処理
                     // こっちを先にしないと字幕が隠れる
@@ -240,37 +316,41 @@ namespace VegasScriptCreateJimaku
 
                     BackgroundInfo actorBGInfo = CreateBackgroundInfo(helper, settingDialog.ActorBGInfo);
 
-                    InsertBackground(helper, ref jimakuBGInfo, ref actorBGInfo, ref insertAudioInfo, isCreateOneEventCheck);
+                    InsertBackground(helper, ref jimakuBGInfo, ref actorBGInfo, ref insertAudioInfo, isCreateOneEventCheck, jimakuParams.IsCreateActorTrack, ref groupTracks);
 
                     // 立ち絵トラック作成(字幕の後ろ)
-                    if (tachieTrack.IsCreate)
-                    {
-                        string name = tachieTrack.Info.Name + "_字幕後ろ";
-                        tachieTrack.Info.Names.Add(name);
-                        tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
-                    }
+                    CreateTachieTrack(helper, ref tachieTrack, TachieType.JimakuBack, ref groupTracks);
 
                     // 字幕挿入処理
-                    SetTextInfo(ref jimakuParams.Jimaku, helper, settingDialog.JimakuTrackInfo);
-
-                    // 立ち絵トラック作成(字幕の前)
-                    if (tachieTrack.IsCreate)
-                    {
-                        string name = tachieTrack.Info.Name + "_前";
-                        tachieTrack.Info.Names.Add(name);
-                        tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
-                    }
-
-                    jimakuParams.IsCreateActorTrack = (prefixBehavior == PrefixBehaviorType.NewEvent);
-                    jimakuParams.IsDeletePrefix = (prefixBehavior != PrefixBehaviorType.Remain);
-
+                    SetTextInfo(ref jimakuParams.Jimaku, helper, settingDialog.JimakuTrackInfo, ref groupTracks);
+                    // 声優名挿入処理
                     if (jimakuParams.IsCreateActorTrack)
                     {
-                        SetTextInfo(ref jimakuParams.Actor, helper, settingDialog.ActorTrackInfo);
+                        SetTextInfo(ref jimakuParams.Actor, helper, settingDialog.ActorTrackInfo, ref groupTracks);
                         jimakuParams.isRemoveActorAttr = isRemoveActorAttr;
                     }
-
                     InsertJimaku(ref jimakuParams, helper, settingDialog, ref insertAudioInfo, isSetGroupEvent);
+
+                    groupTracks.Add(insertAudioInfo.Track.Track);
+
+                    // 立ち絵トラック作成(字幕の前)
+                    CreateTachieTrack(helper, ref tachieTrack, TachieType.Front, ref groupTracks);
+
+                    // グループ作成
+                    helper.AddTrackGroup(groupTracks, "メイン");
+
+                    // 各種トラックの振り分け
+                    if (settingDialog.DivideTracks)
+                    {
+                        DivideTracks(
+                            helper,
+                            ref insertAudioInfo,
+                            ref jimakuParams,
+                            ref jimakuBGInfo,
+                            ref actorBGInfo,
+                            isCreateOneEventCheck,
+                            ref tachieTrack);
+                    }
 
                     // 設定した設定を保存
                     SaveSetting(
@@ -352,6 +432,7 @@ namespace VegasScriptCreateJimaku
                 actorLines.Add(actorName);
             }
             jimakuParams.ActorLines = actorLines.ToArray();
+            jimakuParams.ActorSets = new HashSet<string>(actorLines);
         }
 
         private InsertAudioInfo CreateAudioInfo(SettingDialog dialog)
@@ -400,10 +481,12 @@ namespace VegasScriptCreateJimaku
         private void SetTextInfo(
             ref TextTrackInfo info,
             VegasHelper helper,
-            DialogTrackInfo trackInfo)
+            DialogTrackInfo trackInfo,
+            ref List<Track> trackGroupList)
         {
             info.Track.Name = trackInfo.trackName;
             info.Track.Track = GetVideoTrack(helper, info.Track.Name, videoTKV);
+            trackGroupList.Add(info.Track.Track);
 
             info.PresetName = trackInfo.presetName;
             info.MediaBin = CreateMediaBinInfo(helper, trackInfo.useMediaBin, trackInfo.mediaBinName);
@@ -414,13 +497,19 @@ namespace VegasScriptCreateJimaku
             ref BackgroundInfo jimakuBGInfo,
             ref BackgroundInfo actorBGInfo,
             ref InsertAudioInfo audioInfo,
-            bool isCreateOne)
+            bool isCreateOne,
+            bool isCreateActorTrack,
+            ref List<Track> trackGroupList)
         {
 
             // 声優名を後ろに描画
-            helper.InsertBackground(actorBGInfo, audioInfo.Track.Track, isCreateOne);
+            if (isCreateActorTrack) {
+                helper.InsertBackground(actorBGInfo, audioInfo.Track.Track, isCreateOne);
+                trackGroupList.Add(actorBGInfo.Track.Track);
+            }
 
             helper.InsertBackground(jimakuBGInfo, audioInfo.Track.Track, isCreateOne);
+            trackGroupList.Add(jimakuBGInfo.Track.Track);
         }
 
         private ColorInfo CreateColorInfo(bool isUse, Color textColor, Color outlineColor, double outlineWidth)
@@ -471,6 +560,118 @@ namespace VegasScriptCreateJimaku
             info.MediaBin = CreateMediaBinInfo(helper, bgInfo.useMediaBin, bgInfo.mediaBinName);
 
             return info;
+        }
+
+        private string GetTachiePostscript(TachieType type)
+        {
+            return TrackByActorStruct.TachieTypePostfixs[(int)type];
+        }
+
+        private string GetTachieTrackName(string name, TachieType type)
+        {
+            return string.Format("{0}_{1}", name, GetTachiePostscript(type));
+        }
+
+        private void CreateTachieTrack(VegasHelper helper, ref BasicTrackStruct tachieTrack, TachieType type, ref List<Track> groupTracks)
+        {
+            if (!tachieTrack.IsCreate) { return; }
+
+            string name = GetTachieTrackName(tachieTrack.Info.Name, type);
+            tachieTrack.Info.Names.Add(name);
+            tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
+            groupTracks.Add(tachieTrack.Info.Tracks[name]);
+        }
+
+        private void DivideTracks(
+            VegasHelper helper,
+            ref InsertAudioInfo audioInfo,
+            ref JimakuParams jimakuParams,
+            ref BackgroundInfo jimakuBG,
+            ref BackgroundInfo actorBG,
+            bool isCreateOne,
+            ref BasicTrackStruct tachieTrack)
+        {
+            Dictionary<string, TrackByActorStruct> tracksByActor = new Dictionary<string, TrackByActorStruct>();
+
+            // 振り分けるトラックを作成
+            // 立ち絵は作るだけ
+            foreach (var actorName in jimakuParams.ActorSets.ToArray())
+            {
+                List<Track> groupTracks = new List<Track>();
+
+                TrackByActorStruct actorStruct = new TrackByActorStruct()
+                {
+                    Name = actorName,
+                    Tachie = new Dictionary<string, VideoTrack>()
+                };
+
+                actorStruct.CreateAudioTrack(helper, audioInfo);
+
+                actorStruct.CreateTachieTrack(helper, TachieType.Back, tachieTrack, ref groupTracks);
+
+                if (!isCreateOne)
+                {
+                    actorStruct.CreateJimakuBGTrack(helper, jimakuBG, ref groupTracks);
+                    if (jimakuParams.IsCreateActorTrack) { actorStruct.CreateActorBGTrack(helper, actorBG, ref groupTracks); }
+                }
+
+                actorStruct.CreateTachieTrack(helper, TachieType.JimakuBack, tachieTrack, ref groupTracks);
+
+                actorStruct.CreateJimakuTrack(helper, jimakuParams, ref groupTracks);
+
+                if (jimakuParams.IsCreateActorTrack){ actorStruct.CreateActorTrack(helper, jimakuParams, ref groupTracks); }
+
+                actorStruct.CreateTachieTrack(helper, TachieType.Front, tachieTrack, ref groupTracks);
+
+                tracksByActor[actorName] = actorStruct;
+
+                helper.AddTrackGroup(groupTracks, actorName != "" ? actorName : "(声優名なし)");
+            }
+
+            foreach (string actorName in jimakuParams.ActorLines)
+            {
+                TrackByActorStruct actorStruct = tracksByActor[actorName];
+                List<TrackEvent> trackEvents = new List<TrackEvent>();
+
+                trackEvents.Add(DivideAudioEvent(audioInfo.Track.Track, actorStruct.Audio));
+
+                if (!isCreateOne)
+                {
+                    if (jimakuBG.IsCreate) { trackEvents.Add(DivideVideoEvent(jimakuBG.Track.Track, actorStruct.JimakuBG)); }
+                    if (jimakuParams.IsCreateActorTrack && actorBG.IsCreate) { trackEvents.Add(DivideVideoEvent(actorBG.Track.Track, actorStruct.ActorBG)); }
+                }
+
+                trackEvents.Add(DivideVideoEvent(jimakuParams.Jimaku.Track.Track, actorStruct.Jimaku));
+                if (jimakuParams.IsCreateActorTrack) { trackEvents.Add(DivideVideoEvent(jimakuParams.Actor.Track.Track, actorStruct.Actor)); }
+
+                helper.AddTrackEventGroup(trackEvents.ToArray());
+            }
+        }
+
+        private AudioEvent DivideAudioEvent(AudioTrack src, AudioTrack dst)
+        {
+            AudioEvent srcEvent = (AudioEvent)src.Events.First();
+            AudioEvent dstEvent = dst.AddAudioEvent(srcEvent.Start, srcEvent.Length);
+            dstEvent.Name = srcEvent.Name;
+            foreach(var take in srcEvent.Takes)
+            {
+                dstEvent.AddTake(take.MediaStream);
+            }
+            src.Events.Remove(srcEvent);
+            return dstEvent;
+        }
+
+        private VideoEvent DivideVideoEvent(VideoTrack src, VideoTrack dst)
+        {
+            VideoEvent srcEvent = (VideoEvent)src.Events.First();
+            VideoEvent dstEvent = dst.AddVideoEvent(srcEvent.Start, srcEvent.Length);
+            dstEvent.Name = srcEvent.Name;
+            foreach (var take in srcEvent.Takes)
+            {
+                dstEvent.AddTake(take.MediaStream);
+            }
+            src.Events.Remove(srcEvent);
+            return dstEvent;
         }
 
         private void SaveSetting(

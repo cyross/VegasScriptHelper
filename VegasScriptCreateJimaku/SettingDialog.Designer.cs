@@ -35,7 +35,7 @@
             this.tachiePanel = new System.Windows.Forms.Panel();
             this.tachieBox = new System.Windows.Forms.TextBox();
             this.tachieLabel = new System.Windows.Forms.Label();
-            this.separateTrackChecBox = new System.Windows.Forms.CheckBox();
+            this.divideTrackChecBox = new System.Windows.Forms.CheckBox();
             this.createJimakuGroup = new System.Windows.Forms.GroupBox();
             this.removeActorAttributeCheck = new System.Windows.Forms.CheckBox();
             this.isGroupEventCheckBox = new System.Windows.Forms.CheckBox();
@@ -191,7 +191,7 @@
             this.panel1.Controls.Add(this.bgPanel);
             this.panel1.Controls.Add(this.tachieCheck);
             this.panel1.Controls.Add(this.tachiePanel);
-            this.panel1.Controls.Add(this.separateTrackChecBox);
+            this.panel1.Controls.Add(this.divideTrackChecBox);
             this.panel1.Controls.Add(this.createJimakuGroup);
             this.panel1.Controls.Add(this.audioFolderGroup);
             this.panel1.Controls.Add(this.jimakuBackgroundGroup);
@@ -241,15 +241,15 @@
             this.tachieLabel.TabIndex = 28;
             this.tachieLabel.Text = "立ち絵トラック名";
             // 
-            // separateTrackChecBox
+            // divideTrackChecBox
             // 
-            this.separateTrackChecBox.AutoSize = true;
-            this.separateTrackChecBox.Location = new System.Drawing.Point(12, 928);
-            this.separateTrackChecBox.Name = "separateTrackChecBox";
-            this.separateTrackChecBox.Size = new System.Drawing.Size(216, 16);
-            this.separateTrackChecBox.TabIndex = 29;
-            this.separateTrackChecBox.Text = "字幕・声優名のトラックを声優別に分ける";
-            this.separateTrackChecBox.UseVisualStyleBackColor = true;
+            this.divideTrackChecBox.AutoSize = true;
+            this.divideTrackChecBox.Location = new System.Drawing.Point(12, 928);
+            this.divideTrackChecBox.Name = "divideTrackChecBox";
+            this.divideTrackChecBox.Size = new System.Drawing.Size(216, 16);
+            this.divideTrackChecBox.TabIndex = 29;
+            this.divideTrackChecBox.Text = "字幕・声優名のトラックを声優別に分ける";
+            this.divideTrackChecBox.UseVisualStyleBackColor = true;
             // 
             // createJimakuGroup
             // 
@@ -781,7 +781,6 @@
             this.createNewEvent.TabIndex = 2;
             this.createNewEvent.Text = "接頭辞を別トラックで作成";
             this.createNewEvent.UseVisualStyleBackColor = true;
-            this.createNewEvent.CheckedChanged += new System.EventHandler(this.CreateNewEvent_CheckedChanged);
             // 
             // deleteActorName
             // 
@@ -794,7 +793,6 @@
             this.deleteActorName.TabStop = true;
             this.deleteActorName.Text = "接頭辞を削除";
             this.deleteActorName.UseVisualStyleBackColor = true;
-            this.deleteActorName.CheckedChanged += new System.EventHandler(this.DeleteActorName_CheckedChanged);
             // 
             // remainActorName
             // 
@@ -805,7 +803,6 @@
             this.remainActorName.TabIndex = 0;
             this.remainActorName.Text = "接頭辞をそのまま残す";
             this.remainActorName.UseVisualStyleBackColor = true;
-            this.remainActorName.CheckedChanged += new System.EventHandler(this.RemainActorName_CheckedChanged);
             // 
             // jimakuFilePathLabel
             // 
@@ -1619,7 +1616,7 @@
         private System.Windows.Forms.Label silenceTimeLabel;
         private System.Windows.Forms.TextBox silenceTimeBox;
         private System.Windows.Forms.Label silenceTimeUnitLabel;
-        private System.Windows.Forms.CheckBox separateTrackChecBox;
+        private System.Windows.Forms.CheckBox divideTrackChecBox;
         private System.Windows.Forms.Panel tachiePanel;
         private System.Windows.Forms.TextBox tachieBox;
         private System.Windows.Forms.Label tachieLabel;
