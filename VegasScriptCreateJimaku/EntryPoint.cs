@@ -160,8 +160,6 @@ namespace VegasScriptCreateJimaku
         Dictionary<string, Media> mKV;
         Dictionary<string, MediaBin> mbKV;
 
-        int TrackIndex = 0;
-
         public void FromVegas(Vegas vegas)
         {
             Dictionary<string, List<Track>> trackGroupingKeyValue = new Dictionary<string, List<Track>>();
