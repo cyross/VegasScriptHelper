@@ -520,6 +520,15 @@ namespace VegasScriptCreateJimaku
 
             helper.InsertBackground(jimakuBGInfo, audioInfo.Track.Track, isCreateOne);
             trackGroupList.Add(jimakuBGInfo.Track.Track);
+
+            // ２つのトラックで１つのイベントを作った場合はイベントグループ作成
+            if (!isCreateOne || !isCreateActorTrack) { return; }
+
+            helper.AddTrackEventGroup(new TrackEvent[]
+            {
+                jimakuBGInfo.Track.Track.Events[0],
+                actorBGInfo.Track.Track.Events[0]
+            });
         }
 
         private ColorInfo CreateColorInfo(bool isUse, Color textColor, Color outlineColor, double outlineWidth)
