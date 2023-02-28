@@ -371,6 +371,30 @@ namespace VegasScriptCreateJimaku
             set { separateTrackChecBox.Checked = value; }
         }
 
+        public bool IsTachieCheck
+        {
+            get { return tachieCheck.Checked; }
+            set { tachieCheck.Checked = value; }
+        }
+
+        public string TachieTrackName
+        {
+            get { return tachieBox.Text; }
+            set { tachieBox.Text = value; }
+        }
+
+        public bool IsBGCheck
+        {
+            get { return bgCheck.Checked; }
+            set { bgCheck.Checked = value; }
+        }
+
+        public string BGTrackName
+        {
+            get { return bgBox.Text; }
+            set { bgBox.Text = value; }
+        }
+
         private void SetComboBox(ComboBox combobox, KeyListInfo klStruct)
         {
             SetComboBox(combobox, klStruct.Keys, klStruct.FirstKey);
@@ -384,7 +408,7 @@ namespace VegasScriptCreateJimaku
             if(text != null) { combobox.Text = text; }
         }
 
-        public void SetAudioTrack(VegasHelper helper, KeyListInfo klAudio, KeyListInfo klMediaBin)
+        public void SetAudioTrackInfo(VegasHelper helper, KeyListInfo klAudio, KeyListInfo klMediaBin)
         {
             SetComboBox(audioTrackNameBox, klAudio);
             AudioFileFolder = helper.Settings["AudioFileFolder"];
@@ -397,7 +421,7 @@ namespace VegasScriptCreateJimaku
             UseAudioMediaBin = helper.Settings["UseAudioMediaBin"];
         }
 
-        public void SetJimakuTrack(
+        public void SetJimakuTrackInfo(
             VegasHelper helper,
             KeyListInfo klJimaku,
             KeyListInfo klPlugin,
@@ -410,7 +434,7 @@ namespace VegasScriptCreateJimaku
             UseJimakuMediaBin = helper.Settings["UseJimakuMediaBin"];
         }
 
-        public void SetActorTrack(
+        public void SetActorTrackInfo(
             VegasHelper helper,
             KeyListInfo klActor,
             KeyListInfo klPlugin,
@@ -448,7 +472,7 @@ namespace VegasScriptCreateJimaku
             useCheck.Checked = helper.Settings["Use" + target + "ColorSetting"];
         }
 
-        public void SetJimakuBackground(
+        public void SetJimakuBackgroundInfo(
             VegasHelper helper,
             in KeyListInfo klJimakuBG,
             in KeyListInfo klMedia,
@@ -461,7 +485,7 @@ namespace VegasScriptCreateJimaku
             CreateJimakuBackground = helper.Settings["CreateJimakuBG"];
         }
 
-        public void SetActorBackground(
+        public void SetActorBackgroundInfo(
             VegasHelper helper,
             in KeyListInfo klActorBG,
             in KeyListInfo klMedia,
@@ -472,6 +496,30 @@ namespace VegasScriptCreateJimaku
             SetComboBox(actorBackgroundMediaBinBox, klMediaBin);
             ActorBackgroundMargin = helper.Settings["ActorBGMargin"];
             CreateActorBackground = helper.Settings["CreateActorBG"];
+        }
+
+        public void SetTachieInfo(in BasicTrackStruct tachieTrack)
+        {
+            IsTachieCheck = tachieTrack.IsCreate;
+            TachieTrackName = tachieTrack.Info.Name;
+        }
+
+        public void SetBGInfo(in BasicTrackStruct bgTrack)
+        {
+            IsBGCheck = bgTrack.IsCreate;
+            BGTrackName = bgTrack.Info.Name;
+        }
+
+        public void GetTachieInfo(ref BasicTrackStruct tachieTrack)
+        {
+            tachieTrack.IsCreate = IsTachieCheck;
+            tachieTrack.Info.Name = TachieTrackName;
+        }
+
+        public void GetBGInfo(ref BasicTrackStruct bgTrack)
+        {
+            bgTrack.IsCreate = IsBGCheck;
+            bgTrack.Info.Name = BGTrackName;
         }
 
         private void SetBoxValue<T>(TextBox box, T value)
@@ -696,6 +744,11 @@ namespace VegasScriptCreateJimaku
         private void CreateNewEvent_CheckedChanged(object sender, EventArgs e)
         {
             UpdatePrefixBehavor();
+        }
+
+        private void Tachie_CheckedChanged(object sender, EventArgs e)
+        {
+            tachiePanel.Enabled = tachieCheck.Checked;
         }
     }
 }

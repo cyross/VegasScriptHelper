@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tachieCheck = new System.Windows.Forms.CheckBox();
+            this.tachiePanel = new System.Windows.Forms.Panel();
+            this.tachieBox = new System.Windows.Forms.TextBox();
+            this.tachieLabel = new System.Windows.Forms.Label();
             this.separateTrackChecBox = new System.Windows.Forms.CheckBox();
             this.createJimakuGroup = new System.Windows.Forms.GroupBox();
             this.removeActorAttributeCheck = new System.Windows.Forms.CheckBox();
@@ -149,7 +153,12 @@
             this.jimakuOutlineColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorOutlineColorDialog = new System.Windows.Forms.ColorDialog();
+            this.bgCheck = new System.Windows.Forms.CheckBox();
+            this.bgPanel = new System.Windows.Forms.Panel();
+            this.bgBox = new System.Windows.Forms.TextBox();
+            this.bgLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.tachiePanel.SuspendLayout();
             this.createJimakuGroup.SuspendLayout();
             this.actorGroup.SuspendLayout();
             this.actorMediaBinPanel.SuspendLayout();
@@ -173,10 +182,15 @@
             this.actorBackgroundGroup.SuspendLayout();
             this.actorBGPanel.SuspendLayout();
             this.actorBGMediaBinPanel.SuspendLayout();
+            this.bgPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bgCheck);
+            this.panel1.Controls.Add(this.bgPanel);
+            this.panel1.Controls.Add(this.tachieCheck);
+            this.panel1.Controls.Add(this.tachiePanel);
             this.panel1.Controls.Add(this.separateTrackChecBox);
             this.panel1.Controls.Add(this.createJimakuGroup);
             this.panel1.Controls.Add(this.audioFolderGroup);
@@ -185,14 +199,52 @@
             this.panel1.Controls.Add(this.createOneEventCheck);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(911, 928);
+            this.panel1.Size = new System.Drawing.Size(911, 1005);
             this.panel1.TabIndex = 0;
+            // 
+            // tachieCheck
+            // 
+            this.tachieCheck.AutoSize = true;
+            this.tachieCheck.Checked = true;
+            this.tachieCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tachieCheck.Location = new System.Drawing.Point(281, 916);
+            this.tachieCheck.Name = "tachieCheck";
+            this.tachieCheck.Size = new System.Drawing.Size(121, 16);
+            this.tachieCheck.TabIndex = 45;
+            this.tachieCheck.Text = "立ち絵トラックを作成";
+            this.tachieCheck.UseVisualStyleBackColor = true;
+            this.tachieCheck.CheckedChanged += new System.EventHandler(this.Tachie_CheckedChanged);
+            // 
+            // tachiePanel
+            // 
+            this.tachiePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tachiePanel.Controls.Add(this.tachieBox);
+            this.tachiePanel.Controls.Add(this.tachieLabel);
+            this.tachiePanel.Location = new System.Drawing.Point(408, 906);
+            this.tachiePanel.Name = "tachiePanel";
+            this.tachiePanel.Size = new System.Drawing.Size(363, 36);
+            this.tachiePanel.TabIndex = 45;
+            // 
+            // tachieBox
+            // 
+            this.tachieBox.Location = new System.Drawing.Point(92, 7);
+            this.tachieBox.Name = "tachieBox";
+            this.tachieBox.Size = new System.Drawing.Size(257, 19);
+            this.tachieBox.TabIndex = 29;
+            // 
+            // tachieLabel
+            // 
+            this.tachieLabel.AutoSize = true;
+            this.tachieLabel.Location = new System.Drawing.Point(3, 10);
+            this.tachieLabel.Name = "tachieLabel";
+            this.tachieLabel.Size = new System.Drawing.Size(81, 12);
+            this.tachieLabel.TabIndex = 28;
+            this.tachieLabel.Text = "立ち絵トラック名";
             // 
             // separateTrackChecBox
             // 
             this.separateTrackChecBox.AutoSize = true;
-            this.separateTrackChecBox.Enabled = false;
-            this.separateTrackChecBox.Location = new System.Drawing.Point(288, 906);
+            this.separateTrackChecBox.Location = new System.Drawing.Point(12, 928);
             this.separateTrackChecBox.Name = "separateTrackChecBox";
             this.separateTrackChecBox.Size = new System.Drawing.Size(216, 16);
             this.separateTrackChecBox.TabIndex = 29;
@@ -1320,7 +1372,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(767, 946);
+            this.okButton.Location = new System.Drawing.Point(767, 1023);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 1;
@@ -1330,7 +1382,7 @@
             // canselButton
             // 
             this.canselButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.canselButton.Location = new System.Drawing.Point(848, 946);
+            this.canselButton.Location = new System.Drawing.Point(848, 1023);
             this.canselButton.Name = "canselButton";
             this.canselButton.Size = new System.Drawing.Size(75, 23);
             this.canselButton.TabIndex = 2;
@@ -1346,11 +1398,49 @@
             this.jimakuFileBrowser.FileName = "jimakuFileBrowser";
             this.jimakuFileBrowser.Filter = "テキストファイル|*.txt|すべてのファイル|*.*";
             // 
+            // bgCheck
+            // 
+            this.bgCheck.AutoSize = true;
+            this.bgCheck.Checked = true;
+            this.bgCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.bgCheck.Location = new System.Drawing.Point(281, 962);
+            this.bgCheck.Name = "bgCheck";
+            this.bgCheck.Size = new System.Drawing.Size(112, 16);
+            this.bgCheck.TabIndex = 46;
+            this.bgCheck.Text = "背景トラックを作成";
+            this.bgCheck.UseVisualStyleBackColor = true;
+            // 
+            // bgPanel
+            // 
+            this.bgPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bgPanel.Controls.Add(this.bgBox);
+            this.bgPanel.Controls.Add(this.bgLabel);
+            this.bgPanel.Location = new System.Drawing.Point(408, 952);
+            this.bgPanel.Name = "bgPanel";
+            this.bgPanel.Size = new System.Drawing.Size(363, 36);
+            this.bgPanel.TabIndex = 47;
+            // 
+            // bgBox
+            // 
+            this.bgBox.Location = new System.Drawing.Point(92, 7);
+            this.bgBox.Name = "bgBox";
+            this.bgBox.Size = new System.Drawing.Size(257, 19);
+            this.bgBox.TabIndex = 29;
+            // 
+            // bgLabel
+            // 
+            this.bgLabel.AutoSize = true;
+            this.bgLabel.Location = new System.Drawing.Point(3, 10);
+            this.bgLabel.Name = "bgLabel";
+            this.bgLabel.Size = new System.Drawing.Size(81, 12);
+            this.bgLabel.TabIndex = 28;
+            this.bgLabel.Text = "立ち絵トラック名";
+            // 
             // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 973);
+            this.ClientSize = new System.Drawing.Size(936, 1058);
             this.Controls.Add(this.canselButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.panel1);
@@ -1359,6 +1449,8 @@
             this.Text = "設定";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tachiePanel.ResumeLayout(false);
+            this.tachiePanel.PerformLayout();
             this.createJimakuGroup.ResumeLayout(false);
             this.createJimakuGroup.PerformLayout();
             this.actorGroup.ResumeLayout(false);
@@ -1401,6 +1493,8 @@
             this.actorBGPanel.PerformLayout();
             this.actorBGMediaBinPanel.ResumeLayout(false);
             this.actorBGMediaBinPanel.PerformLayout();
+            this.bgPanel.ResumeLayout(false);
+            this.bgPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1526,5 +1620,13 @@
         private System.Windows.Forms.TextBox silenceTimeBox;
         private System.Windows.Forms.Label silenceTimeUnitLabel;
         private System.Windows.Forms.CheckBox separateTrackChecBox;
+        private System.Windows.Forms.Panel tachiePanel;
+        private System.Windows.Forms.TextBox tachieBox;
+        private System.Windows.Forms.Label tachieLabel;
+        private System.Windows.Forms.CheckBox tachieCheck;
+        private System.Windows.Forms.CheckBox bgCheck;
+        private System.Windows.Forms.Panel bgPanel;
+        private System.Windows.Forms.TextBox bgBox;
+        private System.Windows.Forms.Label bgLabel;
     }
 }

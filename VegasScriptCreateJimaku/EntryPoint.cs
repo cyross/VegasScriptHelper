@@ -69,6 +69,12 @@ namespace VegasScriptCreateJimaku
         }
     }
 
+    public struct BasicTrackStruct
+    {
+        public bool IsCreate;
+        public TrackInfo<VideoTrack> Info;
+    }
+
     public class EntryPoint : IEntryPoint
     {
         // 設定ダイアログが不要なときは削除
@@ -134,26 +140,52 @@ namespace VegasScriptCreateJimaku
                     bool isRemoveActorAttr = helper.Settings["RemoveActorAttribute"];
                     bool isCreateOneEventCheck = helper.Settings["CreateOneEventCheck"];
 
+                    BasicTrackStruct tachieTrack = new BasicTrackStruct
+                    {
+                        IsCreate = helper.Settings["UseTachie"],
+                        Info = new TrackInfo<VideoTrack>
+                        {
+                            Name = helper.Settings["TachieTrackName"],
+                            Tracks = new Dictionary<string, VideoTrack>(),
+                            Names = new List<string>()
+                        }
+                    };
+
+                    BasicTrackStruct bgTrack = new BasicTrackStruct
+                    {
+                        IsCreate = helper.Settings["UseBG"],
+                        Info = new TrackInfo<VideoTrack>
+                        {
+                            Name = helper.Settings["BGTrackName"],
+                            Tracks = new Dictionary<string, VideoTrack>(),
+                            Names = new List<string>()
+                        }
+                    };
+
                     if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
-                    settingDialog.SetAudioTrack(helper, klAudio, klAudioMBin);
+                    settingDialog.SetAudioTrackInfo(helper, klAudio, klAudioMBin);
 
                     settingDialog.JimakuFilePath = helper.Settings["JimakuFilePath"];
                     settingDialog.PrefixBehavior = prefixBehavior;
                     settingDialog.IsEventGroupCheck = isSetGroupEvent;
                     settingDialog.IsRemoveActorAttr = isRemoveActorAttr;
 
-                    settingDialog.SetJimakuTrack(helper, klJimaku, klJimakuPlugin, klJimakuMBin);
+                    settingDialog.SetJimakuTrackInfo(helper, klJimaku, klJimakuPlugin, klJimakuMBin);
 
-                    settingDialog.SetActorTrack(helper, klActor, klActorPlugin, klActorMBin);
+                    settingDialog.SetActorTrackInfo(helper, klActor, klActorPlugin, klActorMBin);
 
                     settingDialog.SetJimakuColorInfo(helper);
 
                     settingDialog.SetActorColorInfo(helper);
 
-                    settingDialog.SetJimakuBackground(helper, klJimakuBG, klJimakuBGMedia, klJimakuBGMBin);
+                    settingDialog.SetJimakuBackgroundInfo(helper, klJimakuBG, klJimakuBGMedia, klJimakuBGMBin);
 
-                    settingDialog.SetActorBackground(helper, klActorBG, klActorBGMedia, klActorMBin);
+                    settingDialog.SetActorBackgroundInfo(helper, klActorBG, klActorBGMedia, klActorMBin);
+
+                    settingDialog.SetTachieInfo(tachieTrack);
+
+                    settingDialog.SetBGInfo(bgTrack);
 
                     settingDialog.IsCreateOneEventCheck = isCreateOneEventCheck;
 
@@ -182,8 +214,25 @@ namespace VegasScriptCreateJimaku
                     isRemoveActorAttr = settingDialog.IsRemoveActorAttr;
                     isCreateOneEventCheck = settingDialog.IsCreateOneEventCheck;
 
+                    settingDialog.GetTachieInfo(ref tachieTrack);
+                    settingDialog.GetBGInfo(ref bgTrack);
+
+                    // 背景トラック作成
+                    if (bgTrack.IsCreate)
+                    {
+                        bgTrack.Info.Track = helper.CreateVideoTrack(bgTrack.Info.Name);
+                    }
+
                     // オーディオファイル流し込み
                     InsertAudioFile(helper, ref insertAudioInfo, settingDialog);
+
+                    // 立ち絵トラック作成(字幕背景の後ろ)
+                    if(tachieTrack.IsCreate)
+                    {
+                        string name = tachieTrack.Info.Name + "_後ろ";
+                        tachieTrack.Info.Names.Add(name);
+                        tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
+                    }
 
                     // 字幕背景挿入処理
                     // こっちを先にしないと字幕が隠れる
@@ -193,8 +242,24 @@ namespace VegasScriptCreateJimaku
 
                     InsertBackground(helper, ref jimakuBGInfo, ref actorBGInfo, ref insertAudioInfo, isCreateOneEventCheck);
 
+                    // 立ち絵トラック作成(字幕の後ろ)
+                    if (tachieTrack.IsCreate)
+                    {
+                        string name = tachieTrack.Info.Name + "_字幕後ろ";
+                        tachieTrack.Info.Names.Add(name);
+                        tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
+                    }
+
                     // 字幕挿入処理
                     SetTextInfo(ref jimakuParams.Jimaku, helper, settingDialog.JimakuTrackInfo);
+
+                    // 立ち絵トラック作成(字幕の前)
+                    if (tachieTrack.IsCreate)
+                    {
+                        string name = tachieTrack.Info.Name + "_前";
+                        tachieTrack.Info.Names.Add(name);
+                        tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
+                    }
 
                     jimakuParams.IsCreateActorTrack = (prefixBehavior == PrefixBehaviorType.NewEvent);
                     jimakuParams.IsDeletePrefix = (prefixBehavior != PrefixBehaviorType.Remain);
@@ -217,7 +282,9 @@ namespace VegasScriptCreateJimaku
                         prefixBehavior,
                         isSetGroupEvent,
                         isCreateOneEventCheck,
-                        isRemoveActorAttr);
+                        isRemoveActorAttr,
+                        ref tachieTrack,
+                        ref bgTrack);
                 }
                 catch (Exception ex)
                 {
@@ -415,7 +482,9 @@ namespace VegasScriptCreateJimaku
             PrefixBehaviorType behavior,
             bool isGrouping,
             bool isCreateOne,
-            bool isRemoveActorAttr)
+            bool isRemoveActorAttr,
+            ref BasicTrackStruct tachieTrack,
+            ref BasicTrackStruct bgTrack)
         {
             SetAudioSetting(helper, audioInfo);
 
@@ -443,6 +512,11 @@ namespace VegasScriptCreateJimaku
             SetMediaBinSetting(helper, "ActorBG", actorBG.MediaBin);
 
             helper.Settings["CreateOneEventCheck"] = isCreateOne;
+
+            helper.Settings["UseTachie"] = tachieTrack.IsCreate;
+            helper.Settings["TachieTrackName"] = tachieTrack.Info.Name;
+            helper.Settings["UseBG"] = bgTrack.IsCreate;
+            helper.Settings["BGTrackName"] = bgTrack.Info.Name;
 
             helper.Settings.Save();
         }

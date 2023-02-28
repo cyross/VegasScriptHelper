@@ -134,5 +134,17 @@
     <Setting Name="StandardSilenceTime" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
+    <Setting Name="UseTachie" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="TachieTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">立ち絵</Value>
+    </Setting>
+    <Setting Name="UseBG" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="BGTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">背景</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

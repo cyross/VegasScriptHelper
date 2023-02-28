@@ -8,6 +8,8 @@ namespace VegasScriptHelper
     {
         public string Name;
         public T Track;
+        public Dictionary<string, T> Tracks;
+        public List<string> Names;
     }
 
     public struct TextTrackInfo

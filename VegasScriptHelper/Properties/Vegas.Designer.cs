@@ -550,5 +550,53 @@ namespace VegasScriptHelper.Properties {
                 this["StandardSilenceTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseTachie {
+            get {
+                return ((bool)(this["UseTachie"]));
+            }
+            set {
+                this["UseTachie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("立ち絵")]
+        public string TachieTrackName {
+            get {
+                return ((string)(this["TachieTrackName"]));
+            }
+            set {
+                this["TachieTrackName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseBG {
+            get {
+                return ((bool)(this["UseBG"]));
+            }
+            set {
+                this["UseBG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("背景")]
+        public string BGTrackName {
+            get {
+                return ((string)(this["BGTrackName"]));
+            }
+            set {
+                this["BGTrackName"] = value;
+            }
+        }
     }
 }
