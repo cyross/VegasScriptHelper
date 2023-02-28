@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
 using System.ComponentModel;
+using System.IO;
 
 namespace VegasScriptCreateJimaku
 {
@@ -670,7 +671,15 @@ namespace VegasScriptCreateJimaku
 
         private void JimakuFileDialogOpenButton_Clicked(object sender, EventArgs e)
         {
-            jimakuFileBrowser.FileName = jimakuFilePathBox.Text;
+            string filePath = jimakuFilePathBox.Text;
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show(string.Format("指定のファイルパスは存在していません: {0}", filePath));
+            }
+
+            jimakuFileBrowser.InitialDirectory = Path.GetDirectoryName(filePath);
+            jimakuFileBrowser.FileName = Path.GetFileName(filePath);
             if (jimakuFileBrowser.ShowDialog() == DialogResult.OK)
             {
                 jimakuFilePathBox.Text = jimakuFileBrowser.FileName;
