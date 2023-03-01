@@ -73,16 +73,16 @@
       <DependentUpon>RichTextViererForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VegasHelper.cs" />
-    <Compile Include="VegasHelperForEvent.cs" />
+    <Compile Include="VegasHelper_Event.cs" />
     <Compile Include="VegasHelperException.cs" />
-    <Compile Include="VegasHelperForApplication.cs" />
-    <Compile Include="VegasHelperForMedia.cs" />
-    <Compile Include="VegasHelperForMediaBin.cs" />
-    <Compile Include="VegasHelperForOFXParameter.cs" />
-    <Compile Include="VegasHelperForTake.cs" />
+    <Compile Include="VegasHelper_Application.cs" />
+    <Compile Include="VegasHelper_Media.cs" />
+    <Compile Include="VegasHelper_MediaBin.cs" />
+    <Compile Include="VegasHelper_OFXParameter.cs" />
+    <Compile Include="VegasHelper_Take.cs" />
     <Compile Include="VegasHelperUtility.cs" />
-    <Compile Include="VegasHelperForProject.cs" />
-    <Compile Include="VegasHelperForTrack.cs" />
+    <Compile Include="VegasHelper_Project.cs" />
+    <Compile Include="VegasHelper_Track.cs" />
     <Compile Include="VegasHelperYamlSpecs.cs" />
     <Compile Include="VegasScriptSettings.cs" />
   </ItemGroup>
