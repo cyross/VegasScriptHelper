@@ -24,6 +24,7 @@ namespace VegasScriptCreateJimaku
         public void CreateAudioTrack(VegasHelper helper, in InsertAudioInfo info, ref List<Track> groupTracks)
         {
             Audio = helper.CreateAudioTrack(GetTrackName(info.Track.Name));
+            groupTracks.Add(Audio);
         }
 
         public void CreateJimakuTrack(VegasHelper helper, in JimakuParams info, ref List<Track> groupTracks)
