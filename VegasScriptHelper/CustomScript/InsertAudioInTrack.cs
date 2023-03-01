@@ -71,10 +71,7 @@ namespace VegasScriptHelper
 
             if (audioTrack is null)
             {
-                audioTrack = AddAudioTrack();
-
-                SetTrackTitle(audioTrack, targetTrackName);
-
+                audioTrack = CreateAudioTrack(targetTrackName);
                 audioTrack.Selected = true;
             }
 

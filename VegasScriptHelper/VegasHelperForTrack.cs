@@ -22,6 +22,8 @@ namespace VegasScriptHelper
 
     public partial class VegasHelper
     {
+        public static int trackIndex = 0;
+
         public IEnumerable<Track> SelectedTracks {
             get { return Vegas.Project.Tracks.Where(track => track.Selected); }
         }
@@ -38,15 +40,15 @@ namespace VegasScriptHelper
 
         public AudioTrack CreateAudioTrack(string trackName)
         {
-            AudioTrack track = Vegas.Project.AddAudioTrack();
-            track.Name = trackName;
+            AudioTrack track = new AudioTrack(Vegas.Project, trackIndex++, trackName);
+            Vegas.Project.Tracks.Add(track);
             return track;
         }
 
         public VideoTrack CreateVideoTrack(string trackName)
         {
-            VideoTrack track = Vegas.Project.AddVideoTrack();
-            track.Name = trackName;
+            VideoTrack track = new VideoTrack(Vegas.Project, trackIndex++, trackName);
+            Vegas.Project.Tracks.Add(track);
             return track;
         }
 

@@ -16,16 +16,6 @@ namespace VegasScriptHelper
             }
         }
 
-        public VideoTrack AddVideoTrack()
-        {
-            return Vegas.Project.AddVideoTrack();
-        }
-
-        public AudioTrack AddAudioTrack()
-        {
-            return Vegas.Project.AddAudioTrack();
-        }
-
         public void AddTrackEventGroup(params TrackEvent[] events)
         {
             // Vegas.Project.TrackEventGroups.Addメソッドを先に呼ばいないと、
