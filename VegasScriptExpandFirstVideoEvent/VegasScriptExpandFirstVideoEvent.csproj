@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="MPLUS1-VariableFont_wght.ttf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SettingDialog.resx">

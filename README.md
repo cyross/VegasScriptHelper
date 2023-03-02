@@ -102,6 +102,10 @@ python3 deploy_files.py
 拡張機能集はMITライセンスを適応しております。
 詳細は `LICENSE` ファイルを御覧ください。
 
+本スクリプトでは、共通フォントとしてM PLUS 1フォント(SIL Open Font License版)を使用しています。
+
+https://fonts.google.com/specimen/M+PLUS+1
+
 ## 免責事項
 
 本拡張機能集に登場する商品名は各ステークホルダーが権利を所持しております。

@@ -56,6 +56,9 @@
     <Compile Include="EntryPointMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="MPLUS1-VariableFont_wght.ttf" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(ProjectDir)..\VegasScriptHelper\SupportedAudioFileSettings.yaml $(TargetDir)

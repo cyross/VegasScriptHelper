@@ -73,6 +73,9 @@
       <DependentUpon>RichTextViererForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VegasHelper.cs" />
+    <Compile Include="VegasHelperExecErrors.cs" />
+    <Compile Include="VegasHelperFont.cs" />
+    <Compile Include="VegasHelperFonts.cs" />
     <Compile Include="VegasHelper_Event.cs" />
     <Compile Include="VegasHelperException.cs" />
     <Compile Include="VegasHelper_Application.cs" />
@@ -90,6 +93,7 @@
     <None Include="app.config" />
     <None Include="DefaultBinNames.yaml" />
     <None Include="DefaultTrackNames.yaml" />
+    <None Include="MPLUS1-VariableFont_wght.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Vegas.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>

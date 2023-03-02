@@ -89,9 +89,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{BD4E5DE1-E07E-4840-89F9-4296D34818B7}"
 	ProjectSection(SolutionItems) = preProject
 		build_event_copy_yaml_file.bat = build_event_copy_yaml_file.bat
-		README.md = README.md
-		deploy_files.yaml = deploy_files.yaml
 		deploy_files.py = deploy_files.py
+		deploy_files.yaml = deploy_files.yaml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptUpdateSpaces", "VegasScriptUpdateSpaces\VegasScriptUpdateSpaces.csproj", "{34FF6DA6-99AA-4BF1-8332-74F653B05C65}"

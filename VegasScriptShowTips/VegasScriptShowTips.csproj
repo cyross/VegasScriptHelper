@@ -83,6 +83,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="MPLUS1-VariableFont_wght.ttf" />
     <None Include="packages.config" />
     <None Include="Tips.md" />
   </ItemGroup>
