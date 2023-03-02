@@ -19,9 +19,14 @@ namespace VegasScriptHelper
     /// </summary>
     public class VegasHelperExecErrors
     {
-        public List<VegasHelperExecError> Erros
+        public List<VegasHelperExecError> Errors
         {
             get;
+        }
+
+        public VegasHelperExecErrors()
+        {
+            Errors = new List<VegasHelperExecError>();
         }
     }
 }
