@@ -146,5 +146,14 @@
     <Setting Name="BGTrackName" Type="System.String" Scope="User">
       <Value Profile="(Default)">背景</Value>
     </Setting>
+    <Setting Name="UseFG" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FGTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">前景</Value>
+    </Setting>
+    <Setting Name="IsCollapseTrackGroup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

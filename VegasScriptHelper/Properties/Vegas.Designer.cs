@@ -598,5 +598,41 @@ namespace VegasScriptHelper.Properties {
                 this["BGTrackName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseFG {
+            get {
+                return ((bool)(this["UseFG"]));
+            }
+            set {
+                this["UseFG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("前景")]
+        public string FGTrackName {
+            get {
+                return ((string)(this["FGTrackName"]));
+            }
+            set {
+                this["FGTrackName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsCollapseTrackGroup {
+            get {
+                return ((bool)(this["IsCollapseTrackGroup"]));
+            }
+            set {
+                this["IsCollapseTrackGroup"] = value;
+            }
+        }
     }
 }
