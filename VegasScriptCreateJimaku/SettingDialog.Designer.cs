@@ -1487,7 +1487,7 @@
             this.audioMediaBinGroup.Controls.Add(this.audioMediaBinPanel);
             this.audioMediaBinGroup.Location = new System.Drawing.Point(311, 138);
             this.audioMediaBinGroup.Name = "audioMediaBinGroup";
-            this.audioMediaBinGroup.Size = new System.Drawing.Size(485, 60);
+            this.audioMediaBinGroup.Size = new System.Drawing.Size(446, 60);
             this.audioMediaBinGroup.TabIndex = 49;
             this.audioMediaBinGroup.TabStop = false;
             this.audioMediaBinGroup.Text = "メディアビン";
@@ -1510,7 +1510,7 @@
             this.audioMediaBinPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.audioMediaBinPanel.Controls.Add(this.audioMediaBinNameLabel);
             this.audioMediaBinPanel.Controls.Add(this.audioMediaBinBox);
-            this.audioMediaBinPanel.Location = new System.Drawing.Point(158, 14);
+            this.audioMediaBinPanel.Location = new System.Drawing.Point(119, 13);
             this.audioMediaBinPanel.Name = "audioMediaBinPanel";
             this.audioMediaBinPanel.Size = new System.Drawing.Size(316, 38);
             this.audioMediaBinPanel.TabIndex = 29;
