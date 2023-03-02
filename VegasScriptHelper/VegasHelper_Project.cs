@@ -31,7 +31,7 @@ namespace VegasScriptHelper
             }
         }
 
-        public void AddTrackGroup(List<Track> tracks, string name = null)
+        public void AddTrackGroup(List<Track> tracks, string name = null, bool isCollapse = true)
         {
             // トラックグループを作るには、まずトラックを選択する必要がある。
             UnselectAllTrack();
@@ -45,7 +45,7 @@ namespace VegasScriptHelper
 
             if (name != null){ group.Name = name; }
 
-            group.CollapseTrackGroup();
+            if (isCollapse) { group.CollapseTrackGroup(); }
 
             UnselectAllTrack();
         }
