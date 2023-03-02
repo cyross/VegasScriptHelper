@@ -20,7 +20,7 @@ namespace VegasScriptCreateJimaku
             return string.Format("{0}_{1}", name, GetTachiePostscript(type));
         }
 
-        private void CreateTachieTrack(VegasHelper helper, ref BasicTrackStruct tachieTrack, TachieType type, ref List<Track> groupTracks)
+        private void CreateTachieTrack(VegasHelper helper, ref BasicTrackStruct<VideoTrack> tachieTrack, TachieType type, ref List<Track> groupTracks)
         {
             if (!tachieTrack.IsCreate) { return; }
 

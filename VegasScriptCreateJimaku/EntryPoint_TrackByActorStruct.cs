@@ -41,7 +41,7 @@ namespace VegasScriptCreateJimaku
             groupTracks.Add(Actor);
         }
 
-        public void CreateTachieTrack(VegasHelper helper, TachieType type, in BasicTrackStruct track, ref List<Track> groupTracks)
+        public void CreateTachieTrack(VegasHelper helper, TachieType type, in BasicTrackStruct<VideoTrack> track, ref List<Track> groupTracks)
         {
             if (!track.IsCreate) { return; }
 

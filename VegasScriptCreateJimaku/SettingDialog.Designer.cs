@@ -171,6 +171,11 @@
             this.jimakuOutlineColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorOutlineColorDialog = new System.Windows.Forms.ColorDialog();
+            this.bgmGroup = new System.Windows.Forms.GroupBox();
+            this.bgmCheck = new System.Windows.Forms.CheckBox();
+            this.bgmPanel = new System.Windows.Forms.Panel();
+            this.bgmBox = new System.Windows.Forms.TextBox();
+            this.bgmLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.FGGroup.SuspendLayout();
             this.fgPanel.SuspendLayout();
@@ -208,10 +213,13 @@
             this.startPositionGroup.SuspendLayout();
             this.audioMediaBinGroup.SuspendLayout();
             this.audioMediaBinPanel.SuspendLayout();
+            this.bgmGroup.SuspendLayout();
+            this.bgmPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.bgmGroup);
             this.mainPanel.Controls.Add(this.FGGroup);
             this.mainPanel.Controls.Add(this.otherGroup);
             this.mainPanel.Controls.Add(this.bgGroup);
@@ -279,7 +287,7 @@
             this.otherGroup.Controls.Add(this.collapseTrackGroupCheck);
             this.otherGroup.Controls.Add(this.createOneEventCheck);
             this.otherGroup.Controls.Add(this.divideTrackChecBox);
-            this.otherGroup.Location = new System.Drawing.Point(908, 461);
+            this.otherGroup.Location = new System.Drawing.Point(908, 526);
             this.otherGroup.Name = "otherGroup";
             this.otherGroup.Size = new System.Drawing.Size(949, 88);
             this.otherGroup.TabIndex = 50;
@@ -1597,6 +1605,55 @@
             this.jimakuFileBrowser.FileName = "jimakuFileBrowser";
             this.jimakuFileBrowser.Filter = "テキストファイル|*.txt|すべてのファイル|*.*";
             // 
+            // bgmGroup
+            // 
+            this.bgmGroup.Controls.Add(this.bgmCheck);
+            this.bgmGroup.Controls.Add(this.bgmPanel);
+            this.bgmGroup.Location = new System.Drawing.Point(908, 459);
+            this.bgmGroup.Name = "bgmGroup";
+            this.bgmGroup.Size = new System.Drawing.Size(949, 61);
+            this.bgmGroup.TabIndex = 51;
+            this.bgmGroup.TabStop = false;
+            this.bgmGroup.Text = "BGM";
+            // 
+            // bgmCheck
+            // 
+            this.bgmCheck.AutoSize = true;
+            this.bgmCheck.Checked = true;
+            this.bgmCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.bgmCheck.Location = new System.Drawing.Point(6, 24);
+            this.bgmCheck.Name = "bgmCheck";
+            this.bgmCheck.Size = new System.Drawing.Size(107, 16);
+            this.bgmCheck.TabIndex = 46;
+            this.bgmCheck.Text = "トラックを生成する";
+            this.bgmCheck.UseVisualStyleBackColor = true;
+            // 
+            // bgmPanel
+            // 
+            this.bgmPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bgmPanel.Controls.Add(this.bgmBox);
+            this.bgmPanel.Controls.Add(this.bgmLabel);
+            this.bgmPanel.Location = new System.Drawing.Point(133, 14);
+            this.bgmPanel.Name = "bgmPanel";
+            this.bgmPanel.Size = new System.Drawing.Size(363, 36);
+            this.bgmPanel.TabIndex = 47;
+            // 
+            // bgmBox
+            // 
+            this.bgmBox.Location = new System.Drawing.Point(92, 7);
+            this.bgmBox.Name = "bgmBox";
+            this.bgmBox.Size = new System.Drawing.Size(257, 19);
+            this.bgmBox.TabIndex = 29;
+            // 
+            // bgmLabel
+            // 
+            this.bgmLabel.AutoSize = true;
+            this.bgmLabel.Location = new System.Drawing.Point(3, 10);
+            this.bgmLabel.Name = "bgmLabel";
+            this.bgmLabel.Size = new System.Drawing.Size(48, 12);
+            this.bgmLabel.TabIndex = 28;
+            this.bgmLabel.Text = "トラック名";
+            // 
             // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1677,6 +1734,10 @@
             this.audioMediaBinGroup.PerformLayout();
             this.audioMediaBinPanel.ResumeLayout(false);
             this.audioMediaBinPanel.PerformLayout();
+            this.bgmGroup.ResumeLayout(false);
+            this.bgmGroup.PerformLayout();
+            this.bgmPanel.ResumeLayout(false);
+            this.bgmPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1824,5 +1885,10 @@
         private System.Windows.Forms.TextBox fgBox;
         private System.Windows.Forms.Label fgLabel;
         private System.Windows.Forms.CheckBox collapseTrackGroupCheck;
+        private System.Windows.Forms.GroupBox bgmGroup;
+        private System.Windows.Forms.CheckBox bgmCheck;
+        private System.Windows.Forms.Panel bgmPanel;
+        private System.Windows.Forms.TextBox bgmBox;
+        private System.Windows.Forms.Label bgmLabel;
     }
 }

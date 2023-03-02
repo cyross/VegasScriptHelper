@@ -9,31 +9,37 @@ namespace VegasScriptCreateJimaku
 {
     public partial class EntryPoint : IEntryPoint
     {
-        private void SetToDialog(VegasHelper helper, ref KeyListManager manager, ref BasicTrackStructs structs, ref Flags flags)
+        private void SetFromInfoToDialog(VegasHelper helper, ref KeyListManager manager, ref BasicTrackStructs structs, ref Flags flags)
         {
-            settingDialog.SetAudioTrackInfo(helper, manager.Audio, manager.AudioMBin);
+            settingDialog.SetFromAudioTrackInfo(helper, manager.Audio, manager.AudioMBin);
 
             settingDialog.JimakuFilePath = helper.Settings["JimakuFilePath"];
-            settingDialog.PrefixBehavior = flags.Behavior;
-            settingDialog.IsRemoveActorAttr = flags.IsRemoveActorAttr;
 
-            settingDialog.SetJimakuTrackInfo(helper, manager.Jimaku, manager.JimakuPlugin, manager.JimakuMBin);
+            settingDialog.SetFromFlags(flags);
 
-            settingDialog.SetActorTrackInfo(helper, manager.Actor, manager.ActorPlugin, manager.ActorMBin);
+            settingDialog.SetFromJimakuTrackInfo(helper, manager.Jimaku, manager.JimakuPlugin, manager.JimakuMBin);
 
-            settingDialog.SetJimakuColorInfo(helper);
+            settingDialog.SetFromActorTrackInfo(helper, manager.Actor, manager.ActorPlugin, manager.ActorMBin);
 
-            settingDialog.SetActorColorInfo(helper);
+            settingDialog.SetFromJimakuColorInfo(helper);
 
-            settingDialog.SetJimakuBackgroundInfo(helper, manager.JimakuBG, manager.JimakuBGMedia, manager.JimakuBGMBin);
+            settingDialog.SetFromActorColorInfo(helper);
 
-            settingDialog.SetActorBackgroundInfo(helper, manager.ActorBG, manager.ActorBGMedia, manager.ActorMBin);
+            settingDialog.SetFromJimakuBackgroundInfo(helper, manager.JimakuBG, manager.JimakuBGMedia, manager.JimakuBGMBin);
 
-            settingDialog.SetTachieInfo(structs.Tachie);
+            settingDialog.SetFromActorBackgroundInfo(helper, manager.ActorBG, manager.ActorBGMedia, manager.ActorMBin);
 
-            settingDialog.SetBGInfo(structs.BG);
+            settingDialog.SetFromBasicTrackStructs(structs);
+        }
 
-            settingDialog.IsCreateOneEventCheck = flags.IsCreateOneEventCheck;
+        private void LoadFromDialogToInfo(ref JimakuParams jimakuParams, ref BasicTrackStructs structs, ref Flags flags)
+        {
+            settingDialog.SetToFlags(ref flags);
+
+            jimakuParams.IsCreateActorTrack = (flags.Behavior == PrefixBehaviorType.NewEvent);
+            jimakuParams.IsDeletePrefix = (flags.Behavior != PrefixBehaviorType.Remain);
+
+            settingDialog.SetToBasicTrackStructs(ref structs);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScriptPortal.Vegas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,17 @@ namespace VegasScriptCreateJimaku
 {
     public partial class EntryPoint : IEntryPoint
     {
+        private void LoadFlagsSetting(
+            VegasHelper helper,
+            ref Flags flags)
+        {
+            flags.Behavior = (PrefixBehaviorType)helper.Settings["PrefixBehavior"];
+            flags.IsRemoveActorAttr = helper.Settings["RemoveActorAttribute"];
+            flags.IsCreateOneEventCheck = helper.Settings["CreateOneEventCheck"];
+            flags.IsCollapseTrackGroup = helper.Settings["IsCollapseTrackGroup"];
+            flags.IsDivideTracks = helper.Settings["DivideTracks"];
+        }
+
         private void SaveSetting(
             VegasHelper helper,
             ref InsertAudioInfo audioInfo,
@@ -21,10 +33,6 @@ namespace VegasScriptCreateJimaku
             SetAudioSetting(helper, audioInfo);
 
             helper.Settings["JimakuFilePath"] = jimakuParams.JimakuFilePath;
-
-            helper.Settings["PrefixBehavior"] = (int)flags.Behavior;
-
-            helper.Settings["RemoveActorAttribute"] = flags.IsRemoveActorAttr;
 
             SetVideoTrackSetting(helper, "Jimaku", jimakuParams.Jimaku);
             SetVideoTrackSetting(helper, "Actor", jimakuParams.Actor);
@@ -41,12 +49,9 @@ namespace VegasScriptCreateJimaku
             SetMediaBinSetting(helper, "JimakuBG", jimakuBG.MediaBin);
             SetMediaBinSetting(helper, "ActorBG", actorBG.MediaBin);
 
-            helper.Settings["CreateOneEventCheck"] = flags.IsCreateOneEventCheck;
+            SetFlagsToSetting(helper, flags);
 
-            helper.Settings["UseTachie"] = trackStructs.Tachie.IsCreate;
-            helper.Settings["TachieTrackName"] = trackStructs.Tachie.Info.Name;
-            helper.Settings["UseBG"] = trackStructs.BG.IsCreate;
-            helper.Settings["BGTrackName"] = trackStructs.BG.Info.Name;
+            SetBasicTracksInfoToSetting(helper, trackStructs);
 
             helper.Settings.Save();
         }
@@ -96,6 +101,29 @@ namespace VegasScriptCreateJimaku
 
             helper.Settings[target + "BGMediaName"] = info.Media.Name;
             helper.Settings[target + "BGMargin"] = info.Margin;
+        }
+
+        private void SetBasicTrackInfoToSetting<T>(VegasHelper helper, string target, in BasicTrackStruct<T> trackStruct)
+        {
+            helper.Settings["Use" + target] = trackStruct.IsCreate;
+            helper.Settings[target + "TrackName"] = trackStruct.Info.Name;
+        }
+
+        private void SetFlagsToSetting(VegasHelper helper, in Flags flags)
+        {
+            helper.Settings["PrefixBehavior"] = (int)flags.Behavior;
+            helper.Settings["RemoveActorAttribute"] = flags.IsRemoveActorAttr;
+            helper.Settings["CreateOneEventCheck"] = flags.IsCreateOneEventCheck;
+            helper.Settings["IsCollapseTrackGroup"] = flags.IsCollapseTrackGroup;
+            helper.Settings["DivideTracks"] = flags.IsDivideTracks;
+        }
+
+        private void SetBasicTracksInfoToSetting(VegasHelper helper, in BasicTrackStructs trackStructs)
+        {
+            SetBasicTrackInfoToSetting(helper, "Tachie", trackStructs.Tachie);
+            SetBasicTrackInfoToSetting(helper, "BG", trackStructs.BG);
+            SetBasicTrackInfoToSetting(helper, "FG", trackStructs.FG);
+            SetBasicTrackInfoToSetting(helper, "BGM", trackStructs.BGM);
         }
     }
 }

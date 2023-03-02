@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScriptPortal.Vegas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace VegasScriptCreateJimaku
 {
     public partial class SettingDialog : Form
     {
-        public void SetAudioTrackInfo(VegasHelper helper, KeyListInfo klAudio, KeyListInfo klMediaBin)
+        public void SetFromAudioTrackInfo(VegasHelper helper, KeyListInfo klAudio, KeyListInfo klMediaBin)
         {
             SetComboBox(audioTrackNameBox, klAudio);
             AudioFileFolder = helper.Settings["AudioFileFolder"];
@@ -23,7 +24,7 @@ namespace VegasScriptCreateJimaku
             UseAudioMediaBin = helper.Settings["UseAudioMediaBin"];
         }
 
-        public void SetJimakuTrackInfo(
+        public void SetFromJimakuTrackInfo(
             VegasHelper helper,
             KeyListInfo klJimaku,
             KeyListInfo klPlugin,
@@ -36,7 +37,7 @@ namespace VegasScriptCreateJimaku
             UseJimakuMediaBin = helper.Settings["UseJimakuMediaBin"];
         }
 
-        public void SetActorTrackInfo(
+        public void SetFromActorTrackInfo(
             VegasHelper helper,
             KeyListInfo klActor,
             KeyListInfo klPlugin,
@@ -49,18 +50,18 @@ namespace VegasScriptCreateJimaku
             UseActorMediaBin = helper.Settings["UseActorMediaBin"];
         }
 
-        public void SetJimakuColorInfo(VegasHelper helper)
+        public void SetFromJimakuColorInfo(VegasHelper helper)
         {
-            SetColorInfo(helper, "Jimaku",
+            SetFromColorInfo(helper, "Jimaku",
                 jimakuColorBox, jimakuOutlineColorBox, jimakuOutlineWidthBox, useJimakuDefaultSettings);
         }
-        public void SetActorColorInfo(VegasHelper helper)
+        public void SetFromActorColorInfo(VegasHelper helper)
         {
-            SetColorInfo(helper, "Actor",
+            SetFromColorInfo(helper, "Actor",
                 actorColorBox, actorOutlineColorBox, actorOutlineWidthBox, useActorDefaultSettings);
         }
 
-        private void SetColorInfo(
+        private void SetFromColorInfo(
             VegasHelper helper,
             string target,
             PictureBox textColorBox,
@@ -74,7 +75,7 @@ namespace VegasScriptCreateJimaku
             useCheck.Checked = helper.Settings["Use" + target + "ColorSetting"];
         }
 
-        public void SetJimakuBackgroundInfo(
+        public void SetFromJimakuBackgroundInfo(
             VegasHelper helper,
             in KeyListInfo klJimakuBG,
             in KeyListInfo klMedia,
@@ -87,7 +88,7 @@ namespace VegasScriptCreateJimaku
             CreateJimakuBackground = helper.Settings["CreateJimakuBG"];
         }
 
-        public void SetActorBackgroundInfo(
+        public void SetFromActorBackgroundInfo(
             VegasHelper helper,
             in KeyListInfo klActorBG,
             in KeyListInfo klMedia,
@@ -100,22 +101,45 @@ namespace VegasScriptCreateJimaku
             CreateActorBackground = helper.Settings["CreateActorBG"];
         }
 
-        public void SetTachieInfo(in BasicTrackStruct tachieTrack)
+        public void SetFromFlags(in Flags flags)
+        {
+            PrefixBehavior = flags.Behavior;
+            IsRemoveActorAttr = flags.IsRemoveActorAttr;
+            IsCreateOneEventCheck = flags.IsCreateOneEventCheck;
+            IsCollapseTrackGroupCheck = flags.IsCollapseTrackGroup;
+            DivideTracks = flags.IsDivideTracks;
+        }
+
+        public void SetFromTachieInfo(in BasicTrackStruct<VideoTrack> tachieTrack)
         {
             IsTachieCheck = tachieTrack.IsCreate;
             TachieTrackName = tachieTrack.Info.Name;
         }
 
-        public void SetBGInfo(in BasicTrackStruct bgTrack)
+        public void SetFromBGInfo(in BasicTrackStruct<VideoTrack> bgTrack)
         {
             IsBGCheck = bgTrack.IsCreate;
             BGTrackName = bgTrack.Info.Name;
         }
 
-        public void SetFGInfo(in BasicTrackStruct fgTrack)
+        public void SetFromFGInfo(in BasicTrackStruct<VideoTrack> fgTrack)
         {
             IsFGCheck = fgTrack.IsCreate;
             FGTrackName = fgTrack.Info.Name;
+        }
+
+        public void SetFromBGMInfo(in BasicTrackStruct<AudioTrack> bgmTrack)
+        {
+            IsBGMCheck = bgmTrack.IsCreate;
+            BGMTrackName = bgmTrack.Info.Name;
+        }
+
+        public void SetFromBasicTrackStructs(in BasicTrackStructs structs)
+        {
+            SetFromTachieInfo(structs.Tachie);
+            SetFromBGInfo(structs.BG);
+            SetFromFGInfo(structs.FG);
+            SetFromBGMInfo(structs.BGM);
         }
     }
 }

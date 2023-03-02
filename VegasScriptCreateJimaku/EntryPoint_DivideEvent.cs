@@ -17,7 +17,7 @@ namespace VegasScriptCreateJimaku
             ref BackgroundInfo jimakuBG,
             ref BackgroundInfo actorBG,
             ref Flags flags,
-            ref BasicTrackStruct tachieTrack,
+            ref BasicTrackStruct<VideoTrack> tachieTrack,
             Dictionary<string, List<Track>> trackGroupingKeyValue)
         {
             Dictionary<string, TrackByActorStruct> tracksByActor = new Dictionary<string, TrackByActorStruct>();

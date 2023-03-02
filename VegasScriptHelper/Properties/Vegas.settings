@@ -155,5 +155,14 @@
     <Setting Name="IsCollapseTrackGroup" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="DivideTracks" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UseBGM" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="BGMTrackName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BGM</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

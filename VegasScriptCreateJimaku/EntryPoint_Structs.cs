@@ -67,10 +67,22 @@ namespace VegasScriptCreateJimaku
         }
     }
 
-    public struct BasicTrackStruct
+    public struct BasicTrackStruct<T>
     {
         public bool IsCreate;
-        public TrackInfo<VideoTrack> Info;
+        public TrackInfo<T> Info;
+
+        public static BasicTrackStruct<T> Create(bool isCreate, string name, bool isUseDictionary)
+        {
+            BasicTrackStruct<T> info = new BasicTrackStruct<T>
+            {
+                IsCreate = isCreate
+            };
+
+            info.Info = TrackInfo<T>.Create(name, isUseDictionary);
+
+            return info;
+        }
     }
 
     public struct Flags
@@ -78,11 +90,26 @@ namespace VegasScriptCreateJimaku
         public PrefixBehaviorType Behavior;
         public bool IsRemoveActorAttr;
         public bool IsCreateOneEventCheck;
+        public bool IsCollapseTrackGroup;
+        public bool IsDivideTracks;
     }
 
     public struct BasicTrackStructs
     {
-        public BasicTrackStruct Tachie;
-        public BasicTrackStruct BG;
+        public BasicTrackStruct<VideoTrack> Tachie;
+        public BasicTrackStruct<VideoTrack> BG;
+        public BasicTrackStruct<VideoTrack> FG;
+        public BasicTrackStruct<AudioTrack> BGM;
+
+        public static BasicTrackStructs Create(VegasScriptSettings settings)
+        {
+            return new BasicTrackStructs
+            {
+                Tachie = BasicTrackStruct<VideoTrack>.Create(settings["UseTachie"], settings["TachieTrackName"], true),
+                BG = BasicTrackStruct<VideoTrack>.Create(settings["UseBG"], settings["BGTrackName"], false),
+                FG = BasicTrackStruct<VideoTrack>.Create(settings["UseFG"], settings["FGTrackName"], false),
+                BGM = BasicTrackStruct<AudioTrack>.Create(settings["UseBGM"], settings["BGMTrackName"], false)
+            };
+        }
     }
 }

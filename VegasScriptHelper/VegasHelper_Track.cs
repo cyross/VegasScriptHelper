@@ -10,6 +10,22 @@ namespace VegasScriptHelper
         public T Track;
         public Dictionary<string, T> Tracks;
         public List<string> Names;
+
+        public static TrackInfo<T> Create(string name, bool isUseDictionary　= false)
+        {
+            TrackInfo<T> info = new TrackInfo<T>
+            {
+                Name = name
+            };
+
+            if (isUseDictionary)
+            {
+                info.Tracks = new Dictionary<string, T>();
+                info.Names = new List<string>();
+            }
+
+            return info;
+        }
     }
 
     public struct TextTrackInfo

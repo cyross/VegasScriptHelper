@@ -5,16 +5,19 @@ namespace VegasScriptCreateJimaku
 {
     public partial class SettingDialog : Form
     {
-        public InsertAudioInfo CreateAudioInfo()
+        public InsertAudioInfo AudioInfo
         {
-            return new InsertAudioInfo()
+            get
             {
-                Folder = AudioFileFolder,
-                Interval = AudioInterval,
-                IsRecursive = IsRecursive,
-                IsInsertFromStartPosition = IsInsertFromStartPosition,
-                StandardSilenceTime = StandardSilenceTime
-            };
+                return new InsertAudioInfo()
+                {
+                    Folder = AudioFileFolder,
+                    Interval = AudioInterval,
+                    IsRecursive = IsRecursive,
+                    IsInsertFromStartPosition = IsInsertFromStartPosition,
+                    StandardSilenceTime = StandardSilenceTime
+                };
+            }
         }
 
         public DialogBGInfo JimakuBGInfo
