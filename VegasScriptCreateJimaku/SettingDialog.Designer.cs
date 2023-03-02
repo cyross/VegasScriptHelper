@@ -802,7 +802,7 @@
             this.actorMediaBinGroup.Controls.Add(this.useActorMediaBin);
             this.actorMediaBinGroup.Location = new System.Drawing.Point(6, 111);
             this.actorMediaBinGroup.Name = "actorMediaBinGroup";
-            this.actorMediaBinGroup.Size = new System.Drawing.Size(470, 61);
+            this.actorMediaBinGroup.Size = new System.Drawing.Size(482, 61);
             this.actorMediaBinGroup.TabIndex = 50;
             this.actorMediaBinGroup.TabStop = false;
             this.actorMediaBinGroup.Text = "メディアビン";
@@ -812,7 +812,7 @@
             this.actorMediaBinPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.actorMediaBinPanel.Controls.Add(this.actorMediaBinLabel);
             this.actorMediaBinPanel.Controls.Add(this.actorMediaBinBox);
-            this.actorMediaBinPanel.Location = new System.Drawing.Point(148, 18);
+            this.actorMediaBinPanel.Location = new System.Drawing.Point(156, 18);
             this.actorMediaBinPanel.Name = "actorMediaBinPanel";
             this.actorMediaBinPanel.Size = new System.Drawing.Size(320, 36);
             this.actorMediaBinPanel.TabIndex = 44;
