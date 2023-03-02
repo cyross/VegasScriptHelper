@@ -40,7 +40,7 @@ namespace VegasScriptHelper
         /// オーディオトラックを作成・トラックビューの一番上に挿入
         /// </summary>
         /// <param name="trackName">トラック名</param>
-        /// <returns></returns>
+        /// <returns>生成したトラックオブジェクト[AudioTrack]</returns>
         public AudioTrack CreateAudioTrack(string trackName)
         {
             AudioTrack track = new AudioTrack(Vegas.Project, 0, trackName);
@@ -52,7 +52,7 @@ namespace VegasScriptHelper
         /// ビデオトラックを作成・トラックビューの一番上に挿入
         /// </summary>
         /// <param name="trackName">トラック名</param>
-        /// <returns></returns>
+        /// <returns>生成したトラックオブジェクト[VideoTrack]</returns>
         public VideoTrack CreateVideoTrack(string trackName)
         {
             VideoTrack track = new VideoTrack(Vegas.Project, 0, trackName);
@@ -61,10 +61,22 @@ namespace VegasScriptHelper
         }
 
         /// <summary>
+        /// ビデオトアジャストメントラックを作成・トラックビューの一番上に挿入
+        /// </summary>
+        /// <param name="trackName">トラック名</param>
+        /// <returns>生成したトラックオブジェクト[VideoAdjustmentTrack]</returns>
+        public VideoAdjustmentTrack CreateAdjustmentVideoTrack(string trackName)
+        {
+            VideoAdjustmentTrack track = new VideoAdjustmentTrack(Vegas.Project, 0, trackName);
+            Vegas.Project.Tracks.Add(track);
+            return track;
+        }
+
+        /// <summary>
         /// オーディオトラックを作成・VEGAS標準の方法で挿入
         /// </summary>
         /// <param name="trackName">トラック名</param>
-        /// <returns></returns>
+        /// <returns>生成したトラックオブジェクト[AudioTrack]</returns>
         public AudioTrack CreateAudioTrackStandardInsert(string trackName)
         {
             AudioTrack track = Vegas.Project.AddAudioTrack();
@@ -73,13 +85,44 @@ namespace VegasScriptHelper
         }
 
         /// <summary>
+        /// オーディオバストラックを作成・VEGAS標準の方法で挿入
+        /// </summary>
+        /// <returns>生成したトラックオブジェクト[AudioBusTrack]</returns>
+        public AudioBusTrack CreateAudioBusTrackStandardInsert()
+        {
+            return Vegas.Project.AddAudioBusTrack();
+        }
+
+        /// <summary>
+        /// オーディオFXトラックを作成・VEGAS標準の方法で挿入
+        /// </summary>
+        /// <param name="node">FXプラグインを示すPluginNodeオブジェクト</param>
+        /// <returns>生成したトラックオブジェクト[AudioFXBusTrack]</returns>
+        public AudioFXBusTrack CreateAudioFXBusTrackStandardInsert(PlugInNode node)
+        {
+            return Vegas.Project.AddAudioFXBusTrack(node);
+        }
+
+        /// <summary>
         /// ビデオトラックを作成・VEGAS標準の方法で挿入
         /// </summary>
         /// <param name="trackName">トラック名</param>
-        /// <returns></returns>
+        /// <returns>生成したトラックオブジェクト[VideoTrack]</returns>
         public VideoTrack CreateVideoTrackStandardInsert(string trackName)
         {
             VideoTrack track = Vegas.Project.AddVideoTrack();
+            track.Name = trackName;
+            return track;
+        }
+
+        /// <summary>
+        /// ビデオトアジャストメントラックを作成・VEGAS標準の方法で挿入
+        /// </summary>
+        /// <param name="trackName">トラック名</param>
+        /// <returns>生成したトラックオブジェクト[VideoAdjustmentTrack]</returns>
+        public VideoAdjustmentTrack CreateVideoAdjustmentTrackStandardInsert(string trackName)
+        {
+            VideoAdjustmentTrack track = Vegas.Project.AddVideoAdjustmentTrack();
             track.Name = trackName;
             return track;
         }
