@@ -20,5 +20,11 @@ namespace VegasScriptCreateJimaku
             bgTrack.IsCreate = IsBGCheck;
             bgTrack.Info.Name = BGTrackName;
         }
+
+        public void GetFGInfo(ref BasicTrackStruct fgTrack)
+        {
+            fgTrack.IsCreate = IsFGCheck;
+            fgTrack.Info.Name = FGTrackName;
+        }
     }
 }

@@ -362,5 +362,23 @@ namespace VegasScriptCreateJimaku
             get { return bgBox.Text; }
             set { bgBox.Text = value; }
         }
+
+        public bool IsFGCheck
+        {
+            get { return fgCheck.Checked; }
+            set { fgCheck.Checked = value; }
+        }
+
+        public string FGTrackName
+        {
+            get { return fgBox.Text; }
+            set { fgBox.Text = value; }
+        }
+
+        public bool IsCollapseTrackGroupCheck
+        {
+            get { return collapseTrackGroupCheck.Checked; }
+            set { collapseTrackGroupCheck.Checked = value; }
+        }
     }
 }
