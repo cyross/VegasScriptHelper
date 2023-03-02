@@ -36,6 +36,11 @@ namespace VegasScriptHelper
             get { return Vegas.Project.Tracks.Where(track => track.IsAudio()).Cast<AudioTrack>(); }
         }
 
+        /// <summary>
+        /// オーディオトラックを作成・トラックビューの一番上に挿入
+        /// </summary>
+        /// <param name="trackName">トラック名</param>
+        /// <returns></returns>
         public AudioTrack CreateAudioTrack(string trackName)
         {
             AudioTrack track = new AudioTrack(Vegas.Project, 0, trackName);
@@ -43,10 +48,39 @@ namespace VegasScriptHelper
             return track;
         }
 
+        /// <summary>
+        /// ビデオトラックを作成・トラックビューの一番上に挿入
+        /// </summary>
+        /// <param name="trackName">トラック名</param>
+        /// <returns></returns>
         public VideoTrack CreateVideoTrack(string trackName)
         {
             VideoTrack track = new VideoTrack(Vegas.Project, 0, trackName);
             Vegas.Project.Tracks.Add(track);
+            return track;
+        }
+
+        /// <summary>
+        /// オーディオトラックを作成・VEGAS標準の方法で挿入
+        /// </summary>
+        /// <param name="trackName">トラック名</param>
+        /// <returns></returns>
+        public AudioTrack CreateAudioTrackStandardInsert(string trackName)
+        {
+            AudioTrack track = Vegas.Project.AddAudioTrack();
+            track.Name = trackName;
+            return track;
+        }
+
+        /// <summary>
+        /// ビデオトラックを作成・VEGAS標準の方法で挿入
+        /// </summary>
+        /// <param name="trackName">トラック名</param>
+        /// <returns></returns>
+        public VideoTrack CreateVideoTrackStandardInsert(string trackName)
+        {
+            VideoTrack track = Vegas.Project.AddVideoTrack();
+            track.Name = trackName;
             return track;
         }
 
