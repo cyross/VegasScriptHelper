@@ -58,5 +58,11 @@ namespace VegasScriptHelper
                 track.Selected = false;
             }
         }
+
+        public Timecode CursolPosition
+        {
+            get { return Vegas.Transport.CursorPosition; }
+            set { Vegas.Transport.CursorPosition = value;}
+        }
     }
 }

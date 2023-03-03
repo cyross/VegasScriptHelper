@@ -82,7 +82,7 @@ namespace VegasScriptHelper
                 mediaBin = IsExistMediaBin(mediaBinName) ? GetMediaBin(mediaBinName) : CreateMediaBin(mediaBinName);
             }
 
-            Timecode currentPosition = fromStart ? new Timecode() : Vegas.Cursor;
+            Timecode currentPosition = fromStart ? new Timecode() : CursolPosition;
             Timecode intervalTimecode = new Timecode(interval);
 
             return InsertAudio(currentPosition, intervalTimecode, fileDir, audioTrack, recursive, mediaBin);
@@ -92,7 +92,7 @@ namespace VegasScriptHelper
         {
             info.Track.Track.Selected = true;
 
-            Timecode currentPosition = info.IsInsertFromStartPosition ? new Timecode() : Vegas.Cursor;
+            Timecode currentPosition = info.IsInsertFromStartPosition ? new Timecode() : CursolPosition;
             Timecode intervalTimecode = new Timecode(info.Interval);
 
             return InsertAudio(currentPosition, intervalTimecode, info.Folder, info.Track.Track, info.IsRecursive, info.JimakuLines, info.StandardSilenceTime, info.MediaBin.Bin);
@@ -108,7 +108,7 @@ namespace VegasScriptHelper
         {
             audioTrack.Selected = true;
 
-            Timecode currentPosition = fromStart ? new Timecode() : Vegas.Cursor;
+            Timecode currentPosition = fromStart ? new Timecode() : CursolPosition;
             Timecode intervalTimecode = new Timecode(interval);
 
             return InsertAudio(currentPosition, intervalTimecode, audioFileDir, audioTrack, recursive, mediaBin);
