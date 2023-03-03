@@ -25,9 +25,29 @@ namespace VegasScriptHelper
             return Vegas.FindDockView(dockname, out dockView);
         }
 
+        public void AddTrackEventDataChangedEventHandler(EventHandler handler)
+        {
+            Vegas.TrackEventDataChanged += handler;
+        }
+
+        public void AddTrackEventCountChangedEventHandler(EventHandler handler)
+        {
+            Vegas.TrackEventCountChanged += handler;
+        }
+
+        public void AddTrackEventTimeChangedEventHandler(EventHandler handler)
+        {
+            Vegas.TrackEventTimeChanged += handler;
+        }
+
         public void AddTrackEventStateChangedEventHandler(EventHandler handler)
         {
             Vegas.TrackEventStateChanged += handler;
+        }
+
+        public void AddTrackCountChangedEventHandler(EventHandler handler)
+        {
+            Vegas.TrackCountChanged += handler;
         }
 
         public void AddTrackStateChangedEventHandler(EventHandler handler)
