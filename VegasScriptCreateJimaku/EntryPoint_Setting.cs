@@ -14,11 +14,11 @@ namespace VegasScriptCreateJimaku
             VegasHelper helper,
             ref Flags flags)
         {
-            flags.Behavior = (PrefixBehaviorType)helper.Settings["PrefixBehavior"];
-            flags.IsRemoveActorAttr = helper.Settings["RemoveActorAttribute"];
-            flags.IsCreateOneEventCheck = helper.Settings["CreateOneEventCheck"];
-            flags.IsCollapseTrackGroup = helper.Settings["IsCollapseTrackGroup"];
-            flags.IsDivideTracks = helper.Settings["DivideTracks"];
+            flags.Behavior = (PrefixBehaviorType)helper.Settings[SN.WdJimaku.Prefix.Behavior];
+            flags.IsRemoveActorAttr = helper.Settings[SN.WdActor.Remove.Attribute];
+            flags.IsCreateOneEventCheck = helper.Settings[SN.WdBG.Create.One.Event.Check];
+            flags.IsCollapseTrackGroup = helper.Settings[SN.WdAll.Is.Track.Group.Collapse];
+            flags.IsDivideTracks = helper.Settings[SN.WdActor.Divide.Tracks];
         }
 
         private void SaveSetting(
@@ -32,7 +32,7 @@ namespace VegasScriptCreateJimaku
         {
             SetAudioSetting(helper, audioInfo);
 
-            helper.Settings["JimakuFilePath"] = jimakuParams.JimakuFilePath;
+            helper.Settings[SN.WdJimaku.File.Path] = jimakuParams.JimakuFilePath;
 
             SetVideoTrackSetting(helper, "Jimaku", jimakuParams.Jimaku);
             SetVideoTrackSetting(helper, "Actor", jimakuParams.Actor);
@@ -58,12 +58,12 @@ namespace VegasScriptCreateJimaku
 
         private void SetAudioSetting(VegasHelper helper, in InsertAudioInfo info)
         {
-            helper.Settings["AudioFileFolder"] = info.Folder;
-            helper.Settings["AudioTrackName"] = info.Track.Name;
-            helper.Settings["AudioInsertInterval"] = info.Interval;
-            helper.Settings["IsAudioFolderRecursive"] = info.IsRecursive;
-            helper.Settings["IsInsertFromStartPosition"] = info.IsInsertFromStartPosition;
-            helper.Settings["StandardSilenceTime"] = info.StandardSilenceTime;
+            helper.Settings[SN.WdAudio.File.Folder] = info.Folder;
+            helper.Settings[SN.WdAudio.Track.Name] = info.Track.Name;
+            helper.Settings[SN.WdAudio.Insert.Interval] = info.Interval;
+            helper.Settings[SN.WdAudio.Is.Folder.Recursive] = info.IsRecursive;
+            helper.Settings[SN.WdAudio.Is.Insert.From.Standard.Position] = info.IsInsertFromStartPosition;
+            helper.Settings[SN.WdAudio.Standard.Silence.Time] = info.StandardSilenceTime;
         }
 
         private void SetVideoTrackSetting(VegasHelper helper, string target, in TextTrackInfo info)
@@ -111,11 +111,11 @@ namespace VegasScriptCreateJimaku
 
         private void SetFlagsToSetting(VegasHelper helper, in Flags flags)
         {
-            helper.Settings["PrefixBehavior"] = (int)flags.Behavior;
-            helper.Settings["RemoveActorAttribute"] = flags.IsRemoveActorAttr;
-            helper.Settings["CreateOneEventCheck"] = flags.IsCreateOneEventCheck;
-            helper.Settings["IsCollapseTrackGroup"] = flags.IsCollapseTrackGroup;
-            helper.Settings["DivideTracks"] = flags.IsDivideTracks;
+            helper.Settings[SN.WdJimaku.Prefix.Behavior] = (int)flags.Behavior;
+            helper.Settings[SN.WdActor.Remove.Attribute] = flags.IsRemoveActorAttr;
+            helper.Settings[SN.WdBG.Create.One.Event.Check] = flags.IsCreateOneEventCheck;
+            helper.Settings[SN.WdAll.Is.Track.Group.Collapse] = flags.IsCollapseTrackGroup;
+            helper.Settings[SN.WdActor.Divide.Tracks] = flags.IsDivideTracks;
         }
 
         private void SetBasicTracksInfoToSetting(VegasHelper helper, in BasicTrackStructs trackStructs)

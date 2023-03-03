@@ -40,7 +40,7 @@ namespace VegasScriptCreateJimaku
             get
             {
                 return CreateBGInfo(
-                    CreateActorBackground,
+                    PrefixBehavior == PrefixBehaviorType.NewEvent && CreateActorBackground,
                     ActorBackgroundTrackName,
                     ActorBackgroundMediaName,
                     ActorBackgroundMargin,

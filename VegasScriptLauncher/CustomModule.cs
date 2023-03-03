@@ -34,7 +34,7 @@ namespace VegasScriptLauncher
             myform = new LauncherForm(myVegas){ Dock = DockStyle.Fill };
             try
             {
-                Controls.Add(myform.InnerPanel);
+                Controls.Add(myform.MainPanel);
             }
             catch(Exception ex)
             {

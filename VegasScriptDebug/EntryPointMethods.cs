@@ -18,20 +18,20 @@ namespace VegasScriptDebug
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog
             {
-                SelectedPath = helper.Settings["AudioFileFolder"]
+                SelectedPath = helper.Settings[SN.WdAudio.File.Folder]
             };
-            float interval = helper.Settings["AudioInsertInterval"];
-            bool isRecursive = helper.Settings["IsAudioFolderRecursive"];
-            bool isInsertStartPosition = helper.Settings["IsInsertStartPosition"];
+            float interval = helper.Settings[SN.WdAudio.Insert.Interval];
+            bool isRecursive = helper.Settings[SN.WdAudio.Is.Folder.Recursive];
+            bool isInsertStartPosition = helper.Settings[SN.WdAudio.Is.Insert.Standard.Position];
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 string selectedPath = folderBrowser.SelectedPath;
                 helper.InseretAudioInTrack(selectedPath, interval, isInsertStartPosition, isRecursive);
 
-                helper.Settings["AudioFileFolder"] = selectedPath;
-                helper.Settings["AudioInsertInterval"] = interval;
-                helper.Settings["IsAudioFolderRecursive"] = isRecursive;
-                helper.Settings["IsInsertStartPosition"] = isInsertStartPosition;
+                helper.Settings[SN.WdAudio.File.Folder] = selectedPath;
+                helper.Settings[SN.WdAudio.Insert.Interval] = interval;
+                helper.Settings[SN.WdAudio.Is.Folder.Recursive] = isRecursive;
+                helper.Settings[SN.WdAudio.Is.Insert.Standard.Position] = isInsertStartPosition;
                 helper.Settings.Save();
             }
         }
@@ -57,7 +57,7 @@ namespace VegasScriptDebug
         {
             try
             {
-                helper.AssignAudioTrackDurationToVideoTrack(helper.Settings["JimakuTrackName"], helper.Settings["JimakuMargin"]);
+                helper.AssignAudioTrackDurationToVideoTrack(helper.Settings[SN.WdJimaku.Track.Name], helper.Settings[SN.WdJimaku.Margin]);
             }
             catch (VegasHelperNotFoundTrackException)
             {
@@ -73,7 +73,7 @@ namespace VegasScriptDebug
         {
             try
             {
-                helper.AssignAudioTrackDurationToVideoTrack(helper.Settings["JimakuMargin"]);
+                helper.AssignAudioTrackDurationToVideoTrack(helper.Settings[SN.WdJimaku.Margin]);
             }
             catch (VegasHelperNotFoundTrackException)
             {
@@ -121,7 +121,7 @@ namespace VegasScriptDebug
 
         private void ExpandFirstVideoEvent(VegasHelper helper)
         {
-            double margin = helper.Settings["ExpandVideoEventMargin"];
+            double margin = helper.Settings[SN.WdVideo.Expand.Event.Margin];
             try
             {
                 helper.ExpandFirstVideoEvent(margin);

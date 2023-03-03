@@ -41,7 +41,7 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
             VideoTrack targetVideoTrack = helper.SelectedVideoTrack(false);
 
             if(targetVideoTrack == null) {
-                targetVideoTrack = helper.SearchVideoTrackByName(helper.Settings["JimakuTrackName"]);
+                targetVideoTrack = helper.SearchVideoTrackByName(helper.Settings[SN.WdJimaku.Track.Name]);
             }
 
             string videoTrackKey = targetVideoTrack != null ? helper.GetTrackKey(targetVideoTrack) : videoKeyList[0];
@@ -50,7 +50,7 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
 
             if (targetAudioTrack == null)
             {
-                targetAudioTrack = helper.SearchAudioTrackByName(helper.Settings["AudioTrackName"]);
+                targetAudioTrack = helper.SearchAudioTrackByName(helper.Settings[SN.WdAudio.Track.Name]);
             }
 
             string audioTrackKey = targetAudioTrack != null ? helper.GetTrackKey(targetAudioTrack) : audioKeyList[0];
@@ -63,7 +63,7 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
                 settingDialog.VoiceTrackName = audioTrackKey;
                 settingDialog.JimakuTrackNameDataSource = videoKeyList;
                 settingDialog.JimakuTrackName = videoTrackKey;
-                settingDialog.JimakuMargin = helper.Settings["JimakuMargin"];
+                settingDialog.JimakuMargin = helper.Settings[SN.WdJimaku.Margin];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -76,9 +76,9 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
                     helper.AssignAudioTrackDurationToVideoTrack(videoTrack, audioTrack, margin);
                 }
 
-                helper.Settings["AudioTrackName"] = audioTrack.Name;
-                helper.Settings["JimakuTrackName"] = videoTrack.Name;
-                helper.Settings["JimakuMargin"] = margin;
+                helper.Settings[SN.WdAudio.Track.Name] = audioTrack.Name;
+                helper.Settings[SN.WdJimaku.Track.Name] = videoTrack.Name;
+                helper.Settings[SN.WdJimaku.Margin] = margin;
                 helper.Settings.Save();
             }
             catch (VegasHelperTrackUnselectedException)

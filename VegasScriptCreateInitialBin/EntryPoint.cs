@@ -4,6 +4,7 @@ using System.CodeDom;
 using System.Diagnostics;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.VegasHelperYamlSpecs;
 
 namespace VegasScriptCreateInitialBin
 {
@@ -17,18 +18,18 @@ namespace VegasScriptCreateInitialBin
 
             if(settingDialog == null) { settingDialog = new SettingDialog(); }
 
-            settingDialog.VoiroVoiceBinName = helper.Settings.DefaultBinName["voiroVoice"];
-            settingDialog.VoiroJimakuBinName = helper.Settings.DefaultBinName["voiroJimaku"];
-            settingDialog.VoiroActorBinName = helper.Settings.DefaultBinName["voiroActor"];
-            settingDialog.JimakuBackgroundBinName = helper.Settings.DefaultBinName["jimakuBG"];
-            settingDialog.ActorBackgroundBinName = helper.Settings.DefaultBinName["actorBG"];
-            settingDialog.TachieBinName = helper.Settings.DefaultBinName["tachie"];
-            settingDialog.DLAudioBinName = helper.Settings.DefaultBinName["dlAudio"];
-            settingDialog.CreatedAudioBinName = helper.Settings.DefaultBinName["createdAudio"];
-            settingDialog.DLMovieBinName = helper.Settings.DefaultBinName["dlMovie"];
-            settingDialog.CreatedMovieBinName = helper.Settings.DefaultBinName["createdMovie"];
-            settingDialog.DLImageBinName = helper.Settings.DefaultBinName["dlImage"];
-            settingDialog.CreatedImageBinName = helper.Settings.DefaultBinName["createdImage"];
+            settingDialog.VoiroVoiceBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroVoice];
+            settingDialog.VoiroJimakuBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroJimaku];
+            settingDialog.VoiroActorBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroActor];
+            settingDialog.JimakuBackgroundBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.jimakuBG];
+            settingDialog.ActorBackgroundBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.actorBG];
+            settingDialog.TachieBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.tachie];
+            settingDialog.DLAudioBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.dlAudio];
+            settingDialog.CreatedAudioBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.createdAudio];
+            settingDialog.DLMovieBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.dlMovie];
+            settingDialog.CreatedMovieBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.createdMovie];
+            settingDialog.DLImageBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.dlImage];
+            settingDialog.CreatedImageBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.createdImage];
 
             if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -36,18 +37,20 @@ namespace VegasScriptCreateInitialBin
             {
                 using (new UndoBlock("ボイロ動画用ビンを作成"))
                 {
-                    CreateMediaBin(helper, settingDialog.VoiroVoiceBinName);
-                    CreateMediaBin(helper, settingDialog.VoiroJimakuBinName);
-                    CreateMediaBin(helper, settingDialog.VoiroActorBinName);
-                    CreateMediaBin(helper, settingDialog.JimakuBackgroundBinName);
-                    CreateMediaBin(helper, settingDialog.ActorBackgroundBinName);
-                    CreateMediaBin(helper, settingDialog.TachieBinName);
-                    CreateMediaBin(helper, settingDialog.DLAudioBinName);
-                    CreateMediaBin(helper, settingDialog.CreatedAudioBinName);
-                    CreateMediaBin(helper, settingDialog.DLMovieBinName);
-                    CreateMediaBin(helper, settingDialog.CreatedMovieBinName);
-                    CreateMediaBin(helper, settingDialog.DLImageBinName);
-                    CreateMediaBin(helper, settingDialog.CreatedImageBinName);
+                    CreateMediaBin(helper, settingDialog.VoiroVoiceBinName, "AudioMediaBinName");
+                    CreateMediaBin(helper, settingDialog.VoiroJimakuBinName, "JimakuMediaBinName");
+                    CreateMediaBin(helper, settingDialog.VoiroActorBinName, "ActorMediaBinName");
+                    CreateMediaBin(helper, settingDialog.JimakuBackgroundBinName, "JimakuBGMediaBinName");
+                    CreateMediaBin(helper, settingDialog.ActorBackgroundBinName, "ActorBGMediaBinName");
+                    CreateMediaBin(helper, settingDialog.TachieBinName, "");
+                    CreateMediaBin(helper, settingDialog.DLAudioBinName, "");
+                    CreateMediaBin(helper, settingDialog.CreatedAudioBinName, "");
+                    CreateMediaBin(helper, settingDialog.DLMovieBinName, "");
+                    CreateMediaBin(helper, settingDialog.CreatedMovieBinName, "");
+                    CreateMediaBin(helper, settingDialog.DLImageBinName, "");
+                    CreateMediaBin(helper, settingDialog.CreatedImageBinName, "");
+
+                    helper.Settings.Save();
                 }
             }
             catch (Exception ex)
@@ -65,11 +68,15 @@ namespace VegasScriptCreateInitialBin
             }
         }
 
-        private void CreateMediaBin(VegasHelper helper, string name)
+        private void CreateMediaBin(VegasHelper helper, string name, string settingName)
         {
             if(!helper.IsExistMediaBin(name))
             {
                 helper.CreateMediaBin(name);
+
+                if (settingName.Length > 0){
+                    helper.Settings[settingName] = name;
+                }
             }
         }
     }

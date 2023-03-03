@@ -41,12 +41,12 @@ namespace VegasScriptInsertAudioFileFromDirectory
                 settingDialog = new SettingDialog();
             }
 
-            settingDialog.AudioFileFolder = helper.Settings["AudioFileFolder"];
-            settingDialog.AudioInterval = helper.Settings["AudioInsertInterval"];
-            settingDialog.IsRecursive = helper.Settings["IsAudioFolderRecursive"];
-            settingDialog.StartFrom = helper.Settings["IsInsertStartPosition"];
-            settingDialog.UseMediaBin = helper.Settings["UseAudioMediaBin"];
-            settingDialog.MediaBinName = helper.Settings["AudioMediaBinName"];
+            settingDialog.AudioFileFolder = helper.Settings[SN.WdAudio.File.Folder];
+            settingDialog.AudioInterval = helper.Settings[SN.WdAudio.Insert.Interval];
+            settingDialog.IsRecursive = helper.Settings[SN.WdAudio.Is.Folder.Recursive];
+            settingDialog.StartFrom = helper.Settings[SN.WdAudio.Is.Insert.From.Start.Position];
+            settingDialog.UseMediaBin = helper.Settings[SN.WdAudio.Use.MediaBin];
+            settingDialog.MediaBinName = helper.Settings[SN.WdAudio.MediaBin.Name];
             settingDialog.TrackNameDataSource = keyList;
             settingDialog.TrackName = selectedAudioTrack != null ? helper.GetTrackKey(selectedAudioTrack) : keyList.Count == 0 ? "" : keyList.First();
 
@@ -94,12 +94,12 @@ namespace VegasScriptInsertAudioFileFromDirectory
                 throw ex;
             }
 
-            helper.Settings["AudioFileFolder"] = selectedPath;
-            helper.Settings["AudioInsertInterval"] = interval;
-            helper.Settings["IsAudioFolderRecursive"] = isAudioFolderRecursive;
-            helper.Settings["IsInsertStartPosition"] = isInsertStartPosition;
-            helper.Settings["UseAudioMediaBin"] = useMediaBin;
-            if (useMediaBin) { helper.Settings["AudioMediaBinName"] = settingDialog.MediaBinName; }
+            helper.Settings[SN.WdAudio.File.Folder] = selectedPath;
+            helper.Settings[SN.WdAudio.Insert.Interval] = interval;
+            helper.Settings[SN.WdAudio.Is.Folder.Recursive] = isAudioFolderRecursive;
+            helper.Settings[SN.WdAudio.Is.Insert.From.Start.Position] = isInsertStartPosition;
+            helper.Settings[SN.WdAudio.Use.MediaBin] = useMediaBin;
+            if (useMediaBin) { helper.Settings[SN.WdAudio.MediaBin.Name] = settingDialog.MediaBinName; }
             helper.Settings.Save();
         }
     }

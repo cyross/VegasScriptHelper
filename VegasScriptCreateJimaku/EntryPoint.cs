@@ -88,7 +88,7 @@ namespace VegasScriptCreateJimaku
                     groupTracks.Add(trackStructs.BGM.Info.Track);
                 }
 
-                // オーディオファイル流し込み
+                // オーディオトラック作成
                 InsertAudioFile(helper, ref insertAudioInfo, settingDialog, ref keyListManager);
                 groupTracks.Add(insertAudioInfo.Track.Track);
 
@@ -105,7 +105,6 @@ namespace VegasScriptCreateJimaku
                 // 字幕背景挿入処理
                 // こっちを先にしないと字幕が隠れる
                 BackgroundInfo jimakuBGInfo = CreateBackgroundInfo(helper, settingDialog.JimakuBGInfo, ref keyListManager);
-
                 BackgroundInfo actorBGInfo = CreateBackgroundInfo(helper, settingDialog.ActorBGInfo, ref keyListManager);
 
                 InsertBackground(helper, ref jimakuBGInfo, ref actorBGInfo, ref insertAudioInfo, flags.IsCreateOneEventCheck, jimakuParams.IsCreateActorTrack, ref groupTracks);
@@ -113,9 +112,10 @@ namespace VegasScriptCreateJimaku
                 // 立ち絵トラック作成(字幕の後ろ)
                 CreateTachieTrack(helper, ref trackStructs.Tachie, TachieType.JimakuBack, ref groupTracks);
 
-                // 字幕挿入処理
+                // 字幕トラック作成
                 SetTextInfo(ref jimakuParams.Jimaku, helper, settingDialog.JimakuTrackInfo, ref groupTracks, ref keyListManager);
-                // 声優名挿入処理
+
+                // 声優名トラック作成
                 if (jimakuParams.IsCreateActorTrack)
                 {
                     SetTextInfo(ref jimakuParams.Actor, helper, settingDialog.ActorTrackInfo, ref groupTracks, ref keyListManager);
@@ -129,6 +129,9 @@ namespace VegasScriptCreateJimaku
                 // 各種トラックの振り分け
                 if (flags.IsDivideTracks)
                 {
+                    // グループ作成
+                    trackGroupingKeyValue["メイン"] = groupTracks;
+
                     DivideTracks(
                         helper,
                         ref insertAudioInfo,
@@ -155,10 +158,10 @@ namespace VegasScriptCreateJimaku
                         trackStructs.FG.Info.Track = helper.CreateVideoTrack(trackStructs.FG.Info.Name);
                         groupTracks.Add(trackStructs.FG.Info.Track);
                     }
-                }
 
-                // グループ作成
-                trackGroupingKeyValue["メイン"] = groupTracks;
+                    // グループ作成
+                    trackGroupingKeyValue["メイン"] = groupTracks;
+                }
 
                 foreach (string actorName in trackGroupingKeyValue.Keys)
                 {

@@ -150,8 +150,28 @@ namespace VegasScriptHelper
 
         public class VoiceActorOutlineColors : DefaultColorSetting { }
 
-        public class DefaultBinNameSetting : DefaultValueSetting {}
+        public class DefaultBinNameSetting : DefaultValueSetting {
+            public static readonly string voiroVoice = "voiroVoice";
+            public static readonly string voiroJimaku = "voiroJimaku";
+            public static readonly string voiroActor = "voiroActor";
+            public static readonly string jimakuBG = "jimakuBG";
+            public static readonly string actorBG = "actorBG";
+            public static readonly string tachie = "tachie";
+            public static readonly string dlAudio = "dlAudio";
+            public static readonly string createdAudio = "createdAudio";
+            public static readonly string dlMovie = "dlMovie";
+            public static readonly string createdMovie = "createdMovie";
+            public static readonly string dlImage = "dlImage";
+            public static readonly string createdImage = "createdImage";
+        }
 
-        public class DefaultTrackNameSetting : DefaultValueSetting {}
+        public class DefaultTrackNameSetting : DefaultValueSetting {
+            public static readonly string audioTrack = "audioTrack";
+            public static readonly string jimakuTrack = "jimakuTrack";
+            public static readonly string actorTrack = "actorTrack";
+            public static readonly string jimakuBGTrack = "jimakuBGTrack";
+            public static readonly string actorBGTrack = "actorBGTrack";
+            public static readonly string tachieTrack = "tachieTrack";
+        }
     }
 }

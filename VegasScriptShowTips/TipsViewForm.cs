@@ -1,5 +1,7 @@
 ﻿using Markdig;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,12 +10,20 @@ namespace VegasScriptHelper
 {
     public partial class TipsViewForm : Form
     {
+        private PrivateFontCollection pfc = new PrivateFontCollection();
+
         public TipsViewForm()
         {
             InitializeComponent();
+
+            pfc.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+
+            Font f_main = new Font(pfc.Families[0], 9);
+            Font = f_main;
+
         }
 
-        public Panel InnerPanel{ get { return rtfPanel; } }
+        public Panel MainPanel { get { return mainPanel; } }
 
         public void LoadTips()
         {

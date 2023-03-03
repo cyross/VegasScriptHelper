@@ -46,7 +46,7 @@ namespace VegasScriptCreateJimaku
             if (!track.IsCreate) { return; }
 
             string tachieType = TachieTypePostfixs[(int)type];
-            Tachie[tachieType] = helper.CreateVideoTrack(GetTrackName(track.Info.Name));
+            Tachie[tachieType] = helper.CreateVideoTrack(GetTrackName(string.Format("{0}_{1}", track.Info.Name, tachieType)));
             groupTracks.Add(Tachie[tachieType]);
         }
 

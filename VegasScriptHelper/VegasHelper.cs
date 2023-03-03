@@ -75,6 +75,8 @@ namespace VegasScriptHelper
     /// </summary>
     public partial class VegasHelper
     {
+        public const string FONT_FILENAME = "MPLUS1-VariableFont_wght.ttf";
+
         private static VegasHelper _instance = null;
         private static VegasScriptSettings _settings = null;
         private static readonly RichTextViewForm rtfBox = new RichTextViewForm();

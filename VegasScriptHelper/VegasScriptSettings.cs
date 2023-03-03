@@ -1,17 +1,14 @@
-﻿using System.Drawing;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
 using VegasScriptHelper.VegasHelperYamlSpecs;
 using System.Diagnostics;
-using System.Dynamic;
 using System.Configuration;
 using System.Collections.Generic;
 
 namespace VegasScriptHelper
 {
-    public class VegasScriptSettings
+    public partial class VegasScriptSettings
     {
         private readonly static VegasScriptSettings _Instance = new VegasScriptSettings();
 
@@ -30,13 +27,13 @@ namespace VegasScriptHelper
 
         public void LoadYamlFile()
         {
-            SupportedAudioFile = LoadYamlFile<SupportedAudioFileSettings>("SupportedAudioFileSettings.yaml");
-            TextColorByActor = LoadYamlFile<VoiceActorColors>("VoiceActorColors.yaml");
-            TextColorByActor.DefaultColor = this["JimakuColor"];
-            OutlineColorByActor = LoadYamlFile<VoiceActorOutlineColors>("VoiceActorOutlineColors.yaml");
-            OutlineColorByActor.DefaultColor = this["JimakuOutlineColor"];
-            DefaultBinName = LoadYamlFile<DefaultBinNameSetting>("DefaultBinNames.yaml");
-            DefaultTrackName = LoadYamlFile<DefaultTrackNameSetting>("DefaultTrackNames.yaml");
+            SupportedAudioFile = LoadYamlFile<SupportedAudioFileSettings>(YAML_SUPORTED_AUDIO_FILE);
+            TextColorByActor = LoadYamlFile<VoiceActorColors>(YAML_VOICE_ACTOR_COLOR);
+            TextColorByActor.DefaultColor = this[SN.WdActor.Color];
+            OutlineColorByActor = LoadYamlFile<VoiceActorOutlineColors>(YAML_ACTOR_OUTLINE_COLOR_FILE);
+            OutlineColorByActor.DefaultColor = this[SN.WdJimaku.Outline.Color];
+            DefaultBinName = LoadYamlFile<DefaultBinNameSetting>(YAML_DEFAULT_BIN_NAME);
+            DefaultTrackName = LoadYamlFile<DefaultTrackNameSetting>(YAML_DEFAULT_TRACK_NAME);
         }
 
         public void Load()
@@ -52,11 +49,11 @@ namespace VegasScriptHelper
 
             LoadYamlFile();
 
-            SetInitialBinName("AudioMediaBinName", "voiroVoice");
-            SetInitialBinName("JimakuMediaBinName", "voiroJimaku");
-            SetInitialBinName("ActorMediaBinName", "voiroActor");
-            SetInitialBinName("JimakuBGMediaBinName", "jimakuBG");
-            SetInitialBinName("ActorBGMediaBinName", "actorBG");
+            SetInitialBinName(SN.WdAudio.MediaBin.Name, DefaultBinNameSetting.voiroVoice);
+            SetInitialBinName(SN.WdJimaku.MediaBin.Name, DefaultBinNameSetting.voiroJimaku);
+            SetInitialBinName(SN.WdActor.MediaBin.Name, DefaultBinNameSetting.voiroActor);
+            SetInitialBinName(SN.WdJimaku.BG.MediaBin.Name, DefaultBinNameSetting.jimakuBG);
+            SetInitialBinName(SN.WdActor.BG.MediaBin.Name, DefaultBinNameSetting.actorBG);
         }
 
         public void Save()
@@ -103,11 +100,11 @@ namespace VegasScriptHelper
             }
         }
 
-        private void SetInitialBinName(string settinNameKey, string yamlKey)
+        private void SetInitialBinName(string settingNameKey, string yamlKey)
         {
-            if (settingProperties[settinNameKey].Length > 0)
+            if (settingProperties[settingNameKey].Length > 0)
             {
-                settingProperties[settinNameKey] = DefaultBinName[yamlKey];
+                settingProperties[settingNameKey] = DefaultBinName[yamlKey];
             }
         }
     }

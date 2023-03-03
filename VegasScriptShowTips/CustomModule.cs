@@ -36,7 +36,7 @@ namespace VegasScriptShowTips
             try
             {
                 myform.LoadTips();
-                Controls.Add(myform.InnerPanel);
+                Controls.Add(myform.MainPanel);
             }
             catch (Exception ex)
             {

@@ -15,6 +15,7 @@ OPTIONS = {}
 OPTION_DEFAULTS: dict[str, any] = {
     'update_yaml': False,
     'update_markdown': False,
+    'update_font': False,
     'varbose': False,
     'deploy_to_cyross_folder': False,
     'test': 0
@@ -23,6 +24,7 @@ OPTION_DEFAULTS: dict[str, any] = {
 OPTION_SWITCHES: dict[str, list[str]] = {
     'update_yaml': ['-Y','--UPDATE_YAML'],
     'update_markdown': ['-M','--UPDATE_MARKDOWN'],
+    'update_font': ['-F','--UPDATE_FONT'],
     'deploy_to_cyross_folder': ['-CY','--DEPLOY_TO_CYROSS_FOLDER'],
     'varbose': ['-V','--VARBOSE'],
     }
@@ -181,6 +183,16 @@ def deploy_files(dst_file_folders: list[str], vegas_script_files: list[str], my_
             my_documents_path,
             True,
             OPTIONS['update_markdown'])
+
+    # Font FILES
+    for file_info in CONFIG['vegas_font_files']:
+        copy_file_to_folder(
+            file_info['file'],
+            file_info['dir'],
+            dst_file_folders,
+            my_documents_path,
+            True,
+            OPTIONS['update_font'])
 
 if __name__ == '__main__':
     print('start deploy...')

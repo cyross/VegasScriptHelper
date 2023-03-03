@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace VegasScriptHelper
 {
+
     /// <summary>
     /// VegasHelperや各スクリプトを実行中に起きた例外の情報を保持する
     /// </summary>

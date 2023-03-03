@@ -13,7 +13,7 @@ namespace VegasScriptCreateJimaku
         {
             settingDialog.SetFromAudioTrackInfo(helper, manager.Audio, manager.AudioMBin);
 
-            settingDialog.JimakuFilePath = helper.Settings["JimakuFilePath"];
+            settingDialog.JimakuFilePath = helper.Settings[SN.WdJimaku.File.Path];
 
             settingDialog.SetFromFlags(flags);
 

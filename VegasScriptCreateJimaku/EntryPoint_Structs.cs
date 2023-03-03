@@ -1,9 +1,12 @@
 ﻿using ScriptPortal.Vegas;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
 using VegasScriptHelper;
 
 namespace VegasScriptCreateJimaku
@@ -105,10 +108,10 @@ namespace VegasScriptCreateJimaku
         {
             return new BasicTrackStructs
             {
-                Tachie = BasicTrackStruct<VideoTrack>.Create(settings["UseTachie"], settings["TachieTrackName"], true),
-                BG = BasicTrackStruct<VideoTrack>.Create(settings["UseBG"], settings["BGTrackName"], false),
-                FG = BasicTrackStruct<VideoTrack>.Create(settings["UseFG"], settings["FGTrackName"], false),
-                BGM = BasicTrackStruct<AudioTrack>.Create(settings["UseBGM"], settings["BGMTrackName"], false)
+                Tachie = BasicTrackStruct<VideoTrack>.Create(settings[SN.WdTachie.Use], settings[SN.WdTachie.Track.Name], true),
+                BG = BasicTrackStruct<VideoTrack>.Create(settings[SN.WdBG.Use], settings[SN.WdBG.Track.Name], false),
+                FG = BasicTrackStruct<VideoTrack>.Create(settings[SN.WdFG.Use], settings[SN.WdFG.Track.Name], false),
+                BGM = BasicTrackStruct<AudioTrack>.Create(settings[SN.WdBGM.Use], settings[SN.WdBGM.Track.Name], false)
             };
         }
     }

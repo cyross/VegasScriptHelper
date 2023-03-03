@@ -44,7 +44,7 @@ namespace VegasScriptExpandFirstVideoEvent
 
                 if (targetVideoTrack == null)
                 {
-                    targetVideoTrack = helper.SearchVideoTrackByName(helper.Settings["JimakuTrackName"]);
+                    targetVideoTrack = helper.SearchVideoTrackByName(helper.Settings[SN.WdJimaku.Track.Name]);
                 }
 
                 string videoTrackKey = targetVideoTrack != null ? helper.GetTrackKey(targetVideoTrack) : videoKeyList[0];
@@ -53,7 +53,7 @@ namespace VegasScriptExpandFirstVideoEvent
 
                 if (targetAudioTrack == null)
                 {
-                    targetAudioTrack = helper.SearchAudioTrackByName(helper.Settings["AudioTrackName"]);
+                    targetAudioTrack = helper.SearchAudioTrackByName(helper.Settings[SN.WdAudio.Track.Name]);
                 }
 
                 string audioTrackKey = targetAudioTrack != null ? helper.GetTrackKey(targetAudioTrack) : audioKeyList[0];
@@ -64,7 +64,7 @@ namespace VegasScriptExpandFirstVideoEvent
                 settingDialog.VideoTrackName = videoTrackKey;
                 settingDialog.AudioTrackNameDataSource = audioKeyList;
                 settingDialog.AudioTrackName = audioTrackKey;
-                settingDialog.ExpandMargin = helper.Settings["ExpandVideoEventMargin"];
+                settingDialog.ExpandMargin = helper.Settings[SN.WdVideo.Expand.Event.Margin];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -77,9 +77,9 @@ namespace VegasScriptExpandFirstVideoEvent
                     helper.ExpandFirstVideoEvent(videoTrack, audioTrack, margin);
                 }
 
-                helper.Settings["AudioTrackName"] = audioTrack.Name;
-                helper.Settings["JimakuTrackName"] = videoTrack.Name;
-                helper.Settings["ExpandVideoEventMargin"] = margin;
+                helper.Settings[SN.WdAudio.Track.Name] = audioTrack.Name;
+                helper.Settings[SN.WdJimaku.Track.Name] = videoTrack.Name;
+                helper.Settings[SN.WdVideo.Expand.Event.Margin] = margin;
                 helper.Settings.Save();
             }
             catch (VegasHelperTrackUnselectedException)

@@ -17,6 +17,9 @@
             {
                 components.Dispose();
             }
+
+            pfc.Dispose();
+
             base.Dispose(disposing);
         }
 
@@ -30,9 +33,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.okButton = new System.Windows.Forms.Button();
+            this.canselButton = new System.Windows.Forms.Button();
             this.actorBackgroundBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.binNameLabel = new System.Windows.Forms.Label();
             this.createdImageBox = new System.Windows.Forms.TextBox();
             this.dlImageBox = new System.Windows.Forms.TextBox();
             this.createdMovieBox = new System.Windows.Forms.TextBox();
@@ -55,16 +59,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.voiroJimakuLabel = new System.Windows.Forms.Label();
             this.voiroVoiceLabel = new System.Windows.Forms.Label();
-            this.okButton = new System.Windows.Forms.Button();
-            this.canselButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.okButton);
+            this.panel1.Controls.Add(this.canselButton);
             this.panel1.Controls.Add(this.actorBackgroundBox);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.binNameLabel);
             this.panel1.Controls.Add(this.createdImageBox);
             this.panel1.Controls.Add(this.dlImageBox);
             this.panel1.Controls.Add(this.createdMovieBox);
@@ -87,244 +91,297 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.voiroJimakuLabel);
             this.panel1.Controls.Add(this.voiroVoiceLabel);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(9, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(516, 340);
+            this.panel1.Size = new System.Drawing.Size(259, 349);
             this.panel1.TabIndex = 0;
+            // 
+            // okButton
+            // 
+            this.okButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("okButton.BackgroundImage")));
+            this.okButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.okButton.FlatAppearance.BorderSize = 0;
+            this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.okButton.Location = new System.Drawing.Point(200, 317);
+            this.okButton.Margin = new System.Windows.Forms.Padding(8);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(24, 24);
+            this.okButton.TabIndex = 1;
+            this.okButton.UseVisualStyleBackColor = true;
+            // 
+            // canselButton
+            // 
+            this.canselButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("canselButton.BackgroundImage")));
+            this.canselButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.canselButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.canselButton.FlatAppearance.BorderSize = 0;
+            this.canselButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.canselButton.Location = new System.Drawing.Point(227, 317);
+            this.canselButton.Margin = new System.Windows.Forms.Padding(8);
+            this.canselButton.Name = "canselButton";
+            this.canselButton.Size = new System.Drawing.Size(24, 24);
+            this.canselButton.TabIndex = 2;
+            this.canselButton.UseVisualStyleBackColor = true;
             // 
             // actorBackgroundBox
             // 
-            this.actorBackgroundBox.Location = new System.Drawing.Point(76, 135);
+            this.actorBackgroundBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.actorBackgroundBox.Location = new System.Drawing.Point(71, 109);
+            this.actorBackgroundBox.Margin = new System.Windows.Forms.Padding(4);
             this.actorBackgroundBox.Name = "actorBackgroundBox";
-            this.actorBackgroundBox.Size = new System.Drawing.Size(425, 19);
+            this.actorBackgroundBox.Size = new System.Drawing.Size(180, 18);
             this.actorBackgroundBox.TabIndex = 22;
+            this.actorBackgroundBox.Text = "TEST";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 138);
+            this.label2.Location = new System.Drawing.Point(4, 109);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 21;
             this.label2.Text = "声優背景";
             // 
-            // binNameLabel
-            // 
-            this.binNameLabel.AutoSize = true;
-            this.binNameLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.binNameLabel.Location = new System.Drawing.Point(264, 14);
-            this.binNameLabel.Name = "binNameLabel";
-            this.binNameLabel.Size = new System.Drawing.Size(49, 16);
-            this.binNameLabel.TabIndex = 20;
-            this.binNameLabel.Text = "ビン名";
-            // 
             // createdImageBox
             // 
-            this.createdImageBox.Location = new System.Drawing.Point(76, 310);
+            this.createdImageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.createdImageBox.Location = new System.Drawing.Point(71, 291);
+            this.createdImageBox.Margin = new System.Windows.Forms.Padding(4);
             this.createdImageBox.Name = "createdImageBox";
-            this.createdImageBox.Size = new System.Drawing.Size(425, 19);
+            this.createdImageBox.Size = new System.Drawing.Size(180, 18);
             this.createdImageBox.TabIndex = 19;
+            this.createdImageBox.Text = "TEST";
             // 
             // dlImageBox
             // 
-            this.dlImageBox.Location = new System.Drawing.Point(76, 285);
+            this.dlImageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dlImageBox.Location = new System.Drawing.Point(71, 265);
+            this.dlImageBox.Margin = new System.Windows.Forms.Padding(4);
             this.dlImageBox.Name = "dlImageBox";
-            this.dlImageBox.Size = new System.Drawing.Size(425, 19);
+            this.dlImageBox.Size = new System.Drawing.Size(180, 18);
             this.dlImageBox.TabIndex = 18;
+            this.dlImageBox.Text = "TEST";
             // 
             // createdMovieBox
             // 
-            this.createdMovieBox.Location = new System.Drawing.Point(76, 260);
+            this.createdMovieBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.createdMovieBox.Location = new System.Drawing.Point(71, 239);
+            this.createdMovieBox.Margin = new System.Windows.Forms.Padding(4);
             this.createdMovieBox.Name = "createdMovieBox";
-            this.createdMovieBox.Size = new System.Drawing.Size(425, 19);
+            this.createdMovieBox.Size = new System.Drawing.Size(180, 18);
             this.createdMovieBox.TabIndex = 17;
+            this.createdMovieBox.Text = "TEST";
             // 
             // dlMovieBox
             // 
-            this.dlMovieBox.Location = new System.Drawing.Point(76, 235);
+            this.dlMovieBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dlMovieBox.Location = new System.Drawing.Point(71, 213);
+            this.dlMovieBox.Margin = new System.Windows.Forms.Padding(4);
             this.dlMovieBox.Name = "dlMovieBox";
-            this.dlMovieBox.Size = new System.Drawing.Size(425, 19);
+            this.dlMovieBox.Size = new System.Drawing.Size(180, 18);
             this.dlMovieBox.TabIndex = 16;
+            this.dlMovieBox.Text = "TEST";
             // 
             // createdAudioBox
             // 
-            this.createdAudioBox.Location = new System.Drawing.Point(76, 210);
+            this.createdAudioBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.createdAudioBox.Location = new System.Drawing.Point(71, 187);
+            this.createdAudioBox.Margin = new System.Windows.Forms.Padding(4);
             this.createdAudioBox.Name = "createdAudioBox";
-            this.createdAudioBox.Size = new System.Drawing.Size(425, 19);
+            this.createdAudioBox.Size = new System.Drawing.Size(180, 18);
             this.createdAudioBox.TabIndex = 15;
+            this.createdAudioBox.Text = "TEST";
             // 
             // dlAudioBox
             // 
-            this.dlAudioBox.Location = new System.Drawing.Point(76, 185);
+            this.dlAudioBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dlAudioBox.Location = new System.Drawing.Point(71, 161);
+            this.dlAudioBox.Margin = new System.Windows.Forms.Padding(4);
             this.dlAudioBox.Name = "dlAudioBox";
-            this.dlAudioBox.Size = new System.Drawing.Size(425, 19);
+            this.dlAudioBox.Size = new System.Drawing.Size(180, 18);
             this.dlAudioBox.TabIndex = 14;
+            this.dlAudioBox.Text = "TEST";
             // 
             // tachieBox
             // 
-            this.tachieBox.Location = new System.Drawing.Point(76, 160);
+            this.tachieBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tachieBox.Location = new System.Drawing.Point(71, 135);
+            this.tachieBox.Margin = new System.Windows.Forms.Padding(4);
             this.tachieBox.Name = "tachieBox";
-            this.tachieBox.Size = new System.Drawing.Size(425, 19);
+            this.tachieBox.Size = new System.Drawing.Size(180, 18);
             this.tachieBox.TabIndex = 13;
+            this.tachieBox.Text = "TEST";
             // 
             // jimakuBackgroundBox
             // 
-            this.jimakuBackgroundBox.Location = new System.Drawing.Point(76, 108);
+            this.jimakuBackgroundBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.jimakuBackgroundBox.Location = new System.Drawing.Point(71, 83);
+            this.jimakuBackgroundBox.Margin = new System.Windows.Forms.Padding(4);
             this.jimakuBackgroundBox.Name = "jimakuBackgroundBox";
-            this.jimakuBackgroundBox.Size = new System.Drawing.Size(425, 19);
+            this.jimakuBackgroundBox.Size = new System.Drawing.Size(180, 18);
             this.jimakuBackgroundBox.TabIndex = 12;
+            this.jimakuBackgroundBox.Text = "TEST";
             // 
             // voiroActorBox
             // 
-            this.voiroActorBox.Location = new System.Drawing.Point(76, 83);
+            this.voiroActorBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.voiroActorBox.Location = new System.Drawing.Point(71, 57);
+            this.voiroActorBox.Margin = new System.Windows.Forms.Padding(4);
             this.voiroActorBox.Name = "voiroActorBox";
-            this.voiroActorBox.Size = new System.Drawing.Size(425, 19);
+            this.voiroActorBox.Size = new System.Drawing.Size(180, 18);
             this.voiroActorBox.TabIndex = 11;
+            this.voiroActorBox.Text = "TEST";
             // 
             // voiroJimakuBox
             // 
-            this.voiroJimakuBox.Location = new System.Drawing.Point(76, 58);
+            this.voiroJimakuBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.voiroJimakuBox.Location = new System.Drawing.Point(71, 31);
+            this.voiroJimakuBox.Margin = new System.Windows.Forms.Padding(4);
             this.voiroJimakuBox.Name = "voiroJimakuBox";
-            this.voiroJimakuBox.Size = new System.Drawing.Size(425, 19);
+            this.voiroJimakuBox.Size = new System.Drawing.Size(180, 18);
             this.voiroJimakuBox.TabIndex = 11;
+            this.voiroJimakuBox.Text = "TEST";
             // 
             // voiroVoiceBox
             // 
-            this.voiroVoiceBox.Location = new System.Drawing.Point(76, 33);
+            this.voiroVoiceBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.voiroVoiceBox.Location = new System.Drawing.Point(71, 5);
+            this.voiroVoiceBox.Margin = new System.Windows.Forms.Padding(4);
             this.voiroVoiceBox.Name = "voiroVoiceBox";
-            this.voiroVoiceBox.Size = new System.Drawing.Size(425, 19);
+            this.voiroVoiceBox.Size = new System.Drawing.Size(180, 18);
             this.voiroVoiceBox.TabIndex = 10;
+            this.voiroVoiceBox.Text = "TEST";
             // 
             // createdImageLabel
             // 
             this.createdImageLabel.AutoSize = true;
-            this.createdImageLabel.Location = new System.Drawing.Point(13, 313);
+            this.createdImageLabel.Location = new System.Drawing.Point(4, 291);
+            this.createdImageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.createdImageLabel.Name = "createdImageLabel";
-            this.createdImageLabel.Size = new System.Drawing.Size(53, 12);
+            this.createdImageLabel.Size = new System.Drawing.Size(56, 17);
             this.createdImageLabel.TabIndex = 9;
             this.createdImageLabel.Text = "作成画像";
             // 
             // dlImageLabel
             // 
             this.dlImageLabel.AutoSize = true;
-            this.dlImageLabel.Location = new System.Drawing.Point(13, 288);
+            this.dlImageLabel.Location = new System.Drawing.Point(4, 265);
+            this.dlImageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dlImageLabel.Name = "dlImageLabel";
-            this.dlImageLabel.Size = new System.Drawing.Size(43, 12);
+            this.dlImageLabel.Size = new System.Drawing.Size(48, 17);
             this.dlImageLabel.TabIndex = 8;
             this.dlImageLabel.Text = "DL画像";
             // 
             // createdMovieLabel
             // 
             this.createdMovieLabel.AutoSize = true;
-            this.createdMovieLabel.Location = new System.Drawing.Point(13, 263);
+            this.createdMovieLabel.Location = new System.Drawing.Point(4, 240);
+            this.createdMovieLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.createdMovieLabel.Name = "createdMovieLabel";
-            this.createdMovieLabel.Size = new System.Drawing.Size(53, 12);
+            this.createdMovieLabel.Size = new System.Drawing.Size(56, 17);
             this.createdMovieLabel.TabIndex = 7;
             this.createdMovieLabel.Text = "作成動画";
             // 
             // dlMovieLabel
             // 
             this.dlMovieLabel.AutoSize = true;
-            this.dlMovieLabel.Location = new System.Drawing.Point(13, 238);
+            this.dlMovieLabel.Location = new System.Drawing.Point(4, 213);
+            this.dlMovieLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dlMovieLabel.Name = "dlMovieLabel";
-            this.dlMovieLabel.Size = new System.Drawing.Size(43, 12);
+            this.dlMovieLabel.Size = new System.Drawing.Size(48, 17);
             this.dlMovieLabel.TabIndex = 6;
             this.dlMovieLabel.Text = "DL動画";
             // 
             // createdAudio
             // 
             this.createdAudio.AutoSize = true;
-            this.createdAudio.Location = new System.Drawing.Point(13, 213);
+            this.createdAudio.Location = new System.Drawing.Point(4, 187);
+            this.createdAudio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.createdAudio.Name = "createdAudio";
-            this.createdAudio.Size = new System.Drawing.Size(53, 12);
+            this.createdAudio.Size = new System.Drawing.Size(56, 17);
             this.createdAudio.TabIndex = 5;
             this.createdAudio.Text = "作成音声";
             // 
             // dlAudioLabel
             // 
             this.dlAudioLabel.AutoSize = true;
-            this.dlAudioLabel.Location = new System.Drawing.Point(13, 188);
+            this.dlAudioLabel.Location = new System.Drawing.Point(4, 161);
+            this.dlAudioLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dlAudioLabel.Name = "dlAudioLabel";
-            this.dlAudioLabel.Size = new System.Drawing.Size(43, 12);
+            this.dlAudioLabel.Size = new System.Drawing.Size(48, 17);
             this.dlAudioLabel.TabIndex = 4;
             this.dlAudioLabel.Text = "DL音声";
             // 
             // tachieLabel
             // 
             this.tachieLabel.AutoSize = true;
-            this.tachieLabel.Location = new System.Drawing.Point(13, 163);
+            this.tachieLabel.Location = new System.Drawing.Point(4, 135);
+            this.tachieLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tachieLabel.Name = "tachieLabel";
-            this.tachieLabel.Size = new System.Drawing.Size(38, 12);
+            this.tachieLabel.Size = new System.Drawing.Size(44, 17);
             this.tachieLabel.TabIndex = 3;
             this.tachieLabel.Text = "立ち絵";
             // 
             // jimakuBackgroundLabel
             // 
             this.jimakuBackgroundLabel.AutoSize = true;
-            this.jimakuBackgroundLabel.Location = new System.Drawing.Point(13, 111);
+            this.jimakuBackgroundLabel.Location = new System.Drawing.Point(4, 83);
+            this.jimakuBackgroundLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.jimakuBackgroundLabel.Name = "jimakuBackgroundLabel";
-            this.jimakuBackgroundLabel.Size = new System.Drawing.Size(53, 12);
+            this.jimakuBackgroundLabel.Size = new System.Drawing.Size(56, 17);
             this.jimakuBackgroundLabel.TabIndex = 2;
             this.jimakuBackgroundLabel.Text = "字幕背景";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 86);
+            this.label1.Location = new System.Drawing.Point(4, 58);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(44, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "声優名";
             // 
             // voiroJimakuLabel
             // 
             this.voiroJimakuLabel.AutoSize = true;
-            this.voiroJimakuLabel.Location = new System.Drawing.Point(13, 61);
+            this.voiroJimakuLabel.Location = new System.Drawing.Point(4, 32);
+            this.voiroJimakuLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.voiroJimakuLabel.Name = "voiroJimakuLabel";
-            this.voiroJimakuLabel.Size = new System.Drawing.Size(57, 12);
+            this.voiroJimakuLabel.Size = new System.Drawing.Size(68, 17);
             this.voiroJimakuLabel.TabIndex = 1;
             this.voiroJimakuLabel.Text = "ボイロ字幕";
             // 
             // voiroVoiceLabel
             // 
             this.voiroVoiceLabel.AutoSize = true;
-            this.voiroVoiceLabel.Location = new System.Drawing.Point(13, 36);
+            this.voiroVoiceLabel.Location = new System.Drawing.Point(4, 5);
+            this.voiroVoiceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.voiroVoiceLabel.Name = "voiroVoiceLabel";
-            this.voiroVoiceLabel.Size = new System.Drawing.Size(57, 12);
+            this.voiroVoiceLabel.Size = new System.Drawing.Size(68, 17);
             this.voiroVoiceLabel.TabIndex = 0;
             this.voiroVoiceLabel.Text = "ボイロ音声";
             // 
-            // okButton
-            // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(372, 358);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 1;
-            this.okButton.Text = "OK";
-            this.okButton.UseVisualStyleBackColor = true;
-            // 
-            // canselButton
-            // 
-            this.canselButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.canselButton.Location = new System.Drawing.Point(453, 358);
-            this.canselButton.Name = "canselButton";
-            this.canselButton.Size = new System.Drawing.Size(75, 23);
-            this.canselButton.TabIndex = 2;
-            this.canselButton.Text = "CANSEL";
-            this.canselButton.UseVisualStyleBackColor = true;
-            // 
             // SettingDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 390);
-            this.Controls.Add(this.canselButton);
-            this.Controls.Add(this.okButton);
+            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(273, 359);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("M PLUS 1", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SettingDialog";
-            this.Text = "BinSetting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "初期メディアビン作成";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -356,7 +413,6 @@
         private System.Windows.Forms.TextBox voiroJimakuBox;
         private System.Windows.Forms.TextBox voiroVoiceBox;
         private System.Windows.Forms.Label createdAudio;
-        private System.Windows.Forms.Label binNameLabel;
         private System.Windows.Forms.TextBox voiroActorBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox actorBackgroundBox;

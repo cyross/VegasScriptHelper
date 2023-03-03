@@ -62,12 +62,12 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsInsertFromStartPosition {
+        public bool IsAudioInsertFromStartPosition {
             get {
-                return ((bool)(this["IsInsertFromStartPosition"]));
+                return ((bool)(this["IsAudioInsertFromStartPosition"]));
             }
             set {
-                this["IsInsertFromStartPosition"] = value;
+                this["IsAudioInsertFromStartPosition"] = value;
             }
         }
         
@@ -182,12 +182,12 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int PrefixBehavior {
+        public int JimakuPrefixBehavior {
             get {
-                return ((int)(this["PrefixBehavior"]));
+                return ((int)(this["JimakuPrefixBehavior"]));
             }
             set {
-                this["PrefixBehavior"] = value;
+                this["JimakuPrefixBehavior"] = value;
             }
         }
         
@@ -338,12 +338,12 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool CreateOneEventCheck {
+        public bool CreateBGOneEventCheck {
             get {
-                return ((bool)(this["CreateOneEventCheck"]));
+                return ((bool)(this["CreateBGOneEventCheck"]));
             }
             set {
-                this["CreateOneEventCheck"] = value;
+                this["CreateBGOneEventCheck"] = value;
             }
         }
         
@@ -542,12 +542,12 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1000")]
-        public double StandardSilenceTime {
+        public double AudioStandardSilenceTime {
             get {
-                return ((double)(this["StandardSilenceTime"]));
+                return ((double)(this["AudioStandardSilenceTime"]));
             }
             set {
-                this["StandardSilenceTime"] = value;
+                this["AudioStandardSilenceTime"] = value;
             }
         }
         
@@ -626,24 +626,24 @@ namespace VegasScriptHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsCollapseTrackGroup {
+        public bool IsAllTrackGroupCollapse {
             get {
-                return ((bool)(this["IsCollapseTrackGroup"]));
+                return ((bool)(this["IsAllTrackGroupCollapse"]));
             }
             set {
-                this["IsCollapseTrackGroup"] = value;
+                this["IsAllTrackGroupCollapse"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DivideTracks {
+        public bool DivideActorTracks {
             get {
-                return ((bool)(this["DivideTracks"]));
+                return ((bool)(this["DivideActorTracks"]));
             }
             set {
-                this["DivideTracks"] = value;
+                this["DivideActorTracks"] = value;
             }
         }
         

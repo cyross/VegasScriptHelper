@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
+using VegasScriptHelper;
 
 namespace VegasScriptInsertAudioFileFromDirectory
 {
     public partial class SettingDialog : Form
     {
+        private PrivateFontCollection pfc = new PrivateFontCollection();
+
         public SettingDialog()
         {
             InitializeComponent();
+
+            pfc.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+
+            Font f_main = new Font(pfc.Families[0], 9);
+            Font = f_main;
+
+            Font f_bold = new Font(pfc.Families[0], 9, FontStyle.Bold);
+            noticeLabel.Font = f_bold;
         }
 
         private void AudioFileFolderDialogOpenButton_Click(object sender, EventArgs e)

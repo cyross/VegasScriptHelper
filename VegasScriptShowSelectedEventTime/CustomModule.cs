@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptSetJimakuColor;
 
 namespace VegasScriptShowSelectedEventTime
 {
@@ -13,6 +14,7 @@ namespace VegasScriptShowSelectedEventTime
         public readonly static string DockName = "イベントの開始位置・長さ";
         public readonly static string DockDisplayName = "選択したイベントの開始位置・長さを表示";
         private readonly VegasHelper Helper;
+        private StatusView myView;
 
         public MyDockableControl(VegasHelper helper) : base(DockName)
         {
@@ -36,20 +38,8 @@ namespace VegasScriptShowSelectedEventTime
             {
                 string[] results = GetStartAndLength();
 
-                FlowLayoutPanel panel = new FlowLayoutPanel()
-                {
-                    Dock = DockStyle.Fill
-                };
-
-                Label label1 = CreateLabel("Result1", GetStartTimeString(results[0]));
-                panel.Controls.Add(label1);
-
-                Label label2 = CreateLabel("Result2", GetLengthString(results[1]));
-                label2.TextAlign = ContentAlignment.MiddleLeft;
-                panel.Controls.Add(label2);
-
-                Controls.Add(panel);
-
+                myView = new StatusView() { Dock = DockStyle.Fill };
+                Controls.Add(myView.MainPanel);
                 Helper.LoadDockView(this);
             }
             catch (Exception ex)
@@ -87,22 +77,8 @@ namespace VegasScriptShowSelectedEventTime
         {
             string[] results = GetStartAndLength();
 
-            Controls[0].Controls[0].Text = GetStartTimeString(results[0]);
-            Controls[0].Controls[1].Text = GetLengthString(results[1]);
-        }
-
-        private Label CreateLabel(string name, string text)
-        {
-            Label label = new Label()
-            {
-                Name = name,
-                Dock = DockStyle.Fill,
-                AutoSize = true,
-                Text = text,
-                TextAlign = ContentAlignment.MiddleLeft
-            };
-
-            return label;
+            myView.StartTimeLabel = GetStartTimeString(results[0]);
+            myView.LengthLabel = GetLengthString(results[1]);
         }
 
         private string GetStartTimeString(string timeString)
@@ -131,7 +107,12 @@ namespace VegasScriptShowSelectedEventTime
 
         public ICollection GetCustomCommands()
         {
-            myHelper.AddTrackEventStateChangedEventHandler(OnTrackEventStateChanged); // イベントをクリックすると自動的に表示される
+            myHelper.AddTrackCountChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackStateChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventCountChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventDataChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventStateChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventTimeChangedEventHandler(OnTrackEventStateChanged);
 
             myCommand.DisplayName = MyDockableControl.DockDisplayName;
             myCommand.Invoked += HandleInvoked;

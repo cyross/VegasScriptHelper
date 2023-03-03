@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.VegasHelperYamlSpecs;
 
 namespace VegasScriptAddMediaBinInSelectedTrack
 {
@@ -34,7 +35,7 @@ namespace VegasScriptAddMediaBinInSelectedTrack
                 return;
             }
 
-            string binName = helper.Settings.DefaultBinName["voiroJimaku"];
+            string binName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroJimaku];
             List<string> binNameList = helper.GetMediaBinNameList();
 
             if(settingDialog == null) { settingDialog = new SettingDialog(); }

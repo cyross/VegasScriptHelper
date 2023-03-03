@@ -34,9 +34,9 @@ namespace VegasScriptSetJimakuColor
 
                 settingDialog.TargetVideoTrackDataSource = trackNames;
                 settingDialog.TargetVideoTrack = selected != null ? helper.GetTrackKey(selected) : trackNames[0];
-                settingDialog.JimakuColor = helper.Settings["JimakuColor"];
-                settingDialog.OutlineColor = helper.Settings["JimakuOutlineColor"];
-                settingDialog.OutlineWidth = helper.Settings["JimakuOutlineWidth"];
+                settingDialog.JimakuColor = helper.Settings[SN.WdJimaku.Color];
+                settingDialog.OutlineColor = helper.Settings[SN.WdJimaku.Outline.Color];
+                settingDialog.OutlineWidth = helper.Settings[SN.WdJimaku.Outline.Width];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -50,9 +50,9 @@ namespace VegasScriptSetJimakuColor
                         );
                 }
 
-                helper.Settings["JimakuColor"] = settingDialog.JimakuColor;
-                helper.Settings["JimakuOutlineColor"] = settingDialog.OutlineColor;
-                helper.Settings["JimakuOutlineWidth"] = settingDialog.OutlineWidth;
+                helper.Settings[SN.WdJimaku.Color] = settingDialog.JimakuColor;
+                helper.Settings[SN.WdJimaku.Outline.Color] = settingDialog.OutlineColor;
+                helper.Settings[SN.WdJimaku.Outline.Width] = settingDialog.OutlineWidth;
                 helper.Settings.Save();
             }
             catch (VegasHelperNoneEventsException)

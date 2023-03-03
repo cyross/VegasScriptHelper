@@ -106,6 +106,10 @@ python3 deploy_files.py
 
 https://fonts.google.com/specimen/M+PLUS+1
 
+ダイアログで使用しているアイコンは、CC0の「EverIcons」のものをベースとしております。
+
+http://www.evericons.com/
+
 ## 免責事項
 
 本拡張機能集に登場する商品名は各ステークホルダーが権利を所持しております。

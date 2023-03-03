@@ -86,6 +86,9 @@ vegas_yaml_files:
 vegas_markdown_files:
   - file: "Tips.md"
     dir: ".\\VegasScriptShowTips"
+vegas_font_files:
+  - file: "MPLUS1-VariableFont_wght.ttf"
+    dir: ".\\VegasScriptHelper"
 dst_vegas_script_folder: "{0}\\Vegas Script Menu"
 dst_vegas_extension_folder: "{0}\\Vegas Application Extensions"
 cyross_vegas_script_folder: "..\\CyrossVegasScripts\\Vegas Script Menu"

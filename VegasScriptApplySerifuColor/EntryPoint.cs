@@ -35,7 +35,7 @@ namespace VegasScriptApplySerifuColor
 
                 settingDialog.JimakuTrackDataSource = keyList;
                 settingDialog.JimakuTrackName = selectedVideoTrack != null ? helper.GetTrackKey(selectedVideoTrack) : keyList.First();
-                settingDialog.OutlineWidth = helper.Settings["JimakuOutlineWidth"];
+                settingDialog.OutlineWidth = helper.Settings[SettingName.WdJimaku.Outline.Width];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -46,7 +46,7 @@ namespace VegasScriptApplySerifuColor
                     helper.ApplyTextColorByActor(events, settingDialog.OutlineWidth, settingDialog.RemovePrefix);
                 }
 
-                helper.Settings["JimakuOutlineWidth"] = settingDialog.OutlineWidth;
+                helper.Settings[SettingName.WdJimaku.Outline.Width] = settingDialog.OutlineWidth;
                 helper.Settings.Save();
             }
             catch (VegasHelperNoneEventsException)

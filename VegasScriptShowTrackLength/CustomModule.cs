@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptSetJimakuColor;
 
 namespace VegasScriptShowTrackLength
 {
@@ -13,6 +14,7 @@ namespace VegasScriptShowTrackLength
         public readonly static string DockName = "トラックの長さ(間隔込み)";
         public readonly static string DockDisplayName = "選択したトラックの長さを表示(間隔込み)";
         private readonly VegasHelper Helper;
+        private StatusView myView;
 
         public MyDockableControl(VegasHelper helper) : base(DockName)
         {
@@ -32,36 +34,8 @@ namespace VegasScriptShowTrackLength
 
         protected override void OnLoad(EventArgs args)
         {
-            try
-            {
-                FlowLayoutPanel panel = new FlowLayoutPanel()
-                {
-                    Dock = DockStyle.Fill
-                };
-
-                Label label1 = CreateLabel("Result", Helper.GetLengthFromAllEventsInTrack(false)?.ToString() ?? "");
-
-                panel.Controls.Add(label1);
-
-                Controls.Add(panel);
-
-                Helper.LoadDockView(this);
-            }
-            catch (Exception ex)
-            {
-                string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
-
-                Debug.WriteLine("---[Exception In Helper]---");
-                Debug.WriteLine(errMessage);
-                Debug.WriteLine("---------------------------");
-                MessageBox.Show(
-                    errMessage,
-                    "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-                throw ex;
-            }
+            myView = new StatusView() { Dock = DockStyle.Fill };
+            Controls.Add(myView.MainPanel);
         }
         protected override void OnClosed(EventArgs args)
         {
@@ -79,21 +53,7 @@ namespace VegasScriptShowTrackLength
 
         public void UpdateLabel()
         {
-            Controls[0].Controls[0].Text = GetLength();
-        }
-
-        private Label CreateLabel(string name, string text)
-        {
-            Label label = new Label()
-            {
-                Name = name,
-                Dock = DockStyle.Fill,
-                AutoSize = true,
-                Text = text,
-                TextAlign = ContentAlignment.MiddleLeft
-            };
-
-            return label;
+            myView.LengthLabel = GetLength();
         }
     }
 
@@ -110,7 +70,12 @@ namespace VegasScriptShowTrackLength
 
         public ICollection GetCustomCommands()
         {
-            myHelper.AddTrackStateChangedEventHandler(OnTrackEventStateChanged); // イベントをクリックすると自動的に表示される
+            myHelper.AddTrackCountChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackStateChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventCountChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventDataChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventStateChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.AddTrackEventTimeChangedEventHandler(OnTrackEventStateChanged);
 
             myCommand.DisplayName = MyDockableControl.DockDisplayName;
             myCommand.Invoked += HandleInvoked;

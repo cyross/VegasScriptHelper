@@ -53,9 +53,26 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StatusView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatusView.Designer.cs">
+      <DependentUpon>StatusView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MPLUS1-VariableFont_wght.ttf" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatusView.resx">
+      <DependentUpon>StatusView.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -64,6 +81,7 @@ copy $(ProjectDir)..\VegasScriptHelper\VoiceActorColors.yaml $(TargetDir)
 copy $(ProjectDir)..\VegasScriptHelper\VoiceActorOutlineColors.yaml $(TargetDir)
 copy $(ProjectDir)..\VegasScriptHelper\DefaultBinNames.yaml $(TargetDir)
 copy $(ProjectDir)..\VegasScriptHelper\DefaultTrackNames.yaml $(TargetDir)
+copy $(ProjectDir)..\VegasScriptHelper\MPLUS1-VariableFont_wght.ttf $(TargetDir)
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

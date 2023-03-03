@@ -11,7 +11,7 @@
     <Setting Name="IsAudioFolderRecursive" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="IsInsertFromStartPosition" Type="System.Boolean" Scope="User">
+    <Setting Name="IsAudioInsertFromStartPosition" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AudioTrackName" Type="System.String" Scope="User">
@@ -41,7 +41,7 @@
     <Setting Name="ActorOutlineWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="PrefixBehavior" Type="System.Int32" Scope="User">
+    <Setting Name="JimakuPrefixBehavior" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="UseJimakuColorSetting" Type="System.Boolean" Scope="User">
@@ -80,7 +80,7 @@
     <Setting Name="ActorBGMediaBinName" Type="System.String" Scope="User">
       <Value Profile="(Default)">声優名背景</Value>
     </Setting>
-    <Setting Name="CreateOneEventCheck" Type="System.Boolean" Scope="User">
+    <Setting Name="CreateBGOneEventCheck" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CreateJimakuBG" Type="System.Boolean" Scope="User">
@@ -131,7 +131,7 @@
     <Setting Name="RemoveActorAttribute" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="StandardSilenceTime" Type="System.Double" Scope="User">
+    <Setting Name="AudioStandardSilenceTime" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="UseTachie" Type="System.Boolean" Scope="User">
@@ -152,10 +152,10 @@
     <Setting Name="FGTrackName" Type="System.String" Scope="User">
       <Value Profile="(Default)">前景</Value>
     </Setting>
-    <Setting Name="IsCollapseTrackGroup" Type="System.Boolean" Scope="User">
+    <Setting Name="IsAllTrackGroupCollapse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="DivideTracks" Type="System.Boolean" Scope="User">
+    <Setting Name="DivideActorTracks" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="UseBGM" Type="System.Boolean" Scope="User">

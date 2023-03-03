@@ -17,6 +17,9 @@
             {
                 components.Dispose();
             }
+
+            pfc.Dispose();
+
             base.Dispose(disposing);
         }
 
@@ -29,44 +32,56 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TipsViewForm));
-            this.rtfPanel = new System.Windows.Forms.Panel();
             this.markDownBrowser = new System.Windows.Forms.WebBrowser();
-            this.rtfPanel.SuspendLayout();
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // rtfPanel
-            // 
-            this.rtfPanel.Controls.Add(this.markDownBrowser);
-            this.rtfPanel.Location = new System.Drawing.Point(1, 2);
-            this.rtfPanel.Name = "rtfPanel";
-            this.rtfPanel.Size = new System.Drawing.Size(1044, 788);
-            this.rtfPanel.TabIndex = 1;
             // 
             // markDownBrowser
             // 
             this.markDownBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.markDownBrowser.Location = new System.Drawing.Point(0, 0);
-            this.markDownBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.markDownBrowser.Margin = new System.Windows.Forms.Padding(4);
+            this.markDownBrowser.MinimumSize = new System.Drawing.Size(640, 480);
             this.markDownBrowser.Name = "markDownBrowser";
-            this.markDownBrowser.Size = new System.Drawing.Size(1044, 788);
+            this.markDownBrowser.Size = new System.Drawing.Size(1222, 1121);
             this.markDownBrowser.TabIndex = 0;
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mainPanel.Controls.Add(this.markDownBrowser);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(1222, 1121);
+            this.mainPanel.TabIndex = 1;
             // 
             // TipsViewForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 791);
-            this.Controls.Add(this.rtfPanel);
+            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1222, 1121);
+            this.Controls.Add(this.mainPanel);
+            this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("M PLUS 1", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TipsViewForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tips";
-            this.rtfPanel.ResumeLayout(false);
+            this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel rtfPanel;
         private System.Windows.Forms.WebBrowser markDownBrowser;
+        private System.Windows.Forms.Panel mainPanel;
     }
 }

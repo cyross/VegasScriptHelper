@@ -2,10 +2,12 @@
 using System.Runtime;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using VegasScriptHelper;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace VegasScriptCreateJimaku
 {
@@ -18,9 +20,25 @@ namespace VegasScriptCreateJimaku
 
     public partial class SettingDialog : Form
     {
+        private PrivateFontCollection pfc = new PrivateFontCollection();
+
         public SettingDialog()
         {
             InitializeComponent();
+
+            pfc.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+
+            Font f_main = new Font(pfc.Families[0], 9);
+            Font = f_main;
+
+            Font f_bold = new Font(pfc.Families[0], 9, FontStyle.Bold);
+            audioTrackNameNoticeLabel.Font = f_bold;
+
+            Font f_input = new Font(pfc.Families[0], 8);
+            audioFileFolderBox.Font = f_input;
+            jimakuFilePathBox.Font = f_input;
+            jimakuBackgroundMediaBox.Font = f_input;
+            actorBackgroundMediaBox.Font = f_input;
 
             SetColorToolTip(jimakuColorBox);
             SetColorToolTip(jimakuOutlineColorBox);
