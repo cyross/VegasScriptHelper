@@ -20,21 +20,21 @@ namespace VegasScriptCreateJimaku
 
     public partial class SettingDialog : Form
     {
-        private PrivateFontCollection pfc = new PrivateFontCollection();
+        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public SettingDialog()
         {
             InitializeComponent();
 
-            pfc.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
-            Font f_main = new Font(pfc.Families[0], 9);
+            Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
 
-            Font f_bold = new Font(pfc.Families[0], 9, FontStyle.Bold);
+            Font f_bold = new Font(myFontCollection.Families[0], 9, FontStyle.Bold);
             audioTrackNameNoticeLabel.Font = f_bold;
 
-            Font f_input = new Font(pfc.Families[0], 8);
+            Font f_input = new Font(myFontCollection.Families[0], 8);
             audioFileFolderBox.Font = f_input;
             jimakuFilePathBox.Font = f_input;
             jimakuBackgroundMediaBox.Font = f_input;

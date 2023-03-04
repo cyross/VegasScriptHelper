@@ -22,16 +22,16 @@ namespace VegasScriptLauncher
         private readonly static VegasScriptAddMediaBinInSelectedTrack.EntryPoint vsambist = new VegasScriptAddMediaBinInSelectedTrack.EntryPoint();
         private readonly static VegasScriptUpdateSpaces.EntryPoint vsus = new VegasScriptUpdateSpaces.EntryPoint();
         private readonly static VegasScriptCreateJimaku.EntryPoint vscj = new VegasScriptCreateJimaku.EntryPoint();
-        private PrivateFontCollection pfc = new PrivateFontCollection();
+        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public LauncherForm(Vegas vegas)
         {
             Vegas = vegas;
             InitializeComponent();
 
-            pfc.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
-            Font f_main = new Font(pfc.Families[0], 9);
+            Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
         }
 

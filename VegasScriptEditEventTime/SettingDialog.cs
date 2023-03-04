@@ -8,15 +8,15 @@ namespace VegasScriptEditEventTime
 {
     public partial class SettingDialog : Form
     {
-        private PrivateFontCollection pfc = new PrivateFontCollection();
+        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public SettingDialog()
         {
             InitializeComponent();
 
-            pfc.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
-            Font f_main = new Font(pfc.Families[0], 9);
+            Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
         }
 

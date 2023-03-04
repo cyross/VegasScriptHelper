@@ -18,7 +18,7 @@
                 components.Dispose();
             }
 
-            pfc.Dispose();
+            myFontCollection.Dispose();
 
             base.Dispose(disposing);
         }
