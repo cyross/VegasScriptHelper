@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,16 @@ namespace VegasScriptHelper
 {
     public partial class RichTextViewForm : Form
     {
+        private PrivateFontCollection pfc = new PrivateFontCollection();
+
         public RichTextViewForm()
         {
             InitializeComponent();
+
+            pfc.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+
+            Font f_main = new Font(pfc.Families[0], 9);
+            Font = f_main;
         }
 
         public string Rtf

@@ -17,6 +17,9 @@
             {
                 components.Dispose();
             }
+
+            pfc.Dispose();
+
             base.Dispose(disposing);
         }
 
