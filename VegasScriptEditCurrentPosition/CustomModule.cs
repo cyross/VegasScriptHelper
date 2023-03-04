@@ -5,21 +5,20 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
-using VegasScriptSetJimakuColor;
 
-namespace VegasScriptShowTrackLength
+namespace VegasScriptEditCurrentPosition
 {
     public class MyDockableControl : DockableControl
     {
-        public readonly static string DockName = "ShowTrackLength";
-        public readonly static string DockDisplayName = "トラックの長さ(間隔込み)";
-        private readonly VegasHelper Helper;
-        private StatusView myView;
+        public readonly static string DockName = "EditCurrentPosition";
+        public readonly static string DockDisplayName = "カーソル位置";
+        private readonly VegasHelper myHelper;
+        private SettingDialog myView;
 
         public MyDockableControl(VegasHelper helper) : base(DockName)
         {
+            myHelper = helper;
             DisplayName = DockDisplayName;
-            Helper = helper;
         }
 
         public override DockWindowStyle DefaultDockWindowStyle
@@ -29,58 +28,62 @@ namespace VegasScriptShowTrackLength
 
         public override Size DefaultFloatingSize
         {
-            get { return new Size(320, 240); }
+            get { return new Size(640, 480); }
         }
 
         protected override void OnLoad(EventArgs args)
         {
-            myView = new StatusView() { Dock = DockStyle.Fill };
+            RulerFormat rulerFormat = (RulerFormat)myHelper.Settings[SN.WdTime.Ruler.Format];
+            myView = new SettingDialog(myHelper)
+            {
+                Dock = DockStyle.Fill,
+                RulerFormat = rulerFormat,
+                Current = new Timecode()
+            };
+            myView.textUpdateHandler = (Timecode current) =>
+            {
+                using (new UndoBlock("EditCurrentPosition"))
+                {
+                    myView.SetFromDialog(myHelper);
+
+                    myHelper.Settings[SN.WdTime.Ruler.Format] = (int)myView.RulerFormat;
+                }
+            };
+            myView.SetFromDialog(myHelper);
             Controls.Add(myView.MainPanel);
         }
+
         protected override void OnClosed(EventArgs args)
         {
             base.OnClosed(args);
         }
 
-        private string GetLength()
+        public void UpdateCurrent()
         {
-            string result = "トラックの長さ:";
+            if (myView == null) { return; }
 
-            result += Helper.GetLengthFromAllEventsInTrack(false)?.ToString() ?? "";
-
-            return result;
-        }
-
-        public void UpdateLabel()
-        {
-            myView.LengthLabel = GetLength();
+            myView.SetToDialog(myHelper);
         }
     }
 
     public class CustomModule : ICustomCommandModule
     {
+        public readonly static string CommandName = "カーソル位置を編集";
+        private Vegas myVegas;
         private VegasHelper myHelper;
-        private readonly static string CommandName = "選択したトラックの長さを表示(間隔込み)";
-        private readonly CustomCommand myCommand = new CustomCommand(CommandCategory.View, CommandName);
+        private readonly CustomCommand myCommand = new CustomCommand(CommandCategory.Edit, CommandName);
 
         public void InitializeModule(Vegas vegas)
         {
+            myVegas = vegas;
             myHelper = VegasHelper.Instance(vegas);
         }
 
         public ICollection GetCustomCommands()
         {
-            myHelper.AddTrackCountChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackStateChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventCountChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventDataChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventStateChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventTimeChangedEventHandler(OnTrackEventStateChanged);
 
-            myCommand.DisplayName = MyDockableControl.DockDisplayName;
-            myCommand.Invoked += HandleInvoked;
             myCommand.MenuPopup += HandleMenuPopup;
-
+            myCommand.Invoked += HandleInvoked;
             return new CustomCommand[] { myCommand };
         }
 
@@ -93,14 +96,13 @@ namespace VegasScriptShowTrackLength
                     AutoLoadCommand = myCommand,
                     PersistDockWindowState = true
                 };
-
                 myHelper.LoadDockView(dock);
             }
         }
 
-        void HandleMenuPopup(Object sender, EventArgs e)
+        void HandleMenuPopup(Object sender, EventArgs args)
         {
-            myCommand.Checked = myHelper.FindDockView(MyDockableControl.DockName);
+            myCommand.Checked = myVegas.FindDockView(MyDockableControl.DockName);
         }
 
         void OnTrackEventStateChanged(Object sender, EventArgs e)
@@ -110,7 +112,7 @@ namespace VegasScriptShowTrackLength
             if (myHelper.FindDockView(MyDockableControl.DockName, ref dockView))
             {
                 MyDockableControl myDockViewControl = (MyDockableControl)dockView;
-                myDockViewControl.UpdateLabel();
+                myDockViewControl.UpdateCurrent();
             }
         }
     }

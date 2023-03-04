@@ -39,6 +39,11 @@ namespace VegasScriptHelper
 
     public partial class VegasHelper
     {
+        public List<Track> AllTracks
+        {
+            get { return Vegas.Project.Tracks.ToList(); }
+        }
+
         public IEnumerable<Track> SelectedTracks {
             get { return Vegas.Project.Tracks.Where(track => track.Selected); }
         }

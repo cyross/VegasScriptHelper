@@ -11,8 +11,8 @@ namespace VegasScriptShowSelectedEventTime
 {
     public class MyDockableControl : DockableControl
     {
-        public readonly static string DockName = "イベントの開始位置・長さ";
-        public readonly static string DockDisplayName = "選択したイベントの開始位置・長さを表示";
+        public readonly static string DockName = "ShowEventTime";
+        public readonly static string DockDisplayName = "イベントの開始位置・長さ";
         private readonly VegasHelper Helper;
         private StatusView myView;
 
@@ -97,7 +97,7 @@ namespace VegasScriptShowSelectedEventTime
     public class CustomModule : ICustomCommandModule
     {
         private VegasHelper myHelper;
-        private readonly static string CommandName = "ShowEventTime";
+        private readonly static string CommandName = "選択したイベントの開始位置・長さを表示";
         private readonly CustomCommand myCommand = new CustomCommand(CommandCategory.View, CommandName);
 
         public void InitializeModule(Vegas vegas)

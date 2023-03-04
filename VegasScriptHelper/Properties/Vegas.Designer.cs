@@ -670,5 +670,17 @@ namespace VegasScriptHelper.Properties {
                 this["BGMTrackName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int TimeRulerFormat {
+            get {
+                return ((int)(this["TimeRulerFormat"]));
+            }
+            set {
+                this["TimeRulerFormat"] = value;
+            }
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace VegasScriptHelper
         private static readonly SettingName bg = new SettingName("BG");
         private static readonly SettingName fg = new SettingName("FG");
         private static readonly SettingName bgm = new SettingName("BGM");
+        private static readonly SettingName time = new SettingName("Time");
         private readonly string str;
 
         public SettingName(string value)
@@ -55,6 +56,7 @@ namespace VegasScriptHelper
         public static SettingName WdBG { get { return bg; } }
         public static SettingName WdFG { get { return fg; } }
         public static SettingName WdBGM { get { return bgm; } }
+        public static SettingName WdTime { get { return time; } }
         public SettingName Create { get { return Pre("Create"); } }
         public SettingName Use { get { return Pre("Use"); } }
         public SettingName Is { get { return Pre("Is"); } }
@@ -96,6 +98,8 @@ namespace VegasScriptHelper
         public SettingName Attribute { get { return Post("Attribute"); } }
         public SettingName Prefix { get { return Post("Prefix"); } }
         public SettingName Behavior { get { return Post("Behavior"); } }
+        public SettingName Ruler { get { return Post("Ruler"); } }
+        public SettingName Format { get { return Post("Format"); } }
     }
 
     public class SN: SettingName

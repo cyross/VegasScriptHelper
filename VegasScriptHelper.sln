@@ -114,6 +114,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptShowTips", "Vega
 		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptEditEventTimeByTextBox", "VegasScriptEditEventTimeByTextBox\VegasScriptEditEventTimeByTextBox.csproj", "{5E7BAB03-4236-4A08-8CA3-DE1A7FE79FC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptEditEventTimeByTextBoxExt", "VegasScriptEditEventTimeByTextBoxExt\VegasScriptEditEventTimeByTextBoxExt.csproj", "{B57A1D75-1C2F-4C52-961C-89205D2F43DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptEditCurrentPosition", "VegasScriptEditCurrentPosition\VegasScriptEditCurrentPosition.csproj", "{91332DCB-D75E-4817-A1B7-BCABF368FBA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -196,6 +202,18 @@ Global
 		{7858228C-6914-4286-B7B6-CE3F1D459D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7858228C-6914-4286-B7B6-CE3F1D459D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7858228C-6914-4286-B7B6-CE3F1D459D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E7BAB03-4236-4A08-8CA3-DE1A7FE79FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7BAB03-4236-4A08-8CA3-DE1A7FE79FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7BAB03-4236-4A08-8CA3-DE1A7FE79FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7BAB03-4236-4A08-8CA3-DE1A7FE79FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B57A1D75-1C2F-4C52-961C-89205D2F43DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57A1D75-1C2F-4C52-961C-89205D2F43DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57A1D75-1C2F-4C52-961C-89205D2F43DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57A1D75-1C2F-4C52-961C-89205D2F43DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91332DCB-D75E-4817-A1B7-BCABF368FBA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91332DCB-D75E-4817-A1B7-BCABF368FBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91332DCB-D75E-4817-A1B7-BCABF368FBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91332DCB-D75E-4817-A1B7-BCABF368FBA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

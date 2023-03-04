@@ -22,6 +22,7 @@ namespace VegasScriptLauncher
         private readonly static VegasScriptAddMediaBinInSelectedTrack.EntryPoint vsambist = new VegasScriptAddMediaBinInSelectedTrack.EntryPoint();
         private readonly static VegasScriptUpdateSpaces.EntryPoint vsus = new VegasScriptUpdateSpaces.EntryPoint();
         private readonly static VegasScriptCreateJimaku.EntryPoint vscj = new VegasScriptCreateJimaku.EntryPoint();
+        private readonly static VegasScriptEditEventTimeByTextBox.EntryPoint vseetbtb = new VegasScriptEditEventTimeByTextBox.EntryPoint();
         private PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public LauncherForm(Vegas vegas)
@@ -110,6 +111,11 @@ namespace VegasScriptLauncher
         private void button11_Click(object sender, EventArgs e)
         {
             ClickEvent(vscj);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            ClickEvent(vseetbtb);
         }
     }
 }
