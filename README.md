@@ -166,5 +166,6 @@ http://www.evericons.com/
 ありがとうございます。
 
 - [ユウイナちゃんねるのブログ 東方ゆっくりボイス一覧](https://ameblo.jp/staffoz/entry-12701709291.html)
-- [nicotalk & キャラ素材配布所](http://www.nicotalk.com/charasozai_kt.html)
+- [nicotalk & キャラ素材配布所 きつねゆっくり](http://www.nicotalk.com/charasozai_kt.html)
+- [nicotalk & キャラ素材配布所 新きつねゆっくり](http://www.nicotalk.com/charasozai_sky.html)
 - [東方MMDまとめ 東方Projectのキャラクター一覧と読み方](https://imimatome.com/touhoummd/kyara/638/)
