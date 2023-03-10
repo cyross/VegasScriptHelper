@@ -32,12 +32,6 @@ namespace VegasScriptCreateJimaku
                 List<MediaBin> mediaBinList = helper.GetMediaBinList();
                 Flags flags = new Flags();
 
-                if (mediaList.Count == 0)
-                {
-                    MessageBox.Show("対象のビデオメディアが存在していません。");
-                    return;
-                }
-
                 // ダイアログに必要な情報の前準備(オーディオ)
                 keyListManager.SetupAudio(helper, audioTracks);
                 // ダイアログに必要な情報の前準備(ビデオ)

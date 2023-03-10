@@ -392,5 +392,17 @@ namespace VegasScriptCreateJimaku
             get { return collapseTrackGroupCheck.Checked; }
             set { collapseTrackGroupCheck.Checked = value; }
         }
+
+        public bool IsEnableJimakuBG
+        {
+            get { return jimakuBackgroundGroup.Enabled; }
+            set { jimakuBackgroundGroup.Enabled = value; }
+        }
+
+        public bool IsEnableActorBG
+        {
+            get { return actorBackgroundGroup.Enabled; }
+            set { actorBackgroundGroup.Enabled = value; }
+        }
     }
 }
