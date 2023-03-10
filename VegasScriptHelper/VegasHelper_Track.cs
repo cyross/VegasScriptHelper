@@ -1,11 +1,10 @@
 ﻿using ScriptPortal.Vegas;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace VegasScriptHelper
 {
-    public struct TrackInfo<T>
+    public struct TrackInfo<T> where T : Track
     {
         public string Name;
         public T Track;
@@ -26,6 +25,13 @@ namespace VegasScriptHelper
             }
 
             return info;
+        }
+
+        public int CountEvents()
+        {
+            if (Track == null) return 0;
+
+            return Track.Events.Count;
         }
     }
 

@@ -39,14 +39,14 @@ namespace VegasScriptCreateJimaku
             if (isCreateActorTrack)
             {
                 helper.InsertBackground(actorBGInfo, audioInfo.Track.Track, isCreateOne);
-                trackGroupList.Add(actorBGInfo.Track.Track);
+                if (actorBGInfo.Track.Track != null) trackGroupList.Add(actorBGInfo.Track.Track);
             }
 
             helper.InsertBackground(jimakuBGInfo, audioInfo.Track.Track, isCreateOne);
-            trackGroupList.Add(jimakuBGInfo.Track.Track);
+            if(jimakuBGInfo.Track.Track != null) trackGroupList.Add(jimakuBGInfo.Track.Track);
 
             // ２つのトラックで１つのイベントを作った場合はイベントグループ作成
-            if (!isCreateOne || !isCreateActorTrack) { return; }
+            if (!isCreateOne || jimakuBGInfo.Track.CountEvents() == 0 || actorBGInfo.Track.CountEvents() == 0) return;
 
             helper.AddTrackEventGroup(new TrackEvent[]
             {

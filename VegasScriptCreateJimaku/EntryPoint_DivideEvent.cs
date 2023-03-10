@@ -66,8 +66,8 @@ namespace VegasScriptCreateJimaku
 
                 if (!flags.IsCreateOneEventCheck)
                 {
-                    if (jimakuBG.IsCreate) { trackEvents.Add(DivideVideoEvent(jimakuBG.Track.Track, actorStruct.JimakuBG)); }
-                    if (jimakuParams.IsCreateActorTrack && actorBG.IsCreate) { trackEvents.Add(DivideVideoEvent(actorBG.Track.Track, actorStruct.ActorBG)); }
+                    if (jimakuBG.IsCreate && jimakuBG.Track.CountEvents() > 0) { trackEvents.Add(DivideVideoEvent(jimakuBG.Track.Track, actorStruct.JimakuBG)); }
+                    if (jimakuParams.IsCreateActorTrack && actorBG.IsCreate && actorBG.Track.CountEvents() > 0) { trackEvents.Add(DivideVideoEvent(actorBG.Track.Track, actorStruct.ActorBG)); }
                 }
 
                 trackEvents.Add(DivideVideoEvent(jimakuParams.Jimaku.Track.Track, actorStruct.Jimaku));

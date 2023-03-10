@@ -53,8 +53,17 @@ namespace VegasScriptCreateJimaku
 
             info.Track.Name = bgInfo.trackName;
             info.Track.Track = GetVideoTrack(helper, info.Track.Name, manager.VideoTKV);
-            info.Media.Name = bgInfo.mediaName;
-            info.Media.Media = manager.MKV[info.Media.Name];
+
+            if (manager.MKV.Count == 0 || bgInfo.mediaName == "")
+            {
+                info.Media.Name = "";
+                info.Media.Media = null;
+            }
+            else
+            {
+                info.Media.Name = bgInfo.mediaName;
+                info.Media.Media = manager.MKV[info.Media.Name];
+            }
             info.Margin = bgInfo.margin;
             info.MediaBin = CreateMediaBinInfo(helper, bgInfo.useMediaBin, bgInfo.mediaBinName, ref manager);
 

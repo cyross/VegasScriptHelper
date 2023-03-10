@@ -11,6 +11,8 @@ namespace VegasScriptHelper
     {
         public void CreateVideoEventWithAudioTrack(VideoTrack videoTrack, AudioTrack audioTrack, Media videoMedia, double margin = 0.0f, bool group = true)
         {
+            if (videoMedia == null) return;
+
             TrackEvents audioEvents = audioTrack.Events;
 
             for (int i = 0; i < audioEvents.Count; i++)
@@ -23,6 +25,8 @@ namespace VegasScriptHelper
 
         public void CreateFullSizeVideoEventWithAudioTrack(VideoTrack videoTrack, AudioTrack audioTrack, Media videoMedia, double margin = 0.0f)
         {
+            if (videoMedia == null) return;
+
             TrackEvents audioEvents = audioTrack.Events;
 
             if(audioEvents.Count == 0) { return; }

@@ -85,9 +85,7 @@ namespace VegasScriptCreateJimaku
             SetComboBox(jimakuBackgroundMediaBox, klMedia);
             SetComboBox(jimakuBackgroundMediaBinBox, klMediaBin);
             JimakuBackgroundMargin = helper.Settings[SN.WdJimaku.BG.Margin];
-            bool enable = klMedia.Keys.Count > 0;
-            CreateJimakuBackground = enable && IsEnableJimakuBG && helper.Settings[SN.WdJimaku.Create.BG];
-            IsEnableJimakuBG = enable;
+            CreateJimakuBackground = helper.Settings[SN.WdJimaku.Create.BG];
         }
 
         public void SetFromActorBackgroundInfo(
@@ -100,9 +98,7 @@ namespace VegasScriptCreateJimaku
             SetComboBox(actorBackgroundMediaBox, klMedia);
             SetComboBox(actorBackgroundMediaBinBox, klMediaBin);
             ActorBackgroundMargin = helper.Settings[SN.WdActor.BG.Margin];
-            bool enable = klMedia.Keys.Count > 0;
-            CreateActorBackground = enable && helper.Settings[SN.WdActor.Create.BG];
-            IsEnableActorBG = enable;
+            CreateActorBackground = helper.Settings[SN.WdActor.Create.BG];
         }
 
         public void SetFromFlags(in Flags flags)

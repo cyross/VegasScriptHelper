@@ -103,7 +103,7 @@ namespace VegasScriptCreateJimaku
             helper.Settings[target + "BGMargin"] = info.Margin;
         }
 
-        private void SetBasicTrackInfoToSetting<T>(VegasHelper helper, string target, in BasicTrackStruct<T> trackStruct)
+        private void SetBasicTrackInfoToSetting<T>(VegasHelper helper, string target, in BasicTrackStruct<T> trackStruct) where T: Track
         {
             helper.Settings["Use" + target] = trackStruct.IsCreate;
             helper.Settings[target + "TrackName"] = trackStruct.Info.Name;

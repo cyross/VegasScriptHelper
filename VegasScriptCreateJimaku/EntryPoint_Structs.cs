@@ -70,7 +70,7 @@ namespace VegasScriptCreateJimaku
         }
     }
 
-    public struct BasicTrackStruct<T>
+    public struct BasicTrackStruct<T> where T: Track
     {
         public bool IsCreate;
         public TrackInfo<T> Info;
