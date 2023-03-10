@@ -82,7 +82,13 @@ namespace VegasScriptCreateJimaku
             in KeyListInfo klMediaBin)
         {
             SetComboBox(jimakuBackgroundTrackBox, klJimakuBG);
-            SetComboBox(jimakuBackgroundMediaBox, klMedia);
+            List<string> medias = klMedia.Keys;
+            medias.Insert(0, VegasHelper.NoSelectMedia);
+
+            string mediakey = klMedia.FirstKey;
+            if (!medias.Contains(mediakey)){ mediakey = VegasHelper.NoSelectMedia; }
+
+            SetComboBox(jimakuBackgroundMediaBox, medias, mediakey);
             SetComboBox(jimakuBackgroundMediaBinBox, klMediaBin);
             JimakuBackgroundMargin = helper.Settings[SN.WdJimaku.BG.Margin];
             CreateJimakuBackground = helper.Settings[SN.WdJimaku.Create.BG];
@@ -95,7 +101,13 @@ namespace VegasScriptCreateJimaku
             in KeyListInfo klMediaBin)
         {
             SetComboBox(actorBackgroundTrackBox, klActorBG);
-            SetComboBox(actorBackgroundMediaBox, klMedia);
+            List<string> medias = klMedia.Keys;
+            medias.Insert(0, VegasHelper.NoSelectMedia);
+
+            string mediakey = klMedia.FirstKey;
+            if (!medias.Contains(mediakey)) { mediakey = VegasHelper.NoSelectMedia; }
+
+            SetComboBox(actorBackgroundMediaBox, medias, mediakey);
             SetComboBox(actorBackgroundMediaBinBox, klMediaBin);
             ActorBackgroundMargin = helper.Settings[SN.WdActor.BG.Margin];
             CreateActorBackground = helper.Settings[SN.WdActor.Create.BG];

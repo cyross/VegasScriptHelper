@@ -15,6 +15,8 @@ namespace VegasScriptHelper
 
     public partial class VegasHelper
     {
+        public static readonly string NoSelectMedia = "(メディアを挿入しない)";
+
         public Media CreateMedia(string path, MediaBin mediaBin = null)
         {
             Media media = new Media(path);

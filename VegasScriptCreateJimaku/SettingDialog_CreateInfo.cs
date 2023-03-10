@@ -27,7 +27,7 @@ namespace VegasScriptCreateJimaku
                 return CreateBGInfo(
                     CreateJimakuBackground,
                     JimakuBackgroundTrackName,
-                    JimakuBackgroundMediaName,
+                    JimakuBackgroundMediaName == VegasHelper.NoSelectMedia ? "" : JimakuBackgroundMediaName,
                     JimakuBackgroundMargin,
                     UseJimakuBackgroundMediaBin,
                     JimakuBackgroundMediaBinName
@@ -42,7 +42,7 @@ namespace VegasScriptCreateJimaku
                 return CreateBGInfo(
                     PrefixBehavior == PrefixBehaviorType.NewEvent && CreateActorBackground,
                     ActorBackgroundTrackName,
-                    ActorBackgroundMediaName,
+                    ActorBackgroundMediaName == VegasHelper.NoSelectMedia ? "" : ActorBackgroundMediaName,
                     ActorBackgroundMargin,
                     UseActorBackgroundMediaBin,
                     ActorBackgroundMediaBinName
