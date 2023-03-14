@@ -18,6 +18,7 @@ OPTION_DEFAULTS: dict[str, any] = {
     'update_font': False,
     'varbose': False,
     'deploy_to_cyross_folder': False,
+    'debug': False,
     'test': 0
 }
 
@@ -26,6 +27,7 @@ OPTION_SWITCHES: dict[str, list[str]] = {
     'update_markdown': ['-M','--UPDATE_MARKDOWN'],
     'update_font': ['-F','--UPDATE_FONT'],
     'deploy_to_cyross_folder': ['-CY','--DEPLOY_TO_CYROSS_FOLDER'],
+    'debug': ['-D','--DEBUG'],
     'varbose': ['-V','--VARBOSE'],
     }
 
@@ -41,8 +43,8 @@ def print_varbose(message: str) -> None:
     if OPTIONS['varbose']:
         print(message)
 
-def load_config() -> dict[str, any]:
-    config_filepath: str = './deploy_files.yaml'
+def load_config(is_debug: bool) -> dict[str, any]:
+    config_filepath: str = './deploy_files.yaml' if not is_debug else './deploy_files_debug.yaml'
 
     if not os.path.exists(config_filepath):
         print(f'[ERROR]ファイルが見つかりません: {config_filepath}')
@@ -117,6 +119,31 @@ def analyze_commandline_options(command_line_args: list[str]) -> dict[str, list[
     result_options.update(options)
 
     return result_options
+
+def delete_file_from_folder(filename: str, folders: list[str], doc_path: str) -> None:
+    for dir_base in folders:
+        delete_file(os.path.join(dir_base.format(doc_path), filename))
+
+def delete_file(path: str):
+    print_varbose(f'delete {path}')
+    try:
+        os.remove(path)
+    except FileNotFoundError:
+        print(f'[INFO]ファイルが見つかりません: {path}')
+
+def delete_files(dst_file_folders: list[str], vegas_script_files: list[str], my_documents_path: str) -> None:
+    # VEGAS HELPER
+    delete_file_from_folder(
+        CONFIG['vegas_helper_file_name'],
+        dst_file_folders,
+        my_documents_path)
+
+    # VEGAS SCRIPT
+    for file_info in vegas_script_files:
+        delete_file_from_folder(
+            file_info['file'],
+            dst_file_folders,
+            my_documents_path)
 
 def copy_file_to_folder(
     filename: str,
@@ -197,9 +224,9 @@ def deploy_files(dst_file_folders: list[str], vegas_script_files: list[str], my_
 if __name__ == '__main__':
     print('start deploy...')
 
-    CONFIG: dict[str, any] = load_config()
-
     OPTIONS: dict[str, any] = analyze_commandline_options(sys.argv)
+
+    CONFIG: dict[str, any] = load_config(OPTIONS['debug'])
 
     print_varbose(f'options = {OPTIONS}')
 
@@ -212,6 +239,11 @@ if __name__ == '__main__':
 
     dst_vegas_script_folders = [CONFIG['dst_vegas_script_folder']]
     dst_vegas_extension_folders = [CONFIG['dst_vegas_extension_folder']]
+
+    print('delete to vegas script folder...')
+    delete_files(dst_vegas_script_folders, CONFIG['vegas_script_files'], my_documents_path)
+    print('delete to vegas application extension folder...')
+    delete_files(dst_vegas_extension_folders, CONFIG['vegas_extension_files'], my_documents_path)
 
     if OPTIONS['deploy_to_cyross_folder']:
         dst_vegas_script_folders.append(CONFIG['cyross_vegas_script_folder'])
