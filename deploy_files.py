@@ -19,6 +19,7 @@ OPTION_DEFAULTS: dict[str, any] = {
     'varbose': False,
     'deploy_to_cyross_folder': False,
     'debug': False,
+    'clean': False,
     'test': 0
 }
 
@@ -28,6 +29,7 @@ OPTION_SWITCHES: dict[str, list[str]] = {
     'update_font': ['-F','--UPDATE_FONT'],
     'deploy_to_cyross_folder': ['-CY','--DEPLOY_TO_CYROSS_FOLDER'],
     'debug': ['-D','--DEBUG'],
+    'clean': ['-CL','--CLEAN'],
     'varbose': ['-V','--VARBOSE'],
     }
 
@@ -244,6 +246,10 @@ if __name__ == '__main__':
     delete_files(dst_vegas_script_folders, CONFIG['vegas_script_files'], my_documents_path)
     print('delete to vegas application extension folder...')
     delete_files(dst_vegas_extension_folders, CONFIG['vegas_extension_files'], my_documents_path)
+
+    if OPTIONS['clean']:
+        print('cleaning complete!')
+        quit()
 
     if OPTIONS['deploy_to_cyross_folder']:
         dst_vegas_script_folders.append(CONFIG['cyross_vegas_script_folder'])
