@@ -682,5 +682,29 @@ namespace VegasScriptHelper.Properties {
                 this["TimeRulerFormat"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseHyphenation {
+            get {
+                return ((bool)(this["UseHyphenation"]));
+            }
+            set {
+                this["UseHyphenation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("26")]
+        public int HyphenationLength {
+            get {
+                return ((int)(this["HyphenationLength"]));
+            }
+            set {
+                this["HyphenationLength"] = value;
+            }
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace VegasScriptHelper
         private static readonly SettingName audio = new SettingName("Audio");
         private static readonly SettingName video = new SettingName("Video");
         private static readonly SettingName tachie = new SettingName("Tachie");
+        private static readonly SettingName hyphenation = new SettingName("Hyphenation");
         private static readonly SettingName bg = new SettingName("BG");
         private static readonly SettingName fg = new SettingName("FG");
         private static readonly SettingName bgm = new SettingName("BGM");
@@ -57,6 +58,7 @@ namespace VegasScriptHelper
         public static SettingName WdFG { get { return fg; } }
         public static SettingName WdBGM { get { return bgm; } }
         public static SettingName WdTime { get { return time; } }
+        public static SettingName WdHyphe { get { return hyphenation; } }
         public SettingName Create { get { return Pre("Create"); } }
         public SettingName Use { get { return Pre("Use"); } }
         public SettingName Is { get { return Pre("Is"); } }

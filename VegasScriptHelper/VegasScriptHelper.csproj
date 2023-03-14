@@ -55,6 +55,7 @@
     <Compile Include="CustomScript\ExpandFirstVideoEvent.cs" />
     <Compile Include="CustomScript\GetDuretionFromAllEventsInTrack.cs" />
     <Compile Include="CustomScript\GetLengthFromAllEventsInTrack.cs" />
+    <Compile Include="CustomScript\Hyphenation.cs" />
     <Compile Include="CustomScript\InsertAudioInTrack.cs" />
     <Compile Include="CustomScript\InsertBackground.cs" />
     <Compile Include="CustomScript\InsertJimaku.cs" />
