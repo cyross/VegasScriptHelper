@@ -19,41 +19,17 @@ namespace VegasScriptPrescribedPattern
 #if true // for update script
             using (var block = new UndoBlock("$projectname"))
             {
-                try
-                {
-                    // 設定ダイアログが不要なときは削除
-                    if (settingDialog == null) { settingDialog = new SettingDialog(); }
-                    if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
-
-                    // スクリプト本体を実装
-                }
-                catch (Exception ex)
-                {
-                    string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
-                    Debug.WriteLine("---[Exception In Helper]---");
-                    Debug.WriteLine(errMessage);
-                    Debug.WriteLine("---------------------------");
-                    MessageBox.Show(errMessage);
-                    throw ex;
-                }
-            }
-#else // not update script
-            try
-            {
                 // 設定ダイアログが不要なときは削除
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
+                if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                 // スクリプト本体を実装
             }
-            catch (Exception ex)
-            {
-                string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
-                Debug.WriteLine("---[Exception In Helper]---");
-                Debug.WriteLine(errMessage);
-                Debug.WriteLine("---------------------------");
-                MessageBox.Show(errMessage);
-                throw ex;
-            }
+#else // not update script
+            // 設定ダイアログが不要なときは削除
+            if (settingDialog == null) { settingDialog = new SettingDialog(); }
+
+            // スクリプト本体を実装
 #endif
             helper.Settings.Save();
         }

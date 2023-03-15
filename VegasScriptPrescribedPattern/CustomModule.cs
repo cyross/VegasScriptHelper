@@ -33,34 +33,10 @@ namespace VegasScriptPrescribedPattern
 #if true // for update script
             using (new UndoBlock("UpdateSpaces"))
             {
-                try
-                {
-                    // ここに本体を実装
-                }
-                catch (Exception ex)
-                {
-                    string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
-                    Debug.WriteLine("---[Exception In Helper]---");
-                    Debug.WriteLine(errMessage);
-                    Debug.WriteLine("---------------------------");
-                    MessageBox.Show(errMessage);
-                    throw ex;
-                }
+                // ここに本体を実装
             }
 #else
-                try
-                {
-                    // ここに本体を実装
-                }
-                catch (Exception ex)
-                {
-                    string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
-                    Debug.WriteLine("---[Exception In Helper]---");
-                    Debug.WriteLine(errMessage);
-                    Debug.WriteLine("---------------------------");
-                    MessageBox.Show(errMessage);
-                    throw ex;
-                }
+                // ここに本体を実装
 #endif
         }
 
