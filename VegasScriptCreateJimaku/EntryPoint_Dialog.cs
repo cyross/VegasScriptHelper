@@ -9,30 +9,22 @@ namespace VegasScriptCreateJimaku
 {
     public partial class EntryPoint : IEntryPoint
     {
-        private void SetFromInfoToDialog(VegasHelper helper, ref KeyListManager manager, ref BasicTrackStructs structs, ref Flags flags)
+        private void SetFromInfoToDialog(VegasHelper helper, ref KeyListManager manager, ref BasicTrackStructs structs, ref Flags flags, ref HypheInfo hypheInfo)
         {
             settingDialog.SetFromAudioTrackInfo(helper, manager.Audio, manager.AudioMBin);
-
             settingDialog.JimakuFilePath = helper.Settings[SN.WdJimaku.File.Path];
-
             settingDialog.SetFromFlags(flags);
-
             settingDialog.SetFromJimakuTrackInfo(helper, manager.Jimaku, manager.JimakuPlugin, manager.JimakuMBin);
-
             settingDialog.SetFromActorTrackInfo(helper, manager.Actor, manager.ActorPlugin, manager.ActorMBin);
-
             settingDialog.SetFromJimakuColorInfo(helper);
-
             settingDialog.SetFromActorColorInfo(helper);
-
             settingDialog.SetFromJimakuBackgroundInfo(helper, manager.JimakuBG, manager.JimakuBGMedia, manager.JimakuBGMBin);
-
             settingDialog.SetFromActorBackgroundInfo(helper, manager.ActorBG, manager.ActorBGMedia, manager.ActorMBin);
-
             settingDialog.SetFromBasicTrackStructs(structs);
+            settingDialog.SetFromHypheInfo(hypheInfo);
         }
 
-        private void LoadFromDialogToInfo(ref JimakuParams jimakuParams, ref BasicTrackStructs structs, ref Flags flags)
+        private void LoadFromDialogToInfo(ref JimakuParams jimakuParams, ref BasicTrackStructs structs, ref Flags flags, ref HypheInfo hypheInfo)
         {
             settingDialog.SetToFlags(ref flags);
 
@@ -40,6 +32,7 @@ namespace VegasScriptCreateJimaku
             jimakuParams.IsDeletePrefix = (flags.Behavior != PrefixBehaviorType.Remain);
 
             settingDialog.SetToBasicTrackStructs(ref structs);
+            settingDialog.SetToHypheInfo(ref hypheInfo);
         }
     }
 }

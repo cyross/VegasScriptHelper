@@ -392,5 +392,17 @@ namespace VegasScriptCreateJimaku
             get { return collapseTrackGroupCheck.Checked; }
             set { collapseTrackGroupCheck.Checked = value; }
         }
+
+        public bool UseHypheCheck
+        {
+            get { return hypheCheck.Checked; }
+            set { hypheCheck.Checked = value;}
+        }
+
+        public int HypheLength
+        {
+            get { return int.Parse(hypheBox.Text); }
+            set { hypheBox.Text = value.ToString(); }
+        }
     }
 }

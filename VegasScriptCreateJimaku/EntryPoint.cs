@@ -31,6 +31,7 @@ namespace VegasScriptCreateJimaku
                 List<Media> mediaList = helper.GetProjectVideoMediaList();
                 List<MediaBin> mediaBinList = helper.GetMediaBinList();
                 Flags flags = new Flags();
+                HypheInfo hypheInfo = CreateHypheInfo(helper);
 
                 // ダイアログに必要な情報の前準備(オーディオ)
                 keyListManager.SetupAudio(helper, audioTracks);
@@ -49,7 +50,7 @@ namespace VegasScriptCreateJimaku
 
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
-                SetFromInfoToDialog(helper, ref keyListManager, ref trackStructs, ref flags);
+                SetFromInfoToDialog(helper, ref keyListManager, ref trackStructs, ref flags, ref hypheInfo);
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -71,7 +72,7 @@ namespace VegasScriptCreateJimaku
                     return;
                 }
 
-                LoadFromDialogToInfo(ref jimakuParams, ref trackStructs, ref flags);
+                LoadFromDialogToInfo(ref jimakuParams, ref trackStructs, ref flags, ref hypheInfo);
 
                 List<Track> groupTracks = new List<Track>();
 
@@ -116,6 +117,12 @@ namespace VegasScriptCreateJimaku
                     jimakuParams.isRemoveActorAttr = flags.IsRemoveActorAttr;
                 }
                 InsertJimaku(ref jimakuParams, helper, settingDialog, ref insertAudioInfo);
+
+                // 禁則処理
+                if (hypheInfo.IsUse)
+                {
+                    Hyphenation(helper, ref jimakuParams, hypheInfo);
+                }
 
                 // 立ち絵トラック作成(字幕の前)
                 CreateTachieTrack(helper, ref trackStructs.Tachie, TachieType.Front, ref groupTracks);
@@ -173,7 +180,8 @@ namespace VegasScriptCreateJimaku
                     ref jimakuBGInfo,
                     ref actorBGInfo,
                     ref flags,
-                    ref trackStructs);
+                    ref trackStructs,
+                    ref hypheInfo);
             }
         }
     }

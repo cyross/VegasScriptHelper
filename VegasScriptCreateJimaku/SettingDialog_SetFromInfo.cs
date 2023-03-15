@@ -153,5 +153,11 @@ namespace VegasScriptCreateJimaku
             SetFromFGInfo(structs.FG);
             SetFromBGMInfo(structs.BGM);
         }
+
+        public void SetFromHypheInfo(in HypheInfo info)
+        {
+            UseHypheCheck = info.IsUse;
+            HypheLength = info.Length;
+        }
     }
 }

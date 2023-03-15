@@ -56,6 +56,7 @@
     <Compile Include="EntryPoint_DivideEvent.cs" />
     <Compile Include="EntryPoint_Enum.cs" />
     <Compile Include="EntryPoint_Get.cs" />
+    <Compile Include="EntryPoint_Hyphe.cs" />
     <Compile Include="EntryPoint_Insert.cs" />
     <Compile Include="EntryPoint_Jimaku.cs" />
     <Compile Include="EntryPoint_KeyListManager.cs" />

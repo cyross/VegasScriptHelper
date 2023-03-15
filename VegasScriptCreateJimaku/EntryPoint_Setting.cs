@@ -28,7 +28,8 @@ namespace VegasScriptCreateJimaku
             ref BackgroundInfo jimakuBG,
             ref BackgroundInfo actorBG,
             ref Flags flags,
-            ref BasicTrackStructs trackStructs)
+            ref BasicTrackStructs trackStructs,
+            ref HypheInfo hypheInfo)
         {
             SetAudioSetting(helper, audioInfo);
 
@@ -52,6 +53,8 @@ namespace VegasScriptCreateJimaku
             SetFlagsToSetting(helper, flags);
 
             SetBasicTracksInfoToSetting(helper, trackStructs);
+
+            SaveHypheInfo(helper, hypheInfo);
 
             helper.Settings.Save();
         }

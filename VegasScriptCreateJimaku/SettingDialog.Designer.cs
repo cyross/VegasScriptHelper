@@ -31,6 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingDialog));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.okButton = new System.Windows.Forms.Button();
@@ -189,13 +190,18 @@
             this.audioFileFolderLavel = new System.Windows.Forms.Label();
             this.IsRecursiveCheck = new System.Windows.Forms.CheckBox();
             this.audioFileFolderBox = new System.Windows.Forms.TextBox();
-            this.colorTooltip = new System.Windows.Forms.ToolTip();
+            this.colorTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.audioFileFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.jimakuFileBrowser = new System.Windows.Forms.OpenFileDialog();
             this.jimakuColorDialog = new System.Windows.Forms.ColorDialog();
             this.jimakuOutlineColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorColorDialog = new System.Windows.Forms.ColorDialog();
             this.actorOutlineColorDialog = new System.Windows.Forms.ColorDialog();
+            this.hypheGroup = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.hypheCheck = new System.Windows.Forms.CheckBox();
+            this.hypheBox = new System.Windows.Forms.TextBox();
+            this.hypheUnitLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.bgGroup.SuspendLayout();
             this.bgPanel.SuspendLayout();
@@ -235,11 +241,13 @@
             this.startPositionGroup.SuspendLayout();
             this.audioMediaBinGroup.SuspendLayout();
             this.audioMediaBinPanel.SuspendLayout();
+            this.hypheGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mainPanel.Controls.Add(this.hypheGroup);
             this.mainPanel.Controls.Add(this.okButton);
             this.mainPanel.Controls.Add(this.canselButton);
             this.mainPanel.Controls.Add(this.bgGroup);
@@ -254,7 +262,7 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 4);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1201, 907);
+            this.mainPanel.Size = new System.Drawing.Size(1201, 986);
             this.mainPanel.TabIndex = 0;
             // 
             // okButton
@@ -264,7 +272,7 @@
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.FlatAppearance.BorderSize = 0;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.okButton.Location = new System.Drawing.Point(1137, 875);
+            this.okButton.Location = new System.Drawing.Point(1136, 955);
             this.okButton.Margin = new System.Windows.Forms.Padding(8);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(24, 24);
@@ -278,7 +286,7 @@
             this.canselButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.canselButton.FlatAppearance.BorderSize = 0;
             this.canselButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.canselButton.Location = new System.Drawing.Point(1170, 875);
+            this.canselButton.Location = new System.Drawing.Point(1169, 955);
             this.canselButton.Margin = new System.Windows.Forms.Padding(8);
             this.canselButton.Name = "canselButton";
             this.canselButton.Size = new System.Drawing.Size(24, 24);
@@ -738,7 +746,7 @@
             this.otherGroup.Controls.Add(this.divideTrackChecBox);
             this.otherGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.otherGroup.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.otherGroup.Location = new System.Drawing.Point(717, 785);
+            this.otherGroup.Location = new System.Drawing.Point(716, 874);
             this.otherGroup.Margin = new System.Windows.Forms.Padding(4);
             this.otherGroup.Name = "otherGroup";
             this.otherGroup.Padding = new System.Windows.Forms.Padding(4);
@@ -2226,6 +2234,69 @@
             this.jimakuFileBrowser.FileName = "jimakuFileBrowser";
             this.jimakuFileBrowser.Filter = "テキストファイル|*.txt|すべてのファイル|*.*";
             // 
+            // hypheGroup
+            // 
+            this.hypheGroup.Controls.Add(this.hypheUnitLabel);
+            this.hypheGroup.Controls.Add(this.label3);
+            this.hypheGroup.Controls.Add(this.hypheCheck);
+            this.hypheGroup.Controls.Add(this.hypheBox);
+            this.hypheGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hypheGroup.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.hypheGroup.Location = new System.Drawing.Point(716, 793);
+            this.hypheGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.hypheGroup.Name = "hypheGroup";
+            this.hypheGroup.Padding = new System.Windows.Forms.Padding(4);
+            this.hypheGroup.Size = new System.Drawing.Size(113, 73);
+            this.hypheGroup.TabIndex = 63;
+            this.hypheGroup.TabStop = false;
+            this.hypheGroup.Text = "禁則処理";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(19, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 17);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "禁則処理を行う";
+            // 
+            // hypheCheck
+            // 
+            this.hypheCheck.AutoSize = true;
+            this.hypheCheck.FlatAppearance.BorderSize = 0;
+            this.hypheCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hypheCheck.ForeColor = System.Drawing.Color.Crimson;
+            this.hypheCheck.Location = new System.Drawing.Point(8, 26);
+            this.hypheCheck.Margin = new System.Windows.Forms.Padding(4);
+            this.hypheCheck.Name = "hypheCheck";
+            this.hypheCheck.Size = new System.Drawing.Size(12, 11);
+            this.hypheCheck.TabIndex = 7;
+            this.hypheCheck.UseVisualStyleBackColor = true;
+            // 
+            // hypheBox
+            // 
+            this.hypheBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.hypheBox.Location = new System.Drawing.Point(8, 45);
+            this.hypheBox.Margin = new System.Windows.Forms.Padding(4);
+            this.hypheBox.Name = "hypheBox";
+            this.hypheBox.Size = new System.Drawing.Size(64, 18);
+            this.hypheBox.TabIndex = 42;
+            this.hypheBox.Text = "1000000";
+            this.hypheBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // hypheUnitLabel
+            // 
+            this.hypheUnitLabel.AutoSize = true;
+            this.hypheUnitLabel.ForeColor = System.Drawing.Color.White;
+            this.hypheUnitLabel.Location = new System.Drawing.Point(78, 45);
+            this.hypheUnitLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.hypheUnitLabel.Name = "hypheUnitLabel";
+            this.hypheUnitLabel.Size = new System.Drawing.Size(32, 17);
+            this.hypheUnitLabel.TabIndex = 43;
+            this.hypheUnitLabel.Text = "文字";
+            // 
             // SettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -2233,7 +2304,7 @@
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1203, 913);
+            this.ClientSize = new System.Drawing.Size(1203, 994);
             this.Controls.Add(this.mainPanel);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("M PLUS 1", 9F);
@@ -2316,6 +2387,8 @@
             this.audioMediaBinGroup.PerformLayout();
             this.audioMediaBinPanel.ResumeLayout(false);
             this.audioMediaBinPanel.PerformLayout();
+            this.hypheGroup.ResumeLayout(false);
+            this.hypheGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2486,5 +2559,10 @@
         private System.Windows.Forms.CheckBox collapseTrackGroupCheck;
         private System.Windows.Forms.CheckBox createOneEventCheck;
         private System.Windows.Forms.CheckBox divideTrackChecBox;
+        private System.Windows.Forms.GroupBox hypheGroup;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox hypheCheck;
+        private System.Windows.Forms.Label hypheUnitLabel;
+        private System.Windows.Forms.TextBox hypheBox;
     }
 }
