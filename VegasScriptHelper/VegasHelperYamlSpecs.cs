@@ -49,11 +49,6 @@ namespace VegasScriptHelper
             public Dictionary<string, Color> NameToColor = new Dictionary<string, Color>();
             public Color DefaultColor;
 
-            public static string SanitizeKey(string org_key)
-            {
-                return Regex.Replace(org_key, @"[\s()\.\/:\.\[\]\\\/]+", "_");
-            }
-
             public void Deserialize(YamlStream stream)
             {
                 NameToColor = new Dictionary<string, Color>();
@@ -95,13 +90,13 @@ namespace VegasScriptHelper
                 get {
                     if (!Contains(name)) { return DefaultColor; }
 
-                    return NameToColor[SanitizeKey(name)];
+                    return NameToColor[name];
                 }
             }
 
             public bool Contains(string name)
             {
-                return NameToColor.ContainsKey(SanitizeKey(name));
+                return NameToColor.ContainsKey(name);
             }
 
             public List<string> Keys()
