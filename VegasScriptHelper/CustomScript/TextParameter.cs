@@ -50,6 +50,28 @@ namespace VegasScriptHelper
             SetStringIntoOFXParameter(ofxStringParam, rtfBox.Rtf);
         }
 
+        public void SetTextToRtfBox(OFXStringParameter ofxStringParam)
+        {
+            rtfBox.Rtf = GetOFXParameterString(ofxStringParam);
+        }
+
+        public void SetTextFromRtfBox(OFXStringParameter ofxStringParam)
+        {
+            SetStringIntoOFXParameter(ofxStringParam, rtfBox.Rtf);
+        }
+
+        public string RtfText
+        {
+            get { return rtfBox.RtfText; }
+            set { rtfBox.RtfText = value; }
+        }
+
+        public string[] RtfLines
+        {
+            get { return rtfBox.RtfLines; }
+            set { rtfBox.RtfLines = value; }
+        }
+
         public void SetTextColor(VideoTrack track, ColorInfo info, bool throwException = true)
         {
             SetTextColor(track, info.TextColor, info.OutlineColor, info.OutlineWidth);

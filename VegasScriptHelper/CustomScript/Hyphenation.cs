@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.LinkLabel;
 
 namespace VegasScriptHelper
 {
@@ -13,46 +15,64 @@ namespace VegasScriptHelper
     {
         private readonly char[] EOSChrs = new char[] { '、', '。', '，', '．', ',', '.', '?', '？', '!', '！' };
 
-        public string Hyphenation(string text)
+        public string[] Hyphenation(string[] org_lines, int length)
         {
-            int length = Settings[SettingName.WdHyphe.Width];
+            List<string> new_lines = new List<string>();
 
-            if (text.Length < length)
+            foreach(var line in org_lines)
             {
-                return text;
+                List<string> hyped = LineHyphenation(line, length);
+                new_lines.AddRange(hyped);
             }
 
-            List<string> lines = new List<string>();
+            return new_lines.ToArray();
+        }
 
-            while (text.Length >= length)
+        private List<string> LineHyphenation(string org_line, int length)
+        {
+            if (org_line.Length < length)
             {
-                if (text.Length == length && IsEoS(text.Last()))
+                return new List<string> { org_line };
+            }
+
+            List<string> new_lines = new List<string>();
+
+            while (org_line.Length >= length)
+            {
+                if (org_line.Length == length && IsEoS(org_line.Last()))
                 {
-                    lines.Add(text);
+                    new_lines.Add(org_line);
                     break;
                 }
 
-                int p = length;
+                // 文末文字が続いている場合もあるため文末位置が移動する
+                int p = CountEosPos(org_line, length);
 
-                // 文末文字が続いている場合もあるため
-                while (IsEoS(text[p]) && p < text.Length) { p++; }
+                if (p == org_line.Length)
+                {
+                    new_lines.Add(org_line);
+                    return new_lines;
+                }
 
-                lines.Add(text.Substring(0, p));
-
-                text = text.Substring(p);
+                new_lines.Add(org_line.Substring(0, p));
+                org_line = org_line.Substring(p);
             }
 
-            return string.Join("\n", lines);
+            if (org_line.Length != 0) { new_lines.Add(org_line); }
+
+            return new_lines;
+        }
+
+        private int CountEosPos(string line, int pos)
+        {
+            while (pos < line.Length && IsEoS(line[pos])) { pos++; }
+
+            return pos;
         }
 
         private bool IsEoS(char chr)
         {
             return EOSChrs.Contains(chr);
-        }
-
-        private int NextLinePos(string text, int length)
-        {
-            return 0;
         }
     }
 }

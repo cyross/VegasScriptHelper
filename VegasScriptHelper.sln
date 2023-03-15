@@ -91,6 +91,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目
 		build_event_copy_yaml_file.bat = build_event_copy_yaml_file.bat
 		deploy_files.py = deploy_files.py
 		deploy_files.yaml = deploy_files.yaml
+		deploy_files_debug.yaml = deploy_files_debug.yaml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -115,10 +116,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptShowTips", "Vega
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptEditEventTimeByTextBox", "VegasScriptEditEventTimeByTextBox\VegasScriptEditEventTimeByTextBox.csproj", "{5E7BAB03-4236-4A08-8CA3-DE1A7FE79FC2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptEditEventTimeByTextBoxExt", "VegasScriptEditEventTimeByTextBoxExt\VegasScriptEditEventTimeByTextBoxExt.csproj", "{B57A1D75-1C2F-4C52-961C-89205D2F43DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptEditCurrentPosition", "VegasScriptEditCurrentPosition\VegasScriptEditCurrentPosition.csproj", "{91332DCB-D75E-4817-A1B7-BCABF368FBA1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptHyphenation", "VegasScriptHyphenation\VegasScriptHyphenation.csproj", "{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -214,6 +229,10 @@ Global
 		{91332DCB-D75E-4817-A1B7-BCABF368FBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91332DCB-D75E-4817-A1B7-BCABF368FBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91332DCB-D75E-4817-A1B7-BCABF368FBA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

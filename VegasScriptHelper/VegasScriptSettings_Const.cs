@@ -16,11 +16,11 @@ namespace VegasScriptHelper
         private static readonly SettingName audio = new SettingName("Audio");
         private static readonly SettingName video = new SettingName("Video");
         private static readonly SettingName tachie = new SettingName("Tachie");
-        private static readonly SettingName hyphenation = new SettingName("Hyphenation");
         private static readonly SettingName bg = new SettingName("BG");
         private static readonly SettingName fg = new SettingName("FG");
         private static readonly SettingName bgm = new SettingName("BGM");
         private static readonly SettingName time = new SettingName("Time");
+        private static readonly SettingName hyphenation = new SettingName("Hyphenation");
         private readonly string str;
 
         public SettingName(string value)
@@ -102,6 +102,7 @@ namespace VegasScriptHelper
         public SettingName Behavior { get { return Post("Behavior"); } }
         public SettingName Ruler { get { return Post("Ruler"); } }
         public SettingName Format { get { return Post("Format"); } }
+        public SettingName Length { get { return Post("Length"); } }
     }
 
     public class SN: SettingName

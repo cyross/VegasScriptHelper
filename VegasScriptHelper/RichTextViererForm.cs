@@ -37,6 +37,12 @@ namespace VegasScriptHelper
             set { richTextBox.Text = value; }
         }
 
+        public string[] RtfLines
+        {
+            get { return richTextBox.Lines; }
+            set { richTextBox.Lines = value; }
+        }
+
         public RichTextBox RtfBox
         {
             get { return richTextBox; }
