@@ -135,6 +135,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptHyphenation", "V
 		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegasScriptExtDebug", "VegasScriptExtDebug\VegasScriptExtDebug.csproj", "{7A82DE21-F920-4A6C-A4D1-268C39A17B7D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{57ECDD3E-FD8D-4902-9BAF-2D1761D62007} = {57ECDD3E-FD8D-4902-9BAF-2D1761D62007}
+		{61964961-74EA-43A6-8619-94F82D5100F8} = {61964961-74EA-43A6-8619-94F82D5100F8}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +239,10 @@ Global
 		{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69EFA6C5-4B2A-46FC-A7F0-99748E779AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A82DE21-F920-4A6C-A4D1-268C39A17B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A82DE21-F920-4A6C-A4D1-268C39A17B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A82DE21-F920-4A6C-A4D1-268C39A17B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A82DE21-F920-4A6C-A4D1-268C39A17B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

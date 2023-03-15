@@ -1,25 +1,19 @@
-﻿using ScriptPortal.Vegas;
-using System;
-using System.Diagnostics;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using ScriptPortal.Vegas;
 using VegasScriptHelper;
 
-namespace VegasScriptDebug
+namespace VegasScriptDebug.DebugProcess.DMediaBin
 {
-    public partial class EntryPoint
+    internal class Check : IDebugProcess
     {
-        private void DebugCreateMediaBin(VegasHelper helper)
+        private readonly VegasHelper helper;
+
+        public Check(VegasHelper helper)
         {
-            Debug.WriteLine("メディアビンを作成します。");
-            MediaBin mediaBin = helper.CreateMediaBin("ほげ");
-            Debug.WriteLine("メディアビンにメディアを挿入します。");
-            System.Reflection.Assembly executionAsm = System.Reflection.Assembly.GetExecutingAssembly();
-            string executingPath = System.IO.Path.GetDirectoryName(new Uri(executionAsm.CodeBase).LocalPath);
-            mediaBin.Add(helper.CreateMedia(executingPath + "\\..\\..\\for_debug-0.wav"));
-            Debug.WriteLine("完了しました。");
+            this.helper = helper;
         }
 
-        private void DebugMediaBin(VegasHelper helper)
+        public void Exec()
         {
             string binName = "テスト用";
             if (MessageBox.Show(

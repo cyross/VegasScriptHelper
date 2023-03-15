@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Windows.Forms;
 using ScriptPortal.Vegas;
+using VegasScriptExtDebug.DebugProcess;
 using VegasScriptHelper;
 
-namespace VegasScriptDebug
+namespace VegasScriptExtDebug
 {
     public class CustomModule : ICustomCommandModule
     {
@@ -31,29 +32,12 @@ namespace VegasScriptDebug
         {
             if(!helper.ActivateDockView(DockName))
             {
-                try
-                {
-                    Timecode time = helper.GetLengthFromAllEventsInTrack();
-                    string result = string.Format("長さ: {0}", time.ToString(RulerFormat.Time));
-
                     DockableControl dock = new DockableControl(DockName);
-                    Label label1 = new Label
-                    {
-                        Dock = DockStyle.Fill,
-                        Text = result,
-                        TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-                    };
-                    dock.Controls.Add(label1);
+                    ShowTime st = new ShowTime(helper, dock);
+
+                    st.Exec();
+
                     helper.LoadDockView(dock);
-                }
-                catch (VegasHelperTrackUnselectedException)
-                {
-                    MessageBox.Show("ビデオトラックが選択されていません。");
-                }
-                catch (VegasHelperNoneEventsException)
-                {
-                    MessageBox.Show("選択したビデオトラック中にイベントが存在していません。");
-                }
             }
         }
 
