@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Windows.Forms;
 using ScriptPortal.Vegas;
 using VegasScriptExtDebug.DebugProcess;
 using VegasScriptHelper;
