@@ -68,6 +68,23 @@ VisualStudioでデバッグするためのコードですので、
 このスクリプトは、スクリプトのプロジェクトを作成するときのテンプレートを作るためのものです。
 ビルドしても何も機能しません。
 
+また、このテンプレートを使用して新しいプロジェクトを作成するとき、以下の設定が必要になりますのでご確認ください。
+
+1)ビルドの依存関係に「VegasScriptHelper」を追加する
+　これを忘れると、ビルド・リビルド時にエラーが出ます。
+2)以下の設定のどちらかが必要
+2-1)VEGASスクリプトを作る場合
+2-1-1)デバッグの設定で、「開始動作」を「外部プログラムの開始」に変更
+2-1-2)実行パスをVEGASの実行ファイルにする。
+　　　例: `C:\Program Files\VEGAS\VEGAS Pro 20.0\vegas200.exe`
+2-2)VEGAS拡張を作る場合
+2-2-1)デバッグの設定で、「開始動作」を「外部プログラムの開始」に変更
+2-2-2)実行パスをVEGASの実行ファイルにする。
+　　　例: `C:\Program Files\VEGAS\VEGAS Pro 20.0\vegas200.exe`
+2-2-3)コマンドライン引数を設定する
+　　　例: `/CMDMODULE "C:\Users\***\source\repos\VegasScriptHelper\VegasScriptShowTips\bin\Debug\VegasScriptExt.dll"`
+　　　　　`***`にはユーザ名が入ります
+
 ## VegasScriptHelperのインストール・デプロイに関して
 
 デプロイ用に `deploy_dll_files.py` をご用意いたしましたので、こちらをご利用ください。
@@ -161,7 +178,6 @@ http://www.evericons.com/
 ## 謝辞
 
 ゆっくり音声名については、以下のサイトを参考させて頂いております。
-
 
 ありがとうございます。
 
