@@ -24,6 +24,7 @@ namespace VegasScriptPrescribedPattern
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                 // スクリプト本体を実装
+                // IMainProcインタフェースを実装するクラスを作成する
             }
 #else // not update script
             // 設定ダイアログが不要なときは削除
