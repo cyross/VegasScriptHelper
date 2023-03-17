@@ -49,18 +49,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomScript\CreateVideoEventWithAudioTrack.cs" />
-    <Compile Include="CustomScript\AssignAudioTrackDurationToVideoTrack.cs" />
-    <Compile Include="CustomScript\DeleteJimakuPrefix.cs" />
-    <Compile Include="CustomScript\ExpandFirstVideoEvent.cs" />
-    <Compile Include="CustomScript\GetDuretionFromAllEventsInTrack.cs" />
-    <Compile Include="CustomScript\GetLengthFromAllEventsInTrack.cs" />
-    <Compile Include="CustomScript\Hyphenation.cs" />
-    <Compile Include="CustomScript\InsertAudioInTrack.cs" />
-    <Compile Include="CustomScript\InsertBackground.cs" />
-    <Compile Include="CustomScript\InsertJimaku.cs" />
-    <Compile Include="CustomScript\TextParameter.cs" />
-    <Compile Include="CustomScript\GetJimakuPrefix.cs" />
+    <Compile Include="BaseProc\BaseExtProc.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="ExtProc\Event\ColorApplier.cs" />
+    <Compile Include="ExtProc\Audio\Counter.cs" />
+    <Compile Include="ExtProc\Event\Aligner.cs" />
+    <Compile Include="ExtProc\Duration\Assigner.cs" />
+    <Compile Include="ExtProc\Jimaku\Counter.cs" />
+    <Compile Include="ExtProc\Jimaku\DelPrefix.cs" />
+    <Compile Include="ExtProc\Event\Expander.cs" />
+    <Compile Include="ExtProc\Duration\Getter.cs" />
+    <Compile Include="ExtProc\Jimaku\EoS.cs" />
+    <Compile Include="ExtProc\Jimaku\PrefixPos.cs" />
+    <Compile Include="ExtProc\Duration\Length.cs" />
+    <Compile Include="ExtProc\Jimaku\Hyphenation.cs" />
+    <Compile Include="ExtProc\Audio\Inserter.cs" />
+    <Compile Include="ExtProc\BG\Inserter.cs" />
+    <Compile Include="ExtProc\Jimaku\Inserter.cs" />
+    <Compile Include="VHAudioEvent.cs" />
+    <Compile Include="VHAudioTrack.cs" />
+    <Compile Include="VHPlugInNode.cs" />
+    <Compile Include="VHRtf.cs" />
+    <Compile Include="VHTextParam.cs" />
+    <Compile Include="ExtProc\Jimaku\GetPrefix.cs" />
+    <Compile Include="Interfaces\Interfaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Vegas.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -73,21 +85,28 @@
     <Compile Include="RichTextViererForm.Designer.cs">
       <DependentUpon>RichTextViererForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Structs\Info.cs" />
+    <Compile Include="Structs\Time.cs" />
     <Compile Include="VegasHelper.cs" />
-    <Compile Include="VegasHelperExecErrors.cs" />
-    <Compile Include="VegasScriptSettings_Const.cs" />
-    <Compile Include="VegasHelper_Event.cs" />
-    <Compile Include="VegasHelperException.cs" />
-    <Compile Include="VegasHelper_Application.cs" />
-    <Compile Include="VegasHelper_Media.cs" />
-    <Compile Include="VegasHelper_MediaBin.cs" />
-    <Compile Include="VegasHelper_OFXParameter.cs" />
-    <Compile Include="VegasHelper_Take.cs" />
-    <Compile Include="VegasHelperUtility.cs" />
-    <Compile Include="VegasHelper_Project.cs" />
-    <Compile Include="VegasHelper_Track.cs" />
-    <Compile Include="VegasHelperYamlSpecs.cs" />
-    <Compile Include="VegasScriptSettings.cs" />
+    <Compile Include="Errors\ExecErrors.cs" />
+    <Compile Include="Settings\Consts.cs" />
+    <Compile Include="VHEvent.cs" />
+    <Compile Include="Errors\Exceptions.cs" />
+    <Compile Include="VHApp.cs" />
+    <Compile Include="VHGen.cs" />
+    <Compile Include="VHMedia.cs" />
+    <Compile Include="VHMediaBin.cs" />
+    <Compile Include="VHMediaPool.cs" />
+    <Compile Include="VHOFXParam.cs" />
+    <Compile Include="VHTake.cs" />
+    <Compile Include="VHTransport.cs" />
+    <Compile Include="VHUtility.cs" />
+    <Compile Include="VHProject.cs" />
+    <Compile Include="VHTrack.cs" />
+    <Compile Include="Settings\YamlSpecs.cs" />
+    <Compile Include="Settings\Config.cs" />
+    <Compile Include="VHVideoEvent.cs" />
+    <Compile Include="VHVideoTrack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

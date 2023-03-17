@@ -1,74 +1,8 @@
 ﻿using ScriptPortal.Vegas;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptHelper
 {
-    public interface IEntryPoint
-    {
-        void FromVegas(Vegas vegas);
-    }
-
-    public struct VegasDuration
-    {
-        public Timecode StartTime;
-        public Timecode Length;
-
-        public VegasDuration(Timecode startTime, Timecode length)
-        {
-            StartTime = startTime;
-            Length = length;
-        }
-    }
-
-    public struct VegasTime
-    {
-        public long OrgNanos;
-        public long MilliSecond;
-        public long Second;
-        public long Minute;
-        public long Hour;
-
-        public VegasTime(long nanos)
-        {
-            OrgNanos = nanos;
-            nanos = nanos / 10000;
-            MilliSecond = nanos % 1000;
-            nanos /= 1000;
-            Second = nanos % 60;
-            nanos /= 60;
-            Minute = nanos % 60;
-            Hour = nanos / 60;
-        }
-
-        public VegasTime(long hour, long minute, long second, long millisecond)
-        {
-            Hour = hour;
-            Minute = minute;
-            Second = second;
-            MilliSecond = millisecond;
-            OrgNanos = 0;
-        }
-
-        public override string ToString()
-        {
-            return string.Format(
-                "{0}:{1}:{2}.{3}",
-                Hour,
-                Minute,
-                Second,
-                MilliSecond);
-        }
-
-        public long Nanos
-        {
-            get {
-                long nanos = Hour * 60;
-                nanos = (nanos + Minute) * 60;
-                nanos = (nanos + Second) * 1000;
-                return (nanos + MilliSecond) * 10000;
-            }
-        }
-    }
-
     /// <summary>
     /// Vegasオブジェクトを操作するヘルパクラス
     /// 本クラスはSingleton
@@ -77,33 +11,110 @@ namespace VegasScriptHelper
     {
         public const string FONT_FILENAME = "MPLUS1-VariableFont_wght.ttf";
 
-        private static VegasHelper _instance = null;
-        private static VegasScriptSettings _settings = null;
-        private static readonly RichTextViewForm rtfBox = new RichTextViewForm();
+        private static VegasHelper instance = null;
+        private static Config config = null;
 
-        internal Vegas Vegas { get; set; }
+        private VHApp app;
+        private VHProject project;
+        private VHTransport transport;
+        private VHGen gen;
+        private VHMediaPool pool;
 
-        public VegasScriptSettings Settings { get { return _settings; } }
+        private VHEvent ev;
+        private VHAudioEvent aev;
+        private VHVideoEvent vev;
+        private VHMedia media;
+        private VHMediaBin mediaBin;
+        private VHOFXParam ofxParam;
+        private VHTake take;
+        private VHTrack track;
+        private VHAudioTrack atrack;
+        private VHVideoTrack vtrack;
+        private VHTextParam textParam;
+        private VHPlugInNode plugInNode;
+
+        private VHRtf rtf;
 
         public static VegasHelper Instance(Vegas vegas)
         {
-            _settings = VegasScriptSettings.Instance;
-            _settings.Load();
-            if (_instance == null)
+            config = Config.Instance;
+            config.Load();
+            if (instance == null)
             {
-                _instance = new VegasHelper(vegas);
+                instance = new VegasHelper(vegas);
             }
             else
             {
-                _instance.Vegas = vegas;
+                instance.Vegas = vegas;
             }
 
-            return _instance;
+            return instance;
         }
 
         private VegasHelper(Vegas vegas)
         {
             Vegas = vegas;
+
+            app = new VHApp(vegas);
+            project = new VHProject(vegas);
+            transport = new VHTransport(vegas);
+            gen = new VHGen(vegas);
+            pool = new VHMediaPool(vegas);
+
+            ev = new VHEvent(this);
+            aev = new VHAudioEvent(this);
+            vev = new VHVideoEvent(this);
+            media = new VHMedia(this);
+            mediaBin = new VHMediaBin(this);
+            ofxParam = new VHOFXParam(this);
+            take = new VHTake(this);
+            track = new VHTrack(this);
+            atrack = new VHAudioTrack(this);
+            vtrack = new VHVideoTrack(this);
+            textParam = new VHTextParam(this);
+            plugInNode = new VHPlugInNode(this);
+
+            rtf = new VHRtf();
         }
+
+        internal Vegas Vegas { get; set; }
+
+        public Config Config { get { return config; } }
+
+        public VHApp App { get { return app; } }
+
+        public VHProject Project { get { return project; } }
+
+        public VHTransport Transport { get { return transport; } }
+
+        public VHGen Gen { get { return gen; } }
+
+        public VHMediaPool MPool { get { return pool; } }
+
+        public VHEvent Event { get { return ev; } }
+
+        public VHAudioEvent AudioEvent { get { return aev; } }
+
+        public VHVideoEvent VideoEvent { get { return vev; } }
+
+        public VHMedia Media { get { return media; } }
+
+        public VHMediaBin MediaBin { get { return mediaBin; } }
+
+        public VHOFXParam OFXParam { get { return ofxParam; } }
+        
+        public VHTake Take { get { return take; } }
+
+        public VHTrack Track { get { return track; } }
+
+        public VHAudioTrack AudioTrack { get { return atrack; } }
+
+        public VHVideoTrack VideoTrack { get { return vtrack; } }
+
+        public VHTextParam TextParam { get { return textParam; } }
+
+        public VHPlugInNode PlugInNode { get { return plugInNode; } }
+
+        public VHRtf Rtf { get { return rtf; } }
     }
 }
