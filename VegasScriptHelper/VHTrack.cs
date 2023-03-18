@@ -21,18 +21,33 @@ namespace VegasScriptHelper
             return track.Events;
         }
 
-        public Dictionary<string, Track> GetKV()
+        public Dictionary<string, T> GetKV<T>(List<T> tracks) where T: Track
         {
-            Dictionary<string, Track> keyValuePairs = new Dictionary<string, Track>();
+            Dictionary<string, T> keyValuePairs = new Dictionary<string, T>();
 
-            List<Track> tracks = myHelper.Project.AllTracks.ToList();
-
-            foreach (Track track in tracks)
+            foreach (T track in tracks)
             {
-                keyValuePairs[GetKey(track)] = track;
+                keyValuePairs[GetKey<T>(track)] = track;
             }
 
             return keyValuePairs;
+        }
+
+        public Dictionary<string, Track> KV
+        {
+            get
+            {
+                Dictionary<string, Track> keyValuePairs = new Dictionary<string, Track>();
+
+                List<Track> tracks = myHelper.Project.AllTracks.ToList();
+
+                foreach (Track track in tracks)
+                {
+                    keyValuePairs[GetKey(track)] = track;
+                }
+
+                return keyValuePairs;
+            }
         }
 
         /// <summary>
@@ -53,6 +68,11 @@ namespace VegasScriptHelper
         public bool IsAudioTrack(Track track)
         {
             return track.IsAudio();
+        }
+
+        public string GetKey<T>(T track) where T: Track
+        {
+            return string.Format("[{0}]{1}", (track.Index + 1).ToString(), track.Name ?? "");
         }
 
         public string GetKey(Track track)

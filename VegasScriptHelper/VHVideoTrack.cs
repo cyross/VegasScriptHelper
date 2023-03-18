@@ -48,7 +48,12 @@ namespace VegasScriptHelper
             track.Name = title;
         }
 
-        public Dictionary<string, VideoTrack> GetKV
+        public Dictionary<string, VideoTrack> GetKV(List<VideoTrack> tracks)
+        {
+            return myHelper.Track.GetKV(tracks);
+        }
+
+        public Dictionary<string, VideoTrack> KV
         {
             get
             {

@@ -2,7 +2,7 @@
 using VegasScriptHelper.ExtProc.Event;
 using VegasScriptHelper.Structs;
 
-namespace VegasScriptHelper.ExtProc
+namespace VegasScriptHelper.ExtProc.BG
 {
     public class Inserter : BaseProc.BaseExtProc
     {

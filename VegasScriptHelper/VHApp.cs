@@ -47,7 +47,7 @@ namespace VegasScriptHelper
         }
 
         private void AddEventDict(EHTarget targetType, int idx, Action<EventHandler> eh) {
-            if (events[targetType] == null) { events[targetType] = new Dictionary<int, Action<EventHandler>>(); }
+            if (!events.ContainsKey(targetType)) { events[targetType] = new Dictionary<int, Action<EventHandler>>(); }
             events[targetType][idx] = eh;
         }
 

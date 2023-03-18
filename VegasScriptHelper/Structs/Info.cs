@@ -124,4 +124,10 @@ namespace VegasScriptHelper.Structs
         public double Margin;
         public bool IsGrouping;
     }
+
+    public struct RemainEventInfo
+    {
+        public TrackEvent trackEvent;
+        public Timecode inrerval;
+    }
 }

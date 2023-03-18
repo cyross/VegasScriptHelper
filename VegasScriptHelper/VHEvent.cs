@@ -8,7 +8,7 @@ namespace VegasScriptHelper
 {
     public class VHEvent
     {
-        private VegasHelper myHelper;
+        private readonly VegasHelper myHelper;
 
         public VHEvent(VegasHelper helper)
         {
@@ -60,12 +60,11 @@ namespace VegasScriptHelper
 
         public VegasDuration GetDuration(TrackEvent trackEvent)
         {
-            VegasDuration duration = new VegasDuration();
-
-            duration.StartTime = trackEvent.Start;
-            duration.Length = trackEvent.Length;
-
-            return duration;
+            return new VegasDuration()
+            {
+                StartTime = trackEvent.Start,
+                Length = trackEvent.Length
+            };
         }
 
         public void SetDuration(TrackEvent trackEvent, VegasDuration duration, double margin = 0.0f, bool adjustTakes = true)

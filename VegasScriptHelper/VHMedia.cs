@@ -11,7 +11,7 @@ namespace VegasScriptHelper
 
         internal static readonly string PoolName = "ScriptPortal.Vegas.Media";
 
-        private VegasHelper myHelper;
+        private readonly VegasHelper myHelper;
 
         public VHMedia(VegasHelper helper)
         {
@@ -68,32 +68,7 @@ namespace VegasScriptHelper
             return mediaList.ToArray();
         }
 
-        public Media Generate(PlugInNode node, string presetName)
-        {
-            return new Media(node, presetName);
-        }
-
-        public List<Media> GetProjectVideoList()
-        {
-            return GetProjectList(m => m.HasVideo());
-        }
-
-        public Dictionary<string, Media> GetProjectVideoKeyValuePairs()
-        {
-            return GetKeyValuePairs(GetProjectVideoList());
-        }
-
-        public List<Media> GetProjectAudioList()
-        {
-            return GetProjectList(m => m.HasAudio());
-        }
-
-        public Dictionary<string, Media> GetProjectAudioKeyValuePairs()
-        {
-            return GetKeyValuePairs(GetProjectAudioList());
-        }
-
-        public List<Media> GetProjectList(Func<Media, bool> func)
+        public List<Media> GetAllList(Func<Media, bool> func)
         {
             List<Media> mediaList = new List<Media>();
             foreach (var poolElement in myHelper.Project.MediaPool)
@@ -110,9 +85,29 @@ namespace VegasScriptHelper
             return mediaList;
         }
 
-        public Dictionary<string, Media> GetKeyValuePairs(List<Media> mediaList)
+        public List<Media> GetAllAudioList()
+        {
+            return GetAllList(m => m.HasAudio());
+        }
+
+        public List<Media> GetAllVideoList()
+        {
+            return GetAllList(m => m.HasVideo());
+        }
+
+        public Dictionary<string, Media> GetKV(List<Media> mediaList)
         {
             return mediaList.ToDictionary(m => GetKey(m), m => m);
+        }
+
+        public Dictionary<string, Media> GetAllAudioKV()
+        {
+            return GetKV(GetAllAudioList());
+        }
+
+        public Dictionary<string, Media> GetAllVideoKV()
+        {
+            return GetKV(GetAllVideoList());
         }
 
         public string GetKey(Media media)

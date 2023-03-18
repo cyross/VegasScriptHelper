@@ -14,7 +14,7 @@ namespace VegasScriptHelper.ExtProc.Jimaku
             eos = new EoS(helper);
         }
 
-        public string Exec(string org_line, int length)
+        public string Get(string org_line, int length)
         {
             if (org_line.Length < length)
             {

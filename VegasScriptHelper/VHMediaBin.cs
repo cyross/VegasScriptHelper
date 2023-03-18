@@ -93,12 +93,12 @@ namespace VegasScriptHelper
             return GetEnuerable().Select(bin => bin.Name).ToList();
         }
 
-        public Dictionary<string, MediaBin> GetKeyValuePairs()
+        public Dictionary<string, MediaBin> GetKV()
         {
-            return GetKeyValuePairs(GetList());
+            return GetKV(GetList());
         }
 
-        public Dictionary<string, MediaBin> GetKeyValuePairs(List<MediaBin> binList)
+        public Dictionary<string, MediaBin> GetKV(List<MediaBin> binList)
         {
             return binList.ToDictionary(b => GetKey(b), b => b);
         }
