@@ -1,5 +1,7 @@
 ﻿using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.ExtProc.Audio;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptDebug.DebugProcess
 {
@@ -21,21 +23,23 @@ namespace VegasScriptDebug.DebugProcess
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog
             {
-                SelectedPath = helper.Settings[SN.WdAudio.File.Folder]
+                SelectedPath = helper.Config[Names.WdAudio.File.Folder]
             };
-            float interval = helper.Settings[SN.WdAudio.Insert.Interval];
-            bool isRecursive = helper.Settings[SN.WdAudio.Is.Folder.Recursive];
-            bool isInsertStartPosition = helper.Settings[SN.WdAudio.Is.Insert.Standard.Position];
+            float interval = helper.Config[Names.WdAudio.Insert.Interval];
+            bool isRecursive = helper.Config[Names.WdAudio.Is.Folder.Recursive];
+            bool isInsertStartPosition = helper.Config[Names.WdAudio.Is.Insert.Standard.Position];
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 string selectedPath = folderBrowser.SelectedPath;
-                helper.InseretAudioInTrack(selectedPath, interval, isInsertStartPosition, isRecursive);
+                Insereter inserter = new Insereter(helper);
 
-                helper.Settings[SN.WdAudio.File.Folder] = selectedPath;
-                helper.Settings[SN.WdAudio.Insert.Interval] = interval;
-                helper.Settings[SN.WdAudio.Is.Folder.Recursive] = isRecursive;
-                helper.Settings[SN.WdAudio.Is.Insert.Standard.Position] = isInsertStartPosition;
-                helper.Settings.Save();
+                inserter.Exec(selectedPath, interval, isInsertStartPosition, isRecursive);
+
+                helper.Config[Names.WdAudio.File.Folder] = selectedPath;
+                helper.Config[Names.WdAudio.Insert.Interval] = interval;
+                helper.Config[Names.WdAudio.Is.Folder.Recursive] = isRecursive;
+                helper.Config[Names.WdAudio.Is.Insert.Standard.Position] = isInsertStartPosition;
+                helper.Config.Save();
             }
         }
     }

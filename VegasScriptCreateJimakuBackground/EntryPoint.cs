@@ -5,6 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
+using VegasScriptHelper.ExtProc.Event;
+using VegasScriptHelper.ExtProc.Duration;
 
 namespace VegasScriptCreateJimakuBackground
 {
@@ -12,6 +16,8 @@ namespace VegasScriptCreateJimakuBackground
     {
         // 設定ダイアログが不要なときは削除
         private static SettingDialog settingDialog = null;
+
+        private Aligner aligner;
 
         public void FromVegas(Vegas vegas)
         {
@@ -22,12 +28,14 @@ namespace VegasScriptCreateJimakuBackground
                     // ヘルパクラスのオブジェクト生成は必須
                     VegasHelper helper = VegasHelper.Instance(vegas);
 
+                    aligner = new Aligner(helper);
+
                     // ダイアログに必要な情報の前準備(オーディオ)
-                    List<AudioTrack> audioTracks = helper.AllAudioTracks.ToList();
+                    List<AudioTrack> audioTracks = helper.Project.AllAudioTracks.ToList();
 
-                    List<VideoTrack> videoTracks = helper.AllVideoTracks.ToList();
+                    List<VideoTrack> videoTracks = helper.Project.AllVideoTracks.ToList();
 
-                    List<Media> mediaList = helper.GetProjectVideoMediaList();
+                    List<Media> mediaList = helper.Media.GetAllVideoList();
 
                     if (audioTracks.Count == 0)
                     {
@@ -41,23 +49,23 @@ namespace VegasScriptCreateJimakuBackground
                         return;
                     }
 
-                    Dictionary<string, AudioTrack> audioKeyValuePairs = helper.GetAudioKeyValuePairs(audioTracks);
+                    Dictionary<string, AudioTrack> audioKeyValuePairs = helper.AudioTrack.GetKV(audioTracks);
                     List<string> audioKeyList = audioKeyValuePairs.Keys.ToList();
 
-                    AudioTrack selectedAudioTrack = helper.SelectedAudioTrack(false);
+                    AudioTrack selectedAudioTrack = helper.Project.SelectedAudioTrack(false);
 
-                    string firstAudioTrackKey = selectedAudioTrack != null ? helper.GetTrackKey(selectedAudioTrack) : audioKeyList.First();
+                    string firstAudioTrackKey = selectedAudioTrack != null ? helper.Track.GetKey(selectedAudioTrack) : audioKeyList.First();
 
                     // ダイアログに必要な情報の前準備(ビデオ)
-                    Dictionary<string, VideoTrack> videoKeyValuePairs = helper.GetVideoKeyValuePairs(videoTracks);
+                    Dictionary<string, VideoTrack> videoKeyValuePairs = helper.VideoTrack.GetKV(videoTracks);
                     List<string> videoKeyList = videoKeyValuePairs.Keys.ToList();
 
-                    VideoTrack selectedVideoTrack = helper.SelectedVideoTrack(false);
+                    VideoTrack selectedVideoTrack = helper.Project.SelectedVideoTrack(false);
 
-                    string firstVideoTrackKey = selectedVideoTrack != null ? helper.GetTrackKey(selectedVideoTrack) : videoKeyList.Count > 0 ? videoKeyList.First() : "";
+                    string firstVideoTrackKey = selectedVideoTrack != null ? helper.Track.GetKey(selectedVideoTrack) : videoKeyList.Count > 0 ? videoKeyList.First() : "";
 
                     // ダイアログに必要な情報の前準備(メディア)
-                    Dictionary<string, Media> mediaKeyValuePairs = helper.GetProjectMediaKeyValuePairs(mediaList);
+                    Dictionary<string, Media> mediaKeyValuePairs = helper.Media.GetKV(mediaList);
                     List<string> mediaKeyList = mediaKeyValuePairs.Keys.ToList();
 
                     if (settingDialog == null) { settingDialog = new SettingDialog(); }
@@ -73,17 +81,19 @@ namespace VegasScriptCreateJimakuBackground
 
                     AudioTrack audioTrack = audioKeyValuePairs[settingDialog.AudioTrackName];
                     string videoTrackName = settingDialog.VideoTrackName;
-                    VideoTrack videoTrack = videoKeyValuePairs.ContainsKey(videoTrackName) ? videoKeyValuePairs[videoTrackName] : helper.CreateVideoTrack(videoTrackName);
+                    VideoTrack videoTrack = videoKeyValuePairs.ContainsKey(videoTrackName) ? videoKeyValuePairs[videoTrackName] : helper.Project.AddVideoTrack(videoTrackName);
                     Media targetMedia = mediaKeyValuePairs[settingDialog.TargetMediaName];
 
-                    if(settingDialog.IscreateOneEventCheck)
+                    AlignmentEventInfo info = new AlignmentEventInfo()
                     {
-                        helper.CreateFullSizeVideoEventWithAudioTrack(videoTrack, audioTrack, targetMedia, settingDialog.EventMargin);
-                    }
-                    else
-                    {
-                        helper.CreateVideoEventWithAudioTrack(videoTrack, audioTrack, targetMedia, settingDialog.EventMargin);
-                    }
+                        VideoTrack = videoTrack,
+                        AudioTrack = audioTrack,
+                        Media = targetMedia,
+                        Margin = settingDialog.EventMargin,
+                        IsGrouping = false
+                    };
+
+                    aligner.Exec(info, settingDialog.IscreateOneEventCheck);
                 }
                 catch (Exception ex)
                 {

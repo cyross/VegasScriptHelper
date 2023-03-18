@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptCreateJimaku
 {
@@ -27,7 +28,7 @@ namespace VegasScriptCreateJimaku
                 return CreateBGInfo(
                     CreateJimakuBackground,
                     JimakuBackgroundTrackName,
-                    JimakuBackgroundMediaName == VegasHelper.NoSelectMedia ? "" : JimakuBackgroundMediaName,
+                    JimakuBackgroundMediaName == VHMedia.NoSelectMedia ? "" : JimakuBackgroundMediaName,
                     JimakuBackgroundMargin,
                     UseJimakuBackgroundMediaBin,
                     JimakuBackgroundMediaBinName
@@ -42,7 +43,7 @@ namespace VegasScriptCreateJimaku
                 return CreateBGInfo(
                     PrefixBehavior == PrefixBehaviorType.NewEvent && CreateActorBackground,
                     ActorBackgroundTrackName,
-                    ActorBackgroundMediaName == VegasHelper.NoSelectMedia ? "" : ActorBackgroundMediaName,
+                    ActorBackgroundMediaName == VHMedia.NoSelectMedia ? "" : ActorBackgroundMediaName,
                     ActorBackgroundMargin,
                     UseActorBackgroundMediaBin,
                     ActorBackgroundMediaBinName

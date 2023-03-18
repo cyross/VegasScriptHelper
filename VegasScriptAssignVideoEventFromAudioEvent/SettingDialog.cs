@@ -14,7 +14,7 @@ namespace VegasScriptAssignVideoEventFromAudioEvent
         {
             InitializeComponent();
 
-            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VHUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
             Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;

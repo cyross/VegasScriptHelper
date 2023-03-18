@@ -1,11 +1,8 @@
 ﻿using ScriptPortal.Vegas;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static VegasScriptCreateJimaku.EntryPoint;
 using VegasScriptHelper;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptCreateJimaku
 {
@@ -23,13 +20,13 @@ namespace VegasScriptCreateJimaku
 
         public void CreateAudioTrack(VegasHelper helper, in InsertAudioInfo info, ref List<Track> groupTracks)
         {
-            Audio = helper.CreateAudioTrack(GetTrackName(info.Track.Name));
+            Audio = helper.Project.AddAudioTrack(GetTrackName(info.Track.Name));
             groupTracks.Add(Audio);
         }
 
         public void CreateJimakuTrack(VegasHelper helper, in JimakuParams info, ref List<Track> groupTracks)
         {
-            Jimaku = helper.CreateVideoTrack(GetTrackName(info.Jimaku.Track.Name));
+            Jimaku = helper.Project.AddVideoTrack(GetTrackName(info.Jimaku.Track.Name));
             groupTracks.Add(Jimaku);
         }
 
@@ -37,7 +34,7 @@ namespace VegasScriptCreateJimaku
         {
             if (!info.IsCreateActorTrack) { return; }
 
-            Actor = helper.CreateVideoTrack(GetTrackName(info.Actor.Track.Name));
+            Actor = helper.Project.AddVideoTrack(GetTrackName(info.Actor.Track.Name));
             groupTracks.Add(Actor);
         }
 
@@ -46,7 +43,7 @@ namespace VegasScriptCreateJimaku
             if (!track.IsCreate) { return; }
 
             string tachieType = TachieTypePostfixs[(int)type];
-            Tachie[tachieType] = helper.CreateVideoTrack(GetTrackName(string.Format("{0}_{1}", track.Info.Name, tachieType)));
+            Tachie[tachieType] = helper.Project.AddVideoTrack(GetTrackName(string.Format("{0}_{1}", track.Info.Name, tachieType)));
             groupTracks.Add(Tachie[tachieType]);
         }
 
@@ -54,7 +51,7 @@ namespace VegasScriptCreateJimaku
         {
             if (!info.IsCreate) { return; }
 
-            JimakuBG = helper.CreateVideoTrack(GetTrackName(info.Track.Name));
+            JimakuBG = helper.Project.AddVideoTrack(GetTrackName(info.Track.Name));
             groupTracks.Add(JimakuBG);
         }
 
@@ -62,7 +59,7 @@ namespace VegasScriptCreateJimaku
         {
             if (!info.IsCreate) { return; }
 
-            ActorBG = helper.CreateVideoTrack(GetTrackName(info.Track.Name));
+            ActorBG = helper.Project.AddVideoTrack(GetTrackName(info.Track.Name));
             groupTracks.Add(ActorBG);
         }
 

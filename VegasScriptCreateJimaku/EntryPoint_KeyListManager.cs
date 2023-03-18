@@ -31,13 +31,13 @@ namespace VegasScriptCreateJimaku
 
         public void SetupAudio(VegasHelper helper, List<AudioTrack> audioTracks)
         {
-            AudioTKV = helper.GetAudioKeyValuePairs(audioTracks);
+            AudioTKV = helper.AudioTrack.GetKV(audioTracks);
             Audio = CreateAudioTrackKL(helper, "Audio");
         }
 
         public void SetupVideo(VegasHelper helper, List<VideoTrack> videoTracks)
         {
-            VideoTKV = helper.GetVideoKeyValuePairs(videoTracks);
+            VideoTKV = helper.VideoTrack.GetKV(videoTracks);
             Jimaku = CreateVideoTrackKL(helper, "Jimaku");
             Actor = CreateVideoTrackKL(helper, "Actor");
             JimakuBG = CreateVideoTrackKL(helper, "JimakuBG");
@@ -52,14 +52,14 @@ namespace VegasScriptCreateJimaku
 
         public void SetupMedia(VegasHelper helper, List<Media> mediaList)
         {
-            MKV = helper.GetProjectMediaKeyValuePairs(mediaList);
+            MKV = helper.Media.GetKV(mediaList);
             JimakuBGMedia = CreateMediaKL(helper, "JimakuBG");
             ActorBGMedia = CreateMediaKL(helper, "ActorBG");
         }
 
         public void SetupMediaBin(VegasHelper helper, List<MediaBin> mediaBinList)
         {
-            MbKV = helper.GetMediaBinKeyValuePairs(mediaBinList);
+            MbKV = helper.MediaBin.GetKV(mediaBinList);
             AudioMBin = CreateMediaBinKL(helper, "Audio");
             JimakuMBin = CreateMediaBinKL(helper, "Jimaku");
             ActorMBin = CreateMediaBinKL(helper, "Actor");
@@ -79,7 +79,7 @@ namespace VegasScriptCreateJimaku
 
         private KeyListInfo CreatePluginKL(VegasHelper helper, string namePrefix)
         {
-            return new KeyListInfo(helper, helper.GetTitlePluginPresetNames(), namePrefix + "PresetName");
+            return new KeyListInfo(helper, helper.PlugInNode.GetTitlePresetNames(), namePrefix + "PresetName");
         }
 
         private KeyListInfo CreateMediaKL(VegasHelper helper, string namePrefix)

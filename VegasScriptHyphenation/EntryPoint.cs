@@ -3,6 +3,9 @@ using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.ExtProc.Jimaku;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptHyphenation
 {
@@ -15,18 +18,19 @@ namespace VegasScriptHyphenation
         {
             // ヘルパクラスのオブジェクト生成は必須
             VegasHelper helper = VegasHelper.Instance(vegas);
+            Hyphenazer hyphenazer = new Hyphenazer(helper);
 
             using (var block = new UndoBlock("Hyphenation"))
             {
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
-                settingDialog.HyphenationLength = helper.Settings[SettingName.WdHyphe.Length];
+                settingDialog.HyphenationLength = helper.Config[Names.WdHyphe.Length];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                 int length = settingDialog.HyphenationLength;
 
-                VideoTrack selected = helper.SelectedVideoTrack(false);
+                VideoTrack selected = helper.Project.SelectedVideoTrack(false);
 
                 if(selected == null || selected.Events.Count == 0) { return; }
 
@@ -42,20 +46,20 @@ namespace VegasScriptHyphenation
 
                     if (media == null) { continue; }
 
-                    OFXStringParameter strparam = helper.GetOFXStringParameter(media, false);
+                    OFXStringParameter strparam = helper.OFXParam.GetStringParam(media, false);
 
                     if(strparam == null) { continue; }
 
-                    helper.SetTextToRtfBox(strparam);
+                    helper.TextParam.SetTextToRtfBox(strparam);
 
-                    helper.RtfLines = helper.Hyphenation(helper.RtfLines, length);
+                    helper.Rtf.Text = hyphenazer.Get(helper.Rtf.Text, length);
 
-                    helper.SetTextFromRtfBox(strparam);
+                    helper.TextParam.SetTextFromRtfBox(strparam);
                 }
 
-                helper.Settings[SettingName.WdHyphe.Length] = length;
+                helper.Config[Names.WdHyphe.Length] = length;
             }
-            helper.Settings.Save();
+            helper.Config.Save();
         }
     }
 }

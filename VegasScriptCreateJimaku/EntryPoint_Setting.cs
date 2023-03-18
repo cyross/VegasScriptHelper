@@ -1,10 +1,8 @@
 ﻿using ScriptPortal.Vegas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptCreateJimaku
 {
@@ -14,11 +12,11 @@ namespace VegasScriptCreateJimaku
             VegasHelper helper,
             ref Flags flags)
         {
-            flags.Behavior = (PrefixBehaviorType)helper.Settings[SN.WdJimaku.Prefix.Behavior];
-            flags.IsRemoveActorAttr = helper.Settings[SN.WdActor.Remove.Attribute];
-            flags.IsCreateOneEventCheck = helper.Settings[SN.WdBG.Create.One.Event.Check];
-            flags.IsCollapseTrackGroup = helper.Settings[SN.WdAll.Is.Track.Group.Collapse];
-            flags.IsDivideTracks = helper.Settings[SN.WdActor.Divide.Tracks];
+            flags.Behavior = (PrefixBehaviorType)helper.Config[Names.WdJimaku.Prefix.Behavior];
+            flags.IsRemoveActorAttr = helper.Config[Names.WdActor.Remove.Attribute];
+            flags.IsCreateOneEventCheck = helper.Config[Names.WdBG.Create.One.Event.Check];
+            flags.IsCollapseTrackGroup = helper.Config[Names.WdAll.Is.Track.Group.Collapse];
+            flags.IsDivideTracks = helper.Config[Names.WdActor.Divide.Tracks];
         }
 
         private void SaveSetting(
@@ -33,7 +31,7 @@ namespace VegasScriptCreateJimaku
         {
             SetAudioSetting(helper, audioInfo);
 
-            helper.Settings[SN.WdJimaku.File.Path] = jimakuParams.JimakuFilePath;
+            helper.Config[Names.WdJimaku.File.Path] = jimakuParams.JimakuFilePath;
 
             SetVideoTrackSetting(helper, "Jimaku", jimakuParams.Jimaku);
             SetVideoTrackSetting(helper, "Actor", jimakuParams.Actor);
@@ -56,69 +54,69 @@ namespace VegasScriptCreateJimaku
 
             SaveHypheInfo(helper, hypheInfo);
 
-            helper.Settings.Save();
+            helper.Config.Save();
         }
 
         private void SetAudioSetting(VegasHelper helper, in InsertAudioInfo info)
         {
-            helper.Settings[SN.WdAudio.File.Folder] = info.Folder;
-            helper.Settings[SN.WdAudio.Track.Name] = info.Track.Name;
-            helper.Settings[SN.WdAudio.Insert.Interval] = info.Interval;
-            helper.Settings[SN.WdAudio.Is.Folder.Recursive] = info.IsRecursive;
-            helper.Settings[SN.WdAudio.Is.Insert.From.Standard.Position] = info.IsInsertFromStartPosition;
-            helper.Settings[SN.WdAudio.Standard.Silence.Time] = info.StandardSilenceTime;
+            helper.Config[Names.WdAudio.File.Folder] = info.Folder;
+            helper.Config[Names.WdAudio.Track.Name] = info.Track.Name;
+            helper.Config[Names.WdAudio.Insert.Interval] = info.Interval;
+            helper.Config[Names.WdAudio.Is.Folder.Recursive] = info.IsRecursive;
+            helper.Config[Names.WdAudio.Is.Insert.From.Standard.Position] = info.IsInsertFromStartPosition;
+            helper.Config[Names.WdAudio.Standard.Silence.Time] = info.StandardSilenceTime;
         }
 
         private void SetVideoTrackSetting(VegasHelper helper, string target, in TextTrackInfo info)
         {
-            helper.Settings[target + "TrackName"] = info.Track.Name;
-            helper.Settings[target + "PresetName"] = info.PresetName;
-            helper.Settings[target + "Margin"] = info.Margin;
+            helper.Config[target + "TrackName"] = info.Track.Name;
+            helper.Config[target + "PresetName"] = info.PresetName;
+            helper.Config[target + "Margin"] = info.Margin;
         }
 
         private void SetColorSetting(VegasHelper helper, string target, in ColorInfo info)
         {
-            helper.Settings["Use" + target + "ColorSetting"] = info.IsUse;
-            helper.Settings[target + "OutlineWidth"] = info.OutlineWidth;
+            helper.Config["Use" + target + "ColorSetting"] = info.IsUse;
+            helper.Config[target + "OutlineWidth"] = info.OutlineWidth;
 
             if (!info.IsUse) { return; }
 
-            helper.Settings[target + "Color"] = info.TextColor;
-            helper.Settings[target + "OutlineColor"] = info.OutlineColor;
+            helper.Config[target + "Color"] = info.TextColor;
+            helper.Config[target + "OutlineColor"] = info.OutlineColor;
         }
 
         private void SetMediaBinSetting(VegasHelper helper, string target, in MediaBinInfo info)
         {
-            helper.Settings["Use" + target + "MediaBin"] = info.IsUse;
+            helper.Config["Use" + target + "MediaBin"] = info.IsUse;
 
             if (!info.IsUse) { return; }
 
-            helper.Settings[target + "MediaBinName"] = info.Name;
+            helper.Config[target + "MediaBinName"] = info.Name;
         }
 
         private void SetBackgroundSetting(VegasHelper helper, string target, in BackgroundInfo info)
         {
-            helper.Settings["Create" + target + "BG"] = info.IsCreate;
+            helper.Config["Create" + target + "BG"] = info.IsCreate;
 
             if (!info.IsCreate) { return; }
 
-            helper.Settings[target + "BGMediaName"] = info.Media.Name;
-            helper.Settings[target + "BGMargin"] = info.Margin;
+            helper.Config[target + "BGMediaName"] = info.Media.Name;
+            helper.Config[target + "BGMargin"] = info.Margin;
         }
 
         private void SetBasicTrackInfoToSetting<T>(VegasHelper helper, string target, in BasicTrackStruct<T> trackStruct) where T: Track
         {
-            helper.Settings["Use" + target] = trackStruct.IsCreate;
-            helper.Settings[target + "TrackName"] = trackStruct.Info.Name;
+            helper.Config["Use" + target] = trackStruct.IsCreate;
+            helper.Config[target + "TrackName"] = trackStruct.Info.Name;
         }
 
         private void SetFlagsToSetting(VegasHelper helper, in Flags flags)
         {
-            helper.Settings[SN.WdJimaku.Prefix.Behavior] = (int)flags.Behavior;
-            helper.Settings[SN.WdActor.Remove.Attribute] = flags.IsRemoveActorAttr;
-            helper.Settings[SN.WdBG.Create.One.Event.Check] = flags.IsCreateOneEventCheck;
-            helper.Settings[SN.WdAll.Is.Track.Group.Collapse] = flags.IsCollapseTrackGroup;
-            helper.Settings[SN.WdActor.Divide.Tracks] = flags.IsDivideTracks;
+            helper.Config[Names.WdJimaku.Prefix.Behavior] = (int)flags.Behavior;
+            helper.Config[Names.WdActor.Remove.Attribute] = flags.IsRemoveActorAttr;
+            helper.Config[Names.WdBG.Create.One.Event.Check] = flags.IsCreateOneEventCheck;
+            helper.Config[Names.WdAll.Is.Track.Group.Collapse] = flags.IsCollapseTrackGroup;
+            helper.Config[Names.WdActor.Divide.Tracks] = flags.IsDivideTracks;
         }
 
         private void SetBasicTracksInfoToSetting(VegasHelper helper, in BasicTrackStructs trackStructs)

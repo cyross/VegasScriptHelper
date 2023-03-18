@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptCreateJimaku
 {
@@ -14,14 +15,14 @@ namespace VegasScriptCreateJimaku
         public void SetFromAudioTrackInfo(VegasHelper helper, KeyListInfo klAudio, KeyListInfo klMediaBin)
         {
             SetComboBox(audioTrackNameBox, klAudio);
-            AudioFileFolder = helper.Settings[SN.WdAudio.File.Folder];
-            AudioInterval = helper.Settings[SN.WdAudio.Insert.Interval];
-            IsRecursive = helper.Settings[SN.WdAudio.Is.Folder.Recursive];
-            IsInsertFromStartPosition = helper.Settings[SN.WdAudio.Is.Insert.From.Start.Position];
-            StandardSilenceTime = helper.Settings[SN.WdAudio.Standard.Silence.Time];
+            AudioFileFolder = helper.Config[Names.WdAudio.File.Folder];
+            AudioInterval = helper.Config[Names.WdAudio.Insert.Interval];
+            IsRecursive = helper.Config[Names.WdAudio.Is.Folder.Recursive];
+            IsInsertFromStartPosition = helper.Config[Names.WdAudio.Is.Insert.From.Start.Position];
+            StandardSilenceTime = helper.Config[Names.WdAudio.Standard.Silence.Time];
 
             SetComboBox(audioMediaBinBox, klMediaBin);
-            UseAudioMediaBin = helper.Settings[SN.WdAudio.Use.MediaBin];
+            UseAudioMediaBin = helper.Config[Names.WdAudio.Use.MediaBin];
         }
 
         public void SetFromJimakuTrackInfo(
@@ -33,8 +34,8 @@ namespace VegasScriptCreateJimaku
             SetComboBox(jimakuTrackBox, klJimaku);
             SetComboBox(jimakuPresetBox, klPlugin);
             SetComboBox(jimakuMediaBinBox, klMediaBin);
-            JimakuMargin = helper.Settings[SN.WdJimaku.Margin];
-            UseJimakuMediaBin = helper.Settings[SN.WdJimaku.Use.MediaBin];
+            JimakuMargin = helper.Config[Names.WdJimaku.Margin];
+            UseJimakuMediaBin = helper.Config[Names.WdJimaku.Use.MediaBin];
         }
 
         public void SetFromActorTrackInfo(
@@ -46,8 +47,8 @@ namespace VegasScriptCreateJimaku
             SetComboBox(actorTrackBox, klActor);
             SetComboBox(actorPresetBox, klPlugin);
             SetComboBox(actorMediaBinBox, klMediaBin);
-            ActorMargin = helper.Settings[SN.WdActor.Margin];
-            UseActorMediaBin = helper.Settings[SN.WdActor.Use.MediaBin];
+            ActorMargin = helper.Config[Names.WdActor.Margin];
+            UseActorMediaBin = helper.Config[Names.WdActor.Use.MediaBin];
         }
 
         public void SetFromJimakuColorInfo(VegasHelper helper)
@@ -69,10 +70,10 @@ namespace VegasScriptCreateJimaku
             TextBox outlineWidthBox,
             CheckBox useCheck)
         {
-            textColorBox.BackColor = helper.Settings[target + "Color"];
-            outlineColorBox.BackColor = helper.Settings[target + "OutlineColor"];
-            outlineWidthBox.Text = helper.Settings[target + "OutlineWidth"].ToString();
-            useCheck.Checked = helper.Settings["Use" + target + "ColorSetting"];
+            textColorBox.BackColor = helper.Config[target + "Color"];
+            outlineColorBox.BackColor = helper.Config[target + "OutlineColor"];
+            outlineWidthBox.Text = helper.Config[target + "OutlineWidth"].ToString();
+            useCheck.Checked = helper.Config["Use" + target + "ColorSetting"];
         }
 
         public void SetFromJimakuBackgroundInfo(
@@ -83,15 +84,15 @@ namespace VegasScriptCreateJimaku
         {
             SetComboBox(jimakuBackgroundTrackBox, klJimakuBG);
             List<string> medias = klMedia.Keys;
-            medias.Insert(0, VegasHelper.NoSelectMedia);
+            medias.Insert(0, VHMedia.NoSelectMedia);
 
             string mediakey = klMedia.FirstKey;
-            if (!medias.Contains(mediakey)){ mediakey = VegasHelper.NoSelectMedia; }
+            if (!medias.Contains(mediakey)){ mediakey = VHMedia.NoSelectMedia; }
 
             SetComboBox(jimakuBackgroundMediaBox, medias, mediakey);
             SetComboBox(jimakuBackgroundMediaBinBox, klMediaBin);
-            JimakuBackgroundMargin = helper.Settings[SN.WdJimaku.BG.Margin];
-            CreateJimakuBackground = helper.Settings[SN.WdJimaku.Create.BG];
+            JimakuBackgroundMargin = helper.Config[Names.WdJimaku.BG.Margin];
+            CreateJimakuBackground = helper.Config[Names.WdJimaku.Create.BG];
         }
 
         public void SetFromActorBackgroundInfo(
@@ -102,15 +103,15 @@ namespace VegasScriptCreateJimaku
         {
             SetComboBox(actorBackgroundTrackBox, klActorBG);
             List<string> medias = klMedia.Keys;
-            medias.Insert(0, VegasHelper.NoSelectMedia);
+            medias.Insert(0, VHMedia.NoSelectMedia);
 
             string mediakey = klMedia.FirstKey;
-            if (!medias.Contains(mediakey)) { mediakey = VegasHelper.NoSelectMedia; }
+            if (!medias.Contains(mediakey)) { mediakey = VHMedia.NoSelectMedia; }
 
             SetComboBox(actorBackgroundMediaBox, medias, mediakey);
             SetComboBox(actorBackgroundMediaBinBox, klMediaBin);
-            ActorBackgroundMargin = helper.Settings[SN.WdActor.BG.Margin];
-            CreateActorBackground = helper.Settings[SN.WdActor.Create.BG];
+            ActorBackgroundMargin = helper.Config[Names.WdActor.BG.Margin];
+            CreateActorBackground = helper.Config[Names.WdActor.Create.BG];
         }
 
         public void SetFromFlags(in Flags flags)

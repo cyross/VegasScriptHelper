@@ -29,20 +29,20 @@ namespace VegasScriptExtDebug
 
         void HandleInvoked(Object sender, EventArgs e)
         {
-            if(!helper.ActivateDockView(DockName))
+            if(!helper.App.ActivateDockView(DockName))
             {
                     DockableControl dock = new DockableControl(DockName);
                     ShowTime st = new ShowTime(helper, dock);
 
                     st.Exec();
 
-                    helper.LoadDockView(dock);
+                    helper.App.LoadDockView(dock);
             }
         }
 
         void HandleMenuPopup(Object sender, EventArgs e)
         {
-            myCommand.Checked = helper.FindDockView(DockName);
+            myCommand.Checked = helper.App.FindDockView(DockName);
         }
     }
 }

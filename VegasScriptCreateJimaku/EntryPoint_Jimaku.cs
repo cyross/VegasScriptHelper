@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VegasScriptHelper;
+using VegasScriptHelper.ExtProc.Jimaku;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptCreateJimaku
 {
@@ -39,13 +39,15 @@ namespace VegasScriptCreateJimaku
             ref InsertAudioInfo audioInfo
             )
         {
+            Inserter inserter = new Inserter(helper);
+
             jimaku.JimakuColor = CreateColorInfo(dialog.UseJimakuDefaultSettings,
                 dialog.JimakuColor, dialog.JimakuOutlineColor, dialog.JimakuOutlineWidth);
 
             jimaku.ActorColor = CreateColorInfo(dialog.UseActorDefaultSettings,
                 dialog.ActorColor, dialog.ActorOutlineColor, dialog.ActorOutlineWidth);
 
-            helper.InsertJimaku(jimaku, audioInfo.Track.Track);
+            inserter.Exec(jimaku, audioInfo.Track.Track);
         }
     }
 }

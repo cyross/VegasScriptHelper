@@ -1,10 +1,8 @@
 ﻿using ScriptPortal.Vegas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VegasScriptHelper;
+using VegasScriptHelper.Structs;
+using VegasScriptHelper.Settings;
+using VegasScriptHelper.ExtProc.Jimaku;
 
 namespace VegasScriptCreateJimaku
 {
@@ -20,19 +18,21 @@ namespace VegasScriptCreateJimaku
         {
             return new HypheInfo()
             {
-                IsUse = helper.Settings[SN.WdHyphe.Use],
-                Length = helper.Settings[SN.WdHyphe.Length]
+                IsUse = helper.Config[Names.WdHyphe.Use],
+                Length = helper.Config[Names.WdHyphe.Length]
             };
         }
 
         private void SaveHypheInfo(VegasHelper helper, in HypheInfo info)
         {
-            helper.Settings[SN.WdHyphe.Use] = info.IsUse;
-            helper.Settings[SN.WdHyphe.Length] = info.Length;
+            helper.Config[Names.WdHyphe.Use] = info.IsUse;
+            helper.Config[Names.WdHyphe.Length] = info.Length;
         }
 
         private void Hyphenation(VegasHelper helper, ref JimakuParams jimakuParams, in HypheInfo info)
         {
+            Hyphenazer hyphenazer = new Hyphenazer(helper);
+
             VideoTrack jimakuTrack = jimakuParams.Jimaku.Track.Track;
 
             foreach(var jimakuEvent in jimakuTrack.Events)
@@ -41,15 +41,15 @@ namespace VegasScriptCreateJimaku
 
                 Media media = take.Media;
 
-                OFXStringParameter strparam = helper.GetOFXStringParameter(media, false);
+                OFXStringParameter strparam = helper.OFXParam.GetStringParam(media, false);
 
                 if (strparam == null) { continue; }
 
-                helper.SetTextToRtfBox(strparam);
+                helper.TextParam.SetTextToRtfBox(strparam);
 
-                helper.RtfLines = helper.Hyphenation(helper.RtfLines, info.Length);
+                helper.Rtf.Text = hyphenazer.Get(helper.Rtf.Text, info.Length);
 
-                helper.SetTextFromRtfBox(strparam);
+                helper.TextParam.SetTextFromRtfBox(strparam);
             }
         }
     }

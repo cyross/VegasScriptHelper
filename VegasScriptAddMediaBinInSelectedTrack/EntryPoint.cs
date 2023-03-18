@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.Interfaces;
 using VegasScriptHelper.VegasHelperYamlSpecs;
 
 namespace VegasScriptAddMediaBinInSelectedTrack
@@ -21,22 +23,22 @@ namespace VegasScriptAddMediaBinInSelectedTrack
 
             try
             {
-                track = helper.SelectedTrack();
-                trackEvents = helper.GetEvents(track);
+                track = helper.Project.SelectedTrack();
+                trackEvents = helper.Track.Events(track);
             }
-            catch(VegasHelperTrackUnselectedException)
+            catch(VHTrackUnselectedException)
             {
                 MessageBox.Show("トラックが選択されていません");
                 return;
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したトラックにイベントがありません。");
                 return;
             }
 
-            string binName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroJimaku];
-            List<string> binNameList = helper.GetMediaBinNameList();
+            string binName = helper.Config.DefBinName[DefaultBinName.voiroJimaku];
+            List<string> binNameList = helper.MediaBin.GetNameList();
 
             if(settingDialog == null) { settingDialog = new SettingDialog(); }
 
@@ -51,7 +53,7 @@ namespace VegasScriptAddMediaBinInSelectedTrack
             {
                 using (new UndoBlock("対象トラックのメディアをビンに追加"))
                 {
-                    MediaBin bin = helper.IsExistMediaBin(binName) ? helper.GetMediaBin(binName) : helper.CreateMediaBin(binName);
+                    MediaBin bin = helper.MediaBin.IsExist(binName) ? helper.MediaBin.Get(binName) : helper.MediaBin.Create(binName);
 
                     foreach (TrackEvent trackEvent in trackEvents)
                     {

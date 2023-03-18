@@ -22,21 +22,21 @@ namespace VegasScriptDebug.DebugProcess
             try
             {
                 // テキスト生成プラグインを取得
-                PlugInNode node = helper.GetTitlePluginNode();
+                PlugInNode node = helper.PlugInNode.GetTitle();
                 Debug.WriteLine("[PRESET]");
-                List<string> presetNames = helper.GetPluginPresetNames(node);
+                List<string> presetNames = helper.PlugInNode.GetPresetNames(node);
                 foreach (string presetName in presetNames)
                 {
                     Debug.WriteLine(string.Format("NAME={0}", presetName));
                 }
                 Debug.WriteLine("[VIDEO MEDIA]");
-                Dictionary<string, Media> videoMediaDict = helper.GetProjectVideoMediaKeyValuePairs();
+                Dictionary<string, Media> videoMediaDict = helper.Media.GetAllVideoKV();
                 foreach (string mediaKey in videoMediaDict.Keys)
                 {
                     Debug.WriteLine(string.Format("NAME={0}", mediaKey));
                 }
                 Debug.WriteLine("[AUDIO MEDIA]");
-                Dictionary<string, Media> audioMediaDict = helper.GetProjectAudioMediaKeyValuePairs();
+                Dictionary<string, Media> audioMediaDict = helper.Media.GetAllAudioKV();
                 foreach (string mediaKey in audioMediaDict.Keys)
                 {
                     Debug.WriteLine(string.Format("NAME={0}", mediaKey));

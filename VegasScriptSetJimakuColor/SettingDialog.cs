@@ -8,13 +8,13 @@ namespace VegasScriptSetJimakuColor
 {
     public partial class SettingDialog : Form
     {
-        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
+        private readonly PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public SettingDialog()
         {
             InitializeComponent();
             
-            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VHUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
             Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
@@ -59,12 +59,11 @@ namespace VegasScriptSetJimakuColor
 
         private void SettingForm_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            double outlineWidth = 0.0f;
             if(outlineWidthBox.Text == "0")
             {
                 outlineWidthBox.Text = "0";
             }
-            else if(!double.TryParse(outlineWidthBox.Text, out outlineWidth))
+            else if(!double.TryParse(outlineWidthBox.Text, out double outlineWidth))
             {
                 outlineWidthBox.Text = "0";
                 okButton.Enabled = false;
@@ -72,14 +71,14 @@ namespace VegasScriptSetJimakuColor
             else { okButton.Enabled = true; }
         }
 
-        private void jimakuColorBox_Click(object sender, System.EventArgs e)
+        private void JimakuColorBox_Click(object sender, System.EventArgs e)
         {
             if(jimakuColorDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
             jimakuColorBox.BackColor = jimakuColorDialog.Color;
         }
 
-        private void outlineColorBox_Click(object sender, System.EventArgs e)
+        private void OutlineColorBox_Click(object sender, System.EventArgs e)
         {
             if (outlineColorDialog.ShowDialog() == DialogResult.Cancel) { return; }
 

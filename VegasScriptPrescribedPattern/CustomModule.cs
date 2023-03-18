@@ -49,13 +49,11 @@ namespace VegasScriptPrescribedPattern
     public class CustomModule : ICustomCommandModule
     {
         public readonly static string CommandName = "コマンド名";
-        private Vegas myVegas;
         private VegasHelper myHelper;
         private readonly CustomCommand myCommand = new CustomCommand(CommandCategory.View, CommandName);
 
         public void InitializeModule(Vegas vegas)
         {
-            myVegas = vegas;
             myHelper = VegasHelper.Instance(vegas);
         }
 
@@ -68,20 +66,20 @@ namespace VegasScriptPrescribedPattern
 
         void HandleInvoked(Object sender, EventArgs e)
         {
-            if (!myHelper.ActivateDockView(MyDockableControl.DockName))
+            if (!myHelper.App.ActivateDockView(MyDockableControl.DockName))
             {
                 MyDockableControl dock = new MyDockableControl()
                 {
                     AutoLoadCommand = myCommand,
                     PersistDockWindowState = true
                 };
-                myHelper.LoadDockView(dock);
+                myHelper.App.LoadDockView(dock);
             }
         }
 
         void HandleMenuPopup(Object sender, EventArgs args)
         {
-            myCommand.Checked = myVegas.FindDockView(MyDockableControl.DockName);
+            myCommand.Checked = myHelper.App.FindDockView(MyDockableControl.DockName);
         }
     }
 }

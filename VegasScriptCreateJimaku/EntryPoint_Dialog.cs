@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptCreateJimaku
 {
@@ -12,7 +15,7 @@ namespace VegasScriptCreateJimaku
         private void SetFromInfoToDialog(VegasHelper helper, ref KeyListManager manager, ref BasicTrackStructs structs, ref Flags flags, ref HypheInfo hypheInfo)
         {
             settingDialog.SetFromAudioTrackInfo(helper, manager.Audio, manager.AudioMBin);
-            settingDialog.JimakuFilePath = helper.Settings[SN.WdJimaku.File.Path];
+            settingDialog.JimakuFilePath = helper.Config[Names.WdJimaku.File.Path];
             settingDialog.SetFromFlags(flags);
             settingDialog.SetFromJimakuTrackInfo(helper, manager.Jimaku, manager.JimakuPlugin, manager.JimakuMBin);
             settingDialog.SetFromActorTrackInfo(helper, manager.Actor, manager.ActorPlugin, manager.ActorMBin);

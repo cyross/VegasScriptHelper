@@ -1,6 +1,9 @@
 ﻿using ScriptPortal.Vegas;
+using System.Web;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.ExtProc.Event;
 
 namespace VegasScriptDebug.DebugProcess
 {
@@ -17,14 +20,15 @@ namespace VegasScriptDebug.DebugProcess
         {
             try
             {
-                TrackEvents events = helper.GetVideoEvents();
-                helper.ApplyTextColorByActor(events, 4.0, true);
+                ColorApplier applier = new ColorApplier(helper);
+                TrackEvents events = helper.VideoTrack.Events();
+                applier.Exec(events, 4.0, true);
             }
-            catch (VegasHelperTrackUnselectedException)
+            catch (VHTrackUnselectedException)
             {
                 MessageBox.Show("ビデオトラックが選択されていません。");
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したビデオトラック中にイベントが存在していません。");
             }

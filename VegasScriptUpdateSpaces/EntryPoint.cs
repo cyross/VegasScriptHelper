@@ -5,23 +5,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptUpdateSpaces
 {
-    struct RemainEventInfo
-    {
-        public TrackEvent trackEvent;
-        public Timecode inrerval;
-    }
-
-    public class EntryPoint : IEntryPoint
+    public class EntryPoint: IEntryPoint
     {
         // 選択したトラック・イベント間の間隔を設定
         private static SettingDialog settingDialog = null;
 
         public void FromVegas(Vegas vegas)
         {
-#if true // for update script
             using (var block = new UndoBlock("UpdateSpaces"))
             {
                 try
@@ -29,9 +25,9 @@ namespace VegasScriptUpdateSpaces
                     // ヘルパクラスのオブジェクト生成は必須
                     VegasHelper helper = VegasHelper.Instance(vegas);
 
-                    Track selected = helper.SelectedTrack();
+                    Track selected = helper.Project.SelectedTrack();
 
-                    TrackEvents events = helper.GetEvents(selected);
+                    TrackEvents events = helper.Track.Events(selected);
 
                     if(events.Count == 1)
                     {
@@ -59,9 +55,9 @@ namespace VegasScriptUpdateSpaces
                         lastEvent = selectedEvents.Last();
                     }
 
-                    List<TrackEvent> targetEvents = helper.GetEventsFromSelected(events, firstEvent, lastEvent);
+                    List<TrackEvent> targetEvents = helper.Event.Range(events, firstEvent, lastEvent);
                     TrackEvent prevEvent = lastEvent;
-                    List<RemainEventInfo> remainEventInfoList = helper.GetRemainEvents(events, lastEvent).Select(e =>
+                    List<RemainEventInfo> remainEventInfoList = helper.Event.Remain(events, lastEvent).Select(e =>
                     {
                         RemainEventInfo info = new RemainEventInfo()
                         {
@@ -99,10 +95,10 @@ namespace VegasScriptUpdateSpaces
                         currentTime += remainEventInfo.trackEvent.Length;
                     }
                 }
-                catch(VegasHelperTrackUnselectedException) {
+                catch(VHTrackUnselectedException) {
                     MessageBox.Show("トラックが選択されていません");
                 }
-                catch(VegasHelperNoneEventsException)
+                catch(VHNoneEventsException)
                 {
                     MessageBox.Show("選択したトラックにイベントが存在していません");
                 }
@@ -116,27 +112,6 @@ namespace VegasScriptUpdateSpaces
                     throw ex;
                 }
             }
-#else // not update script
-            try
-            {
-                // ヘルパクラスのオブジェクト生成は必須
-                VegasHelper helper = VegasHelper.Instance(vegas);
-
-                // 設定ダイアログが不要なときは削除
-                if (settingDialog == null) { settingDialog = new SettingDialog(); }
-
-                // スクリプト本体を実装
-            }
-            catch (Exception ex)
-            {
-                string errMessage = "[MESSAGE]" + ex.Message + "\n[SOURCE]" + ex.Source + "\n[STACKTRACE]" + ex.StackTrace;
-                Debug.WriteLine("---[Exception In Helper]---");
-                Debug.WriteLine(errMessage);
-                Debug.WriteLine("---------------------------");
-                MessageBox.Show(errMessage);
-                throw ex;
-            }
-#endif
         }
     }
 }

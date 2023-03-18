@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using ScriptPortal.Vegas;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
 using System.Diagnostics;
 using System.Drawing.Text;
 using System.Drawing;
@@ -23,14 +24,14 @@ namespace VegasScriptLauncher
         private readonly static VegasScriptUpdateSpaces.EntryPoint vsus = new VegasScriptUpdateSpaces.EntryPoint();
         private readonly static VegasScriptCreateJimaku.EntryPoint vscj = new VegasScriptCreateJimaku.EntryPoint();
         private readonly static VegasScriptEditEventTimeByTextBox.EntryPoint vseetbtb = new VegasScriptEditEventTimeByTextBox.EntryPoint();
-        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
+        private readonly PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public LauncherForm(Vegas vegas)
         {
             Vegas = vegas;
             InitializeComponent();
 
-            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VHUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
             Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
@@ -103,17 +104,17 @@ namespace VegasScriptLauncher
             ClickEvent(vsambist);
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void Button10_Click(object sender, EventArgs e)
         {
             ClickEvent(vsus);
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void Button11_Click(object sender, EventArgs e)
         {
             ClickEvent(vscj);
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void Button12_Click(object sender, EventArgs e)
         {
             ClickEvent(vseetbtb);
         }

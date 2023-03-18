@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.ExtProc.Duration;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptDebug.DebugProcess
 {
@@ -21,13 +19,16 @@ namespace VegasScriptDebug.DebugProcess
         {
             try
             {
-                helper.AssignAudioTrackDurationToVideoTrack(helper.Settings[SN.WdJimaku.Track.Name], helper.Settings[SN.WdJimaku.Margin]);
+                Assigner assigner = new Assigner(helper);
+                assigner.Exec(
+                    helper.Config[Names.WdJimaku.Track.Name],
+                    helper.Config[Names.WdJimaku.Margin]);
             }
-            catch (VegasHelperNotFoundTrackException)
+            catch (VHNotFoundTrackException)
             {
                 MessageBox.Show("所定の名前のトラックが見つかりません。");
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("所定のトラック中にイベントが存在していません。");
             }

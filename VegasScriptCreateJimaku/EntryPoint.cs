@@ -7,12 +7,16 @@ using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptCreateJimaku
 {
     public partial class EntryPoint : IEntryPoint
     {
         private static SettingDialog settingDialog;
+        private VegasScriptHelper.ExtProc.Jimaku.Counter j_counter;
+        private VegasScriptHelper.ExtProc.Audio.Counter a_counter;
 
         KeyListManager keyListManager;
 
@@ -22,14 +26,16 @@ namespace VegasScriptCreateJimaku
             {
                 // ヘルパクラスのオブジェクト生成は必須
                 VegasHelper helper = VegasHelper.Instance(vegas);
+                j_counter = new VegasScriptHelper.ExtProc.Jimaku.Counter(helper);
+                a_counter = new VegasScriptHelper.ExtProc.Audio.Counter(helper);
 
                 Dictionary<string, List<Track>> trackGroupingKeyValue = new Dictionary<string, List<Track>>();
 
                 JimakuParams jimakuParams = new JimakuParams();
-                List<AudioTrack> audioTracks = helper.AllAudioTracks.ToList();
-                List<VideoTrack> videoTracks = helper.AllVideoTracks.ToList();
-                List<Media> mediaList = helper.GetProjectVideoMediaList();
-                List<MediaBin> mediaBinList = helper.GetMediaBinList();
+                List<AudioTrack> audioTracks = helper.Project.AllAudioTracks.ToList();
+                List<VideoTrack> videoTracks = helper.Project.AllVideoTracks.ToList();
+                List<Media> mediaList = helper.Media.GetAllVideoList();
+                List<MediaBin> mediaBinList = helper.MediaBin.GetList();
                 Flags flags = new Flags();
                 HypheInfo hypheInfo = CreateHypheInfo(helper);
 
@@ -46,7 +52,7 @@ namespace VegasScriptCreateJimaku
 
                 LoadFlagsSetting(helper, ref flags);
 
-                BasicTrackStructs trackStructs = BasicTrackStructs.Create(helper.Settings);
+                BasicTrackStructs trackStructs = BasicTrackStructs.Create(helper.Config);
 
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
@@ -57,12 +63,12 @@ namespace VegasScriptCreateJimaku
                 // 今後の拡張のため、事前に字幕ファイルを読み込んでおく
                 ReadJimaku(ref jimakuParams, settingDialog);
 
-                int jimakuLinesCount = helper.CountJimakuLines(jimakuParams.JimakuLines);
+                int jimakuLinesCount = j_counter.Get(jimakuParams.JimakuLines);
 
                 InsertAudioInfo insertAudioInfo =settingDialog.AudioInfo;
                 insertAudioInfo.JimakuLines = jimakuParams.JimakuLines;
 
-                int audioFileCount = helper.CountAudioFiles(insertAudioInfo);
+                int audioFileCount = a_counter.Get(insertAudioInfo);
 
                 Debug.WriteLine(string.Format("[Audio]:{0} [Line]:{1}", audioFileCount, jimakuLinesCount));
 
@@ -79,7 +85,7 @@ namespace VegasScriptCreateJimaku
                 // BGMトラック作成
                 if (trackStructs.BGM.IsCreate)
                 {
-                    trackStructs.BGM.Info.Track = helper.CreateAudioTrack(trackStructs.BGM.Info.Name);
+                    trackStructs.BGM.Info.Track = helper.Project.AddAudioTrack(trackStructs.BGM.Info.Name);
                     groupTracks.Add(trackStructs.BGM.Info.Track);
                 }
 
@@ -90,7 +96,7 @@ namespace VegasScriptCreateJimaku
                 // 背景トラック作成
                 if (trackStructs.BG.IsCreate)
                 {
-                    trackStructs.BG.Info.Track = helper.CreateVideoTrack(trackStructs.BG.Info.Name);
+                    trackStructs.BG.Info.Track = helper.Project.AddVideoTrack(trackStructs.BG.Info.Name);
                     groupTracks.Add(trackStructs.BG.Info.Track);
                 }
 
@@ -147,7 +153,7 @@ namespace VegasScriptCreateJimaku
                     // メイングループの対象外にする
                     if (trackStructs.FG.IsCreate)
                     {
-                        trackStructs.FG.Info.Track = helper.CreateVideoTrack(trackStructs.FG.Info.Name);
+                        trackStructs.FG.Info.Track = helper.Project.AddVideoTrack(trackStructs.FG.Info.Name);
                     }
                 }
                 else
@@ -156,7 +162,7 @@ namespace VegasScriptCreateJimaku
                     // メイングループに入れる
                     if (trackStructs.FG.IsCreate)
                     {
-                        trackStructs.FG.Info.Track = helper.CreateVideoTrack(trackStructs.FG.Info.Name);
+                        trackStructs.FG.Info.Track = helper.Project.AddVideoTrack(trackStructs.FG.Info.Name);
                         groupTracks.Add(trackStructs.FG.Info.Track);
                     }
 
@@ -166,7 +172,7 @@ namespace VegasScriptCreateJimaku
 
                 foreach (string actorName in trackGroupingKeyValue.Keys)
                 {
-                    helper.AddTrackGroup(
+                    helper.Project.AddTrackGroup(
                         trackGroupingKeyValue[actorName],
                         actorName != "" ? actorName : "(声優名なし)",
                         flags.IsCollapseTrackGroup);

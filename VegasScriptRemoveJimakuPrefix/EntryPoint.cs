@@ -1,5 +1,8 @@
 ﻿using ScriptPortal.Vegas;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.ExtProc.Jimaku;
+using VegasScriptHelper.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,7 +21,7 @@ namespace VegasScriptRemoveJimakuPrefix
             {
                 VegasHelper helper = VegasHelper.Instance(vegas);
 
-                Dictionary<string, VideoTrack> keyValuePairs = helper.GetVideoKeyValuePairs();
+                Dictionary<string, VideoTrack> keyValuePairs = helper.VideoTrack.KV;
 
                 if (!keyValuePairs.Any())
                 {
@@ -27,9 +30,9 @@ namespace VegasScriptRemoveJimakuPrefix
 
                 List<string> videoTrackKeys = keyValuePairs.Keys.ToList();
 
-                VideoTrack selected = helper.SelectedVideoTrack(false);
+                VideoTrack selected = helper.Project.SelectedVideoTrack(false);
 
-                string initialKey = selected != null ? helper.GetTrackKey(selected) : videoTrackKeys[0];
+                string initialKey = selected != null ? helper.Track.GetKey(selected) : videoTrackKeys[0];
 
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
@@ -40,14 +43,15 @@ namespace VegasScriptRemoveJimakuPrefix
 
                 using (new UndoBlock("字幕の接頭辞を削除"))
                 {
-                    helper.DeleteJimakuPrefix(keyValuePairs[settingDialog.RemoveJimakuTrackName]);
+                    DelPrefix delPrefix = new DelPrefix(helper);
+                    delPrefix.Exec(keyValuePairs[settingDialog.RemoveJimakuTrackName]);
                 }
             }
-            catch (VegasHelperTrackUnselectedException)
+            catch (VHTrackUnselectedException)
             {
                 MessageBox.Show("ビデオトラックが選択されていません。");
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したビデオトラック中にイベントが存在していません。");
             }

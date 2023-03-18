@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ScriptPortal.Vegas;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptCreateJimaku
 {

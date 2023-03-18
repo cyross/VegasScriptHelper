@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.ExtProc.Jimaku;
 
 namespace VegasScriptDebug.DebugProcess
 {
@@ -21,13 +23,14 @@ namespace VegasScriptDebug.DebugProcess
         {
             try
             {
-                helper.DeleteJimakuPrefix();
+                DelPrefix delPrefix = new DelPrefix(helper);
+                delPrefix.Exec();
             }
-            catch (VegasHelperTrackUnselectedException)
+            catch (VHTrackUnselectedException)
             {
                 MessageBox.Show("ビデオトラックが選択されていません。");
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したビデオトラック中にイベントが存在していません。");
             }

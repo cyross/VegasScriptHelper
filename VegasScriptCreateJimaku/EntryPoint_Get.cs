@@ -1,10 +1,7 @@
 ﻿using ScriptPortal.Vegas;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
 
 namespace VegasScriptCreateJimaku
 {
@@ -12,17 +9,17 @@ namespace VegasScriptCreateJimaku
     {
         public VideoTrack GetVideoTrack(VegasHelper helper, string name, Dictionary<string, VideoTrack> kvPairs)
         {
-            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.CreateVideoTrack(name);
+            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.Project.AddVideoTrack(name);
         }
 
         public AudioTrack GetAudioTrack(VegasHelper helper, string name, Dictionary<string, AudioTrack> kvPairs)
         {
-            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.CreateAudioTrack(name);
+            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.Project.AddAudioTrack(name);
         }
 
         public MediaBin GetMediaBin(VegasHelper helper, string name, Dictionary<string, MediaBin> kvPairs)
         {
-            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.CreateMediaBin(name, false);
+            return kvPairs.ContainsKey(name) ? kvPairs[name] : helper.MediaBin.Create(name, false);
         }
     }
 }

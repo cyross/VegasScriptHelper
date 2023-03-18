@@ -1,11 +1,12 @@
 ﻿using ScriptPortal.Vegas;
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptEditEventTimeByTextBoxExt;
 using VegasScriptHelper;
+using VegasScriptHelper.Enums;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptEditEventTimeByTextBox
 {
@@ -35,7 +36,7 @@ namespace VegasScriptEditEventTimeByTextBox
 
         protected override void OnLoad(EventArgs args)
         {
-            RulerFormat rulerFormat = (RulerFormat)myHelper.Settings[SN.WdTime.Ruler.Format];
+            RulerFormat rulerFormat = (RulerFormat)myHelper.Config[Names.WdTime.Ruler.Format];
             myView = new SettingDialog() {
                 Dock = DockStyle.Fill,
                 RulerFormat = rulerFormat
@@ -48,7 +49,7 @@ namespace VegasScriptEditEventTimeByTextBox
 
                     myView.SetFromDialog(selectedEvent);
 
-                    myHelper.Settings[SN.WdTime.Ruler.Format] = (int)myView.RulerFormat;
+                    myHelper.Config[Names.WdTime.Ruler.Format] = (int)myView.RulerFormat;
                 }
             };
             if (selectedEvent != null) { myView.SetFromDialog(selectedEvent); }
@@ -64,9 +65,9 @@ namespace VegasScriptEditEventTimeByTextBox
         {
             if (myView == null) { return; }
 
-            foreach(var track in myHelper.AllTracks)
+            foreach(var track in myHelper.Project.AllTracks)
             {
-                TrackEvent selected = myHelper.GetSelectedEvent(track, false);
+                TrackEvent selected = myHelper.Event.Get(track, false);
                 if (selected != null)
                 {
                     selectedEvent = selected;
@@ -87,24 +88,22 @@ namespace VegasScriptEditEventTimeByTextBox
     public class CustomModule : ICustomCommandModule
     {
         public readonly static string CommandName = "イベントの開始時間と長さを編集";
-        private Vegas myVegas;
         private VegasHelper myHelper;
         private readonly CustomCommand myCommand = new CustomCommand(CommandCategory.Edit, CommandName);
 
         public void InitializeModule(Vegas vegas)
         {
-            myVegas = vegas;
             myHelper = VegasHelper.Instance(vegas);
         }
 
         public ICollection GetCustomCommands()
         {
-            myHelper.AddTrackCountChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackStateChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventCountChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventDataChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventStateChangedEventHandler(OnTrackEventStateChanged);
-            myHelper.AddTrackEventTimeChangedEventHandler(OnTrackEventStateChanged);
+            myHelper.App.AddAppEvent[EHTarget.Track][(int)TrackEHs.CountChanged](OnTrackEventStateChanged);
+            myHelper.App.AddAppEvent[EHTarget.Track][(int)TrackEHs.StateChanged](OnTrackEventStateChanged);
+            myHelper.App.AddAppEvent[EHTarget.TrackEvent][(int)EventEHs.DataChanged](OnTrackEventStateChanged);
+            myHelper.App.AddAppEvent[EHTarget.TrackEvent][(int)EventEHs.CountChanged](OnTrackEventStateChanged);
+            myHelper.App.AddAppEvent[EHTarget.TrackEvent][(int)EventEHs.TimeChanged](OnTrackEventStateChanged);
+            myHelper.App.AddAppEvent[EHTarget.TrackEvent][(int)EventEHs.StateChanged](OnTrackEventStateChanged);
 
             myCommand.MenuPopup += HandleMenuPopup;
             myCommand.Invoked += HandleInvoked;
@@ -113,27 +112,27 @@ namespace VegasScriptEditEventTimeByTextBox
 
         void HandleInvoked(Object sender, EventArgs e)
         {
-            if (!myHelper.ActivateDockView(MyDockableControl.DockName))
+            if (!myHelper.App.ActivateDockView(MyDockableControl.DockName))
             {
                 MyDockableControl dock = new MyDockableControl(myHelper)
                 {
                     AutoLoadCommand = myCommand,
                     PersistDockWindowState = true
                 };
-                myHelper.LoadDockView(dock);
+                myHelper.App.LoadDockView(dock);
             }
         }
 
         void HandleMenuPopup(Object sender, EventArgs args)
         {
-            myCommand.Checked = myVegas.FindDockView(MyDockableControl.DockName);
+            myCommand.Checked = myHelper.App.FindDockView(MyDockableControl.DockName);
         }
 
         void OnTrackEventStateChanged(Object sender, EventArgs e)
         {
             IDockView dockView = null;
 
-            if (myHelper.FindDockView(MyDockableControl.DockName, ref dockView))
+            if (myHelper.App.FindDockView(MyDockableControl.DockName, ref dockView))
             {
                 MyDockableControl myDockViewControl = (MyDockableControl)dockView;
                 myDockViewControl.GetSelectedEvent();

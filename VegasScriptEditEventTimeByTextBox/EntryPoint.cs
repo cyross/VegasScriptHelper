@@ -1,9 +1,10 @@
 ﻿using ScriptPortal.Vegas;
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Settings;
+using VegasScriptHelper.Interfaces;
 
 namespace VegasScriptEditEventTimeByTextBox
 {
@@ -21,14 +22,14 @@ namespace VegasScriptEditEventTimeByTextBox
             {
                 try
                 {
-                    TrackEvent selectedEvent = helper.GetSelectedEvent(false);
+                    TrackEvent selectedEvent = helper.Event.Get(false);
 
                     if (selectedEvent == null) {
                         MessageBox.Show("イベントが選択されていません");
                         return;
                     }
 
-                    RulerFormat rulerFormat = (RulerFormat)helper.Settings[SN.WdTime.Ruler.Format];
+                    RulerFormat rulerFormat = (RulerFormat)helper.Config[Names.WdTime.Ruler.Format];
 
                     // 設定ダイアログが不要なときは削除
                     if (settingDialog == null) { settingDialog = new SettingDialog(); }
@@ -42,7 +43,7 @@ namespace VegasScriptEditEventTimeByTextBox
                     settingDialog.SetFromDialog(selectedEvent);
                     rulerFormat = settingDialog.RulerFormat;
 
-                    helper.Settings[SN.WdTime.Ruler.Format] = (int)rulerFormat;
+                    helper.Config[Names.WdTime.Ruler.Format] = (int)rulerFormat;
                 }
                 catch (Exception ex)
                 {
@@ -55,7 +56,7 @@ namespace VegasScriptEditEventTimeByTextBox
                 }
             }
 
-            helper.Settings.Save();
+            helper.Config.Save();
         }
     }
 }

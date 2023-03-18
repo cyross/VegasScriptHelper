@@ -1,10 +1,10 @@
 ﻿using ScriptPortal.Vegas;
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptEditCurrentPosition
 {
@@ -33,7 +33,7 @@ namespace VegasScriptEditCurrentPosition
 
         protected override void OnLoad(EventArgs args)
         {
-            RulerFormat rulerFormat = (RulerFormat)myHelper.Settings[SN.WdTime.Ruler.Format];
+            RulerFormat rulerFormat = (RulerFormat)myHelper.Config[Names.WdTime.Ruler.Format];
             myView = new SettingDialog(myHelper)
             {
                 Dock = DockStyle.Fill,
@@ -46,7 +46,7 @@ namespace VegasScriptEditCurrentPosition
                 {
                     myView.SetFromDialog(myHelper);
 
-                    myHelper.Settings[SN.WdTime.Ruler.Format] = (int)myView.RulerFormat;
+                    myHelper.Config[Names.WdTime.Ruler.Format] = (int)myView.RulerFormat;
                 }
             };
             myView.SetFromDialog(myHelper);
@@ -89,14 +89,14 @@ namespace VegasScriptEditCurrentPosition
 
         void HandleInvoked(Object sender, EventArgs e)
         {
-            if (!myHelper.ActivateDockView(MyDockableControl.DockName))
+            if (!myHelper.App.ActivateDockView(MyDockableControl.DockName))
             {
                 MyDockableControl dock = new MyDockableControl(myHelper)
                 {
                     AutoLoadCommand = myCommand,
                     PersistDockWindowState = true
                 };
-                myHelper.LoadDockView(dock);
+                myHelper.App.LoadDockView(dock);
             }
         }
 
@@ -109,7 +109,7 @@ namespace VegasScriptEditCurrentPosition
         {
             IDockView dockView = null;
 
-            if (myHelper.FindDockView(MyDockableControl.DockName, ref dockView))
+            if (myHelper.App.FindDockView(MyDockableControl.DockName, ref dockView))
             {
                 MyDockableControl myDockViewControl = (MyDockableControl)dockView;
                 myDockViewControl.UpdateCurrent();

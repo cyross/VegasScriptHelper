@@ -3,6 +3,9 @@ using System.Diagnostics;
 using System;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptEditEventTime
 {
@@ -16,8 +19,8 @@ namespace VegasScriptEditEventTime
 
             try
             {
-                TrackEvent trackEvent = helper.GetSelectedEvent();
-                VegasDuration duration = helper.GetEventTime(trackEvent);
+                TrackEvent trackEvent = helper.Event.Get();
+                VegasDuration duration = helper.Event.GetDuration(trackEvent);
 
                 if(settingDialog == null) { settingDialog = new SettingDialog(); }
 
@@ -31,19 +34,19 @@ namespace VegasScriptEditEventTime
 
                     using (new UndoBlock("イベントの開始時間・長さを編集"))
                     {
-                        helper.SetEventTime(trackEvent, duration);
+                        helper.Event.SetDuration(trackEvent, duration);
                     }
                 }
             }
-            catch (VegasHelperTrackUnselectedException)
+            catch (VHTrackUnselectedException)
             {
                 MessageBox.Show("トラックが選択されていません。");
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したトラック中にイベントが存在していません。");
             }
-            catch(VegasHelperNoneSelectedEventException)
+            catch(VHNoneSelectedEventException)
             {
                 MessageBox.Show("イベントを選択していません。");
             }

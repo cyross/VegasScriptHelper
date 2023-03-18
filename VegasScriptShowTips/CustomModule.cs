@@ -77,14 +77,14 @@ namespace VegasScriptShowTips
 
         void HandleInvoked(Object sender, EventArgs e)
         {
-            if (!myHelper.ActivateDockView(MyDockableControl.DockName))
+            if (!myHelper.App.ActivateDockView(MyDockableControl.DockName))
             {
                 MyDockableControl dock = new MyDockableControl()
                 {
                     AutoLoadCommand = myCommand,
                     PersistDockWindowState = true
                 };
-                myHelper.LoadDockView(dock);
+                myHelper.App.LoadDockView(dock);
             }
         }
 

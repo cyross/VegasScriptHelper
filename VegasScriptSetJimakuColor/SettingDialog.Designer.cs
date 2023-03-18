@@ -150,7 +150,7 @@
             this.outlineColorBox.Size = new System.Drawing.Size(32, 32);
             this.outlineColorBox.TabIndex = 4;
             this.outlineColorBox.TabStop = false;
-            this.outlineColorBox.Click += new System.EventHandler(this.outlineColorBox_Click);
+            this.outlineColorBox.Click += new System.EventHandler(this.OutlineColorBox_Click);
             // 
             // jimakuColorBox
             // 
@@ -161,7 +161,7 @@
             this.jimakuColorBox.Size = new System.Drawing.Size(32, 32);
             this.jimakuColorBox.TabIndex = 3;
             this.jimakuColorBox.TabStop = false;
-            this.jimakuColorBox.Click += new System.EventHandler(this.jimakuColorBox_Click);
+            this.jimakuColorBox.Click += new System.EventHandler(this.JimakuColorBox_Click);
             // 
             // outlineWidthLabel
             // 

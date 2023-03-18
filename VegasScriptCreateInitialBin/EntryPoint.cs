@@ -4,6 +4,7 @@ using System.CodeDom;
 using System.Diagnostics;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
 using VegasScriptHelper.VegasHelperYamlSpecs;
 
 namespace VegasScriptCreateInitialBin
@@ -18,18 +19,18 @@ namespace VegasScriptCreateInitialBin
 
             if(settingDialog == null) { settingDialog = new SettingDialog(); }
 
-            settingDialog.VoiroVoiceBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroVoice];
-            settingDialog.VoiroJimakuBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroJimaku];
-            settingDialog.VoiroActorBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.voiroActor];
-            settingDialog.JimakuBackgroundBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.jimakuBG];
-            settingDialog.ActorBackgroundBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.actorBG];
-            settingDialog.TachieBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.tachie];
-            settingDialog.DLAudioBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.dlAudio];
-            settingDialog.CreatedAudioBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.createdAudio];
-            settingDialog.DLMovieBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.dlMovie];
-            settingDialog.CreatedMovieBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.createdMovie];
-            settingDialog.DLImageBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.dlImage];
-            settingDialog.CreatedImageBinName = helper.Settings.DefaultBinName[DefaultBinNameSetting.createdImage];
+            settingDialog.VoiroVoiceBinName = helper.Config.DefBinName[DefaultBinName.voiroVoice];
+            settingDialog.VoiroJimakuBinName = helper.Config.DefBinName[DefaultBinName.voiroJimaku];
+            settingDialog.VoiroActorBinName = helper.Config.DefBinName[DefaultBinName.voiroActor];
+            settingDialog.JimakuBackgroundBinName = helper.Config.DefBinName[DefaultBinName.jimakuBG];
+            settingDialog.ActorBackgroundBinName = helper.Config.DefBinName[DefaultBinName.actorBG];
+            settingDialog.TachieBinName = helper.Config.DefBinName[DefaultBinName.tachie];
+            settingDialog.DLAudioBinName = helper.Config.DefBinName[DefaultBinName.dlAudio];
+            settingDialog.CreatedAudioBinName = helper.Config.DefBinName[DefaultBinName.createdAudio];
+            settingDialog.DLMovieBinName = helper.Config.DefBinName[DefaultBinName.dlMovie];
+            settingDialog.CreatedMovieBinName = helper.Config.DefBinName[DefaultBinName.createdMovie];
+            settingDialog.DLImageBinName = helper.Config.DefBinName[DefaultBinName.dlImage];
+            settingDialog.CreatedImageBinName = helper.Config.DefBinName[DefaultBinName.createdImage];
 
             if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -50,7 +51,7 @@ namespace VegasScriptCreateInitialBin
                     CreateMediaBin(helper, settingDialog.DLImageBinName, "");
                     CreateMediaBin(helper, settingDialog.CreatedImageBinName, "");
 
-                    helper.Settings.Save();
+                    helper.Config.Save();
                 }
             }
             catch (Exception ex)
@@ -68,14 +69,14 @@ namespace VegasScriptCreateInitialBin
             }
         }
 
-        private void CreateMediaBin(VegasHelper helper, string name, string settingName)
+        private void CreateMediaBin(VegasHelper helper, string name, string configName)
         {
-            if(!helper.IsExistMediaBin(name))
+            if(!helper.MediaBin.IsExist(name))
             {
-                helper.CreateMediaBin(name);
+                helper.MediaBin.Create(name);
 
-                if (settingName.Length > 0){
-                    helper.Settings[settingName] = name;
+                if (configName.Length > 0){
+                    helper.Config[configName] = name;
                 }
             }
         }

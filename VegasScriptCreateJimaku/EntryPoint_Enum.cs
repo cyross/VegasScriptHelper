@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
 
 namespace VegasScriptCreateJimaku
 {

@@ -1,13 +1,9 @@
 ﻿using ScriptPortal.Vegas;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 using VegasScriptHelper;
+using VegasScriptHelper.Structs;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptCreateJimaku
 {
@@ -54,7 +50,7 @@ namespace VegasScriptCreateJimaku
         {
             _Keys = keys;
             _SettingName = settingName;
-            _FirstKey = GetFirstKey(_Keys, helper.Settings[_SettingName]);
+            _FirstKey = GetFirstKey(_Keys, helper.Config[_SettingName]);
         }
 
         public static KeyListInfo Instance<T>(VegasHelper helper, Dictionary<string, T> dict, string settingName)
@@ -79,10 +75,9 @@ namespace VegasScriptCreateJimaku
         {
             BasicTrackStruct<T> info = new BasicTrackStruct<T>
             {
-                IsCreate = isCreate
+                IsCreate = isCreate,
+                Info = TrackInfo<T>.Create(name, isUseDictionary)
             };
-
-            info.Info = TrackInfo<T>.Create(name, isUseDictionary);
 
             return info;
         }
@@ -104,14 +99,14 @@ namespace VegasScriptCreateJimaku
         public BasicTrackStruct<VideoTrack> FG;
         public BasicTrackStruct<AudioTrack> BGM;
 
-        public static BasicTrackStructs Create(VegasScriptSettings settings)
+        public static BasicTrackStructs Create(Config config)
         {
             return new BasicTrackStructs
             {
-                Tachie = BasicTrackStruct<VideoTrack>.Create(settings[SN.WdTachie.Use], settings[SN.WdTachie.Track.Name], true),
-                BG = BasicTrackStruct<VideoTrack>.Create(settings[SN.WdBG.Use], settings[SN.WdBG.Track.Name], false),
-                FG = BasicTrackStruct<VideoTrack>.Create(settings[SN.WdFG.Use], settings[SN.WdFG.Track.Name], false),
-                BGM = BasicTrackStruct<AudioTrack>.Create(settings[SN.WdBGM.Use], settings[SN.WdBGM.Track.Name], false)
+                Tachie = BasicTrackStruct<VideoTrack>.Create(config[Names.WdTachie.Use], config[Names.WdTachie.Track.Name], true),
+                BG = BasicTrackStruct<VideoTrack>.Create(config[Names.WdBG.Use], config[Names.WdBG.Track.Name], false),
+                FG = BasicTrackStruct<VideoTrack>.Create(config[Names.WdFG.Use], config[Names.WdFG.Track.Name], false),
+                BGM = BasicTrackStruct<AudioTrack>.Create(config[Names.WdBGM.Use], config[Names.WdBGM.Track.Name], false)
             };
         }
     }

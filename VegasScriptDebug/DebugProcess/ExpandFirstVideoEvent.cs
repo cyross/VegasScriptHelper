@@ -1,5 +1,8 @@
 ﻿using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.ExtProc.Event;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptDebug.DebugProcess
 {
@@ -14,16 +17,17 @@ namespace VegasScriptDebug.DebugProcess
 
         public void Exec()
         {
-            double margin = helper.Settings[SN.WdVideo.Expand.Event.Margin];
+            Expander expander = new Expander(helper);
+            double margin = helper.Config[Names.WdVideo.Expand.Event.Margin];
             try
             {
-                helper.ExpandFirstVideoEvent(margin);
+                expander.Exec(margin);
             }
-            catch (VegasHelperTrackUnselectedException)
+            catch (VHTrackUnselectedException)
             {
                 MessageBox.Show("ビデオトラックが選択されていません。");
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したビデオトラック中にイベントが存在していません。");
             }

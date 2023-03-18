@@ -1,8 +1,7 @@
-﻿using System;
-using ScriptPortal.Vegas;
+﻿using ScriptPortal.Vegas;
 using System.Windows.Forms;
 using VegasScriptHelper;
-using System.Diagnostics;
+using VegasScriptHelper.Interfaces;
 
 namespace VegasScriptPrescribedPattern
 {
@@ -32,7 +31,7 @@ namespace VegasScriptPrescribedPattern
 
             // スクリプト本体を実装
 #endif
-            helper.Settings.Save();
+            helper.Config.Save();
         }
     }
 }

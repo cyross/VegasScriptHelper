@@ -20,7 +20,7 @@ namespace VegasScriptEditCurrentPosition
 
             myHelper = helper;
 
-            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VHUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
             Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
@@ -56,12 +56,12 @@ namespace VegasScriptEditCurrentPosition
         public void SetToDialog(VegasHelper helper)
         {
             errorProvider1.Clear();
-            Current = helper.CursolPosition;
+            Current = helper.Transport.CursolPosition;
         }
 
         public void SetFromDialog(VegasHelper helper)
         {
-            helper.CursolPosition = Current;
+            helper.Transport.CursolPosition = Current;
         }
 
         private void SetCurrent(Timecode time)
@@ -193,7 +193,7 @@ namespace VegasScriptEditCurrentPosition
 
         private void OnClickUpdateButton(object sender, EventArgs e)
         {
-            Current = myHelper.CursolPosition;
+            Current = myHelper.Transport.CursolPosition;
         }
     }
 }

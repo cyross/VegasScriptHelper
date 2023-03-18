@@ -2,6 +2,9 @@
 using System.Drawing;
 using System.Collections.Generic;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Settings;
 using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -19,30 +22,30 @@ namespace VegasScriptSetJimakuColor
             {
                 VegasHelper helper = VegasHelper.Instance(vegas);
 
-                if (!helper.AllVideoTracks.Any())
+                if (!helper.Project.AllVideoTracks.Any())
                 {
                     MessageBox.Show("ビデオトラックがありません");
                     return;
                 }
 
-                Dictionary<string, VideoTrack> trackDict = helper.GetVideoKeyValuePairs();
+                Dictionary<string, VideoTrack> trackDict = helper.VideoTrack.KV;
                 List<string> trackNames = trackDict.Keys.ToList();
 
-                VideoTrack selected = helper.SelectedVideoTrack(false);
+                VideoTrack selected = helper.Project.SelectedVideoTrack(false);
 
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
                 settingDialog.TargetVideoTrackDataSource = trackNames;
-                settingDialog.TargetVideoTrack = selected != null ? helper.GetTrackKey(selected) : trackNames[0];
-                settingDialog.JimakuColor = helper.Settings[SN.WdJimaku.Color];
-                settingDialog.OutlineColor = helper.Settings[SN.WdJimaku.Outline.Color];
-                settingDialog.OutlineWidth = helper.Settings[SN.WdJimaku.Outline.Width];
+                settingDialog.TargetVideoTrack = selected != null ? helper.Track.GetKey(selected) : trackNames[0];
+                settingDialog.JimakuColor = helper.Config[Names.WdJimaku.Color];
+                settingDialog.OutlineColor = helper.Config[Names.WdJimaku.Outline.Color];
+                settingDialog.OutlineWidth = helper.Config[Names.WdJimaku.Outline.Width];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
                 using (new UndoBlock("字幕の色とアウトラインを指定の色に統一"))
                 {
-                    helper.SetTextColor(
+                    helper.TextParam.SetTextColor(
                         trackDict[settingDialog.TargetVideoTrack],
                         settingDialog.JimakuColor,
                         settingDialog.OutlineColor,
@@ -50,12 +53,12 @@ namespace VegasScriptSetJimakuColor
                         );
                 }
 
-                helper.Settings[SN.WdJimaku.Color] = settingDialog.JimakuColor;
-                helper.Settings[SN.WdJimaku.Outline.Color] = settingDialog.OutlineColor;
-                helper.Settings[SN.WdJimaku.Outline.Width] = settingDialog.OutlineWidth;
-                helper.Settings.Save();
+                helper.Config[Names.WdJimaku.Color] = settingDialog.JimakuColor;
+                helper.Config[Names.WdJimaku.Outline.Color] = settingDialog.OutlineColor;
+                helper.Config[Names.WdJimaku.Outline.Width] = settingDialog.OutlineWidth;
+                helper.Config.Save();
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したトラックにイベントがありません。");
             }

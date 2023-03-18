@@ -5,6 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
+using VegasScriptHelper.ExtProc.Event;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Settings;
 
 namespace VegasScriptExpandFirstVideoEvent
 {
@@ -22,7 +26,7 @@ namespace VegasScriptExpandFirstVideoEvent
                 // 1)選択したトラック
                 // 2)指定の名前のトラック
                 // 3)最初のトラック
-                Dictionary<string, VideoTrack> videoKeyValuePairs = helper.GetVideoKeyValuePairs();
+                Dictionary<string, VideoTrack> videoKeyValuePairs = helper.VideoTrack.KV;
                 List<string> videoKeyList = videoKeyValuePairs.Keys.ToList();
 
                 if (!videoKeyList.Any())
@@ -31,7 +35,7 @@ namespace VegasScriptExpandFirstVideoEvent
                     return;
                 }
 
-                Dictionary<string, AudioTrack> audioKeyValuePairs = helper.GetAudioKeyValuePairs();
+                Dictionary<string, AudioTrack> audioKeyValuePairs = helper.AudioTrack.KV;
                 List<string> audioKeyList = audioKeyValuePairs.Keys.ToList();
 
                 if (!audioKeyList.Any())
@@ -40,23 +44,23 @@ namespace VegasScriptExpandFirstVideoEvent
                     return;
                 }
 
-                VideoTrack targetVideoTrack = helper.SelectedVideoTrack(false);
+                VideoTrack targetVideoTrack = helper.Project.SelectedVideoTrack(false);
 
                 if (targetVideoTrack == null)
                 {
-                    targetVideoTrack = helper.SearchVideoTrackByName(helper.Settings[SN.WdJimaku.Track.Name]);
+                    targetVideoTrack = helper.Project.SearchVideoTrack(helper.Config[Names.WdJimaku.Track.Name]);
                 }
 
-                string videoTrackKey = targetVideoTrack != null ? helper.GetTrackKey(targetVideoTrack) : videoKeyList[0];
+                string videoTrackKey = targetVideoTrack != null ? helper.Track.GetKey(targetVideoTrack) : videoKeyList[0];
 
-                AudioTrack targetAudioTrack = helper.SelectedAudioTrack(false);
+                AudioTrack targetAudioTrack = helper.Project.SelectedAudioTrack(false);
 
                 if (targetAudioTrack == null)
                 {
-                    targetAudioTrack = helper.SearchAudioTrackByName(helper.Settings[SN.WdAudio.Track.Name]);
+                    targetAudioTrack = helper.Project.SearchAudioTrack(helper.Config[Names.WdAudio.Track.Name]);
                 }
 
-                string audioTrackKey = targetAudioTrack != null ? helper.GetTrackKey(targetAudioTrack) : audioKeyList[0];
+                string audioTrackKey = targetAudioTrack != null ? helper.Track.GetKey(targetAudioTrack) : audioKeyList[0];
 
                 if (settingDialog == null) { settingDialog = new SettingDialog(); }
 
@@ -64,7 +68,7 @@ namespace VegasScriptExpandFirstVideoEvent
                 settingDialog.VideoTrackName = videoTrackKey;
                 settingDialog.AudioTrackNameDataSource = audioKeyList;
                 settingDialog.AudioTrackName = audioTrackKey;
-                settingDialog.ExpandMargin = helper.Settings[SN.WdVideo.Expand.Event.Margin];
+                settingDialog.ExpandMargin = helper.Config[Names.WdVideo.Expand.Event.Margin];
 
                 if (settingDialog.ShowDialog() == DialogResult.Cancel) { return; }
 
@@ -74,19 +78,20 @@ namespace VegasScriptExpandFirstVideoEvent
 
                 using(new UndoBlock("ビデオトラックの最初のイベントの長さをオーディオトラックに合わせる"))
                 {
-                    helper.ExpandFirstVideoEvent(videoTrack, audioTrack, margin);
+                    Expander expander = new Expander(helper);
+                    expander.Exec(videoTrack, audioTrack, margin);
                 }
 
-                helper.Settings[SN.WdAudio.Track.Name] = audioTrack.Name;
-                helper.Settings[SN.WdJimaku.Track.Name] = videoTrack.Name;
-                helper.Settings[SN.WdVideo.Expand.Event.Margin] = margin;
-                helper.Settings.Save();
+                helper.Config[Names.WdAudio.Track.Name] = audioTrack.Name;
+                helper.Config[Names.WdJimaku.Track.Name] = videoTrack.Name;
+                helper.Config[Names.WdVideo.Expand.Event.Margin] = margin;
+                helper.Config.Save();
             }
-            catch (VegasHelperTrackUnselectedException)
+            catch (VHTrackUnselectedException)
             {
                 MessageBox.Show("ビデオトラックが選択されていません。");
             }
-            catch (VegasHelperNoneEventsException)
+            catch (VHNoneEventsException)
             {
                 MessageBox.Show("選択したビデオトラック中にイベントが存在していません。");
             }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptCreateJimaku
 {
@@ -73,7 +75,7 @@ namespace VegasScriptCreateJimaku
                 trackEvents.Add(DivideVideoEvent(jimakuParams.Jimaku.Track.Track, actorStruct.Jimaku));
                 if (jimakuParams.IsCreateActorTrack) { trackEvents.Add(DivideVideoEvent(jimakuParams.Actor.Track.Track, actorStruct.Actor)); }
 
-                helper.AddTrackEventGroup(trackEvents.ToArray());
+                helper.Project.AddTrackEventGroup(trackEvents.ToArray());
             }
         }
 

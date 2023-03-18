@@ -79,7 +79,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UpdateSpaces">
-      <HintPath>..\VegasScriptUpdateSpaces\bin\Release\UpdateSpaces.dll</HintPath>
+      <HintPath>..\VegasScriptUpdateSpaces\bin\Debug\UpdateSpaces.dll</HintPath>
     </Reference>
     <Reference Include="VegasScriptHelper">
       <HintPath>..\..\VegasScriptHelper\VegasScriptHelper\bin\Debug\VegasScriptHelper.dll</HintPath>

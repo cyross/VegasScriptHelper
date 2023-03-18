@@ -9,13 +9,13 @@ namespace VegasScriptInsertAudioFileFromDirectory
 {
     public partial class SettingDialog : Form
     {
-        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
+        private readonly PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public SettingDialog()
         {
             InitializeComponent();
 
-            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VHUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
             Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
@@ -26,8 +26,10 @@ namespace VegasScriptInsertAudioFileFromDirectory
 
         private void AudioFileFolderDialogOpenButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            folderBrowser.SelectedPath = AudioFileFolderText.Text;
+            FolderBrowserDialog folderBrowser = new FolderBrowserDialog() {
+                SelectedPath = AudioFileFolderText.Text
+            };
+
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 AudioFileFolderText.Text = folderBrowser.SelectedPath;

@@ -13,7 +13,7 @@ namespace VegasScriptDebug.DebugProcess
 
         public void Exec()
         {
-            helper.Settings.LoadYamlFile();
+            helper.Config.LoadYamlFile();
         }
     }
 }

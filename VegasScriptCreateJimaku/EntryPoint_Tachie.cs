@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ScriptPortal.Vegas;
 using VegasScriptHelper;
+using VegasScriptHelper.Interfaces;
 
 namespace VegasScriptCreateJimaku
 {
@@ -26,7 +27,7 @@ namespace VegasScriptCreateJimaku
 
             string name = GetTachieTrackName(tachieTrack.Info.Name, type);
             tachieTrack.Info.Names.Add(name);
-            tachieTrack.Info.Tracks[name] = helper.CreateVideoTrack(name);
+            tachieTrack.Info.Tracks[name] = helper.Project.AddVideoTrack(name);
             groupTracks.Add(tachieTrack.Info.Tracks[name]);
         }
     }

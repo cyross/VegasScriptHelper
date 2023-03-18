@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using ScriptPortal.Vegas;
 using VegasScriptHelper;
+using VegasScriptHelper.Errors;
 
 namespace VegasScriptDebug.DebugProcess.DMediaBin
 {
@@ -23,9 +24,9 @@ namespace VegasScriptDebug.DebugProcess.DMediaBin
             MessageBox.Show("[正常系]メディアビンを作成します。");
             try
             {
-                helper.CreateMediaBin(binName);
+                helper.MediaBin.Create(binName);
             }
-            catch (VegasHelperAlreadyExistedMediaBinException)
+            catch (VHAlreadyExistedMediaBinException)
             {
                 MessageBox.Show("メディアビンが存在しています。", "NG", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -34,20 +35,20 @@ namespace VegasScriptDebug.DebugProcess.DMediaBin
             MessageBox.Show("[異常系]存在しているメディアビンを作成しようとします。");
             try
             {
-                helper.CreateMediaBin(binName);
+                helper.MediaBin.Create(binName);
                 MessageBox.Show("例外が発生しませんでした。", "NG", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            catch (VegasHelperAlreadyExistedMediaBinException)
+            catch (VHAlreadyExistedMediaBinException)
             {
                 MessageBox.Show("例外が発生しました。", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             MessageBox.Show("[正常系]メディアビンを取得します。");
             try
             {
-                MediaBin bin = helper.GetMediaBin(binName);
+                MediaBin bin = helper.MediaBin.Get(binName);
             }
-            catch (VegasHelperNotFoundMediaBinException)
+            catch (VHNotFoundMediaBinException)
             {
                 MessageBox.Show("メディアビンが存在していません。", "例外発生", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -56,9 +57,9 @@ namespace VegasScriptDebug.DebugProcess.DMediaBin
             MessageBox.Show("[正常系]メディアビンを削除します。");
             try
             {
-                helper.DeleteMediaBin(binName);
+                helper.MediaBin.Delete(binName);
             }
-            catch (VegasHelperNotFoundMediaBinException)
+            catch (VHNotFoundMediaBinException)
             {
                 MessageBox.Show("メディアビンが存在していません。", "例外発生", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -67,22 +68,22 @@ namespace VegasScriptDebug.DebugProcess.DMediaBin
             MessageBox.Show("[異常系]存在していないメディアビンを取得しようとします。");
             try
             {
-                MediaBin bin = helper.GetMediaBin(binName);
+                MediaBin bin = helper.MediaBin.Get(binName);
                 MessageBox.Show("例外が発生しませんでした。", "NG", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            catch (VegasHelperNotFoundMediaBinException)
+            catch (VHNotFoundMediaBinException)
             {
                 MessageBox.Show("例外が発生しました。", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             MessageBox.Show("[異常系]存在していないメディアビンを削除しようとします。");
             try
             {
-                helper.DeleteMediaBin(binName);
+                helper.MediaBin.Delete(binName);
                 MessageBox.Show("例外が発生しませんでした。", "NG", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            catch (VegasHelperNotFoundMediaBinException)
+            catch (VHNotFoundMediaBinException)
             {
                 MessageBox.Show("例外が発生しました。", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

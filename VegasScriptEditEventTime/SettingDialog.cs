@@ -3,18 +3,19 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
 using VegasScriptHelper;
+using VegasScriptHelper.Structs;
 
 namespace VegasScriptEditEventTime
 {
     public partial class SettingDialog : Form
     {
-        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
+        private readonly PrivateFontCollection myFontCollection = new PrivateFontCollection();
 
         public SettingDialog()
         {
             InitializeComponent();
 
-            myFontCollection.AddFontFile(VegasHelperUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
+            myFontCollection.AddFontFile(VHUtility.GetExecFilepath(VegasHelper.FONT_FILENAME));
 
             Font f_main = new Font(myFontCollection.Families[0], 9);
             Font = f_main;
@@ -88,12 +89,11 @@ namespace VegasScriptEditEventTime
         
         private void ValidateNumBox(TextBox box, long max)
         {
-            int tmp = 0;
             if (string.IsNullOrEmpty(box.Text))
             {
                 box.Text = "0";
             }
-            else if (!int.TryParse(box.Text, out tmp))
+            else if (!int.TryParse(box.Text, out int tmp))
             {
                 errorProvider1.SetError(box, "数値ではありません");
                 OKButton.Enabled = false;

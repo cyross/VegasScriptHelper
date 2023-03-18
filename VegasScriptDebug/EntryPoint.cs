@@ -4,6 +4,7 @@ using VegasScriptHelper;
 using System.Collections.Generic;
 using VegasScriptDebug.DebugProcess;
 using VegasScriptDebug.DebugProcess.DMediaBin;
+using VegasScriptHelper.Interfaces;
 
 namespace VegasScriptDebug
 {
